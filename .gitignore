@@ -1,0 +1,5 @@
+.env
+.DS_Store
+.claude
+.venv/**
+src/__pycache__/**
