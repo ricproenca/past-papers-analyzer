@@ -27,7 +27,7 @@ def main():
     if args.model:
         os.environ["CLAUDE_MODEL"] = args.model
 
-    output_path = args.output or str(Path(args.pdf_path).stem + ".json")
+    output_path = args.output or str(Path("output/json") / (Path(args.pdf_path).stem + ".json"))
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     extract(args.pdf_path, output_path, ms_path=args.marking_scheme)
 

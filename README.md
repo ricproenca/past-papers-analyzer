@@ -22,6 +22,7 @@ cp .env.example .env   # add your ANTHROPIC_API_KEY
 ```bash
 # Phase 1 + 2 only (question extraction and topic mapping)
 python extract.py input/0478_m25_qp_12.pdf
+# → output/json/0478_m25_qp_12.json
 
 # Phase 1 + 2 + 3 (includes marking scheme answers)
 python extract.py input/0478_m25_qp_12.pdf -ms input/0478_m25_ms_12.pdf

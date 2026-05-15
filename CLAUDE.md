@@ -12,7 +12,7 @@ cp .env.example .env   # add ANTHROPIC_API_KEY
 ## Usage
 
 ```bash
-python extract.py <pdf_path>                                      # output: <pdf_stem>.json
+python extract.py <pdf_path>                                      # output: output/json/<pdf_stem>.json
 python extract.py <pdf_path> -ms <ms_pdf_path>                    # include Phase 3 (answers)
 python extract.py <pdf_path> -o results/out.json                  # custom output path
 python extract.py <pdf_path> -m claude-sonnet-4-6                 # override model
