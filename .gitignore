@@ -3,3 +3,4 @@
 .claude
 .venv/**
 src/__pycache__/**
+/input/**

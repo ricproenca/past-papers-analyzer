@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from . import pdf_reader, prompts, claude_client
+from . import pdf_reader, prompts, claude_client, renderer
 from .schema import validate_phase_output
 
 _KEY_ORDER = ["board", "level", "subject_code", "subject_name", "variant", "qp", "ms", "total_marks", "questions"]
@@ -67,3 +67,12 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
     sidecar2.unlink(missing_ok=True)
     claude_client.print_totals()
     print(f"Output written to: {output_path}")
+
+    print("Running Phase 4 (HTML rendering)...")
+    json_path = Path(output_path)
+    if json_path.parent.name == "json":
+        html_path = json_path.parent.parent / "html" / json_path.with_suffix(".html").name
+    else:
+        html_path = json_path.with_suffix(".html")
+    renderer.render(final_data, html_path)
+    print(f"HTML written to: {html_path}")

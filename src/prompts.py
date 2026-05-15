@@ -10,7 +10,7 @@ RULES:
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
-- Answer-space lines (dotted lines and label lines like 'Method:', 'Input:', '1 _') have been removed from the PDF text. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or answer-space lines to the 'text' field.
+- Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
 
 
 Assessment Objectives

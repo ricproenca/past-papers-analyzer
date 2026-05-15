@@ -23,8 +23,10 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
             text = page.extract_text() or ""
             text = re.sub(r'(?m)^\s*\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
             text = re.sub(r'(?m)^\s*\.{4,}\s*$\n?', '', text)
-            text = re.sub(r'(?m)^[A-Za-z0-9][A-Za-z0-9 \-]{0,80}\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
-            text = re.sub(r'(?m)^[A-Za-z0-9][A-Za-z0-9 \-]{0,80}\.{4,}\s*$\n?', '', text)
+            text = re.sub(r'(?m)^([A-Za-z0-9][A-Za-z0-9 \-]*?)\.{4,}\s*(\[\d+\])\s*$',
+                          lambda m: f"{m.group(1).rstrip()} {m.group(2)}", text)
+            text = re.sub(r'(?m)^([A-Za-z0-9][A-Za-z0-9 \-]*?)\.{4,}\s*$',
+                          lambda m: m.group(1).rstrip(), text)
             text = re.sub(r'\.{4,}', '[blank]', text)
             text = re.sub(r'\n{3,}', '\n\n', text)
             tables = page.extract_tables()

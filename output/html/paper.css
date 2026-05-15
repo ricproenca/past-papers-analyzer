@@ -1,0 +1,58 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; }
+.page { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.paper-header {
+    background: #1e3a5f; color: #fff; border-radius: 10px;
+    padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+}
+.paper-header h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: .35rem; }
+.paper-header p { font-size: .875rem; opacity: .8; }
+.card {
+    background: #fff; border-radius: 10px; margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1); overflow: hidden;
+}
+.q-header {
+    display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
+    padding: .875rem 1.25rem; cursor: pointer; user-select: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+.q-header:hover { background: #f9fafb; }
+.q-id { font-weight: 700; font-size: 1rem; margin-right: .25rem; }
+.badge {
+    display: inline-block; font-size: .75rem; font-weight: 600;
+    padding: .2rem .55rem; border-radius: 999px; color: #fff;
+}
+.badge-marks { background: #6b7280; }
+.badge-obj { background: #6b7280; }
+.badge-obj[data-obj=AO1] { background: #3b82f6; }
+.badge-obj[data-obj=AO2] { background: #22c55e; }
+.badge-obj[data-obj=AO3] { background: #f97316; }
+.badge-cmd { background: #8b5cf6; }
+.badge-topic { background: #0891b2; }
+.badge-page { background: #d1d5db; color: #374151; }
+.chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
+.card.open .chevron { transform: rotate(180deg); }
+.q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
+.q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; }
+.q-visual { font-size: .8rem; color: #6b7280; margin-top: .5rem; font-style: italic; }
+.answers {
+    display: none; padding: 1.25rem; background: #f9fafb;
+}
+.card.open .answers { display: block; }
+.answers-title {
+    font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: #6b7280; margin-bottom: .75rem;
+}
+.scoring-rule { font-size: .875rem; color: #374151; font-style: italic; margin-bottom: .75rem; }
+.mp-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+.mp-item {
+    display: flex; align-items: baseline; gap: .6rem;
+    font-size: .875rem; line-height: 1.5;
+}
+.mp-item::before { content: "•"; color: #9ca3af; flex-shrink: 0; }
+.mp-text { flex: 1; }
+.mp-marks {
+    flex-shrink: 0; font-size: .75rem; font-weight: 600;
+    color: #6b7280; white-space: nowrap;
+}
