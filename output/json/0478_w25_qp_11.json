@@ -1,0 +1,1130 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "11",
+  "qp": "0478_w25_qp_11.pdf",
+  "ms": "0478_w25_ms_11.pdf",
+  "total_marks": 75,
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. State the highest denary number that could be stored in a single 8-bit register.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "255",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1b",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. Denary numbers are typed into the calculator. They are converted to binary numbers and stored in the 8-bit registers. The student types in the denary number 23 and the denary number 168. Give the 8-bit binary numbers that are stored in the registers for these two denary numbers.\n23\n168",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 2,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "00010111",
+            "marks": 1
+          },
+          {
+            "text": "10101000",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1c",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. The result of a calculation that is stored in a register is the binary number 00001011. Give the denary number that will be displayed on the screen for this binary number.\n00001011",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "11",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1d",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. Another result of a calculation that is stored in a register is the binary number 01000010. Give the denary number that will be displayed on the screen for this binary number.\n01000010",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "66",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1e",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. Two binary numbers stored in the registers are 01110110 and 00110000. Add the binary numbers using binary addition. Show all your working. Give your answer in binary.\n  0 1 1 1 0 1 1 0\n+ 0 0 1 1 0 0 0 0",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 3,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct nibble. One mark for a correct method of working, for example carries.",
+        "marking_points": [
+          {
+            "text": "1 0 1 0 0 1 1 0 (correct result)",
+            "marks": 2
+          },
+          {
+            "text": "Correct method of working shown, for example carries (1 1 1 shown above the addition)",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1f",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. The result of a calculation could be a negative denary number. State how the calculator could represent a negative denary number as a binary number.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Using two's complement",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q1g",
+      "text": "A student has an electronic calculator. The calculator has a screen that displays the result of calculations. The calculator has 8-bit registers. The electronic calculator is an example of an embedded system. Explain why it is an example of an embedded system.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "It has a single/limited function",
+            "marks": 1
+          },
+          {
+            "text": "It has dedicated hardware",
+            "marks": 1
+          },
+          {
+            "text": "It has a microprocessor",
+            "marks": 1
+          },
+          {
+            "text": "Its function is not easily changed",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2a",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The employee compresses the image files using lossy compression before sending them. Lossy compression reduces the size of the image files. Give two other reductions that lossy compression makes to the images.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Resolution // number of pixels",
+            "marks": 1
+          },
+          {
+            "text": "Colour depth // bit depth",
+            "marks": 1
+          },
+          {
+            "text": "Quality // detail",
+            "marks": 1
+          },
+          {
+            "text": "Metadata",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2b_i",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The image data is broken down into packets to be sent across a network to the company. The destination internet protocol (IP) address is read by a device in the network. The device uses the IP address to forward the packet towards its correct destination. State the name of the device that reads the destination IP address.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Router",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2b_ii",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The image data is broken down into packets to be sent across a network to the company. The destination internet protocol (IP) address is read by a device in the network. The device uses the IP address to forward the packet towards its correct destination. Identify the part of the packet where the destination IP address is found.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "(Packet) header",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2c",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The IP address has an IPv6 format. Give three characteristics of the IPv6 format.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "It has 128 bits",
+            "marks": 1
+          },
+          {
+            "text": "Hexadecimal",
+            "marks": 1
+          },
+          {
+            "text": "Separated by colons",
+            "marks": 1
+          },
+          {
+            "text": "8 groups of digits",
+            "marks": 1
+          },
+          {
+            "text": "Each group is 4 digits",
+            "marks": 1
+          },
+          {
+            "text": "Consecutive groups of 0s can be represented by :: once",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2d",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. An echo check is used to check for errors after the image has been transmitted. Draw and annotate a diagram to show how the echo check would detect any errors.",
+      "command": "Draw",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "(Data being sent to the receiver) and a copy sent back from the receiver to the sender",
+            "marks": 1
+          },
+          {
+            "text": "Sending device comparing the original data and the copy",
+            "marks": 1
+          },
+          {
+            "text": "If original data and copy don't match an error is detected",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2e_i",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The image data is encrypted using symmetric encryption. Tick (✓) one box to show the correct statement about symmetric encryption.\nA Encrypted text is known as plain text.\nB The most secure form of encryption.\nC The encryption key is shared with any device receiving the encrypted data.\nD Two different keys are used.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "C",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q2e_ii",
+      "text": "An employee of a company sells houses. He sends images of the houses to his company. The image data is encrypted using symmetric encryption. Give one other type of encryption that could be used.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Asymmetric",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q3a",
+      "text": "A student has a portable device. He uses an on-screen keyboard to write messages to his friend. Explain how the text the student writes is converted to binary to be processed.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 6,
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "A character set is used",
+            "marks": 1
+          },
+          {
+            "text": "… such as ASCII/Unicode",
+            "marks": 1
+          },
+          {
+            "text": "Each character has a unique binary value that it is converted to",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q3b_i",
+      "text": "A student has a portable device. He uses an on-screen keyboard to write messages to his friend. The device has 4 gibibytes (GiB) of random access memory (RAM). State the amount of RAM the device has in mebibytes (MiB).",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "4096",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q3b_ii",
+      "text": "A student has a portable device. He uses an on-screen keyboard to write messages to his friend. The device has 4 gibibytes (GiB) of random access memory (RAM). State the amount of RAM the device has in tebibytes (TiB). Your answer can be given rounded to 3 decimal places.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "0.004 // 0.0039(0625)",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q3c",
+      "text": "A student has a portable device. He uses an on-screen keyboard to write messages to his friend. The device has 4 gibibytes (GiB) of random access memory (RAM). Explain why the portable device needs RAM.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 6,
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "To store data/instructions that are currently in use",
+            "marks": 1
+          },
+          {
+            "text": "To store software/programs that are currently in use",
+            "marks": 1
+          },
+          {
+            "text": "For volatile storage // to store data temporarily",
+            "marks": 1
+          },
+          {
+            "text": "To allow data to be accessed directly by the CPU/processor // To allow data to be stored closer to the CPU/processor",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q3d",
+      "text": "A student has a portable device. He uses an on-screen keyboard to write messages to his friend. The device has a fingerprint scanner to allow the student to unlock the portable device. Circle only three terms that can be used to describe the fingerprint scanner.\nauthentication   biometric   malware   parity check\nfirewall   input device   output device   storage device",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 7,
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "Authentication",
+            "marks": 1
+          },
+          {
+            "text": "Biometric",
+            "marks": 1
+          },
+          {
+            "text": "Input device",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4a",
+      "text": "A computer game development company are reviewing their current security solutions. The company wants employees to be aware of how they can identify phishing. Describe the process of phishing.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 7,
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "A legitimate looking email is sent to the user",
+            "marks": 1
+          },
+          {
+            "text": "The user clicks a link in the email // the user replies to the email",
+            "marks": 1
+          },
+          {
+            "text": "The user is directed to a fake website",
+            "marks": 1
+          },
+          {
+            "text": "The user enters their personal data …",
+            "marks": 1
+          },
+          {
+            "text": "… that is stolen/used by a third party (for malicious purposes)",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4b",
+      "text": "A computer game development company are reviewing their current security solutions. The company wants employees to be aware of how they can identify phishing. Give two ways an employee could identify phishing.\n1\n2",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Check the email address that the email has been sent from",
+            "marks": 1
+          },
+          {
+            "text": "Check the tone/spelling of the email",
+            "marks": 1
+          },
+          {
+            "text": "Check the URL that is attached to the link",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4c",
+      "text": "A computer game development company are reviewing their current security solutions. The company has installed anti-malware software on all employees' computers. Give three examples of malware that anti-malware software can detect.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 7,
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Virus",
+            "marks": 1
+          },
+          {
+            "text": "Worm",
+            "marks": 1
+          },
+          {
+            "text": "Trojan horse",
+            "marks": 1
+          },
+          {
+            "text": "Spyware // keylogger",
+            "marks": 1
+          },
+          {
+            "text": "Ransomware",
+            "marks": 1
+          },
+          {
+            "text": "Adware",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4d_i",
+      "text": "A computer game development company are reviewing their current security solutions. The computer game developers use a high-level language to create a computer game. State what is meant by a high-level language.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "A language that uses English-like statements",
+            "marks": 1
+          },
+          {
+            "text": "It is a language that needs to be converted to machine code (to be processed by a computer)",
+            "marks": 1
+          },
+          {
+            "text": "It is a portable language (that can be used on any computer)",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4d_ii",
+      "text": "A computer game development company are reviewing their current security solutions. The computer game developers use a high-level language to create a computer game. One benefit of using a high-level language is that the code is easy to debug. Give two other benefits of using a high-level language.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 8,
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Easy/quick to read/write/understand",
+            "marks": 1
+          },
+          {
+            "text": "Machine independent",
+            "marks": 1
+          },
+          {
+            "text": "Less likely to make errors",
+            "marks": 1
+          },
+          {
+            "text": "Programmer can focus on the problem instead of the manipulation of memory/hardware",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4d_iii",
+      "text": "A computer game development company are reviewing their current security solutions. The computer game developers use a high-level language to create a computer game. One drawback of using a high-level language is that it must be converted to a low-level language before it can be run. Give one other drawback of using a high-level language.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Cannot directly manipulate the hardware",
+            "marks": 1
+          },
+          {
+            "text": "Takes longer to convert (than low level-language)",
+            "marks": 1
+          },
+          {
+            "text": "Cannot use specialised hardware",
+            "marks": 1
+          },
+          {
+            "text": "Uses more memory // less efficient memory use",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q4d_iv",
+      "text": "A computer game development company are reviewing their current security solutions. The computer game developers use a high-level language to create a computer game. The computer game developers use an interpreter instead of a compiler when developing the computer game. Explain why an interpreter would be more appropriate for developing the computer game.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "The code is translated and executed line by line",
+            "marks": 1
+          },
+          {
+            "text": "… stopping when an error is found (showing the error location)",
+            "marks": 1
+          },
+          {
+            "text": "… meaning errors can be corrected in real time",
+            "marks": 1
+          },
+          {
+            "text": "No need to retranslate each time an error is fixed",
+            "marks": 1
+          },
+          {
+            "text": "… making it easier to debug",
+            "marks": 1
+          },
+          {
+            "text": "Sections of code can be easily tested",
+            "marks": 1
+          },
+          {
+            "text": "… meaning the whole program doesn't need to be written for testing",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q5a",
+      "text": "A supermarket wants to start delivering groceries to local elderly people, using robots. Describe the characteristics of a robot.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [
+        "Image of a grocery delivery robot"
+      ],
+      "page": 9,
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "A mechanical structure/framework",
+            "marks": 1
+          },
+          {
+            "text": "Electrical components",
+            "marks": 1
+          },
+          {
+            "text": "… such as sensors/microprocessor/actuators",
+            "marks": 1
+          },
+          {
+            "text": "Programmable",
+            "marks": 1
+          },
+          {
+            "text": "Has the ability to move",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q5b",
+      "text": "A supermarket wants to start delivering groceries to local elderly people, using robots. Explain one benefit to the supermarket of using robots to deliver groceries to elderly customers.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Two from (one for benefit and one for matching explanation):",
+        "marking_points": [
+          {
+            "text": "Supermarket may gain more customers",
+            "marks": 1
+          },
+          {
+            "text": "… as elderly people who could not previously make it to the store can now shop there // … which will increase their sales/profits",
+            "marks": 1
+          },
+          {
+            "text": "Supermarket can serve customers more efficiently",
+            "marks": 1
+          },
+          {
+            "text": "… as multiple orders can be delivered at the same time",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q5c",
+      "text": "A supermarket wants to start delivering groceries to local elderly people, using robots. Explain one drawback to the elderly customers of robots being used to deliver their groceries.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Two from (one for drawback and one for matching explanation):",
+        "marking_points": [
+          {
+            "text": "They may get less exercise",
+            "marks": 1
+          },
+          {
+            "text": "… as they no longer need to walk to/round the store to get their shopping // … that could negatively affect their health",
+            "marks": 1
+          },
+          {
+            "text": "They may struggle to use technology // may mistrust technology // would prefer an employee/person to deliver it",
+            "marks": 1
+          },
+          {
+            "text": "… and this may cause additional stress/anxiety // … leading to making mistakes in receiving the delivery",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q5d",
+      "text": "A supermarket wants to start delivering groceries to local elderly people, using robots. Each robot has a media access control (MAC) address. Tick (✓) one box to show the correct statement about a MAC address.\nA It is assigned by the manufacturer.\nB It is assigned by the product.\nC It is assigned by the router.\nD It is assigned by the user.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 10,
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q5e",
+      "text": "A supermarket wants to start delivering groceries to local elderly people, using robots. The robots have artificial intelligence (AI). Give three ways the robots could make use of AI.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 10,
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "It could learn the route to a customer's house",
+            "marks": 1
+          },
+          {
+            "text": "It could learn where there are obstacles on a route",
+            "marks": 1
+          },
+          {
+            "text": "It could learn to deal with obstacles more effectively",
+            "marks": 1
+          },
+          {
+            "text": "It could reason which parts of the route are paths and which are roads",
+            "marks": 1
+          },
+          {
+            "text": "It can use machine learning",
+            "marks": 1
+          },
+          {
+            "text": "To identify patterns in the route data",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q6a",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU). Complete the statements about the operation of the CPU. Use the terms from the list. Not all terms will need to be used. You should only use each term once.\naccumulator   arithmetic logic unit   character set\ncontrol unit   current instruction register   cipher decoding set\ninstruction counter   instruction set   memory address register\nmemory data register   memory instruction register   next instruction register\nprogram counter   program register\n\nThe [blank] stores the address of the next instruction to be fetched. This address is then sent to the [blank]. This address is the location in RAM where the instruction can be found. The instruction is retrieved from RAM and immediately stored in the [blank]. The instruction is then sent to the [blank] [blank] where it is decoded by the [blank] [blank]. The instruction is decoded using an [blank].",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [],
+      "page": 11,
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct place.",
+        "marking_points": [
+          {
+            "text": "The program counter stores the address of the next instruction to be processed.",
+            "marks": 1
+          },
+          {
+            "text": "This address is then sent to the memory address register.",
+            "marks": 1
+          },
+          {
+            "text": "The instruction is retrieved from RAM and immediately stored in the memory data register.",
+            "marks": 1
+          },
+          {
+            "text": "The instruction is then sent to the current instruction register",
+            "marks": 1
+          },
+          {
+            "text": "where it is decoded by the control unit.",
+            "marks": 1
+          },
+          {
+            "text": "The instruction is decoded using an instruction set.",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q6b_i",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU). Handling interrupts is one function of an operating system. An interrupt is sent to the CPU every time a key is pressed on the keyboard. Give the name of this type of interrupt.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 11,
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Hardware (interrupt)",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q6b_ii",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU). Handling interrupts is one function of an operating system. Give the name of the program that services the interrupt.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 11,
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Interrupt handler // Interrupt service routine",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q6b_iii",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU). Handling interrupts is one function of an operating system. Give one other function of an operating system.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 11,
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "managing files",
+            "marks": 1
+          },
+          {
+            "text": "providing an interface",
+            "marks": 1
+          },
+          {
+            "text": "managing peripherals and drivers",
+            "marks": 1
+          },
+          {
+            "text": "managing memory",
+            "marks": 1
+          },
+          {
+            "text": "managing multitasking",
+            "marks": 1
+          },
+          {
+            "text": "providing a platform for running applications",
+            "marks": 1
+          },
+          {
+            "text": "providing system security",
+            "marks": 1
+          },
+          {
+            "text": "managing user accounts",
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q7",
+      "text": "A theatre has a microphone on stage that is connected by cables to several speakers around the theatre. A person speaks into the microphone and their voice is output from the speakers. Identify the most appropriate data transmission method for this purpose. Explain your choice.\nData transmission method\nExplanation",
+      "command": "Identify",
+      "objective": "AO3",
+      "marks": 5,
+      "visuals": [],
+      "page": 12,
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct data transmission method. Any three from:",
+        "marking_points": [
+          {
+            "text": "Serial",
+            "marks": 1
+          },
+          {
+            "text": "Simplex",
+            "marks": 1
+          },
+          {
+            "text": "Serial: Data will need to travel long distances",
+            "marks": 1
+          },
+          {
+            "text": "Serial: One wire is used // bits are sent in order // sent one bit at a time",
+            "marks": 1
+          },
+          {
+            "text": "Serial: Less chance of data being skewed // less chance of error",
+            "marks": 1
+          },
+          {
+            "text": "Serial: Transmission speed would be adequate",
+            "marks": 1
+          },
+          {
+            "text": "Simplex: Data only needs to be sent in one direction",
+            "marks": 1
+          },
+          {
+            "text": "Simplex: Data does not need to be sent back from the speakers to the microphone",
+            "marks": 1
+          }
+        ]
+      }
+    }
+  ]
+}
