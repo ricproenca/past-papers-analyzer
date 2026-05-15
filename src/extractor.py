@@ -4,6 +4,12 @@ from pathlib import Path
 from . import pdf_reader, prompts, claude_client
 from .schema import validate_phase_output
 
+_KEY_ORDER = ["board", "level", "subject_code", "subject_name", "variant", "qp", "ms", "total_marks", "questions"]
+
+
+def _reorder(data: dict) -> dict:
+    return {k: data[k] for k in _KEY_ORDER if k in data}
+
 
 def _write_json(path: str | Path, data: dict) -> None:
     Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False))
@@ -23,6 +29,7 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
     phase1_data = json.loads(phase1_json)
     phase1_data["qp"] = Path(pdf_path).name
     phase1_data["ms"] = Path(ms_path).name if ms_path else None
+    phase1_data = _reorder(phase1_data)
     validate_phase_output(phase1_data, phase=1)
     _write_json(sidecar1, phase1_data)
     phase1_json_enriched = json.dumps(phase1_data, ensure_ascii=False)
@@ -33,6 +40,7 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
     phase2_data = json.loads(phase2_json)
     phase2_data["qp"] = Path(pdf_path).name
     phase2_data["ms"] = Path(ms_path).name if ms_path else None
+    phase2_data = _reorder(phase2_data)
     validate_phase_output(phase2_data, phase=2)
     _write_json(sidecar2, phase2_data)
     phase2_json_enriched = json.dumps(phase2_data, ensure_ascii=False)
@@ -47,6 +55,7 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
         phase3_data = json.loads(phase3_json)
         phase3_data["qp"] = Path(pdf_path).name
         phase3_data["ms"] = Path(ms_path).name
+        phase3_data = _reorder(phase3_data)
         validate_phase_output(phase3_data, phase=3)
         final_data = phase3_data
         print("Phase 3 complete.")

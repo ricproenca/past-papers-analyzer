@@ -9,6 +9,8 @@ RULES:
 - Read all questions, let categories emerge, reconcile to syllabus in the end.
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
+- For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
+- Answer-space lines (dotted lines and label lines like 'Method:', 'Input:', '1 _') have been removed from the PDF text. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or answer-space lines to the 'text' field.
 
 
 Assessment Objectives
@@ -24,6 +26,7 @@ Build a clean, structured JSON deliverable:
 "subject_code": subject code (e.g. 0478, 9618)
 "subject_name": The subject name (e.g. Computer Science)
 "variant": Variants (e.g. 11, 12, 13, 21, 22, 23, 31, 32, 33, 41, 42, 43)
+"total_marks": total marks for the entire paper (printed on the paper cover or final page)
 "questions": for each question must have these exact keys:
     "id"   : question identifier, e.g. "Q1", "Q1a", "Q1b_i", "Q2"
     "text" : the full question text (include all parts of the question)
@@ -68,6 +71,8 @@ RULES:
 - For all other answers set "type" to "text".
 - Copy each marking criterion verbatim — do not abbreviate or paraphrase.
 - "scoring_rule" must capture exactly what the marking scheme states before the bullet points: e.g. "Any one from", "Any three from", "1 mark for each correct item (in bold)", "1 mark for correct working, 1 mark for each correct nibble", "1 mark for naming, max 2 for describing". Set to null only when there is no such instruction (e.g. plain MCQ or single fixed answer).
+- Distinguish "Any N from:" (student picks N answers from a larger pool of alternatives) from "1 mark for each correct answer" (student must identify N fixed required answers). Use "1 mark for each correct answer" for 'circle/tick/identify exactly N specific items' questions — not "Any one from:".
+- When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
 - If a question has no marking scheme entry, set "marking_points" to an empty array []."""
 
 PHASE2_SYSTEM = """Update the json deliverable. Map each question to syllabus topics and add:

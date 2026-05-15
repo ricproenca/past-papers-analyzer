@@ -42,3 +42,12 @@ def validate_phase_output(data: dict, phase: int) -> None:
                     raise ValueError(
                         f"Phase 3 question {qid!r} marking_point[{j}] missing 'text' or 'marks'"
                     )
+
+    total_marks = data.get("total_marks")
+    if total_marks is not None:
+        actual = sum(q.get("marks", 0) for q in questions)
+        if actual != total_marks:
+            print(
+                f"Warning: Phase {phase}: sum of question marks ({actual}) "
+                f"does not match total_marks ({total_marks})"
+            )

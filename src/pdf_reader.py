@@ -1,3 +1,5 @@
+import re
+
 import pdfplumber
 from typing import List, Dict, Any
 
@@ -19,6 +21,12 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
     with pdfplumber.open(pdf_path) as pdf:
         for i, page in enumerate(pdf.pages, start=1):
             text = page.extract_text() or ""
+            text = re.sub(r'(?m)^\s*\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
+            text = re.sub(r'(?m)^\s*\.{4,}\s*$\n?', '', text)
+            text = re.sub(r'(?m)^[A-Za-z0-9][A-Za-z0-9 \-]{0,80}\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
+            text = re.sub(r'(?m)^[A-Za-z0-9][A-Za-z0-9 \-]{0,80}\.{4,}\s*$\n?', '', text)
+            text = re.sub(r'\.{4,}', '[blank]', text)
+            text = re.sub(r'\n{3,}', '\n\n', text)
             tables = page.extract_tables()
             images = page.images
 
