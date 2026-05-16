@@ -35,6 +35,76 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
+    "layout_type": the question's visual answer format — exactly one of the 7 types listed in LAYOUT TYPES below
+    "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
+
+LAYOUT TYPES:
+The page text contains [LAYOUT:TYPE key=value] and [TABLE_TYPE:TYPE key=value] annotations inserted by the
+pre-processor. Use them as the primary signal for layout_type and structure_data. When no annotation is
+present, infer from context using the indicators below.
+
+SimpleSingleBlock — single open answer space (one or more blank answer lines, no structural sub-labels)
+  PDF signals: [LAYOUT:SimpleSingleBlock line_count=N]; or a single trailing answer space with no other structure
+  structure_data: { "line_count": N }  // number of answer lines detected; use 1 if unknown
+
+MultiPartLabeledBlock — labeled sub-answer slots with category prefixes before each answer space
+  PDF signals: [LAYOUT:MultiPartLabeledBlock labels=Justification,Explanation]
+  Pairs: Justification/Explanation, Benefit/Drawback, Advantage/Disadvantage
+  structure_data: { "labels": ["Justification", "Explanation"] }
+
+NumberedMultiList — discrete numbered answer items (1 / 2 / 3 … each on their own line)
+  PDF signals: [LAYOUT:NumberedMultiList count=N]
+  structure_data: { "list_count": N }
+
+InlineCloze — fill-in-the-gap prose; blanks appear as [blank] mid-sentence; may include a word bank box
+  PDF signals: [LAYOUT:InlineCloze gap_count=N]
+  structure_data: { "inline_gap_count": N, "has_word_bank": true/false }
+  Set has_word_bank to true if a word bank list or table is visible near the question.
+
+MatrixGrid — comparison table with state/category column headers requiring ticks or tokens
+  PDF signals: [TABLE_TYPE:MatrixGrid]; headers like "True / False", "RAM / ROM / Flash", "Tick one box"
+  structure_data: { "matrix_headers": ["Statement", "True", "False"], "row_count": N, "rows": ["statement text", ...] }
+  rows: the text of each statement/feature row (left-most column), in order
+
+ValueTraceMatrix — register or variable trace table (assembly language / algorithm tracing)
+  PDF signals: [TABLE_TYPE:ValueTraceMatrix]; headers include PC, ACC, IX, MAR, MDR, CIR, SR or variable names
+  structure_data: { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...] }
+  rows: the instruction or step label for each row (left-most column), in order
+
+FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
+  PDF signals: [TABLE_TYPE:FixedRegisterArray register_size=N]
+  structure_data: { "register_size": N }  // N is 8 or 16
+
+TermDefinitionGrid — two-column Term/Definition table with some cells pre-filled and others blank
+  PDF signals: [TABLE_TYPE:TermDefinitionGrid]; headers are "Term" and "Definition"
+  structure_data: {
+    "row_count": N,
+    "rows": [
+      { "term": "pixel", "definition": null },
+      { "term": null, "definition": "The number of pixels per unit area of an image." }
+    ]
+  }
+  rows: one object per row — set "term" to the pre-filled term string (or null if blank),
+        and "definition" to the pre-filled definition string (or null if blank).
+
+LabelledPartResponse — a reference item (URL, code, expression) with parts marked a/b/c; short inline answer slots
+  PDF signals: [LAYOUT:LabelledPartResponse labels=a,b,c]; a line of the form "a ..... b ..... c ....."
+  structure_data: { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
+  labels: the callout letters or numbers in order.
+  reference: the URL, code line, expression, or brief description of the item being labelled.
+
+AnnotatedDiagram — a partially drawn diagram canvas; student adds missing nodes, connections, and labels
+  PDF signals: command words "Complete and annotate the diagram", "Complete the diagram", "Draw", or "Sketch";
+               page contains vector shapes (lines, boxes, arrows) with pre-labelled anchor elements;
+               no dot answer lines — the diagram itself is the answer space
+  structure_data: {
+    "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other",
+    "partial_elements": ["Patient's computer", "www.cihospital.com"]
+  }
+  diagram_type: choose the closest category for the diagram shown.
+  partial_elements: list every pre-drawn or pre-labelled node/component visible in the question diagram.
+
+Fallback rule: if no annotation is present and no table exists, assign SimpleSingleBlock with line_count: 1.
 
 COMMAND WORDS:
 Command word	What to do in Computer Science	        Common mistake

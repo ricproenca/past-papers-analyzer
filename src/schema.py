@@ -1,9 +1,14 @@
-_QUESTION_KEYS_P1 = {"id", "text", "command", "objective", "marks", "visuals", "page"}
+_QUESTION_KEYS_P1 = {"id", "text", "command", "objective", "marks", "visuals", "page", "layout_type", "structure_data"}
 _QUESTION_KEYS_P2 = _QUESTION_KEYS_P1 | {"topic", "topic_name"}
 _QUESTION_KEYS_P3 = _QUESTION_KEYS_P2 | {"answers"}
 _ANSWER_KEYS = {"type", "visuals", "scoring_rule", "marking_points"}
 _TOP_LEVEL_KEYS = {"board", "level", "subject_code", "subject_name", "variant", "questions", "qp", "ms"}
 _VALID_OBJECTIVES = {"AO1", "AO2", "AO3"}
+_VALID_LAYOUT_TYPES = {
+    "SimpleSingleBlock", "MultiPartLabeledBlock", "NumberedMultiList",
+    "InlineCloze", "MatrixGrid", "ValueTraceMatrix", "FixedRegisterArray",
+    "TermDefinitionGrid", "LabelledPartResponse", "AnnotatedDiagram",
+}
 
 
 def validate_phase_output(data: dict, phase: int) -> None:
@@ -27,6 +32,17 @@ def validate_phase_output(data: dict, phase: int) -> None:
             raise ValueError(
                 f"Phase {phase} question {qid!r} has invalid objective: {q.get('objective')!r} "
                 f"(must be one of {sorted(_VALID_OBJECTIVES)})"
+            )
+
+        if phase >= 1 and q.get("layout_type") not in _VALID_LAYOUT_TYPES:
+            raise ValueError(
+                f"Phase {phase} question {qid!r} has invalid layout_type: {q.get('layout_type')!r} "
+                f"(must be one of {sorted(_VALID_LAYOUT_TYPES)})"
+            )
+
+        if phase >= 1 and not isinstance(q.get("structure_data"), dict):
+            raise ValueError(
+                f"Phase {phase} question {qid!r} 'structure_data' must be a dict"
             )
 
         if phase == 3 and isinstance(q.get("answers"), dict):

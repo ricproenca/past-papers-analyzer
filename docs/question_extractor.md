@@ -29,6 +29,21 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
+    "layout_type": the question's visual answer format — one of:
+        SimpleSingleBlock | MultiPartLabeledBlock | NumberedMultiList |
+        InlineCloze | MatrixGrid | ValueTraceMatrix | FixedRegisterArray
+    "structure_data": object with type-specific metadata:
+        SimpleSingleBlock:      { "line_count": N }
+        MultiPartLabeledBlock:  { "labels": ["Justification", "Explanation"] }
+        NumberedMultiList:      { "list_count": N }
+        InlineCloze:            { "inline_gap_count": N, "has_word_bank": true/false }
+        MatrixGrid:             { "matrix_headers": ["Statement", "True", "False"], "row_count": N, "rows": ["statement text", ...] }
+        ValueTraceMatrix:       { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...] }
+        FixedRegisterArray:     { "register_size": 8 }
+        TermDefinitionGrid:     { "row_count": N, "rows": [{ "term": "pixel" | null, "definition": "..." | null }, ...] }
+        LabelledPartResponse:   { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
+        AnnotatedDiagram:       { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other", "partial_elements": ["element", ...] }
+        (use {} if no structural data is detectable)
 
 
 # PHASE 2

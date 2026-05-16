@@ -1,0 +1,284 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "12",
+  "qp": "0478_s24_qp_12.pdf",
+  "ms": "0478_s24_ms_12.pdf",
+  "total_marks": 80,
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "Describe what is meant by an operating system.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from",
+        "marking_points": [
+          { "text": "manages hardware resources / controls peripherals", "marks": 1 },
+          { "text": "provides an interface between user and hardware", "marks": 1 },
+          { "text": "manages memory allocation / handles multitasking", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q2",
+      "text": "Explain one benefit and one drawback of using solid state drives (SSDs) compared to hard disk drives (HDDs).",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": ["Benefit", "Drawback"]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for naming, 1 mark for explaining each",
+        "marking_points": [
+          { "text": "Benefit: faster read/write speeds / no moving parts", "marks": 1 },
+          { "text": "Benefit: because data is accessed electronically not mechanically", "marks": 1 },
+          { "text": "Drawback: more expensive per gigabyte than HDD", "marks": 1 },
+          { "text": "Drawback: because flash memory cells are costly to manufacture", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q3",
+      "text": "State three security measures a company could use to protect its network from unauthorised access.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark each, any three from",
+        "marking_points": [
+          { "text": "firewall to filter incoming/outgoing traffic", "marks": 1 },
+          { "text": "strong password / two-factor authentication", "marks": 1 },
+          { "text": "encryption of data in transit", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q4",
+      "text": "Complete the sentence. A packet contains the [blank] address of the sender, the [blank] address of the recipient, and a [blank] number indicating its position in the sequence.",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 3,
+        "has_word_bank": true
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct word",
+        "marking_points": [
+          { "text": "IP (Internet Protocol)", "marks": 1 },
+          { "text": "IP (Internet Protocol)", "marks": 1 },
+          { "text": "sequence", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q5",
+      "text": "Complete the table to show whether each statement about RAM and ROM is True or False.",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": ["table: RAM/ROM True/False comparison"],
+      "page": 10,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": ["Statement", "True", "False"],
+        "row_count": 3,
+        "rows": [
+          "RAM is volatile",
+          "ROM can be written to during normal operation",
+          "RAM holds the currently running program"
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct row",
+        "marking_points": [
+          { "text": "RAM is volatile — True", "marks": 1 },
+          { "text": "ROM can be written to during normal operation — False", "marks": 1 },
+          { "text": "RAM holds the currently running program — True", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q6",
+      "text": "Trace through the following assembly language program and complete the trace table. Start with all registers set to 0.",
+      "command": "Trace",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": ["assembly code listing", "trace table: PC ACC IX MAR MDR"],
+      "page": 12,
+      "layout_type": "ValueTraceMatrix",
+      "structure_data": {
+        "matrix_headers": ["PC", "ACC", "IX", "MAR", "MDR"],
+        "row_count": 5,
+        "rows": ["LDD 050", "ADD #5", "STO 051", "LDD 051", "END"]
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct row",
+        "marking_points": [
+          { "text": "Row 1: PC=001, ACC=000, IX=000, MAR=000, MDR=105", "marks": 1 },
+          { "text": "Row 2: PC=002, ACC=105, IX=000, MAR=105, MDR=105", "marks": 1 },
+          { "text": "Row 3: PC=003, ACC=105, IX=001, MAR=001, MDR=001", "marks": 1 },
+          { "text": "Row 4: PC=004, ACC=106, IX=001, MAR=106, MDR=001", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q7",
+      "text": "The denary number 45 is stored in an 8-bit register. Show the binary representation in the register below.",
+      "command": "Show",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": ["8-bit register diagram"],
+      "page": 14,
+      "layout_type": "FixedRegisterArray",
+      "structure_data": {
+        "register_size": 8
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          { "text": "00101101", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q8",
+      "text": "An image is converted to binary to be represented by a computer. Complete the table with the missing terms and definitions about representing an image.",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 4,
+        "rows": [
+          { "term": null, "definition": "This is the smallest component of an image." },
+          { "term": "resolution", "definition": null },
+          { "term": null, "definition": "This is the number of bits used to create each colour in an image." },
+          { "term": null, "definition": "This is additional data that is stored with an image that can provide information such as the time and date the image was taken." }
+        ]
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark per correct term or definition",
+        "marking_points": [
+          { "text": "Term: pixel", "marks": 1 },
+          { "text": "Definition: the number of pixels per unit area / per inch / per centimetre of an image", "marks": 1 },
+          { "text": "Term: colour depth / bit depth", "marks": 1 },
+          { "text": "Term: metadata", "marks": 1 }
+        ]
+      }
+    }
+    ,
+    {
+      "id": "Q9",
+      "text": "An online clothing company has a homepage at the URL https://www.cieclothes.com/index.html. Write down the three different parts of the URL shown by the labels a, b and c.",
+      "command": "Write",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "LabelledPartResponse",
+      "structure_data": {
+        "labels": ["a", "b", "c"],
+        "reference": "https://www.cieclothes.com/index.html"
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark each",
+        "marking_points": [
+          { "text": "a: https:// (protocol / HTTP Secure)", "marks": 1 },
+          { "text": "b: www.cieclothes.com (domain name)", "marks": 1 },
+          { "text": "c: /index.html (file path / filename)", "marks": 1 }
+        ]
+      }
+    },
+    {
+      "id": "Q10",
+      "text": "The patient enters the uniform resource locator (URL) for the web page into their browser and the web page is requested and displayed. Complete and annotate the diagram to show how the web page is requested for the patient.",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 6,
+      "visuals": ["partial network diagram: Patient's computer, www.cihospital.com"],
+      "page": 11,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "network",
+        "partial_elements": ["Patient's computer", "www.cihospital.com"]
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "diagram",
+        "visuals": ["completed network diagram"],
+        "scoring_rule": "1 mark per correct labelled component or connection, max 6",
+        "marking_points": [
+          { "text": "DNS server shown and labelled", "marks": 1 },
+          { "text": "arrow from patient's computer to DNS server with label (URL / domain name lookup)", "marks": 1 },
+          { "text": "arrow from DNS server back to patient's computer with label (IP address returned)", "marks": 1 },
+          { "text": "web server shown and labelled", "marks": 1 },
+          { "text": "arrow from patient's computer to web server with label (HTTP/S request)", "marks": 1 },
+          { "text": "arrow from web server to patient's computer with label (web page / HTTP response)", "marks": 1 }
+        ]
+      }
+    }
+  ]
+}
