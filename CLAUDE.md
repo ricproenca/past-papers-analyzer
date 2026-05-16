@@ -13,7 +13,7 @@ cp .env.example .env   # add ANTHROPIC_API_KEY
 
 ```bash
 python extract.py <pdf_path>                                      # output: output/json/<pdf_stem>.json
-python extract.py <pdf_path> -ms <ms_pdf_path>                    # include Phase 3 (answers)
+python extract.py <pdf_path> -ms <ms_pdf_path>                    # include Phase 2 (answers)
 python extract.py <pdf_path> -o results/out.json                  # custom output path
 python extract.py <pdf_path> -m claude-sonnet-4-6                 # override model
 ```
@@ -25,25 +25,24 @@ extract.py          # CLI entry point (argparse, loads .env)
 render.py           # CLI: render existing JSON to HTML (thin wrapper around src/renderer.py)
 src/
   pdf_reader.py     # pdfplumber: text + table/image detection per page
-  prompts.py        # builds Phase 1, Phase 2, and Phase 3 prompt messages
+  prompts.py        # builds Phase 1 (extraction + topics) and Phase 2 (answers) prompt messages
   claude_client.py  # Anthropic SDK wrapper (prompt caching, retries)
-  extractor.py      # orchestrates Phase 1 → Phase 2 → Phase 3 → Phase 4 pipeline
+  extractor.py      # orchestrates Phase 1 → Phase 2 → Phase 3 pipeline
   renderer.py       # HTML page generator (render_html, render); writes paper.css / paper.js
 docs/
-  question_extractor.md  # prompt spec: Phase 1, Phase 2, Phase 3 instructions
-  syllabus.md            # syllabus topics (1.x–6.x) used in Phase 2 mapping
+  question_extractor.md  # prompt spec: extraction + topic mapping + answers
+  syllabus.md            # syllabus topics (1.x–6.x) used in Phase 1
   assesssment.md         # assessment objectives (AO1–AO3) used in Phase 1
   command_words.md       # command word definitions used in Phase 1
 ```
 
-## Four-Phase Pipeline
+## Three-Phase Pipeline
 
 All phases run sequentially in a single command:
 
-- **Phase 1** — Claude reads all PDF pages and returns a JSON object as specified in `docs/question_extractor.md#PHASE-1`. Top-level fields: `board`, `level`, `subject_code`, `subject name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`. Prompt built in `src/prompts.py:build_phase1_messages()`.
-- **Phase 2** — Claude receives the Phase 1 JSON + original PDF text and enriches each question as specified in `docs/question_extractor.md#PHASE-2`. Adds `topic` (e.g. `"1.2"`) and `topic_name` (e.g. `"Text, Sound and Images"`) mapped against the syllabus. Prompt built in `src/prompts.py:build_phase2_messages()`.
-- **Phase 3** — Claude receives the Phase 2 JSON + marking scheme text and enriches each question as specified in `docs/question_extractor.md#PHASE-3`. Adds `answers` with `type`, `visuals`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`.
-- **Phase 4** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>`.
+- **Phase 1** — Claude reads all PDF pages and returns a JSON object covering both question extraction and syllabus topic mapping. Top-level fields: `board`, `level`, `subject_code`, `subject_name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`, `layout_type`, `structure_data`, `topic` (e.g. `"1.2"`), `topic_name` (e.g. `"Text, Sound and Images"`). Prompt built in `src/prompts.py:build_phase12_messages()`. (Historically this was two separate calls — Phase 1 for extraction and Phase 2 for topic mapping — merged to reduce token costs by ~25–30%.)
+- **Phase 2** — Claude receives the Phase 1 JSON + marking scheme text and enriches each question with answers. Adds `answers` with `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
+- **Phase 3** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>`.
 
 ## Key Decisions
 
@@ -55,8 +54,8 @@ All phases run sequentially in a single command:
 
 ## Docs Reference
 
-- **`docs/question_extractor.md`** — Full prompt spec for Phases 1–3 (Phase 4 has no prompt; it's pure rendering).
-- **`docs/syllabus.md`** — Syllabus topics 1.x–6.x used by Phase 2 for `topic` / `topic_name` mapping.
+- **`docs/question_extractor.md`** — Full prompt spec for the Claude phases (Phase 3 has no prompt; it's pure rendering).
+- **`docs/syllabus.md`** — Syllabus topics 1.x–6.x used by Phase 1 for `topic` / `topic_name` mapping.
 - **`docs/assesssment.md`** — Assessment objectives (AO1: knowledge 40%, AO2: application 40%, AO3: evaluation 20%) used by Phase 1 for `objective` mapping.
 - **`docs/command_words.md`** — Command word definitions (State, Explain, Evaluate, etc.) used by Phase 1 for `command` field guidance.
 

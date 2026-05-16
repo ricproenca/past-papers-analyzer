@@ -10,12 +10,26 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "A flower shop has a room that has an air-conditioning system. It is used to keep the room at a constant temperature for storing flowers. The owner uses a keypad to set the temperature for the room. Tick (✓) one box to show whether a keypad is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
+      "text": "A flower shop has a room that has an air-conditioning system. It is used to keep the room at a constant temperature for storing flowers. The owner uses a keypad to set the temperature for the room.\n\nTick (✓) one box to show whether a keypad is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Device type"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A input",
+          "B output",
+          "C process",
+          "D storage"
+        ]
+      },
       "topic": "3.2",
       "topic_name": "Input and Output Devices",
       "answers": {
@@ -32,12 +46,16 @@
     },
     {
       "id": "Q1b_i",
-      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system. Give the binary number that would be stored when the denary number 24 is entered.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system.\n\nGive the binary number that would be stored when the denary number 24 is entered.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -54,12 +72,16 @@
     },
     {
       "id": "Q1b_ii",
-      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system. Give the binary number that would be stored when the denary number 101 is entered.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system.\n\nGive the binary number that would be stored when the denary number 101 is entered.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -76,12 +98,16 @@
     },
     {
       "id": "Q1b_iii",
-      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system. The binary number 00010011 is stored in the register. Give the denary number that has been entered for this binary number to be stored.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system.\n\nThe binary number 00010011 is stored in the register. Give the denary number that has been entered for this binary number to be stored.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -98,12 +124,16 @@
     },
     {
       "id": "Q1b_iv",
-      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system. The binary number 00100010 is stored in the register. Give the denary number that has been entered for this binary number to be stored.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "A flower shop has a room that has an air-conditioning system. The owner of the shop enters a denary number to set the temperature for the room. The denary number is converted to a binary number to be processed. The binary number is stored in a register in the air conditioning system.\n\nThe binary number 00100010 is stored in the register. Give the denary number that has been entered for this binary number to be stored.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -120,12 +150,16 @@
     },
     {
       "id": "Q1c_i",
-      "text": "A flower shop has a room that has an air-conditioning system. If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register. Give the binary number that is stored in the register to display the error code 51.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register.\n\nGive the binary number that is stored in the register to display the error code 51.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -142,12 +176,16 @@
     },
     {
       "id": "Q1c_ii",
-      "text": "A flower shop has a room that has an air-conditioning system. If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register. Give the binary number that is stored in the register to display the error code E3.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register.\n\nGive the binary number that is stored in the register to display the error code E3.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -164,12 +202,16 @@
     },
     {
       "id": "Q1c_iii",
-      "text": "A flower shop has a room that has an air-conditioning system. If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register. Give the hexadecimal number that is displayed when the binary number 10000010 is stored in the register.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "If the air-conditioning system detects an error, it displays an error code. The error code is displayed as a hexadecimal number. The binary number for each error code is stored in a register.\n\nGive the hexadecimal number that is displayed when the binary number 10000010 is stored in the register.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -186,18 +228,22 @@
     },
     {
       "id": "Q1d",
-      "text": "A flower shop has a room that has an air-conditioning system. If the owner of the shop wants to make the room very cold, she may need to enter a negative denary number. The negative denary number could be represented using two's complement. Give the two's complement 8-bit binary integer that would be stored for the temperature –5. Show all your working.\nTwo's complement 8-bit binary integer [blank]",
-      "command": "State",
-      "objective": "AO2",
+      "text": "If the owner of the shop wants to make the room very cold, she may need to enter a negative denary number. The negative denary number could be represented using two's complement.\n\nGive the two's complement 8-bit binary integer that would be stored for the temperature –5. Show all your working.\n\nTwo's complement 8-bit binary integer [blank]",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for correct method of working, for example flip and add 1\nOne mark for correct answer",
+        "scoring_rule": "1 mark for correct method of working, for example flip and add 1\nOne mark for correct answer",
         "marking_points": [
           {
             "text": "One mark for correct method of working, for example flip and add 1",
@@ -212,12 +258,26 @@
     },
     {
       "id": "Q1e_i",
-      "text": "A flower shop has a room that has an air-conditioning system. The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level. Tick (✓) one box to show whether the sensor is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
+      "text": "The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level.\n\nTick (✓) one box to show whether the sensor is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 4,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Device type"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A input",
+          "B output",
+          "C process",
+          "D storage"
+        ]
+      },
       "topic": "3.2",
       "topic_name": "Input and Output Devices",
       "answers": {
@@ -234,12 +294,16 @@
     },
     {
       "id": "Q1e_ii",
-      "text": "A flower shop has a room that has an air-conditioning system. The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level. The temperature sensor continuously sends analogue data to the microprocessor. This data is then converted to digital. Explain how the microprocessor keeps the temperature of the room at a constant level.",
+      "text": "The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level. The temperature sensor continuously sends analogue data to the microprocessor. This data is then converted to digital.\n\nExplain how the microprocessor keeps the temperature of the room at a constant level.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -264,12 +328,16 @@
     },
     {
       "id": "Q1f",
-      "text": "A flower shop has a room that has an air-conditioning system. The air-conditioning system is an example of an embedded system. Explain why the air-conditioning system is an embedded system.",
+      "text": "The air-conditioning system is an example of an embedded system.\n\nExplain why the air-conditioning system is an embedded system.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -298,12 +366,16 @@
     },
     {
       "id": "Q2a",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. Give the name of the first register that is used in the fetch part of the cycle.",
-      "command": "State",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle.\n\nGive the name of the first register that is used in the fetch part of the cycle.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -320,12 +392,16 @@
     },
     {
       "id": "Q2b_i",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The CPU has a control unit (CU). Describe the role of the CU in the CPU.",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The CPU has a control unit (CU).\n\nDescribe the role of the CU in the CPU.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -358,12 +434,16 @@
     },
     {
       "id": "Q2b_ii",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The CPU has a control unit (CU). Give the name of the register that is part of the CU.",
-      "command": "State",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The CPU has a control unit (CU).\n\nGive the name of the register that is part of the CU.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -380,14 +460,28 @@
     },
     {
       "id": "Q2c_i",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The computer has primary storage. One example of primary storage is cache. Tick (✓) one box to show the correct statement that describes the purpose of cache.\nA It stores important instructions.\nB It stores the next instruction to be processed.\nC It stores frequently used instructions.\nD It stores instructions so they are not lost when the power is turned off.",
+      "text": "The computer has primary storage. One example of primary storage is cache.\n\nTick (✓) one box to show the correct statement that describes the purpose of cache.\nA It stores important instructions.\nB It stores the next instruction to be processed.\nC It stores frequently used instructions.\nD It stores instructions so they are not lost when the power is turned off.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 5,
-      "topic": "3.1",
-      "topic_name": "Computer Architecture",
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Statement"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A It stores important instructions.",
+          "B It stores the next instruction to be processed.",
+          "C It stores frequently used instructions.",
+          "D It stores instructions so they are not lost when the power is turned off."
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
       "answers": {
         "type": "MCQ",
         "visuals": [],
@@ -402,12 +496,19 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that carries out the fetch-decode-execute (FDE) cycle. The computer has primary storage. One example of primary storage is cache. Give one other example of primary storage. Identify the type of data your example would store.\nPrimary storage\nData",
-      "command": "Identify",
+      "text": "The computer has primary storage. One example of primary storage is cache.\n\nGive one other example of primary storage. Identify the type of data your example would store.\n\nPrimary storage\nData",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 5,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Primary storage",
+          "Data"
+        ]
+      },
       "topic": "3.3",
       "topic_name": "Data Storage",
       "answers": {
@@ -416,43 +517,11 @@
         "scoring_rule": "One mark for example of storage\nOne mark for example of what it will store",
         "marking_points": [
           {
-            "text": "RAM",
+            "text": "Primary storage: RAM // ROM // BIOS // Virtual memory",
             "marks": 1
           },
           {
-            "text": "Data/programs/software/instructions that are currently in use",
-            "marks": 1
-          },
-          {
-            "text": "ROM",
-            "marks": 1
-          },
-          {
-            "text": "Startup instructions",
-            "marks": 1
-          },
-          {
-            "text": "BIOS",
-            "marks": 1
-          },
-          {
-            "text": "Bootstrap",
-            "marks": 1
-          },
-          {
-            "text": "Firmware",
-            "marks": 1
-          },
-          {
-            "text": "Virtual memory",
-            "marks": 1
-          },
-          {
-            "text": "Pages from RAM that are not immediately needed",
-            "marks": 1
-          },
-          {
-            "text": "Data/programs/software/instructions that are currently in use",
+            "text": "Data: RAM — Data/programs/software/instructions that are currently in use // ROM — Startup instructions / Bootstrap / Firmware // Virtual memory — Pages from RAM that are not immediately needed / Data/programs/software/instructions that are currently in use",
             "marks": 1
           }
         ]
@@ -460,17 +529,47 @@
     },
     {
       "id": "Q2d",
-      "text": "A computer with a Von Neumann architecture also has secondary storage. Write the name of the type of secondary storage for each description in the table. Each type of secondary storage may be used more than once.\n\nDescriptions:\n- It burns pits and lands onto a disk.\n- It uses control gates and flow gates.\n- It uses NAND or NOR technology.\n- The surface of each platter is divided into tracks and [blank] sectors.\n- It has a read/write arm that moves a laser across a disc.\n- It controls the flow of electrons using transistors.",
+      "text": "The computer also has secondary storage.\n\nWrite the name of the type of secondary storage for each description in the table. Each type of secondary storage may be used more than once.\n\nType of secondary storage | Description\n[blank] | It burns pits and lands onto a disk.\n[blank] | It uses control gates and flow gates.\n[blank] | It uses NAND or NOR technology.\n[blank] | The surface of each platter is divided into tracks and sectors.\n[blank] | It has a read/write arm that moves a laser across a disc.\n[blank] | It controls the flow of electrons using transistors.",
       "command": "Write",
       "objective": "AO1",
       "marks": 6,
       "visuals": [
         {
           "type": "table",
-          "description": "Table with two columns: 'Type of secondary storage' (blank to fill in) and 'Description' (six descriptions provided)"
+          "description": "Two-column table mapping secondary storage types to descriptions"
         }
       ],
       "page": 6,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 6,
+        "rows": [
+          {
+            "term": null,
+            "definition": "It burns pits and lands onto a disk."
+          },
+          {
+            "term": null,
+            "definition": "It uses control gates and flow gates."
+          },
+          {
+            "term": null,
+            "definition": "It uses NAND or NOR technology."
+          },
+          {
+            "term": null,
+            "definition": "The surface of each platter is divided into tracks and sectors."
+          },
+          {
+            "term": null,
+            "definition": "It has a read/write arm that moves a laser across a disc."
+          },
+          {
+            "term": null,
+            "definition": "It controls the flow of electrons using transistors."
+          }
+        ]
+      },
       "topic": "3.3",
       "topic_name": "Data Storage",
       "answers": {
@@ -478,33 +577,33 @@
         "visuals": [
           {
             "type": "table",
-            "description": "Table with two columns: 'Type of secondary storage' (blank to fill in) and 'Description' (six descriptions provided)"
+            "description": "Two-column table mapping secondary storage types to descriptions"
           }
         ],
         "scoring_rule": "One mark for each correct storage type",
         "marking_points": [
           {
-            "text": "Optical",
+            "text": "Optical (for: It burns pits and lands onto a disk.)",
             "marks": 1
           },
           {
-            "text": "Solid-state",
+            "text": "Solid-state (for: It uses control gates and flow gates.)",
             "marks": 1
           },
           {
-            "text": "Solid-state",
+            "text": "Solid-state (for: It uses NAND or NOR technology.)",
             "marks": 1
           },
           {
-            "text": "Magnetic",
+            "text": "Magnetic (for: The surface of each platter is divided into tracks and sectors.)",
             "marks": 1
           },
           {
-            "text": "Optical",
+            "text": "Optical (for: It has a read/write arm that moves a laser across a disc.)",
             "marks": 1
           },
           {
-            "text": "Solid-state",
+            "text": "Solid-state (for: It controls the flow of electrons using transistors.)",
             "marks": 1
           }
         ]
@@ -512,17 +611,27 @@
     },
     {
       "id": "Q3a",
-      "text": "Data is split into packets before it is transmitted across a network. The diagram shows a packet with three sections. Complete the diagram by writing the name of each section of the packet. Write an example in each section of what would be stored in that part of the packet.\n\nPacket\nFirst\nThe first section is called the [blank] Example [blank]\nSecond\nThe second section is called the [blank] Example [blank]\nThird\nThe third section is called the [blank] Example [blank]",
+      "text": "Data is split into packets before it is transmitted across a network.\n\nThe diagram shows a packet with three sections. Complete the diagram by writing the name of each section of the packet. Write an example in each section of what would be stored in that part of the packet.\n\nPacket\nFirst — The first section is called the [blank] Example [blank]\nSecond — The second section is called the [blank] Example [blank]\nThird — The third section is called the [blank] Example [blank]",
       "command": "Write",
       "objective": "AO1",
       "marks": 6,
       "visuals": [
         {
           "type": "diagram",
-          "description": "Packet diagram divided into three sections (First, Second, Third) with blank fields for name and example of each section"
+          "description": "Packet structure diagram with three labelled sections to be completed"
         }
       ],
       "page": 6,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "other",
+        "partial_elements": [
+          "First",
+          "Second",
+          "Third",
+          "Packet"
+        ]
+      },
       "topic": "2.1",
       "topic_name": "Types and Methods of Data Transmission",
       "answers": {
@@ -530,13 +639,13 @@
         "visuals": [
           {
             "type": "diagram",
-            "description": "Packet diagram divided into three sections (First, Second, Third) with blank fields for name and example of each section"
+            "description": "Packet structure diagram with three labelled sections to be completed"
           }
         ],
         "scoring_rule": "One mark for each correct section\nOne mark for each correct example of what it stores",
         "marking_points": [
           {
-            "text": "First section name: Header",
+            "text": "First section: Header",
             "marks": 1
           },
           {
@@ -544,7 +653,7 @@
             "marks": 1
           },
           {
-            "text": "Second section name: Payload",
+            "text": "Second section: Payload",
             "marks": 1
           },
           {
@@ -552,7 +661,7 @@
             "marks": 1
           },
           {
-            "text": "Third section name: Trailer",
+            "text": "Third section: Trailer",
             "marks": 1
           },
           {
@@ -564,12 +673,16 @@
     },
     {
       "id": "Q3b_i",
-      "text": "Data is split into packets before it is transmitted across a network. Packets can be sent across a network using different methods of data transmission. Explain how data is transmitted in the following method of data transmission: Serial full-duplex.",
+      "text": "Packets can be sent across a network using different methods of data transmission.\n\nExplain how data is transmitted in the following method of data transmission:\n\nSerial full-duplex",
       "command": "Explain",
       "objective": "AO1",
       "marks": 4,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
       "topic": "2.1",
       "topic_name": "Types and Methods of Data Transmission",
       "answers": {
@@ -598,12 +711,16 @@
     },
     {
       "id": "Q3b_ii",
-      "text": "Data is split into packets before it is transmitted across a network. Packets can be sent across a network using different methods of data transmission. Explain how data is transmitted in the following method of data transmission: Parallel half-duplex.",
+      "text": "Packets can be sent across a network using different methods of data transmission.\n\nExplain how data is transmitted in the following method of data transmission:\n\nParallel half-duplex",
       "command": "Explain",
       "objective": "AO1",
       "marks": 4,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
       "topic": "2.1",
       "topic_name": "Types and Methods of Data Transmission",
       "answers": {
@@ -632,12 +749,21 @@
     },
     {
       "id": "Q4a",
-      "text": "A cyber security company specialises in security solutions that help prevent hackers being successful. Identify two security solutions that can be provided to help prevent hackers being successful. Explain how each solution helps prevent hackers being successful.\nSolution 1\nExplanation\nSolution 2\nExplanation",
-      "command": "Explain",
+      "text": "A cyber security company specialises in security solutions that help prevent hackers being successful.\n\nIdentify two security solutions that can be provided to help prevent hackers being successful. Explain how each solution helps prevent hackers being successful.\n\nSolution 1\nExplanation\nSolution 2\nExplanation",
+      "command": "Identify",
       "objective": "AO2",
       "marks": 6,
       "visuals": [],
       "page": 8,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Solution 1",
+          "Explanation",
+          "Solution 2",
+          "Explanation"
+        ]
+      },
       "topic": "5.3",
       "topic_name": "Cyber Security",
       "answers": {
@@ -722,12 +848,16 @@
     },
     {
       "id": "Q4b",
-      "text": "A cyber security company specialises in security solutions. The company also has a web page that provides information to improve people's awareness of social engineering. Describe what is meant by social engineering. Include an example of social engineering in your answer.",
+      "text": "The company also has a web page that provides information to improve people's awareness of social engineering.\n\nDescribe what is meant by social engineering. Include an example of social engineering in your answer.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "5.3",
       "topic_name": "Cyber Security",
       "answers": {
@@ -744,15 +874,7 @@
             "marks": 1
           },
           {
-            "text": "Phishing // by example",
-            "marks": 1
-          },
-          {
-            "text": "Baiting // by example",
-            "marks": 1
-          },
-          {
-            "text": "Shoulder surfing // by example",
+            "text": "For example: Phishing // by example // Baiting // by example // Shoulder surfing // by example",
             "marks": 1
           }
         ]
@@ -760,12 +882,16 @@
     },
     {
       "id": "Q4c_i",
-      "text": "A cyber security company's website uses both session cookies and persistent cookies. State one similarity between session cookies and persistent cookies.",
+      "text": "The company's website uses both session cookies and persistent cookies.\n\nState one similarity between session cookies and persistent cookies.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -794,12 +920,16 @@
     },
     {
       "id": "Q4c_ii",
-      "text": "A cyber security company's website uses both session cookies and persistent cookies. Explain one difference between session cookies and persistent cookies.",
+      "text": "The company's website uses both session cookies and persistent cookies.\n\nExplain one difference between session cookies and persistent cookies.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -828,17 +958,43 @@
     },
     {
       "id": "Q5a",
-      "text": "Text, images and sound are represented as binary to be processed by a computer. Complete the table by writing the missing terms and descriptions about representing text, images and sound as binary.\n\nTerms/Descriptions to complete:\n- character set: [description missing]\n- [term missing]: This is the number of samples taken each second when recording sound.\n- pixel: [description missing]\n- resolution: [description missing]\n- [term missing]: This is the number of bits used to represent a colour in an image.",
-      "command": "State",
+      "text": "Text, images and sound are represented as binary to be processed by a computer.\n\nComplete the table by writing the missing terms and descriptions about representing text, images and sound as binary.\n\nTerm | Description\ncharacter set | [blank]\n[blank] | This is the number of samples taken each second when recording sound.\npixel | [blank]\nresolution | [blank]\n[blank] | This is the number of bits used to represent a colour in an image.",
+      "command": "Write",
       "objective": "AO1",
       "marks": 5,
       "visuals": [
         {
           "type": "table",
-          "description": "Table with two columns: 'Term' and 'Description'. Some terms and some descriptions are missing and need to be filled in."
+          "description": "Two-column Term/Description table with some cells pre-filled and others blank"
         }
       ],
       "page": 10,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 5,
+        "rows": [
+          {
+            "term": "character set",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "This is the number of samples taken each second when recording sound."
+          },
+          {
+            "term": "pixel",
+            "definition": null
+          },
+          {
+            "term": "resolution",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "This is the number of bits used to represent a colour in an image."
+          }
+        ]
+      },
       "topic": "1.2",
       "topic_name": "Text, Sound and Images",
       "answers": {
@@ -846,7 +1002,7 @@
         "visuals": [
           {
             "type": "table",
-            "description": "Table with two columns: 'Term' and 'Description'. Some terms and some descriptions are missing and need to be filled in."
+            "description": "Two-column Term/Description table with some cells pre-filled and others blank"
           }
         ],
         "scoring_rule": "One mark for each correct term or description",
@@ -876,12 +1032,16 @@
     },
     {
       "id": "Q5b",
-      "text": "Text, images and sound are represented as binary to be processed by a computer. The size of an image file is 1000 bytes. Give the size of the image file in bits.",
-      "command": "Calculate",
-      "objective": "AO2",
+      "text": "Text, images and sound are represented as binary to be processed by a computer.\n\nThe size of an image file is 1000 bytes. Give the size of the image file in bits.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "1.3",
       "topic_name": "Data Storage and Compression",
       "answers": {
@@ -898,12 +1058,16 @@
     },
     {
       "id": "Q5c",
-      "text": "Text, images and sound are represented as binary to be processed by a computer. The size of a sound file is 4096 mebibytes (MiB). Give the size of the file in gibibytes (GiB).",
-      "command": "Calculate",
-      "objective": "AO2",
+      "text": "Text, images and sound are represented as binary to be processed by a computer.\n\nThe size of a sound file is 4096 mebibytes (MiB). Give the size of the file in gibibytes (GiB).",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
       "topic": "1.3",
       "topic_name": "Data Storage and Compression",
       "answers": {
@@ -920,12 +1084,16 @@
     },
     {
       "id": "Q6a",
-      "text": "A computer game is programmed to use artificial intelligence (AI) to create the movements and actions of the computer-controlled characters in the game. Describe what is meant by AI.",
+      "text": "A computer game is programmed to use artificial intelligence (AI) to create the movements and actions of the computer-controlled characters in the game.\n\nDescribe what is meant by AI.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "6.3",
       "topic_name": "Artificial Intelligence",
       "answers": {
@@ -958,12 +1126,16 @@
     },
     {
       "id": "Q6b",
-      "text": "A computer game is programmed to use artificial intelligence (AI) to create the movements and actions of the computer-controlled characters in the game. Explain how the AI can be used to improve the movements and actions of the computer-controlled characters.",
+      "text": "A computer game is programmed to use artificial intelligence (AI) to create the movements and actions of the computer-controlled characters in the game.\n\nExplain how the AI can be used to improve the movements and actions of the computer-controlled characters.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "6.3",
       "topic_name": "Artificial Intelligence",
       "answers": {
@@ -1008,12 +1180,16 @@
     },
     {
       "id": "Q6c",
-      "text": "A computer game is programmed using a high-level language. Explain one difference between a high-level language and a low-level language.",
+      "text": "The computer game is programmed using a high-level language.\n\nExplain one difference between a high-level language and a low-level language.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "4.2",
       "topic_name": "Types of Programming Language, Translators and IDEs",
       "answers": {
@@ -1066,12 +1242,16 @@
     },
     {
       "id": "Q6d_i",
-      "text": "A computer game is programmed using a high-level language. The programmer uses translators to translate the high-level language source code into machine code. Identify the name of the translator that would be used for the following statement: Translates and executes the source code one line at a time.",
+      "text": "The programmer uses translators to translate the high-level language source code into machine code.\n\nIdentify the name of the translator that would be used for each of the statements. Each name may be used more than once.\n\nTranslates and executes the source code one line at a time.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.2",
       "topic_name": "Types of Programming Language, Translators and IDEs",
       "answers": {
@@ -1088,12 +1268,16 @@
     },
     {
       "id": "Q6d_ii",
-      "text": "A computer game is programmed using a high-level language. The programmer uses translators to translate the high-level language source code into machine code. Identify the name of the translator that would be used for the following statement: Translates the source code and will not execute it if errors are found. It instead produces a full report of the errors in the source code.",
+      "text": "The programmer uses translators to translate the high-level language source code into machine code.\n\nIdentify the name of the translator that would be used for each of the statements. Each name may be used more than once.\n\nTranslates the source code and will not execute it if errors are found. It instead produces a full report of the errors in the source code.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.2",
       "topic_name": "Types of Programming Language, Translators and IDEs",
       "answers": {
@@ -1110,12 +1294,16 @@
     },
     {
       "id": "Q6d_iii",
-      "text": "A computer game is programmed using a high-level language. The programmer uses translators to translate the high-level language source code into machine code. Identify the name of the translator that would be used for the following statement: Translates the source code and produces an executable file.",
+      "text": "The programmer uses translators to translate the high-level language source code into machine code.\n\nIdentify the name of the translator that would be used for each of the statements. Each name may be used more than once.\n\nTranslates the source code and produces an executable file.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.2",
       "topic_name": "Types of Programming Language, Translators and IDEs",
       "answers": {
@@ -1132,12 +1320,16 @@
     },
     {
       "id": "Q6d_iv",
-      "text": "A computer game is programmed using a high-level language. The programmer uses translators to translate the high-level language source code into machine code. Identify the name of the translator that would be used for the following statement: Stops execution of the machine code where an error is found and will resume execution of the machine code once the error is fixed.",
+      "text": "The programmer uses translators to translate the high-level language source code into machine code.\n\nIdentify the name of the translator that would be used for each of the statements. Each name may be used more than once.\n\nStops execution of the machine code where an error is found and will resume execution of the machine code once the error is fixed.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.2",
       "topic_name": "Types of Programming Language, Translators and IDEs",
       "answers": {

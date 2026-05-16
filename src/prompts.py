@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
-PHASE1_SYSTEM = """You are an expert at reading Cambridge exam papers.
-Your job is to identify every question (and sub-question) on the exam provided.
+PHASE12_SYSTEM = """You are an expert at reading Cambridge exam papers.
+Your job is to identify every question (and sub-question) on the exam provided AND map each one to a syllabus topic.
 Return ONLY a valid JSON object — no markdown, no explanation, no code fences.
 
 RULES:
@@ -37,6 +37,8 @@ Build a clean, structured JSON deliverable:
     "page": the paper page number of the question
     "layout_type": the question's visual answer format — exactly one of the 10 types listed in LAYOUT TYPES below
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
+    "topic": topic from the syllabus (e.g. "1.2") — see TOPICS below
+    "topic_name": the name of the topic (e.g. "Text, Sound and Images") — see TOPICS below
 
 LAYOUT TYPES:
 The page text contains [LAYOUT:TYPE key=value] and [TABLE_TYPE:TYPE key=value] annotations inserted by the
@@ -121,7 +123,27 @@ Outline	        Main points only	                    Too much detail
 Sketch	        Simple diagram; key features	        Too detailed
 Write	        Produce pseudocode/algorithm	        Wrong syntax
 Trace	        Follow through step by step	            Missing steps
-Calculate	    Work out; show working	                Wrong formula"""
+Calculate	    Work out; show working	                Wrong formula
+
+TOPICS (code — name — key content):
+1.1 Number Systems — binary, denary, hexadecimal, BCD; base conversion; binary arithmetic; two's complement; overflow
+1.2 Text, Sound and Images — ASCII, Unicode; sampling rate and bit depth for audio; pixel, resolution, colour depth for images
+1.3 Data Storage and Compression — units (bit to TB); lossy vs lossless compression; run-length encoding; Huffman coding
+2.1 Types and Methods of Data Transmission — serial vs parallel; simplex/half-duplex/full-duplex; USB, Bluetooth, Wi-Fi; packet switching
+2.2 Methods of Error Detection — parity bits, checksums, check digits, ARQ
+2.3 Encryption — symmetric vs asymmetric; public/private keys; Caesar/Vernam cipher; SSL/TLS
+3.1 Computer Architecture — CPU, ALU, CU, registers, fetch-decode-execute cycle; Von Neumann model; cache
+3.2 Input and Output Devices — keyboards, mice, scanners, cameras, sensors; monitors, printers, actuators
+3.3 Data Storage — primary (RAM, ROM), secondary (HDD, SSD, optical, flash); virtual memory
+3.4 Network Hardware — NIC, hub, switch, router, WAP, modem; LAN vs WAN; cloud storage
+4.1 Types of Software and Interrupts — OS functions; utility software; interrupts; scheduling algorithms
+4.2 Types of Programming Language, Translators and IDEs — high/low-level languages; compilers, interpreters, assemblers; IDE features
+5.1 The Internet and the World Wide Web — DNS, HTTP/S, IP, TCP/IP; HTML; search engines; URLs
+5.2 Digital Currency — cryptocurrency; blockchain; mining; wallets
+5.3 Cyber Security — malware, phishing, brute-force, DDoS; firewalls, anti-malware, authentication, encryption
+6.1 Automated Systems — feedback loops; sensors and actuators; control systems; autonomous vehicles
+6.2 Robotics — actuators, effectors; robot applications; advantages and limitations
+6.3 Artificial Intelligence — machine learning; neural networks; expert systems; natural language processing"""
 
 PHASE3_SYSTEM = """Update the JSON deliverable. For each question, find its answer in the marking scheme and add an "answers" key:
     "type": type of answer — "text", "diagram", "pseudocode", or "MCQ"
@@ -145,33 +167,6 @@ RULES:
 - When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
 - If a question has no marking scheme entry, set "marking_points" to an empty array []."""
 
-PHASE2_SYSTEM = """Update the json deliverable. Map each question to syllabus topics and add:
-    "topic": topic from the syllabus (e.g. 1.2)
-    "topic_name": the name of the topic (e. g. Data Representation: Text, Sound, and Images)
-
-Return ONLY a valid JSON object — no markdown, no explanation, no code fences.
-
-TOPICS (code — name — key content):
-1.1 Number Systems — binary, denary, hexadecimal, BCD; base conversion; binary arithmetic; two's complement; overflow
-1.2 Text, Sound and Images — ASCII, Unicode; sampling rate and bit depth for audio; pixel, resolution, colour depth for images
-1.3 Data Storage and Compression — units (bit to TB); lossy vs lossless compression; run-length encoding; Huffman coding
-2.1 Types and Methods of Data Transmission — serial vs parallel; simplex/half-duplex/full-duplex; USB, Bluetooth, Wi-Fi; packet switching
-2.2 Methods of Error Detection — parity bits, checksums, check digits, ARQ
-2.3 Encryption — symmetric vs asymmetric; public/private keys; Caesar/Vernam cipher; SSL/TLS
-3.1 Computer Architecture — CPU, ALU, CU, registers, fetch-decode-execute cycle; Von Neumann model; cache
-3.2 Input and Output Devices — keyboards, mice, scanners, cameras, sensors; monitors, printers, actuators
-3.3 Data Storage — primary (RAM, ROM), secondary (HDD, SSD, optical, flash); virtual memory
-3.4 Network Hardware — NIC, hub, switch, router, WAP, modem; LAN vs WAN; cloud storage
-4.1 Types of Software and Interrupts — OS functions; utility software; interrupts; scheduling algorithms
-4.2 Types of Programming Language, Translators and IDEs — high/low-level languages; compilers, interpreters, assemblers; IDE features
-5.1 The Internet and the World Wide Web — DNS, HTTP/S, IP, TCP/IP; HTML; search engines; URLs
-5.2 Digital Currency — cryptocurrency; blockchain; mining; wallets
-5.3 Cyber Security — malware, phishing, brute-force, DDoS; firewalls, anti-malware, authentication, encryption
-6.1 Automated Systems — feedback loops; sensors and actuators; control systems; autonomous vehicles
-6.2 Robotics — actuators, effectors; robot applications; advantages and limitations
-6.3 Artificial Intelligence — machine learning; neural networks; expert systems; natural language processing"""
-
-
 def build_pdf_text(pages: List[Dict[str, Any]]) -> str:
     parts = []
     for p in pages:
@@ -187,11 +182,11 @@ def build_pdf_text(pages: List[Dict[str, Any]]) -> str:
     return "\n\n".join(parts)
 
 
-def build_phase1_messages(pages: List[Dict[str, Any]]):
+def build_phase12_messages(pages: List[Dict[str, Any]]):
     system = [
         {
             "type": "text",
-            "text": PHASE1_SYSTEM,
+            "text": PHASE12_SYSTEM,
             "cache_control": {"type": "ephemeral"},
         }
     ]
@@ -202,7 +197,7 @@ def build_phase1_messages(pages: List[Dict[str, Any]]):
     return system, messages
 
 
-def build_phase3_messages(phase2_json: str, ms_pages: List[Dict[str, Any]]):
+def build_phase3_messages(phase12_json: str, ms_pages: List[Dict[str, Any]]):
     system = [
         {
             "type": "text",
@@ -212,31 +207,10 @@ def build_phase3_messages(phase2_json: str, ms_pages: List[Dict[str, Any]]):
     ]
     ms_text = build_pdf_text(ms_pages)
     user_content = (
-        "Here is the Phase 2 extraction result:\n\n"
-        + phase2_json
+        "Here is the extraction result:\n\n"
+        + phase12_json
         + "\n\nHere is the marking scheme text:\n\n"
         + ms_text
     )
     messages = [{"role": "user", "content": user_content}]
-    return system, messages
-
-
-def build_phase2_messages(phase1_json: str, pages: List[Dict[str, Any]]):
-    system = [
-        {
-            "type": "text",
-            "text": PHASE2_SYSTEM,
-            "cache_control": {"type": "ephemeral"},
-        }
-    ]
-    pdf_text = build_pdf_text(pages)
-    user_content = (
-        "Here is the Phase 1 extraction result:\n\n"
-        + phase1_json
-        + "\n\nHere is the original exam paper text for reference:\n\n"
-        + pdf_text
-    )
-    messages = [
-        {"role": "user", "content": user_content}
-    ]
     return system, messages

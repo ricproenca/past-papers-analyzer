@@ -16,6 +16,10 @@
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "3.2",
       "topic_name": "Input and Output Devices",
       "answers": {
@@ -38,6 +42,20 @@
       "marks": 1,
       "visuals": [],
       "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A application software",
+          "B security software",
+          "C system software",
+          "D utility software"
+        ]
+      },
       "topic": "4.1",
       "topic_name": "Types of Software and Interrupts",
       "answers": {
@@ -56,16 +74,20 @@
       "id": "Q1c_i",
       "text": "A student records himself singing a song for his music project. Two binary numbers stored from the recording are 00011001 and 10110100. Convert the two binary numbers to denary numbers.\n00011001\n10110100",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "25",
@@ -82,16 +104,20 @@
       "id": "Q1c_ii",
       "text": "A student records himself singing a song for his music project. Two binary numbers stored from the recording are 00011001 and 10110100. Convert the two binary numbers to hexadecimal numbers.\n00011001\n10110100",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "19",
@@ -108,10 +134,14 @@
       "id": "Q1c_iii",
       "text": "A student records himself singing a song for his music project. A logical right shift of two places is performed on the binary number 10100100. Give the binary number that would be stored after the logical shift has taken place.",
       "command": "Give",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
@@ -128,18 +158,22 @@
     },
     {
       "id": "Q1d",
-      "text": "A student records himself singing a song for his music project. The two's complement 8-bit binary integer 11001001 is also stored. Convert the two's complement 8-bit binary integer to denary. Show all of your working.\nWorking space\nDenary value",
+      "text": "A student records himself singing a song for his music project. The two's complement 8-bit binary integer 11001001 is also stored. Convert the two's complement 8-bit binary integer to denary. Show all of your working.\nDenary value",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for correct method of working, 1 mark for correct answer",
+        "scoring_rule": "One mark for correct method of working e.g. flip and add 1\nOne mark for correct answer",
         "marking_points": [
           {
             "text": "One mark for correct method of working e.g. flip and add 1",
@@ -154,17 +188,30 @@
     },
     {
       "id": "Q1e",
-      "text": "A student records himself singing a song for his music project. The table contains terms and descriptions about the process of converting analogue sound to binary. Complete the table with the missing term and descriptions.\n| Term | Description |\n|---|---|\n| [blank] | This is the measurement of the height (amplitude) of a sound wave taken at regular time intervals. |\n| sample rate | [blank] |\n| sample resolution | [blank] |",
+      "text": "A student records himself singing a song for his music project. The table contains terms and descriptions about the process of converting analogue sound to binary. Complete the table with the missing term and descriptions.\nTerm | Description\n[blank] | This is the measurement of the height (amplitude) of a sound wave taken at regular time intervals.\nsample rate | [blank]\nsample resolution | [blank]",
       "command": "Complete",
       "objective": "AO1",
       "marks": 3,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Table with terms (sample, sample rate, sample resolution) and their descriptions about converting analogue sound to binary"
-        }
-      ],
+      "visuals": [],
       "page": 4,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 3,
+        "rows": [
+          {
+            "term": null,
+            "definition": "This is the measurement of the height (amplitude) of a sound wave taken at regular time intervals."
+          },
+          {
+            "term": "sample rate",
+            "definition": null
+          },
+          {
+            "term": "sample resolution",
+            "definition": null
+          }
+        ]
+      },
       "topic": "1.2",
       "topic_name": "Text, Sound and Images",
       "answers": {
@@ -173,15 +220,15 @@
         "scoring_rule": "One mark for each correct missing term or definition.",
         "marking_points": [
           {
-            "text": "(sound) sampling/sample — This is the measurement of the height (amplitude) of a sound wave at regular time intervals.",
+            "text": "(sound) sampling/sample",
             "marks": 1
           },
           {
-            "text": "sample rate — The number of samples recorded each second",
+            "text": "The number of samples recorded each second",
             "marks": 1
           },
           {
-            "text": "sample resolution — The number of bits that are used to record each sample",
+            "text": "The number of bits that are used to record each sample",
             "marks": 1
           }
         ]
@@ -195,6 +242,10 @@
       "marks": 1,
       "visuals": [],
       "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "3.3",
       "topic_name": "Data Storage",
       "answers": {
@@ -217,6 +268,10 @@
       "marks": 3,
       "visuals": [],
       "page": 5,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
       "topic": "3.3",
       "topic_name": "Data Storage",
       "answers": {
@@ -255,12 +310,16 @@
       "marks": 2,
       "visuals": [],
       "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "3.3",
       "topic_name": "Data Storage",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "It is not directly accessed by the CPU.",
@@ -275,17 +334,38 @@
     },
     {
       "id": "Q3a",
-      "text": "A computer with a Von Neumann architecture has several hardware components. Complete the table with the missing terms and descriptions about computer hardware.\n| Term | Description |\n|---|---|\n| [blank] | This is the address given to a network interface card (NIC) when it is manufactured. |\n| register | [blank] |\n| clock | [blank] |\n| control unit (CU) | [blank] |\n| [blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions. |",
+      "text": "A computer with a Von Neumann architecture has several hardware components. Complete the table with the missing terms and descriptions about computer hardware.\nTerm | Description\n[blank] | This is the address given to a network interface card (NIC) when it is manufactured.\nregister | [blank]\nclock | [blank]\ncontrol unit (CU) | [blank]\n[blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 5,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Table with hardware terms (MAC address, register, clock, control unit, core) and their descriptions"
-        }
-      ],
+      "visuals": [],
       "page": 6,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 5,
+        "rows": [
+          {
+            "term": null,
+            "definition": "This is the address given to a network interface card (NIC) when it is manufactured."
+          },
+          {
+            "term": "register",
+            "definition": null
+          },
+          {
+            "term": "clock",
+            "definition": null
+          },
+          {
+            "term": "control unit (CU)",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "This is a processing unit within the CPU that can fetch, decode and execute instructions."
+          }
+        ]
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -294,23 +374,23 @@
         "scoring_rule": "One mark for each correct missing term or description.",
         "marking_points": [
           {
-            "text": "MAC address — This is the address given to a network interface card (NIC) when it is manufactured.",
+            "text": "MAC address",
             "marks": 1
           },
           {
-            "text": "register — A component in the central processing unit (CPU) that is used to temporarily store data.",
+            "text": "A component in the central processing unit (CPU) that is used to temporarily store data.",
             "marks": 1
           },
           {
-            "text": "clock — It controls the number of fetch-decode-execute cycles that are performed per second.",
+            "text": "It controls the number of fetch-decode-execute cycles that are performed per second.",
             "marks": 1
           },
           {
-            "text": "control unit — A component in the CPU that manages the flow of data around the CPU // A component that decodes the instructions",
+            "text": "A component in the CPU that manages the flow of data around the CPU // A component that decodes the instructions",
             "marks": 1
           },
           {
-            "text": "core — This is a processing unit within the CPU that can fetch, decode and execute instructions.",
+            "text": "core",
             "marks": 1
           }
         ]
@@ -324,6 +404,10 @@
       "marks": 3,
       "visuals": [],
       "page": 6,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -358,6 +442,10 @@
       "marks": 2,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
       "answers": {
@@ -384,6 +472,10 @@
       "marks": 2,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "4.1",
       "topic_name": "Types of Software and Interrupts",
       "answers": {
@@ -414,6 +506,10 @@
       "marks": 2,
       "visuals": [],
       "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
       "topic": "4.1",
       "topic_name": "Types of Software and Interrupts",
       "answers": {
@@ -464,6 +560,10 @@
       "marks": 1,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.1",
       "topic_name": "Types of Software and Interrupts",
       "answers": {
@@ -494,6 +594,10 @@
       "marks": 1,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "4.1",
       "topic_name": "Types of Software and Interrupts",
       "answers": {
@@ -520,6 +624,10 @@
       "marks": 2,
       "visuals": [],
       "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -554,6 +662,20 @@
       "marks": 1,
       "visuals": [],
       "page": 8,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A access levels",
+          "B firewall",
+          "C spyware",
+          "D two-step verification"
+        ]
+      },
       "topic": "5.3",
       "topic_name": "Cyber Security",
       "answers": {
@@ -571,25 +693,26 @@
     {
       "id": "Q5c_i",
       "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks. Complete and annotate a diagram to show how a DDoS attack is carried out on the web server.\nweb server",
-      "command": "Complete",
-      "objective": "AO2",
+      "command": "Complete and annotate",
+      "objective": "AO1",
       "marks": 5,
       "visuals": [
-        {
-          "type": "diagram",
-          "description": "Partially drawn diagram showing a web server, to be completed and annotated to illustrate a DDoS attack"
-        }
+        "Partial diagram showing a web server node"
       ],
       "page": 8,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "network",
+        "partial_elements": [
+          "web server"
+        ]
+      },
       "topic": "5.3",
       "topic_name": "Cyber Security",
       "answers": {
         "type": "diagram",
         "visuals": [
-          {
-            "type": "diagram",
-            "description": "Diagram showing: third party sending malware to computers, computers turned into bots forming a botnet, third party initiating attack, all bots sending requests at once to web server, web server crashing"
-          }
+          "Example diagram showing botnet with bots, third party, requests to web server, and annotations"
         ],
         "scoring_rule": "One mark for each part of the diagram that shows:",
         "marking_points": [
@@ -628,12 +751,16 @@
       "marks": 2,
       "visuals": [],
       "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
       "topic": "5.3",
       "topic_name": "Cyber Security",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "Hide a public IP address",
@@ -650,10 +777,24 @@
       "id": "Q5d_i",
       "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. The items remain in the cart after the user closes their web browser. Tick (✓) one box to show the type of cookie that is used for this process.\nA dynamic\nB persistent\nC session\nD static",
       "command": "Tick",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 9,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A dynamic",
+          "B persistent",
+          "C session",
+          "D static"
+        ]
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -672,10 +813,14 @@
       "id": "Q5d_ii",
       "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. Give three other ways that the company can use cookies.\n1\n2\n3",
       "command": "Give",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -710,6 +855,10 @@
       "marks": 2,
       "visuals": [],
       "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
@@ -748,6 +897,10 @@
       "marks": 1,
       "visuals": [],
       "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -778,6 +931,10 @@
       "marks": 1,
       "visuals": [],
       "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -812,6 +969,10 @@
       "marks": 3,
       "visuals": [],
       "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -846,6 +1007,10 @@
       "marks": 3,
       "visuals": [],
       "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "2.1",
       "topic_name": "Types and Methods of Data Transmission",
       "answers": {
@@ -872,10 +1037,14 @@
       "id": "Q6d",
       "text": "A weather station uses automated systems to collect and analyse data about the weather. Give two advantages to the weather station employees of using an automated weather system.\n1\n2",
       "command": "Give",
-      "objective": "AO3",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -906,10 +1075,14 @@
       "id": "Q6e",
       "text": "A weather station uses automated systems to collect and analyse data about the weather. Give one disadvantage to the weather station employees of using an automated weather system.",
       "command": "Give",
-      "objective": "AO3",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "6.1",
       "topic_name": "Automated Systems",
       "answers": {
@@ -936,6 +1109,10 @@
       "marks": 1,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
       "topic": "6.3",
       "topic_name": "Artificial Intelligence",
       "answers": {
@@ -958,6 +1135,10 @@
       "marks": 3,
       "visuals": [],
       "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
       "topic": "6.3",
       "topic_name": "Artificial Intelligence",
       "answers": {
@@ -1008,12 +1189,16 @@
       "marks": 2,
       "visuals": [],
       "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
       "topic": "2.2",
       "topic_name": "Methods of Error Detection",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "It can suffer Interference/crosstalk.",
@@ -1028,12 +1213,17 @@
     },
     {
       "id": "Q7b",
-      "text": "Data is sent from an employee's computer to a server. Methods of error detection and correction can be added to make sure that errors are identified after data is transmitted. Complete the statements about methods of error detection and correction. Use terms from the list. Not all terms need to be used. You should only use each term once.\nacknowledgement  automatic repeat query (ARQ)  binary  bit\nbyte  calculation  check digit  checksum  correct\necho check  error  even  incorrect  negative\nnumber  odd  positive  timeout\n\nA parity check is set to be [blank] or [blank]. A parity [blank] is added to each byte before transmission to make it match the set parity.\n\nAn [blank] involves comparing the data sent to the data received back from the receiving device.\n\nAn [blank] uses acknowledgement and [blank]. The acknowledgement system can be [blank] or [blank].",
+      "text": "Data is sent from an employee's computer to a server. Methods of error detection and correction can be added to make sure that errors are identified after data is transmitted. Complete the statements about methods of error detection and correction. Use terms from the list. Not all terms need to be used. You should only use each term once.\nacknowledgement  automatic repeat query (ARQ)  binary  bit\nbyte  calculation  check digit  checksum  correct\necho check  error  even  incorrect  negative\nnumber  odd  positive  timeout\n\nA parity check is set to be [blank] or [blank]. A parity [blank] is added to each byte before transmission to make it match the set parity.\nAn [blank] involves comparing the data sent to the data received back from the receiving device.\nAn [blank] uses acknowledgement and [blank]. The acknowledgement system can be [blank] or [blank].",
       "command": "Complete",
       "objective": "AO1",
       "marks": 8,
       "visuals": [],
       "page": 12,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 8,
+        "has_word_bank": true
+      },
       "topic": "2.2",
       "topic_name": "Methods of Error Detection",
       "answers": {
@@ -1067,7 +1257,7 @@
           },
           {
             "text": "positive/negative or negative/positive",
-            "marks": 1
+            "marks": 2
           }
         ]
       }

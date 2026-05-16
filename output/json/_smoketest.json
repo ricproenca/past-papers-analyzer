@@ -99,7 +99,7 @@
     {
       "id": "Q1c_ii",
       "text": "The size of a file can be measured using different data storage units. The size of a file needs to be reduced. One reason the size of a file may need reducing is so that it has a shorter transmission time. Give one other reason why the size of a file may need reducing.",
-      "command": "State",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -162,9 +162,9 @@
     },
     {
       "id": "Q2b_i",
-      "text": "A clothes store has a ticket system. Each ticket number is stored as a binary number in the ticket machine. Two ticket numbers are 14B and 97A. Convert the two ticket numbers from hexadecimal to binary.\n14B\n97A",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. Each ticket number is stored as a binary number in the ticket machine. Two ticket numbers are 14B and 97A. Convert the two ticket numbers from hexadecimal to binary.\n14B\n97A",
       "command": "Calculate",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -192,8 +192,8 @@
     },
     {
       "id": "Q2b_ii",
-      "text": "A clothes store has a ticket system. Each ticket number is stored as a binary number in the ticket machine. Give two reasons why the ticket number is displayed as hexadecimal instead of binary.\n1\n2",
-      "command": "State",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. Each ticket number is stored as a binary number in the ticket machine. Give two reasons why the ticket number is displayed as hexadecimal instead of binary.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -222,9 +222,9 @@
     },
     {
       "id": "Q2c_i",
-      "text": "A clothes store has a ticket system. The ticket numbers could also be represented as denary. Convert the two ticket numbers from hexadecimal to denary.\n02C\n10B",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket numbers could also be represented as denary. Convert the two ticket numbers from hexadecimal to denary.\n02C\n10B",
       "command": "Calculate",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -252,9 +252,9 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "A clothes store has a ticket system. The ticket numbers could also be represented as denary. Convert the two denary numbers into hexadecimal.\n109\n415",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket numbers could also be represented as denary. Convert the two denary numbers into hexadecimal.\n109\n415",
       "command": "Calculate",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -282,7 +282,7 @@
     },
     {
       "id": "Q3",
-      "text": "An image is converted to binary to be represented by a computer. Complete the table with the missing terms and definition about representing an image.\n\nTerm | Definition\n[blank] | This is the smallest component of an image.\nresolution | [blank]\n[blank] | This is the number of bits used to create each colour in an image.\n[blank] | This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
+      "text": "An image is converted to binary to be represented by a computer. Complete the table with the missing terms and definition about representing an image.\nTerm | Definition\n[blank] | This is the smallest component of an image.\nresolution | [blank definition]\n[blank] | This is the number of bits used to create each colour in an image.\n[blank] | This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
       "command": "State",
       "objective": "AO1",
       "marks": 4,
@@ -318,19 +318,19 @@
         "scoring_rule": "One mark for each correct term or definition.",
         "marking_points": [
           {
-            "text": "pixel",
+            "text": "pixel — It is the smallest component of an image.",
             "marks": 1
           },
           {
-            "text": "The number of pixels high by the number of pixels wide // The number of pixels in an image",
+            "text": "resolution — The number of pixels high by the number of pixels wide // The number of pixels in an image",
             "marks": 1
           },
           {
-            "text": "colour depth // bit depth",
+            "text": "colour depth // bit depth — This is the number of bits that are used to create each colour in an image.",
             "marks": 1
           },
           {
-            "text": "metadata // header",
+            "text": "metadata // header — This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
             "marks": 1
           }
         ]
@@ -339,7 +339,7 @@
     {
       "id": "Q4a_i",
       "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. The data is sent using serial full-duplex data transmission. Give two reasons why serial full-duplex is a suitable data transmission method for the data.\n1\n2",
-      "command": "State",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -380,9 +380,9 @@
     },
     {
       "id": "Q4a_ii",
-      "text": "A restaurant has an electronic ordering system. The data is sent using serial full-duplex data transmission. Give one improvement that would be made to the data transmission if parallel transmission is used instead of serial transmission.",
-      "command": "State",
-      "objective": "AO2",
+      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. The data is sent using serial full-duplex data transmission. Give one improvement that would be made to the data transmission if parallel transmission is used instead of serial transmission.",
+      "command": "Give",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 4,
@@ -406,7 +406,7 @@
     },
     {
       "id": "Q4b_i",
-      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission. Describe the process of the checksum error detection method.",
+      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. A checksum is used to check the data for errors after transmission. Describe the process of the checksum error detection method.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 5,
@@ -452,7 +452,7 @@
     },
     {
       "id": "Q4b_ii",
-      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission. Identify one other error detection method that could be used to check for errors in the data.",
+      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. A checksum is used to check the data for errors after transmission. Identify one other error detection method that could be used to check for errors in the data.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -556,7 +556,7 @@
     },
     {
       "id": "Q5a",
-      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture. Complete the table with the missing terms and definitions about processing data.\n\nTerm | Definition\ncurrent instruction register (CIR) | [blank]\n[blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions.\n[blank] | This is a list of all the commands that can be processed by the CPU.\ncache | [blank]\naccumulator | [blank]",
+      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture. Complete the table with the missing terms and definitions about processing data.\nTerm | Definition\ncurrent instruction register (CIR) | [blank definition]\n[blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions.\n[blank] | This is a list of all the commands that can be processed by the CPU.\ncache | [blank definition]\naccumulator | [blank definition]",
       "command": "State",
       "objective": "AO1",
       "marks": 5,
@@ -600,11 +600,11 @@
             "marks": 1
           },
           {
-            "text": "core",
+            "text": "core — This is a processing unit within the CPU that can fetch, decode and execute instructions.",
             "marks": 1
           },
           {
-            "text": "instruction set",
+            "text": "instruction set — This is a list of all the commands that can be processed by the CPU.",
             "marks": 1
           },
           {
@@ -684,7 +684,7 @@
     },
     {
       "id": "Q6a",
-      "text": "Data can be encrypted using asymmetric encryption. Complete the paragraph about asymmetric encryption. Use the terms from the list. Some of the terms in the list will not be used. You may use a term more than once.\nalgorithm binary cipher text compression error hardware hexadecimal meaningless plain text private public readable transmission unreadable\n\nData is encrypted using an encryption key. This is a type of [blank] that scrambles the [blank] [blank] and turns it into [blank]. This makes the data [blank]. A [blank] key is used to encrypt the data. This key cannot be used to decrypt the data. A [blank] key is used to decrypt the data. Any device is able to request the [blank] key, but only your device knows the [blank] key.",
+      "text": "Data can be encrypted using asymmetric encryption. Complete the paragraph about asymmetric encryption. Use the terms from the list. Some of the terms in the list will not be used. You may use a term more than once.\nalgorithm binary cipher text compression error hardware hexadecimal meaningless plain text private public readable transmission unreadable\nData is encrypted using an encryption key. This is a type of [blank] that scrambles the [blank] [blank] and turns it into [blank]. This makes the data [blank]. A [blank] key is used to encrypt the data. This key cannot be used to decrypt the data. A [blank] key is used to decrypt the data. Any device is able to request the [blank] key, but only your device knows the [blank] key.",
       "command": "State",
       "objective": "AO1",
       "marks": 8,
@@ -740,7 +740,7 @@
     {
       "id": "Q6b",
       "text": "Data can be encrypted using asymmetric encryption. Data can also be encrypted using symmetric encryption. Give one reason why a person would use asymmetric encryption instead of symmetric encryption.",
-      "command": "State",
+      "command": "Give",
       "objective": "AO3",
       "marks": 1,
       "visuals": [],
@@ -837,7 +837,7 @@
     },
     {
       "id": "Q7c",
-      "text": "A student's computer has primary storage. The student is editing a large video file for a project and during this process the RAM becomes full. This makes the computer crash. Describe how virtual memory could be used in this process to stop the computer crashing.",
+      "text": "A student's computer has primary storage. One example of primary storage is random access memory (RAM). The student is editing a large video file for a project and during this process the RAM becomes full. This makes the computer crash. Describe how virtual memory could be used in this process to stop the computer crashing.",
       "command": "Describe",
       "objective": "AO2",
       "marks": 3,
@@ -875,8 +875,8 @@
     },
     {
       "id": "Q7d_i",
-      "text": "A student's computer uses solid-state (flash memory) storage. Give two features of solid-state (flash memory) storage.\n1\n2",
-      "command": "State",
+      "text": "A student's computer has primary storage. The computer uses solid-state (flash memory) storage. Give two features of solid-state (flash memory) storage.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -921,8 +921,8 @@
     },
     {
       "id": "Q7d_ii",
-      "text": "A student's computer uses solid-state (flash memory) storage. Give two examples of solid-state (flash memory) storage.\n1\n2",
-      "command": "State",
+      "text": "A student's computer has primary storage. The computer uses solid-state (flash memory) storage. Give two examples of solid-state (flash memory) storage.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -956,7 +956,7 @@
     {
       "id": "Q8a",
       "text": "A robot is used to move car parts in a factory. One characteristic of the robot is that it has a mechanical structure. Give one other characteristic of a robot.",
-      "command": "State",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1024,7 +1024,7 @@
     {
       "id": "Q8c",
       "text": "A robot is used to move car parts in a factory. Interrupts are generated when the robot is operating in the factory. Give two examples of interrupts that may be generated when the robot is in operation.\n1\n2",
-      "command": "State",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -1078,7 +1078,7 @@
     {
       "id": "Q8d",
       "text": "A robot is used to move car parts in a factory. Give two advantages to the workers in the factory of using robots to move the car parts.\n1\n2",
-      "command": "State",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -1238,7 +1238,7 @@
     {
       "id": "Q9b_ii",
       "text": "Each employee in a finance company has a computer and an electronic account. The finance company is concerned that a hacker may perform a brute-force attack to gain access to an employee's account. Give three cyber security solutions that could be used to help prevent a brute-force attack from being successful.\n1\n2\n3",
-      "command": "State",
+      "command": "Give",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
@@ -1302,7 +1302,7 @@
     {
       "id": "Q9c_ii",
       "text": "Each employee in a finance company has a computer and an electronic account. The company uses a digital currency to purchase a new car. The digital currency uses a process that involves a digital ledger. The ledger has time stamped transactions that cannot be altered. Give the name of this process.",
-      "command": "State",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],

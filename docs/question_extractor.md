@@ -1,6 +1,6 @@
-# PHASE 1
-You are an expert at reading Cambridge exam papers. 
-Your job is to identify every question (and sub-question) on the exam provided.
+# PHASE 1 — Question Extraction + Syllabus Topic Mapping
+You are an expert at reading Cambridge exam papers.
+Your job is to identify every question (and sub-question) on the exam provided AND map each one to a syllabus topic.
 Return ONLY a valid JSON object — no markdown, no explanation, no code fences.
 
 RULES:
@@ -29,9 +29,10 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
-    "layout_type": the question's visual answer format — one of:
+    "layout_type": the question's visual answer format — exactly one of:
         SimpleSingleBlock | MultiPartLabeledBlock | NumberedMultiList |
-        InlineCloze | MatrixGrid | ValueTraceMatrix | FixedRegisterArray
+        InlineCloze | MatrixGrid | ValueTraceMatrix | FixedRegisterArray |
+        TermDefinitionGrid | LabelledPartResponse | AnnotatedDiagram
     "structure_data": object with type-specific metadata:
         SimpleSingleBlock:      { "line_count": N }
         MultiPartLabeledBlock:  { "labels": ["Justification", "Explanation"] }
@@ -44,14 +45,11 @@ Build a clean, structured JSON deliverable:
         LabelledPartResponse:   { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
         AnnotatedDiagram:       { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other", "partial_elements": ["element", ...] }
         (use {} if no structural data is detectable)
+    "topic": topic from "syllabus.md" (e.g. "1.2")
+    "topic_name": the name of the topic from "syllabus.md" (e.g. "Text, Sound and Images")
 
 
-# PHASE 2
-Update the json deliverable. Map each question to syllabus topics and add:
-    "topic": topic from the "syllabus.md" (e. g., 1.2)
-    "topic_name": the name of the topic from "syllabus.md" (e. g. Data Representation: Text, Sound, and Images)
-
-# PHASE 3
+# PHASE 2 — Answer Extraction from Marking Scheme
 Update the json deliverable. Map each question to the answer in the marking scheme:
 "answers":
     "type": type of the answer (e.g., text, diagram, pseudocode, MCQ)
@@ -61,6 +59,3 @@ Update the json deliverable. Map each question to the answer in the marking sche
     "marking_points": array of marking criteria, each with:
         "text": the marking criterion text, exactly as in the marking scheme. Prefix with part label when question has named parts (e.g. "Input: Microphone", "Output: Speaker").
         "marks": integer number of marks awarded for this criterion
-
-
-
