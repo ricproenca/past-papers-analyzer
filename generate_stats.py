@@ -8,6 +8,9 @@ from pathlib import Path
 
 
 SESSION_LABELS = {
+    "m24": "March 2024",
+    "s24": "Summer 2024",
+    "w24": "Winter 2024",
     "m25": "March 2025",
     "s25": "Summer 2025",
     "w25": "Winter 2025",
@@ -179,15 +182,59 @@ body {
 
 
 _JS_LOGIC = """\
+Chart.register(ChartDataLabels);
 const DIFF_COLORS = { Low: '#22c55e', Medium: '#f59e0b', High: '#ef4444' };
 const LOAD_COLORS = { Low: '#34d399', Medium: '#60a5fa', High: '#f97316' };
 const OBJ_COLORS  = { AO1: '#3b82f6', AO2: '#22c55e', AO3: '#f97316' };
 const BLOOM_ORDER  = ['Remember','Understand','Apply','Analyse','Evaluate','Create'];
-const BLOOM_COLORS = ['#7c3aed','#a855f7','#c084fc','#93c5fd','#34d399','#fbbf24'];
+const BLOOM_COLORS = ['#f87171','#fb923c','#facc15','#4ade80','#60a5fa','#a78bfa'];
 
-let currentSession = 's25';
-let currentVariant = 'all';
+let currentYear       = 'all';
+let currentSession    = 'all';
+let currentVariant    = 'all';
+let currentTopicGroup = 'all';
+let currentStats      = {};
 const charts = {};
+
+const TOPIC_GROUP_LABELS = {
+  '1': 'Data Representation',
+  '2': 'Data Transmission',
+  '3': 'Hardware',
+  '4': 'Software',
+  '5': 'Internet & Cyber',
+  '6': 'Emerging Tech',
+};
+
+const LAYOUT_NAMES = {
+  'SimpleSingleBlock':     'Open Response',
+  'NumberedMultiList':     'Multi-part List',
+  'MatrixGrid':            'Grid / Matrix',
+  'MultiPartLabeledBlock': 'Labelled Multi-part',
+  'TermDefinitionGrid':    'Term–Definition Table',
+  'InlineCloze':           'Fill in the Blank',
+  'AnnotatedDiagram':      'Annotated Diagram',
+  'ValueTraceMatrix':      'Value Trace Table',
+  'LabelledPartResponse':  'Labelled Part Response',
+  'FixedRegisterArray':    'Register Array',
+};
+
+function sessionYear(s) {
+  const m = s.match(/([a-z]+)(\d+)$/);
+  return m ? '20' + m[2] : null;
+}
+
+function getFilteredSessionKeys() {
+  let keys = Object.keys(SESSIONS);
+  if (currentYear !== 'all') keys = keys.filter(s => sessionYear(s) === currentYear);
+  if (currentSession !== 'all') keys = keys.filter(s => s === currentSession);
+  return keys;
+}
+
+function getFilteredPaperKeys() {
+  let paperKeys = getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []);
+  if (currentVariant !== 'all') paperKeys = paperKeys.filter(pk => PAPERS[pk].variant === currentVariant);
+  return paperKeys;
+}
 
 function aggregateStats(paperKeys) {
   const result = {};
@@ -211,7 +258,7 @@ function aggregateSummary(paperKeys, stats) {
   const totalMarks = paperKeys.reduce((s, pk) => s + (PAPERS[pk].total_marks || 0), 0);
   const qCount     = paperKeys.reduce((s, pk) => s + (PAPERS[pk].summary.question_count || 0), 0);
   const mcqCount   = paperKeys.reduce((s, pk) => s + (PAPERS[pk].summary.mcq_count || 0), 0);
-  const maxMarks   = Math.max(...paperKeys.map(pk => PAPERS[pk].summary.max_marks_per_question || 0));
+  const maxMarks   = paperKeys.length ? Math.max(...paperKeys.map(pk => PAPERS[pk].summary.max_marks_per_question || 0)) : 0;
   return {
     total_marks: totalMarks,
     question_count: qCount,
@@ -223,10 +270,10 @@ function aggregateSummary(paperKeys, stats) {
 }
 
 function getCurrentData() {
-  const sessionPapers = SESSIONS[currentSession] || [];
-  const paperKeys = currentVariant === 'all'
-    ? sessionPapers
-    : sessionPapers.filter(pk => PAPERS[pk].variant === currentVariant);
+  const paperKeys = getFilteredPaperKeys();
+  if (paperKeys.length === 0) {
+    return { stats: {}, summary: { question_count: 0, mcq_count: 0, mean_marks_per_question: 0, max_marks_per_question: 0, unique_topics_count: 0 }, totalMarks: 0 };
+  }
   if (paperKeys.length === 1) {
     const p = PAPERS[paperKeys[0]];
     return { stats: p.statistics, summary: p.summary, totalMarks: p.total_marks };
@@ -250,6 +297,7 @@ function makeHBar(id, labels, data, color) {
   destroyChart(id);
   const ctx = document.getElementById(id);
   if (!ctx) return;
+  const total = data.reduce((s, v) => s + v, 0);
   charts[id] = new Chart(ctx, {
     type: 'bar',
     data: { labels, datasets: [{ data, backgroundColor: color, borderRadius: 3, borderSkipped: false }] },
@@ -257,7 +305,20 @@ function makeHBar(id, labels, data, color) {
       indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+      layout: { padding: { right: 48 } },
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: '#4a5568',
+          font: { size: 10, weight: '600' },
+          formatter: (value) => {
+            const pct = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+            return `${pct}%`;
+          }
+        }
+      },
       scales: {
         x: { beginAtZero: true, grid: { color: '#f0f4f8' }, ticks: { font: { size: 11 } } },
         y: { ticks: { font: { size: 11 } } }
@@ -288,6 +349,14 @@ function makeDoughnut(id, labels, data, colors) {
               return ` ${ctx.label}: ${val} marks (${pct}%)`;
             }
           }
+        },
+        datalabels: {
+          color: 'white',
+          font: { size: 11, weight: 'bold' },
+          formatter: (value) => {
+            const pct = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+            return pct >= 5 ? `${pct}%` : '';
+          }
         }
       }
     }
@@ -309,8 +378,10 @@ function renderSummaryCards(summary, totalMarks) {
 }
 
 function renderTopicChart(stats) {
-  const entries = sortedEntries(stats.marks_by_topic || {});
-  const labels  = entries.map(([code]) => `${code}  ${TOPIC_NAMES[code] || code}`);
+  let entries = sortedEntries(stats.marks_by_topic || {});
+  if (currentTopicGroup !== 'all')
+    entries = entries.filter(([code]) => code.startsWith(currentTopicGroup + '.'));
+  const labels = entries.map(([code]) => `${code}  ${TOPIC_NAMES[code] || code}`);
   makeHBar('chart-topic', labels, entries.map(([, v]) => v), '#3b82f6');
 }
 
@@ -341,7 +412,7 @@ function renderObjectiveChart(stats) {
 
 function renderLayoutChart(stats) {
   const entries = sortedEntries(stats.marks_by_layout_type || {});
-  makeHBar('chart-layout', entries.map(([k]) => k), entries.map(([, v]) => v), '#8b5cf6');
+  makeHBar('chart-layout', entries.map(([k]) => LAYOUT_NAMES[k] || k), entries.map(([, v]) => v), '#8b5cf6');
 }
 
 function renderCommandChart(stats) {
@@ -356,11 +427,14 @@ function renderAnswerTypeChart(stats) {
 
 function renderAll() {
   const { stats, summary, totalMarks } = getCurrentData();
-  const sessionLabel = SESSION_LABELS[currentSession] || currentSession;
+  currentStats = stats;
+  const yearLabel    = currentYear === 'all' ? 'All years' : currentYear;
+  const sessionLabel = currentSession === 'all' ? 'All sessions' : (SESSION_LABELS[currentSession] || currentSession);
   const variantLabel = currentVariant === 'all' ? 'All variants' : `Variant ${currentVariant}`;
   document.getElementById('current-label').textContent =
-    `Showing: ${sessionLabel} — ${variantLabel}`;
+    `Showing: ${yearLabel} — ${sessionLabel} — ${variantLabel}`;
   renderSummaryCards(summary, totalMarks);
+  buildTopicGroupTabs();
   renderTopicChart(stats);
   renderDifficultyChart(stats);
   renderBloomChart(stats);
@@ -371,10 +445,63 @@ function renderAll() {
   renderAnswerTypeChart(stats);
 }
 
+function buildTopicGroupTabs() {
+  const container = document.getElementById('topic-group-tabs');
+  container.innerHTML = '';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn' + (currentTopicGroup === 'all' ? ' active' : '');
+  allBtn.textContent = 'All';
+  allBtn.addEventListener('click', () => {
+    currentTopicGroup = 'all'; buildTopicGroupTabs(); renderTopicChart(currentStats);
+  });
+  container.appendChild(allBtn);
+  for (const g of ['1','2','3','4','5','6']) {
+    const btn = document.createElement('button');
+    const ok  = Object.keys(currentStats.marks_by_topic || {}).some(k => k.startsWith(g + '.'));
+    btn.className = 'tab-btn' + (currentTopicGroup === g ? ' active' : '');
+    btn.textContent = g;
+    btn.title = TOPIC_GROUP_LABELS[g] || g;
+    btn.disabled = !ok;
+    if (ok) btn.addEventListener('click', () => {
+      currentTopicGroup = g; buildTopicGroupTabs(); renderTopicChart(currentStats);
+    });
+    container.appendChild(btn);
+  }
+}
+
+function buildYearTabs() {
+  const container = document.getElementById('year-tabs');
+  container.innerHTML = '';
+  const years = [...new Set(Object.keys(SESSIONS).map(sessionYear))].filter(Boolean).sort();
+  for (const [yr, label] of [['all', 'All'], ...years.map(y => [y, y])]) {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (yr === currentYear ? ' active' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      currentYear = yr; currentSession = 'all'; currentVariant = 'all';
+      buildYearTabs(); buildSessionTabs(); buildVariantPills(); renderAll();
+    });
+    container.appendChild(btn);
+  }
+}
+
 function buildSessionTabs() {
   const container = document.getElementById('session-tabs');
   container.innerHTML = '';
-  for (const s of ['m25', 's25', 'w25'].filter(x => SESSIONS[x])) {
+  let available = Object.keys(SESSIONS);
+  if (currentYear !== 'all') available = available.filter(s => sessionYear(s) === currentYear);
+  available.sort();
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn' + (currentSession === 'all' ? ' active' : '');
+  allBtn.textContent = 'All';
+  allBtn.addEventListener('click', () => {
+    currentSession = 'all'; currentVariant = 'all';
+    buildSessionTabs(); buildVariantPills(); renderAll();
+  });
+  container.appendChild(allBtn);
+
+  for (const s of available) {
     const btn = document.createElement('button');
     btn.className = 'tab-btn' + (s === currentSession ? ' active' : '');
     btn.textContent = SESSION_LABELS[s] || s;
@@ -387,14 +514,15 @@ function buildSessionTabs() {
 }
 
 function buildVariantPills() {
-  const container    = document.getElementById('variant-pills');
+  const container = document.getElementById('variant-pills');
   container.innerHTML = '';
-  const sessionPapers = SESSIONS[currentSession] || [];
-  const available     = new Set(sessionPapers.map(pk => PAPERS[pk].variant));
+  const available = new Set(
+    getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []).map(pk => PAPERS[pk].variant)
+  );
 
   const allBtn = document.createElement('button');
   allBtn.className = 'tab-btn' + (currentVariant === 'all' ? ' active' : '');
-  allBtn.textContent = 'All variants';
+  allBtn.textContent = 'All';
   allBtn.addEventListener('click', () => {
     currentVariant = 'all'; buildVariantPills(); renderAll();
   });
@@ -415,9 +543,11 @@ function buildVariantPills() {
   }
 }
 
+buildYearTabs();
 buildSessionTabs();
 buildVariantPills();
 renderAll();
+buildTopicGroupTabs();
 """
 
 
@@ -441,6 +571,7 @@ def generate_html(papers: dict, sessions: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cambridge IGCSE 0478 — Paper Statistics</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <style>
 {_CSS}  </style>
 </head>
@@ -452,6 +583,10 @@ def generate_html(papers: dict, sessions: dict) -> str:
     </header>
 
     <div class="selector-bar">
+      <div class="selector-row">
+        <span class="selector-label">Year</span>
+        <div class="tab-group" id="year-tabs"></div>
+      </div>
       <div class="selector-row">
         <span class="selector-label">Session</span>
         <div class="tab-group" id="session-tabs"></div>
@@ -468,7 +603,10 @@ def generate_html(papers: dict, sessions: dict) -> str:
 
     <div class="charts-container">
       <div class="chart-card">
-        <h2>Topic Coverage</h2>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+          <h2 style="margin-bottom:0">Topic Coverage</h2>
+          <div class="tab-group" id="topic-group-tabs"></div>
+        </div>
         <div class="chart-wrapper tall"><canvas id="chart-topic"></canvas></div>
       </div>
 
