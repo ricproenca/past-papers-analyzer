@@ -35,7 +35,7 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
-    "layout_type": the question's visual answer format — exactly one of the 7 types listed in LAYOUT TYPES below
+    "layout_type": the question's visual answer format — exactly one of the 10 types listed in LAYOUT TYPES below
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
 
 LAYOUT TYPES:

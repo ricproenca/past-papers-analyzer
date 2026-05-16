@@ -34,7 +34,7 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
 .card.open .chevron { transform: rotate(180deg); }
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
-.q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; }
+.q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; margin-bottom: 1rem; }
 .q-visual { font-size: .8rem; color: #6b7280; margin-top: .5rem; font-style: italic; }
 .answers {
     display: none; padding: 1.25rem; background: #f9fafb;
@@ -56,3 +56,98 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     flex-shrink: 0; font-size: .75rem; font-weight: 600;
     color: #6b7280; white-space: nowrap;
 }
+
+/* === Form input styles (layout-specific inputs) === */
+.q-input { margin-top: .25rem; }
+.answer-textarea, .answer-input {
+    width: 100%; font-family: inherit; font-size: .9rem; line-height: 1.5;
+    padding: .5rem .65rem; border: 1px solid #d1d5db; border-radius: 6px;
+    background: #fff; color: #1f2937; resize: vertical;
+}
+.answer-textarea:focus, .answer-input:focus, .cloze-blank:focus, .bit-box:focus,
+.trace-cell:focus, .term-input:focus {
+    outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+/* Labeled / numbered slots */
+.labeled-slot, .numbered-slot {
+    display: flex; align-items: flex-start; gap: .75rem; margin-bottom: .6rem;
+}
+.slot-label, .slot-number {
+    flex-shrink: 0; font-weight: 600; font-size: .875rem; color: #374151;
+    padding-top: .55rem; min-width: 2rem;
+}
+.slot-label { min-width: 8rem; }
+.labeled-slot .answer-textarea, .numbered-slot .answer-input { flex: 1; }
+
+/* InlineCloze */
+.cloze-body { line-height: 2.2; font-size: .9375rem; }
+.cloze-blank {
+    display: inline-block; width: 8em; margin: 0 .25em; padding: .15rem .4rem;
+    font-family: inherit; font-size: .9rem;
+    border: none; border-bottom: 2px solid #6b7280; background: transparent;
+}
+.word-bank-note {
+    margin-top: .75rem; font-size: .8rem; color: #6b7280; font-style: italic;
+}
+
+/* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) */
+.matrix-table, .trace-table, .term-def-table {
+    width: 100%; border-collapse: collapse; font-size: .875rem;
+    border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden;
+}
+.matrix-table th, .trace-table th, .term-def-table th {
+    background: #f3f4f6; padding: .5rem .75rem; text-align: left;
+    font-weight: 600; border-bottom: 1px solid #d1d5db;
+}
+.matrix-table td, .trace-table td, .term-def-table td {
+    padding: .5rem .75rem; border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+.matrix-table tbody tr:last-child td,
+.trace-table tbody tr:last-child td,
+.term-def-table tbody tr:last-child td { border-bottom: none; }
+.matrix-table td:not(:first-child) { text-align: center; }
+.matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
+.trace-cell {
+    width: 100%; padding: .3rem .5rem; font-family: ui-monospace, monospace;
+    font-size: .85rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;
+}
+.term-def-table td.prefilled { background: #f9fafb; color: #4b5563; }
+.term-def-table .term-input, .term-def-table textarea {
+    width: 100%; font-family: inherit; font-size: .875rem;
+    padding: .35rem .5rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;
+}
+
+/* FixedRegisterArray */
+.bit-row { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .5rem; }
+.bit-box {
+    width: 2.4rem; height: 2.4rem; text-align: center; font-size: 1rem;
+    font-family: ui-monospace, monospace; font-weight: 600;
+    border: 1.5px solid #6b7280; border-radius: 4px; background: #fff;
+}
+
+/* LabelledPartResponse */
+.reference {
+    font-family: ui-monospace, monospace; font-size: .9rem;
+    background: #f3f4f6; padding: .65rem .85rem; border-radius: 6px;
+    border-left: 3px solid #3b82f6; margin-bottom: .85rem; overflow-x: auto;
+}
+.callout-row { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+.callout-item {
+    display: flex; align-items: center; gap: .35rem; flex: 1; min-width: 10rem;
+}
+.callout-letter {
+    font-weight: 700; color: #3b82f6; font-size: .95rem; min-width: 1.2rem;
+}
+
+/* AnnotatedDiagram */
+.diagram-context {
+    background: #f9fafb; border: 1px dashed #d1d5db; border-radius: 6px;
+    padding: .75rem 1rem; margin-bottom: .75rem;
+}
+.diagram-type-label { font-size: .85rem; color: #4b5563; margin-bottom: .4rem; }
+.partial-elements {
+    list-style: disc; padding-left: 1.4rem; font-size: .85rem; color: #1f2937;
+}
+.partial-elements li { margin-bottom: .15rem; }

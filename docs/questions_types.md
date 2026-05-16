@@ -1,6 +1,6 @@
 # Question Layout Types
 
-Eight structural layouts used in Cambridge exam papers. Each question must be assigned exactly one `layout_type`. The `structure_data` object carries type-specific metadata.
+Ten structural layouts used in Cambridge exam papers. Each question must be assigned exactly one `layout_type`. The `structure_data` object carries type-specific metadata.
 
 ---
 

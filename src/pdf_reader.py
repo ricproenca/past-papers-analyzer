@@ -3,19 +3,23 @@ import re
 import pdfplumber
 from typing import List, Dict, Any
 
-_REGISTER_NAMES = frozenset({'PC', 'ACC', 'IX', 'MAR', 'MDR', 'CIR', 'SR'})
+_REGISTER_NAMES = frozenset({'PC', 'ACC', 'IX', 'MAR', 'MDR', 'CIR', 'IR', 'SR'})
 _TERM_DEF_HEADERS = frozenset({'TERM', 'DEFINITION'})
 
-# Labeled answer slots: "Justification: ....." / "Benefit: ....." etc.
+# Generic labeled answer slots: 2+ consecutive lines like "Label ....." or "Label: ....."
+# The label is a capitalized word or short phrase (Justification, Primary storage, Input, etc.).
 _RE_LABELED_BLOCK = re.compile(
-    r'(?:^(?:Justification|Explanation|Benefit|Drawback|Advantage|Disadvantage)'
-    r'\s*:[ \t]*\.{4,}[ \t]*$\n?)+',
-    re.IGNORECASE | re.MULTILINE,
+    r'(?:^[A-Z][a-zA-Z][a-zA-Z\- ]{0,30}?\s*:?[ \t]+\.{4,}[ \t]*$\n?){2,}',
+    re.MULTILINE,
+)
+_RE_LABEL_EXTRACT = re.compile(
+    r'^([A-Z][a-zA-Z][a-zA-Z\- ]{0,30}?)\s*:?[ \t]+\.{4,}',
+    re.MULTILINE,
 )
 
-# Numbered answer slots: "1   ....." / "2   ....." etc.
+# Numbered answer slots: "1 ....." / "2 ....." etc. (supports 1- or 2-digit indices)
 _RE_NUMBERED_BLOCK = re.compile(
-    r'(?:^\d[ \t]+\.{4,}[ \t]*$\n?)+',
+    r'(?:^\d{1,2}[ \t]+\.{4,}[ \t]*$\n?)+',
     re.MULTILINE,
 )
 
@@ -32,9 +36,9 @@ _RE_CONSEC_DOTS = re.compile(
     re.MULTILINE,
 )
 
-# Inline callout slots: "a ..... b ..... c ....." — single letters each followed by dots on one line
+# Inline callout slots: "a ..... b ..... c ....." — alphanumeric tokens each followed by dots on one line
 _RE_CALLOUT_LINE = re.compile(
-    r'(?m)^[a-zA-Z][ \t]+\.{4,}(?:[ \t]+[a-zA-Z][ \t]+\.{4,}){1,}[ \t]*$'
+    r'(?m)^[A-Za-z0-9][ \t]+\.{4,}(?:[ \t]+[A-Za-z0-9][ \t]+\.{4,}){1,}[ \t]*$'
 )
 
 
@@ -42,31 +46,32 @@ def _annotate_anchors(raw_text: str) -> str:
     """Insert [LAYOUT:TYPE ...] tokens inline before answer-space patterns.
 
     Runs before the dot-stripping regex so structural signals are preserved
-    for Claude. Order matters: labeled > numbered > cloze > simple block.
+    for Claude. Order matters: callout > labeled > numbered > cloze > simple.
+    LabelledPartResponse runs first because its single-line "a ..... b ....."
+    pattern could otherwise be partially consumed by InlineCloze.
     """
     text = raw_text
 
-    # Pass 1 — LabelledPartResponse: "a ..... b ..... c ....." on one line
+    # Pass 1 — LabelledPartResponse: "a ..... b ..... c ....." on one line.
+    # Pre-strip the dots so subsequent passes (especially InlineCloze) don't double-match.
     def _replace_callout(m: re.Match) -> str:
         line = m.group(0)
-        labels = re.findall(r'(?<!\w)([a-zA-Z])(?=[ \t]+\.{4,})', line)
-        return f'[LAYOUT:LabelledPartResponse labels={",".join(labels)}]\n' + line
+        labels = re.findall(r'(?<!\w)([A-Za-z0-9])(?=[ \t]+\.{4,})', line)
+        cleaned = re.sub(r'\.{4,}', '[blank]', line)
+        return f'[LAYOUT:LabelledPartResponse labels={",".join(labels)}]\n' + cleaned
 
     text = _RE_CALLOUT_LINE.sub(_replace_callout, text)
 
-    # Pass 3 — MultiPartLabeledBlock
+    # Pass 2 — MultiPartLabeledBlock: 2+ consecutive "Label ....." lines (generic)
     def _replace_labeled(m: re.Match) -> str:
         block = m.group(0)
-        labels = re.findall(
-            r'^(Justification|Explanation|Benefit|Drawback|Advantage|Disadvantage)\s*:',
-            block, re.IGNORECASE | re.MULTILINE,
-        )
-        unique = list(dict.fromkeys(lbl.capitalize() for lbl in labels))
+        raw_labels = _RE_LABEL_EXTRACT.findall(block)
+        unique = list(dict.fromkeys(lbl.strip() for lbl in raw_labels))
         return f'[LAYOUT:MultiPartLabeledBlock labels={",".join(unique)}]\n' + block
 
     text = _RE_LABELED_BLOCK.sub(_replace_labeled, text)
 
-    # Pass 4 — NumberedMultiList
+    # Pass 3 — NumberedMultiList: "1 ....." / "2 ....."
     def _replace_numbered(m: re.Match) -> str:
         block = m.group(0)
         count = len(re.findall(r'(?m)^\d', block))
@@ -74,8 +79,7 @@ def _annotate_anchors(raw_text: str) -> str:
 
     text = _RE_NUMBERED_BLOCK.sub(_replace_numbered, text)
 
-    # Pass 5 — InlineCloze (dots mid-sentence; after labeled/numbered passes so
-    # those patterns don't interfere — label lines have no letters after dots)
+    # Pass 4 — InlineCloze: dots mid-sentence with letters after
     cloze_lines = _RE_INLINE_CLOZE_LINE.findall(text)
     if cloze_lines:
         gap_count = sum(len(re.findall(r'\.{4,}', ln)) for ln in cloze_lines)
@@ -84,7 +88,7 @@ def _annotate_anchors(raw_text: str) -> str:
             annotation = f'[LAYOUT:InlineCloze gap_count={gap_count}]\n'
             text = text[: first.start()] + annotation + text[first.start() :]
 
-    # Pass 6 — SimpleSingleBlock (2+ consecutive dot-only lines not yet annotated)
+    # Pass 5 — SimpleSingleBlock: 2+ consecutive dot-only lines not yet annotated
     def _replace_consec(m: re.Match) -> str:
         block = m.group(0)
         line_count = block.count('\n') or 1
@@ -103,12 +107,13 @@ def _classify_table(table: list) -> str:
     first_row = table[0]
     ncols = len(first_row)
 
-    # FixedRegisterArray: 8 or 16 columns, all data cells empty
+    # FixedRegisterArray: 8 or 16 columns with at least one fully-empty answer row
+    # (the row of bit boxes); handles both single-row and header+data layouts
     if ncols in (8, 16):
-        data_rows = table[1:]
-        if data_rows and all(
+        answer_rows = table if len(table) == 1 else table[1:]
+        if answer_rows and all(
             not str(cell or "").strip()
-            for row in data_rows
+            for row in answer_rows
             for cell in row
         ):
             return f"FixedRegisterArray register_size={ncols}"
