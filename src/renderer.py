@@ -441,9 +441,16 @@ def _render_question(q):
     if visuals:
         visual_html = f'<p class="q-visual">[Contains: {escape(", ".join(str(v) for v in visuals))}]</p>'
 
-    layout_type = q.get("layout_type", "SimpleSingleBlock")
+    layout_type = q.get("layout_type") or "SimpleSingleBlock"
     structure_data = q.get("structure_data") or {}
-    renderer = _LAYOUT_RENDERERS.get(layout_type, _render_simple_single_block)
+    renderer = _LAYOUT_RENDERERS.get(layout_type)
+    if renderer is None:
+        print(
+            f"[!] New question type detected: {layout_type!r} "
+            f"(question {q.get('id', '?')}). Known types: {sorted(_LAYOUT_RENDERERS)}. "
+            f"Falling back to SimpleSingleBlock."
+        )
+        renderer = _render_simple_single_block
     input_html = renderer(q, structure_data)
 
     if layout_type == "InlineCloze":

@@ -35,9 +35,9 @@ def validate_phase_output(data: dict, phase: int) -> None:
             )
 
         if phase >= 1 and q.get("layout_type") not in _VALID_LAYOUT_TYPES:
-            raise ValueError(
-                f"Phase {phase} question {qid!r} has invalid layout_type: {q.get('layout_type')!r} "
-                f"(must be one of {sorted(_VALID_LAYOUT_TYPES)})"
+            print(
+                f"[!] New question type detected: {q.get('layout_type')!r} "
+                f"(phase {phase}, question {qid!r}). Known types: {sorted(_VALID_LAYOUT_TYPES)}"
             )
 
         if phase >= 1 and not isinstance(q.get("structure_data"), dict):
