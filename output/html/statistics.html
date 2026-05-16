@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambridge IGCSE 0478 — Paper Statistics</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+  line-height: 1.5;
+}
+.page { max-width: 1100px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+.page-header {
+  background: #1e3a5f;
+  color: white;
+  padding: 1.5rem 1rem;
+  margin: 0 -1rem 1.5rem;
+}
+.page-header h1 { font-size: 1.5rem; font-weight: 700; }
+.page-header p { font-size: 0.875rem; opacity: 0.75; margin-top: 0.25rem; }
+
+.selector-bar {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.selector-row { display: flex; align-items: center; gap: 0.75rem; }
+.selector-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  width: 4.5rem;
+  flex-shrink: 0;
+}
+.tab-group { display: flex; gap: 0.375rem; flex-wrap: wrap; }
+.tab-btn {
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  color: #4a5568;
+  font-size: 0.825rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tab-btn:hover:not(:disabled) { border-color: #1e3a5f; color: #1e3a5f; }
+.tab-btn.active { background: #1e3a5f; color: white; border-color: #1e3a5f; }
+.tab-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.current-label {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+.summary-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.summary-card .value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1e3a5f;
+  line-height: 1;
+  margin-bottom: 0.375rem;
+}
+.summary-card .label {
+  font-size: 0.675rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.charts-container { display: flex; flex-direction: column; gap: 1rem; }
+.chart-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.chart-row-2 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1rem; }
+.chart-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.chart-card h2 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.chart-note {
+  font-size: 0.725rem;
+  color: #718096;
+  margin-bottom: 0.75rem;
+}
+.chart-wrapper { position: relative; min-height: 180px; }
+.chart-wrapper.tall { height: 500px; }
+.chart-wrapper.medium { height: 260px; }
+
+@media (max-width: 700px) {
+  .chart-row, .chart-row-2 { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <h1>Cambridge IGCSE 0478</h1>
+      <p>Computer Science · Paper Statistics</p>
+    </header>
+
+    <div class="selector-bar">
+      <div class="selector-row">
+        <span class="selector-label">Session</span>
+        <div class="tab-group" id="session-tabs"></div>
+      </div>
+      <div class="selector-row">
+        <span class="selector-label">Variant</span>
+        <div class="tab-group" id="variant-pills"></div>
+      </div>
+    </div>
+
+    <div class="current-label" id="current-label"></div>
+
+    <div class="summary-grid" id="summary-cards"></div>
+
+    <div class="charts-container">
+      <div class="chart-card">
+        <h2>Topic Coverage</h2>
+        <div class="chart-wrapper tall"><canvas id="chart-topic"></canvas></div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <h2>Difficulty</h2>
+          <div class="chart-wrapper"><canvas id="chart-difficulty"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h2>Bloom's Taxonomy</h2>
+          <div class="chart-wrapper"><canvas id="chart-bloom"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h2>Cognitive Load</h2>
+          <div class="chart-wrapper"><canvas id="chart-cognitive"></canvas></div>
+        </div>
+      </div>
+
+      <div class="chart-row-2">
+        <div class="chart-card">
+          <h2>Assessment Objectives</h2>
+          <p class="chart-note">Cambridge target: AO1 40% · AO2 40% · AO3 20%</p>
+          <div class="chart-wrapper"><canvas id="chart-objective"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h2>Answer Types</h2>
+          <div class="chart-wrapper medium"><canvas id="chart-answer-type"></canvas></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h2>Layout Types</h2>
+        <div class="chart-wrapper medium"><canvas id="chart-layout"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <h2>Command Words <span style="font-size:0.7rem;color:#718096;font-weight:400">(by count, top 12)</span></h2>
+        <div class="chart-wrapper medium"><canvas id="chart-command"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const PAPERS = {
+  "0478_m25_qp_12": {
+    "session": "m25",
+    "variant": "12",
+    "qp": "0478_m25_qp_12.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 30,
+      "mcq_count": 2,
+      "mean_marks_per_question": 2.5,
+      "median_marks_per_question": 2.5,
+      "max_marks_per_question": 7,
+      "unique_topics_count": 11
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "1.1": 11,
+        "1.2": 3,
+        "1.3": 6,
+        "2.1": 8,
+        "3.1": 10,
+        "6.1": 6,
+        "3.2": 2,
+        "3.4": 6,
+        "5.1": 8,
+        "6.3": 6,
+        "4.2": 9
+      },
+      "count_by_topic": {
+        "1.1": 3,
+        "1.2": 2,
+        "1.3": 2,
+        "2.1": 2,
+        "3.1": 5,
+        "6.1": 3,
+        "3.2": 1,
+        "3.4": 3,
+        "5.1": 4,
+        "6.3": 2,
+        "4.2": 3
+      },
+      "marks_by_difficulty": {
+        "High": 16,
+        "Medium": 27,
+        "Low": 32
+      },
+      "count_by_difficulty": {
+        "High": 3,
+        "Medium": 10,
+        "Low": 17
+      },
+      "marks_by_bloom_level": {
+        "Apply": 10,
+        "Remember": 32,
+        "Understand": 33
+      },
+      "count_by_bloom_level": {
+        "Apply": 2,
+        "Remember": 17,
+        "Understand": 11
+      },
+      "marks_by_cognitive_load": {
+        "Medium": 28,
+        "Low": 44,
+        "High": 3
+      },
+      "count_by_cognitive_load": {
+        "Medium": 9,
+        "Low": 20,
+        "High": 1
+      },
+      "marks_by_objective": {
+        "AO1": 56,
+        "AO2": 19
+      },
+      "count_by_objective": {
+        "AO1": 22,
+        "AO2": 8
+      },
+      "marks_by_layout_type": {
+        "InlineCloze": 7,
+        "SimpleSingleBlock": 42,
+        "MatrixGrid": 2,
+        "MultiPartLabeledBlock": 10,
+        "AnnotatedDiagram": 3,
+        "NumberedMultiList": 11
+      },
+      "count_by_layout_type": {
+        "InlineCloze": 1,
+        "SimpleSingleBlock": 18,
+        "MatrixGrid": 2,
+        "MultiPartLabeledBlock": 4,
+        "AnnotatedDiagram": 1,
+        "NumberedMultiList": 4
+      },
+      "marks_by_command": {
+        "Complete": 7,
+        "Calculate": 3,
+        "Identify": 26,
+        "State": 4,
+        "Describe": 13,
+        "Explain": 17,
+        "Complete and annotate": 3,
+        "Define": 2
+      },
+      "count_by_command": {
+        "Complete": 1,
+        "Calculate": 1,
+        "Identify": 12,
+        "State": 3,
+        "Describe": 5,
+        "Explain": 5,
+        "Complete and annotate": 1,
+        "Define": 2
+      },
+      "marks_by_answer_type": {
+        "text": 70,
+        "MCQ": 2,
+        "diagram": 3
+      },
+      "count_by_answer_type": {
+        "text": 27,
+        "MCQ": 2,
+        "diagram": 1
+      }
+    }
+  },
+  "0478_s25_qp_11": {
+    "session": "s25",
+    "variant": "11",
+    "qp": "0478_s25_qp_11.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 36,
+      "mcq_count": 2,
+      "mean_marks_per_question": 2.08,
+      "median_marks_per_question": 2,
+      "max_marks_per_question": 8,
+      "unique_topics_count": 14
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "1.3": 4,
+        "3.2": 1,
+        "1.1": 8,
+        "1.2": 4,
+        "2.1": 6,
+        "2.2": 6,
+        "3.1": 9,
+        "2.3": 9,
+        "3.3": 11,
+        "6.2": 3,
+        "4.1": 6,
+        "6.3": 1,
+        "5.3": 5,
+        "5.2": 2
+      },
+      "count_by_topic": {
+        "1.3": 4,
+        "3.2": 1,
+        "1.1": 4,
+        "1.2": 1,
+        "2.1": 4,
+        "2.2": 2,
+        "3.1": 3,
+        "2.3": 2,
+        "3.3": 5,
+        "6.2": 2,
+        "4.1": 3,
+        "6.3": 1,
+        "5.3": 2,
+        "5.2": 2
+      },
+      "marks_by_difficulty": {
+        "Low": 31,
+        "Medium": 44
+      },
+      "count_by_difficulty": {
+        "Low": 23,
+        "Medium": 13
+      },
+      "marks_by_bloom_level": {
+        "Remember": 48,
+        "Apply": 6,
+        "Understand": 21
+      },
+      "count_by_bloom_level": {
+        "Remember": 26,
+        "Apply": 3,
+        "Understand": 7
+      },
+      "marks_by_cognitive_load": {
+        "Low": 43,
+        "Medium": 32
+      },
+      "count_by_cognitive_load": {
+        "Low": 26,
+        "Medium": 10
+      },
+      "marks_by_objective": {
+        "AO1": 60,
+        "AO2": 14,
+        "AO3": 1
+      },
+      "count_by_objective": {
+        "AO1": 28,
+        "AO2": 7,
+        "AO3": 1
+      },
+      "marks_by_layout_type": {
+        "MatrixGrid": 2,
+        "SimpleSingleBlock": 41,
+        "NumberedMultiList": 15,
+        "TermDefinitionGrid": 9,
+        "InlineCloze": 8
+      },
+      "count_by_layout_type": {
+        "MatrixGrid": 2,
+        "SimpleSingleBlock": 24,
+        "NumberedMultiList": 7,
+        "TermDefinitionGrid": 2,
+        "InlineCloze": 1
+      },
+      "marks_by_command": {
+        "Identify": 6,
+        "State": 42,
+        "Calculate": 6,
+        "Describe": 13,
+        "Explain": 8
+      },
+      "count_by_command": {
+        "Identify": 6,
+        "State": 20,
+        "Calculate": 3,
+        "Describe": 4,
+        "Explain": 3
+      },
+      "marks_by_answer_type": {
+        "MCQ": 2,
+        "text": 73
+      },
+      "count_by_answer_type": {
+        "MCQ": 2,
+        "text": 34
+      }
+    }
+  },
+  "0478_s25_qp_12": {
+    "session": "s25",
+    "variant": "12",
+    "qp": "0478_s25_qp_12.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 27,
+      "mcq_count": 1,
+      "mean_marks_per_question": 2.78,
+      "median_marks_per_question": 2,
+      "max_marks_per_question": 6,
+      "unique_topics_count": 13
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "3.3": 2,
+        "1.1": 11,
+        "3.2": 2,
+        "1.3": 5,
+        "1.2": 3,
+        "4.2": 11,
+        "2.1": 6,
+        "2.2": 4,
+        "3.1": 8,
+        "6.3": 3,
+        "6.2": 8,
+        "5.1": 6,
+        "2.3": 6
+      },
+      "count_by_topic": {
+        "3.3": 2,
+        "1.1": 5,
+        "3.2": 2,
+        "1.3": 3,
+        "1.2": 2,
+        "4.2": 3,
+        "2.1": 1,
+        "2.2": 1,
+        "3.1": 2,
+        "6.3": 1,
+        "6.2": 3,
+        "5.1": 1,
+        "2.3": 1
+      },
+      "marks_by_difficulty": {
+        "Low": 7,
+        "Medium": 47,
+        "High": 21
+      },
+      "count_by_difficulty": {
+        "Low": 7,
+        "Medium": 16,
+        "High": 4
+      },
+      "marks_by_bloom_level": {
+        "Understand": 61,
+        "Remember": 3,
+        "Apply": 11
+      },
+      "count_by_bloom_level": {
+        "Understand": 22,
+        "Remember": 3,
+        "Apply": 2
+      },
+      "marks_by_cognitive_load": {
+        "Low": 40,
+        "Medium": 29,
+        "High": 6
+      },
+      "count_by_cognitive_load": {
+        "Low": 18,
+        "Medium": 8,
+        "High": 1
+      },
+      "marks_by_objective": {
+        "AO1": 54,
+        "AO2": 21
+      },
+      "count_by_objective": {
+        "AO1": 21,
+        "AO2": 6
+      },
+      "marks_by_layout_type": {
+        "SimpleSingleBlock": 39,
+        "NumberedMultiList": 8,
+        "MatrixGrid": 1,
+        "InlineCloze": 5,
+        "MultiPartLabeledBlock": 10,
+        "TermDefinitionGrid": 6,
+        "AnnotatedDiagram": 6
+      },
+      "count_by_layout_type": {
+        "SimpleSingleBlock": 17,
+        "NumberedMultiList": 4,
+        "MatrixGrid": 1,
+        "InlineCloze": 1,
+        "MultiPartLabeledBlock": 2,
+        "TermDefinitionGrid": 1,
+        "AnnotatedDiagram": 1
+      },
+      "marks_by_command": {
+        "Give": 19,
+        "Convert": 4,
+        "Add": 3,
+        "Explain": 21,
+        "Tick": 1,
+        "State": 2,
+        "Complete": 11,
+        "Identify": 1,
+        "Describe": 7,
+        "Complete and annotate": 6
+      },
+      "count_by_command": {
+        "Give": 8,
+        "Convert": 2,
+        "Add": 1,
+        "Explain": 7,
+        "Tick": 1,
+        "State": 2,
+        "Complete": 2,
+        "Identify": 1,
+        "Describe": 2,
+        "Complete and annotate": 1
+      },
+      "marks_by_answer_type": {
+        "text": 68,
+        "MCQ": 1,
+        "diagram": 6
+      },
+      "count_by_answer_type": {
+        "text": 25,
+        "MCQ": 1,
+        "diagram": 1
+      }
+    }
+  },
+  "0478_s25_qp_13": {
+    "session": "s25",
+    "variant": "13",
+    "qp": "0478_s25_qp_13.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 34,
+      "mcq_count": 3,
+      "mean_marks_per_question": 2.21,
+      "median_marks_per_question": 2,
+      "max_marks_per_question": 8,
+      "unique_topics_count": 12
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "3.2": 1,
+        "4.1": 7,
+        "1.1": 7,
+        "1.2": 3,
+        "3.3": 6,
+        "3.1": 10,
+        "5.1": 8,
+        "5.3": 8,
+        "6.1": 8,
+        "2.1": 3,
+        "6.3": 4,
+        "2.2": 10
+      },
+      "count_by_topic": {
+        "3.2": 1,
+        "4.1": 5,
+        "1.1": 4,
+        "1.2": 1,
+        "3.3": 3,
+        "3.1": 3,
+        "5.1": 4,
+        "5.3": 3,
+        "6.1": 5,
+        "2.1": 1,
+        "6.3": 2,
+        "2.2": 2
+      },
+      "marks_by_difficulty": {
+        "Low": 17,
+        "Medium": 45,
+        "High": 13
+      },
+      "count_by_difficulty": {
+        "Low": 14,
+        "Medium": 18,
+        "High": 2
+      },
+      "marks_by_bloom_level": {
+        "Understand": 53,
+        "Apply": 16,
+        "Remember": 6
+      },
+      "count_by_bloom_level": {
+        "Understand": 28,
+        "Apply": 3,
+        "Remember": 3
+      },
+      "marks_by_cognitive_load": {
+        "Low": 37,
+        "Medium": 33,
+        "High": 5
+      },
+      "count_by_cognitive_load": {
+        "Low": 23,
+        "Medium": 10,
+        "High": 1
+      },
+      "marks_by_objective": {
+        "AO1": 63,
+        "AO2": 12
+      },
+      "count_by_objective": {
+        "AO1": 27,
+        "AO2": 7
+      },
+      "marks_by_layout_type": {
+        "SimpleSingleBlock": 34,
+        "MatrixGrid": 3,
+        "TermDefinitionGrid": 8,
+        "NumberedMultiList": 17,
+        "AnnotatedDiagram": 5,
+        "InlineCloze": 8
+      },
+      "count_by_layout_type": {
+        "SimpleSingleBlock": 20,
+        "MatrixGrid": 3,
+        "TermDefinitionGrid": 2,
+        "NumberedMultiList": 7,
+        "AnnotatedDiagram": 1,
+        "InlineCloze": 1
+      },
+      "marks_by_command": {
+        "Give": 22,
+        "Tick": 3,
+        "Convert": 6,
+        "Complete": 16,
+        "Identify": 6,
+        "Circle": 2,
+        "Describe": 6,
+        "Complete and annotate": 5,
+        "Explain": 9
+      },
+      "count_by_command": {
+        "Give": 14,
+        "Tick": 3,
+        "Convert": 3,
+        "Complete": 3,
+        "Identify": 3,
+        "Circle": 1,
+        "Describe": 3,
+        "Complete and annotate": 1,
+        "Explain": 3
+      },
+      "marks_by_answer_type": {
+        "text": 67,
+        "MCQ": 3,
+        "diagram": 5
+      },
+      "count_by_answer_type": {
+        "text": 30,
+        "MCQ": 3,
+        "diagram": 1
+      }
+    }
+  },
+  "0478_w25_qp_11": {
+    "session": "w25",
+    "variant": "11",
+    "qp": "0478_w25_qp_11.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 36,
+      "mcq_count": 2,
+      "mean_marks_per_question": 2.08,
+      "median_marks_per_question": 2,
+      "max_marks_per_question": 6,
+      "unique_topics_count": 16
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "1.1": 9,
+        "6.1": 2,
+        "1.3": 4,
+        "3.4": 2,
+        "2.1": 6,
+        "5.1": 3,
+        "2.2": 3,
+        "2.3": 2,
+        "1.2": 3,
+        "3.3": 3,
+        "5.3": 12,
+        "4.2": 7,
+        "6.2": 7,
+        "6.3": 3,
+        "3.1": 6,
+        "4.1": 3
+      },
+      "count_by_topic": {
+        "1.1": 6,
+        "6.1": 1,
+        "1.3": 3,
+        "3.4": 2,
+        "2.1": 2,
+        "5.1": 1,
+        "2.2": 1,
+        "2.3": 2,
+        "1.2": 1,
+        "3.3": 1,
+        "5.3": 4,
+        "4.2": 4,
+        "6.2": 3,
+        "6.3": 1,
+        "3.1": 1,
+        "4.1": 3
+      },
+      "marks_by_difficulty": {
+        "Low": 16,
+        "Medium": 53,
+        "High": 6
+      },
+      "count_by_difficulty": {
+        "Low": 16,
+        "Medium": 19,
+        "High": 1
+      },
+      "marks_by_bloom_level": {
+        "Remember": 12,
+        "Understand": 57,
+        "Apply": 6
+      },
+      "count_by_bloom_level": {
+        "Remember": 8,
+        "Understand": 27,
+        "Apply": 1
+      },
+      "marks_by_cognitive_load": {
+        "Low": 44,
+        "Medium": 28,
+        "High": 3
+      },
+      "count_by_cognitive_load": {
+        "Low": 26,
+        "Medium": 9,
+        "High": 1
+      },
+      "marks_by_objective": {
+        "AO1": 44,
+        "AO2": 19,
+        "AO3": 12
+      },
+      "count_by_objective": {
+        "AO1": 22,
+        "AO2": 10,
+        "AO3": 4
+      },
+      "marks_by_layout_type": {
+        "SimpleSingleBlock": 42,
+        "FixedRegisterArray": 2,
+        "NumberedMultiList": 15,
+        "AnnotatedDiagram": 3,
+        "MatrixGrid": 2,
+        "InlineCloze": 6,
+        "MultiPartLabeledBlock": 5
+      },
+      "count_by_layout_type": {
+        "SimpleSingleBlock": 24,
+        "FixedRegisterArray": 1,
+        "NumberedMultiList": 6,
+        "AnnotatedDiagram": 1,
+        "MatrixGrid": 2,
+        "InlineCloze": 1,
+        "MultiPartLabeledBlock": 1
+      },
+      "marks_by_command": {
+        "State": 6,
+        "Give": 24,
+        "Add": 3,
+        "Explain": 15,
+        "Identify": 6,
+        "Draw": 3,
+        "Tick": 2,
+        "Circle": 3,
+        "Describe": 7,
+        "Complete": 6
+      },
+      "count_by_command": {
+        "State": 6,
+        "Give": 14,
+        "Add": 1,
+        "Explain": 6,
+        "Identify": 2,
+        "Draw": 1,
+        "Tick": 2,
+        "Circle": 1,
+        "Describe": 2,
+        "Complete": 1
+      },
+      "marks_by_answer_type": {
+        "text": 70,
+        "diagram": 3,
+        "MCQ": 2
+      },
+      "count_by_answer_type": {
+        "text": 33,
+        "diagram": 1,
+        "MCQ": 2
+      }
+    }
+  },
+  "0478_w25_qp_12": {
+    "session": "w25",
+    "variant": "12",
+    "qp": "0478_w25_qp_12.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 32,
+      "mcq_count": 2,
+      "mean_marks_per_question": 2.34,
+      "median_marks_per_question": 2,
+      "max_marks_per_question": 5,
+      "unique_topics_count": 14
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "1.1": 13,
+        "3.1": 12,
+        "3.2": 3,
+        "3.3": 4,
+        "4.2": 4,
+        "4.1": 5,
+        "2.1": 5,
+        "5.1": 11,
+        "5.3": 3,
+        "6.2": 3,
+        "6.3": 4,
+        "6.1": 2,
+        "3.4": 2,
+        "2.2": 4
+      },
+      "count_by_topic": {
+        "1.1": 6,
+        "3.1": 4,
+        "3.2": 3,
+        "3.3": 1,
+        "4.2": 3,
+        "4.1": 2,
+        "2.1": 3,
+        "5.1": 3,
+        "5.3": 1,
+        "6.2": 1,
+        "6.3": 1,
+        "6.1": 1,
+        "3.4": 1,
+        "2.2": 2
+      },
+      "marks_by_difficulty": {
+        "Low": 10,
+        "Medium": 44,
+        "High": 21
+      },
+      "count_by_difficulty": {
+        "Low": 10,
+        "Medium": 17,
+        "High": 5
+      },
+      "marks_by_bloom_level": {
+        "Understand": 58,
+        "Remember": 5,
+        "Apply": 12
+      },
+      "count_by_bloom_level": {
+        "Understand": 24,
+        "Remember": 5,
+        "Apply": 3
+      },
+      "marks_by_cognitive_load": {
+        "Low": 53,
+        "High": 5,
+        "Medium": 17
+      },
+      "count_by_cognitive_load": {
+        "Low": 25,
+        "High": 1,
+        "Medium": 6
+      },
+      "marks_by_objective": {
+        "AO1": 40,
+        "AO2": 35
+      },
+      "count_by_objective": {
+        "AO1": 19,
+        "AO2": 13
+      },
+      "marks_by_layout_type": {
+        "SimpleSingleBlock": 51,
+        "MatrixGrid": 2,
+        "AnnotatedDiagram": 5,
+        "NumberedMultiList": 6,
+        "LabelledPartResponse": 3,
+        "TermDefinitionGrid": 5,
+        "InlineCloze": 3
+      },
+      "count_by_layout_type": {
+        "SimpleSingleBlock": 23,
+        "MatrixGrid": 2,
+        "AnnotatedDiagram": 1,
+        "NumberedMultiList": 3,
+        "LabelledPartResponse": 1,
+        "TermDefinitionGrid": 1,
+        "InlineCloze": 1
+      },
+      "marks_by_command": {
+        "Give": 12,
+        "Convert": 4,
+        "Identify": 5,
+        "Tick": 2,
+        "Describe": 11,
+        "Calculate": 4,
+        "Complete and annotate": 5,
+        "Explain": 21,
+        "Write down": 3,
+        "Complete": 8
+      },
+      "count_by_command": {
+        "Give": 7,
+        "Convert": 2,
+        "Identify": 5,
+        "Tick": 2,
+        "Describe": 4,
+        "Calculate": 1,
+        "Complete and annotate": 1,
+        "Explain": 7,
+        "Write down": 1,
+        "Complete": 2
+      },
+      "marks_by_answer_type": {
+        "text": 68,
+        "MCQ": 2,
+        "diagram": 5
+      },
+      "count_by_answer_type": {
+        "text": 29,
+        "MCQ": 2,
+        "diagram": 1
+      }
+    }
+  },
+  "0478_w25_qp_13": {
+    "session": "w25",
+    "variant": "13",
+    "qp": "0478_w25_qp_13.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 35,
+      "mcq_count": 3,
+      "mean_marks_per_question": 2.14,
+      "median_marks_per_question": 1,
+      "max_marks_per_question": 6,
+      "unique_topics_count": 12
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "3.2": 2,
+        "1.1": 9,
+        "6.1": 5,
+        "3.1": 5,
+        "3.3": 9,
+        "2.1": 14,
+        "5.3": 9,
+        "5.1": 3,
+        "1.2": 5,
+        "1.3": 2,
+        "6.3": 6,
+        "4.2": 6
+      },
+      "count_by_topic": {
+        "3.2": 2,
+        "1.1": 8,
+        "6.1": 2,
+        "3.1": 3,
+        "3.3": 3,
+        "2.1": 3,
+        "5.3": 2,
+        "5.1": 2,
+        "1.2": 1,
+        "1.3": 2,
+        "6.3": 2,
+        "4.2": 5
+      },
+      "marks_by_difficulty": {
+        "Low": 19,
+        "Medium": 31,
+        "High": 25
+      },
+      "count_by_difficulty": {
+        "Low": 19,
+        "Medium": 11,
+        "High": 5
+      },
+      "marks_by_bloom_level": {
+        "Remember": 14,
+        "Understand": 44,
+        "Create": 17
+      },
+      "count_by_bloom_level": {
+        "Remember": 9,
+        "Understand": 23,
+        "Create": 3
+      },
+      "marks_by_cognitive_load": {
+        "Low": 50,
+        "Medium": 19,
+        "High": 6
+      },
+      "count_by_cognitive_load": {
+        "Low": 30,
+        "Medium": 4,
+        "High": 1
+      },
+      "marks_by_objective": {
+        "AO1": 61,
+        "AO2": 14
+      },
+      "count_by_objective": {
+        "AO1": 31,
+        "AO2": 4
+      },
+      "marks_by_layout_type": {
+        "MatrixGrid": 3,
+        "SimpleSingleBlock": 47,
+        "MultiPartLabeledBlock": 8,
+        "TermDefinitionGrid": 11,
+        "AnnotatedDiagram": 6
+      },
+      "count_by_layout_type": {
+        "MatrixGrid": 3,
+        "SimpleSingleBlock": 27,
+        "MultiPartLabeledBlock": 2,
+        "TermDefinitionGrid": 2,
+        "AnnotatedDiagram": 1
+      },
+      "marks_by_command": {
+        "Identify": 13,
+        "Give": 15,
+        "Explain": 20,
+        "Describe": 9,
+        "Write": 17,
+        "State": 1
+      },
+      "count_by_command": {
+        "Identify": 8,
+        "Give": 13,
+        "Explain": 7,
+        "Describe": 3,
+        "Write": 3,
+        "State": 1
+      },
+      "marks_by_answer_type": {
+        "MCQ": 3,
+        "text": 66,
+        "diagram": 6
+      },
+      "count_by_answer_type": {
+        "MCQ": 3,
+        "text": 31,
+        "diagram": 1
+      }
+    }
+  }
+};
+const SESSIONS = {
+  "m25": [
+    "0478_m25_qp_12"
+  ],
+  "s25": [
+    "0478_s25_qp_11",
+    "0478_s25_qp_12",
+    "0478_s25_qp_13"
+  ],
+  "w25": [
+    "0478_w25_qp_11",
+    "0478_w25_qp_12",
+    "0478_w25_qp_13"
+  ]
+};
+const TOPIC_NAMES = {
+  "1.1": "Number Systems",
+  "1.2": "Text, Sound and Images",
+  "1.3": "Data Storage and Compression",
+  "2.1": "Types and Methods of Data Transmission",
+  "2.2": "Methods of Error Detection",
+  "2.3": "Encryption",
+  "3.1": "Computer Architecture",
+  "3.2": "Input and Output Devices",
+  "3.3": "Data Storage",
+  "3.4": "Network Hardware",
+  "4.1": "Types of Software and Interrupts",
+  "4.2": "Types of Programming Language, Translators and IDEs",
+  "5.1": "The Internet and the World Wide Web",
+  "5.2": "Digital Currency",
+  "5.3": "Cyber Security",
+  "6.1": "Automated Systems",
+  "6.2": "Robotics",
+  "6.3": "Artificial Intelligence"
+};
+const SESSION_LABELS = {
+  "m25": "March 2025",
+  "s25": "Summer 2025",
+  "w25": "Winter 2025"
+};
+
+const DIFF_COLORS = { Low: '#22c55e', Medium: '#f59e0b', High: '#ef4444' };
+const LOAD_COLORS = { Low: '#34d399', Medium: '#60a5fa', High: '#f97316' };
+const OBJ_COLORS  = { AO1: '#3b82f6', AO2: '#22c55e', AO3: '#f97316' };
+const BLOOM_ORDER  = ['Remember','Understand','Apply','Analyse','Evaluate','Create'];
+const BLOOM_COLORS = ['#7c3aed','#a855f7','#c084fc','#93c5fd','#34d399','#fbbf24'];
+
+let currentSession = 's25';
+let currentVariant = 'all';
+const charts = {};
+
+function aggregateStats(paperKeys) {
+  const result = {};
+  const axes = ['topic','difficulty','bloom_level','cognitive_load','objective','layout_type','command','answer_type'];
+  for (const axis of axes) {
+    for (const prefix of ['marks_by_', 'count_by_']) {
+      const key = prefix + axis;
+      result[key] = {};
+      for (const pk of paperKeys) {
+        const src = (PAPERS[pk].statistics || {})[key] || {};
+        for (const [k, v] of Object.entries(src)) {
+          result[key][k] = (result[key][k] || 0) + v;
+        }
+      }
+    }
+  }
+  return result;
+}
+
+function aggregateSummary(paperKeys, stats) {
+  const totalMarks = paperKeys.reduce((s, pk) => s + (PAPERS[pk].total_marks || 0), 0);
+  const qCount     = paperKeys.reduce((s, pk) => s + (PAPERS[pk].summary.question_count || 0), 0);
+  const mcqCount   = paperKeys.reduce((s, pk) => s + (PAPERS[pk].summary.mcq_count || 0), 0);
+  const maxMarks   = Math.max(...paperKeys.map(pk => PAPERS[pk].summary.max_marks_per_question || 0));
+  return {
+    total_marks: totalMarks,
+    question_count: qCount,
+    mcq_count: mcqCount,
+    mean_marks_per_question: qCount ? (totalMarks / qCount).toFixed(2) : 0,
+    max_marks_per_question: maxMarks,
+    unique_topics_count: Object.keys(stats.marks_by_topic || {}).length,
+  };
+}
+
+function getCurrentData() {
+  const sessionPapers = SESSIONS[currentSession] || [];
+  const paperKeys = currentVariant === 'all'
+    ? sessionPapers
+    : sessionPapers.filter(pk => PAPERS[pk].variant === currentVariant);
+  if (paperKeys.length === 1) {
+    const p = PAPERS[paperKeys[0]];
+    return { stats: p.statistics, summary: p.summary, totalMarks: p.total_marks };
+  }
+  const stats   = aggregateStats(paperKeys);
+  const summary = aggregateSummary(paperKeys, stats);
+  return { stats, summary, totalMarks: summary.total_marks };
+}
+
+function sortedEntries(obj, limit) {
+  let entries = Object.entries(obj).filter(([, v]) => v > 0);
+  entries.sort((a, b) => b[1] - a[1]);
+  return limit ? entries.slice(0, limit) : entries;
+}
+
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+function makeHBar(id, labels, data, color) {
+  destroyChart(id);
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  charts[id] = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ data, backgroundColor: color, borderRadius: 3, borderSkipped: false }] },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { beginAtZero: true, grid: { color: '#f0f4f8' }, ticks: { font: { size: 11 } } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+function makeDoughnut(id, labels, data, colors) {
+  destroyChart(id);
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  const total = data.reduce((s, v) => s + v, 0);
+  charts[id] = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2, borderColor: 'white' }] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      cutout: '55%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10, boxWidth: 12 } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const val = ctx.parsed;
+              const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+              return ` ${ctx.label}: ${val} marks (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+function renderSummaryCards(summary, totalMarks) {
+  const cards = [
+    { value: totalMarks,                          label: 'Total Marks' },
+    { value: summary.question_count,              label: 'Questions' },
+    { value: summary.mcq_count,                   label: 'MCQ' },
+    { value: summary.mean_marks_per_question,     label: 'Mean Marks/Q' },
+    { value: summary.max_marks_per_question,      label: 'Max Marks/Q' },
+    { value: summary.unique_topics_count,         label: 'Topics Covered' },
+  ];
+  document.getElementById('summary-cards').innerHTML = cards
+    .map(c => `<div class="summary-card"><div class="value">${c.value}</div><div class="label">${c.label}</div></div>`)
+    .join('');
+}
+
+function renderTopicChart(stats) {
+  const entries = sortedEntries(stats.marks_by_topic || {});
+  const labels  = entries.map(([code]) => `${code}  ${TOPIC_NAMES[code] || code}`);
+  makeHBar('chart-topic', labels, entries.map(([, v]) => v), '#3b82f6');
+}
+
+function renderDifficultyChart(stats) {
+  const raw    = stats.marks_by_difficulty || {};
+  const labels = ['Low', 'Medium', 'High'].filter(k => raw[k]);
+  makeDoughnut('chart-difficulty', labels, labels.map(k => raw[k]), labels.map(k => DIFF_COLORS[k]));
+}
+
+function renderBloomChart(stats) {
+  const raw    = stats.marks_by_bloom_level || {};
+  const labels = BLOOM_ORDER.filter(k => raw[k]);
+  makeDoughnut('chart-bloom', labels, labels.map(k => raw[k]),
+    labels.map((_, i) => BLOOM_COLORS[i % BLOOM_COLORS.length]));
+}
+
+function renderCognitiveChart(stats) {
+  const raw    = stats.marks_by_cognitive_load || {};
+  const labels = ['Low', 'Medium', 'High'].filter(k => raw[k]);
+  makeDoughnut('chart-cognitive', labels, labels.map(k => raw[k]), labels.map(k => LOAD_COLORS[k]));
+}
+
+function renderObjectiveChart(stats) {
+  const raw    = stats.marks_by_objective || {};
+  const labels = ['AO1', 'AO2', 'AO3'].filter(k => raw[k]);
+  makeDoughnut('chart-objective', labels, labels.map(k => raw[k]), labels.map(k => OBJ_COLORS[k]));
+}
+
+function renderLayoutChart(stats) {
+  const entries = sortedEntries(stats.marks_by_layout_type || {});
+  makeHBar('chart-layout', entries.map(([k]) => k), entries.map(([, v]) => v), '#8b5cf6');
+}
+
+function renderCommandChart(stats) {
+  const entries = sortedEntries(stats.count_by_command || {}, 12);
+  makeHBar('chart-command', entries.map(([k]) => k), entries.map(([, v]) => v), '#06b6d4');
+}
+
+function renderAnswerTypeChart(stats) {
+  const entries = sortedEntries(stats.marks_by_answer_type || {});
+  makeHBar('chart-answer-type', entries.map(([k]) => k), entries.map(([, v]) => v), '#f97316');
+}
+
+function renderAll() {
+  const { stats, summary, totalMarks } = getCurrentData();
+  const sessionLabel = SESSION_LABELS[currentSession] || currentSession;
+  const variantLabel = currentVariant === 'all' ? 'All variants' : `Variant ${currentVariant}`;
+  document.getElementById('current-label').textContent =
+    `Showing: ${sessionLabel} — ${variantLabel}`;
+  renderSummaryCards(summary, totalMarks);
+  renderTopicChart(stats);
+  renderDifficultyChart(stats);
+  renderBloomChart(stats);
+  renderCognitiveChart(stats);
+  renderObjectiveChart(stats);
+  renderLayoutChart(stats);
+  renderCommandChart(stats);
+  renderAnswerTypeChart(stats);
+}
+
+function buildSessionTabs() {
+  const container = document.getElementById('session-tabs');
+  container.innerHTML = '';
+  for (const s of ['m25', 's25', 'w25'].filter(x => SESSIONS[x])) {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (s === currentSession ? ' active' : '');
+    btn.textContent = SESSION_LABELS[s] || s;
+    btn.addEventListener('click', () => {
+      currentSession = s; currentVariant = 'all';
+      buildSessionTabs(); buildVariantPills(); renderAll();
+    });
+    container.appendChild(btn);
+  }
+}
+
+function buildVariantPills() {
+  const container    = document.getElementById('variant-pills');
+  container.innerHTML = '';
+  const sessionPapers = SESSIONS[currentSession] || [];
+  const available     = new Set(sessionPapers.map(pk => PAPERS[pk].variant));
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn' + (currentVariant === 'all' ? ' active' : '');
+  allBtn.textContent = 'All variants';
+  allBtn.addEventListener('click', () => {
+    currentVariant = 'all'; buildVariantPills(); renderAll();
+  });
+  container.appendChild(allBtn);
+
+  for (const v of ['11', '12', '13']) {
+    const btn = document.createElement('button');
+    const ok  = available.has(v);
+    btn.className = 'tab-btn' + (currentVariant === v ? ' active' : '');
+    btn.textContent = `V${v}`;
+    btn.disabled = !ok;
+    if (ok) {
+      btn.addEventListener('click', () => {
+        currentVariant = v; buildVariantPills(); renderAll();
+      });
+    }
+    container.appendChild(btn);
+  }
+}
+
+buildSessionTabs();
+buildVariantPills();
+renderAll();
+
+  </script>
+</body>
+</html>
