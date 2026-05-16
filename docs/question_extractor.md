@@ -48,6 +48,11 @@ Build a clean, structured JSON deliverable:
     "topic": topic from "syllabus.md" (e.g. "1.2")
     "topic_name": the name of the topic from "syllabus.md" (e.g. "Text, Sound and Images")
 
+Derived fields (added by `src/enricher.py` after Claude returns; not produced by the prompt):
+    "difficulty": "Low" | "Medium" | "High"  (from command tier × marks)
+    "bloom_level": "Remember" | "Understand" | "Apply" | "Analyse" | "Evaluate" | "Create"  (from command word)
+    "cognitive_load": "Low" | "Medium" | "High"  (from layout_type)
+
 
 # PHASE 2 — Answer Extraction from Marking Scheme
 Update the json deliverable. Map each question to the answer in the marking scheme:

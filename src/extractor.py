@@ -1,10 +1,10 @@
 import json
 from pathlib import Path
 
-from . import pdf_reader, prompts, claude_client, renderer
+from . import pdf_reader, prompts, claude_client, renderer, enricher, statistics
 from .schema import validate_phase_output
 
-_KEY_ORDER = ["board", "level", "subject_code", "subject_name", "variant", "qp", "ms", "total_marks", "questions"]
+_KEY_ORDER = ["board", "level", "subject_code", "subject_name", "variant", "qp", "ms", "total_marks", "summary", "statistics", "questions"]
 
 
 def _reorder(data: dict) -> dict:
@@ -46,6 +46,9 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
     else:
         print("Phase 1+2 complete.")
 
+    enricher.enrich_paper(final_data)
+    statistics.attach_statistics(final_data)
+    final_data = _reorder(final_data)
     _write_json(output_path, final_data)
     claude_client.print_totals()
     print(f"Output written to: {output_path}")

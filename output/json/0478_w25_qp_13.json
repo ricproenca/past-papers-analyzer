@@ -7,6 +7,122 @@
   "qp": "0478_w25_qp_13.pdf",
   "ms": "0478_w25_ms_13.pdf",
   "total_marks": 75,
+  "summary": {
+    "question_count": 35,
+    "mcq_count": 3,
+    "mean_marks_per_question": 2.14,
+    "median_marks_per_question": 1,
+    "max_marks_per_question": 6,
+    "unique_topics_count": 12
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "3.2": 2,
+      "1.1": 9,
+      "6.1": 5,
+      "3.1": 5,
+      "3.3": 9,
+      "2.1": 14,
+      "5.3": 9,
+      "5.1": 3,
+      "1.2": 5,
+      "1.3": 2,
+      "6.3": 6,
+      "4.2": 6
+    },
+    "count_by_topic": {
+      "3.2": 2,
+      "1.1": 8,
+      "6.1": 2,
+      "3.1": 3,
+      "3.3": 3,
+      "2.1": 3,
+      "5.3": 2,
+      "5.1": 2,
+      "1.2": 1,
+      "1.3": 2,
+      "6.3": 2,
+      "4.2": 5
+    },
+    "marks_by_difficulty": {
+      "Low": 19,
+      "Medium": 31,
+      "High": 25
+    },
+    "count_by_difficulty": {
+      "Low": 19,
+      "Medium": 11,
+      "High": 5
+    },
+    "marks_by_bloom_level": {
+      "Remember": 14,
+      "Understand": 44,
+      "Create": 17
+    },
+    "count_by_bloom_level": {
+      "Remember": 9,
+      "Understand": 23,
+      "Create": 3
+    },
+    "marks_by_cognitive_load": {
+      "Low": 50,
+      "Medium": 19,
+      "High": 6
+    },
+    "count_by_cognitive_load": {
+      "Low": 30,
+      "Medium": 4,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 61,
+      "AO2": 14
+    },
+    "count_by_objective": {
+      "AO1": 31,
+      "AO2": 4
+    },
+    "marks_by_layout_type": {
+      "MatrixGrid": 3,
+      "SimpleSingleBlock": 47,
+      "MultiPartLabeledBlock": 8,
+      "TermDefinitionGrid": 11,
+      "AnnotatedDiagram": 6
+    },
+    "count_by_layout_type": {
+      "MatrixGrid": 3,
+      "SimpleSingleBlock": 27,
+      "MultiPartLabeledBlock": 2,
+      "TermDefinitionGrid": 2,
+      "AnnotatedDiagram": 1
+    },
+    "marks_by_command": {
+      "Identify": 13,
+      "Give": 15,
+      "Explain": 20,
+      "Describe": 9,
+      "Write": 17,
+      "State": 1
+    },
+    "count_by_command": {
+      "Identify": 8,
+      "Give": 13,
+      "Explain": 7,
+      "Describe": 3,
+      "Write": 3,
+      "State": 1
+    },
+    "marks_by_answer_type": {
+      "MCQ": 3,
+      "text": 66,
+      "diagram": 6
+    },
+    "count_by_answer_type": {
+      "MCQ": 3,
+      "text": 31,
+      "diagram": 1
+    }
+  },
   "questions": [
     {
       "id": "Q1a",
@@ -42,7 +158,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1b_i",
@@ -68,7 +187,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1b_ii",
@@ -94,7 +216,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1b_iii",
@@ -120,7 +245,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1b_iv",
@@ -146,7 +274,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1c_i",
@@ -172,7 +303,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1c_ii",
@@ -198,7 +332,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1c_iii",
@@ -224,7 +361,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1d",
@@ -254,7 +394,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1e_i",
@@ -290,7 +433,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1e_ii",
@@ -324,7 +470,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q1f",
@@ -362,7 +511,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2a",
@@ -388,7 +540,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2b_i",
@@ -430,7 +585,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2b_ii",
@@ -456,7 +614,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2c_i",
@@ -492,7 +653,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2c_ii",
@@ -525,7 +689,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q2d",
@@ -607,7 +774,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3a",
@@ -669,7 +839,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "High"
     },
     {
       "id": "Q3b_i",
@@ -707,7 +880,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q3b_ii",
@@ -745,7 +921,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q4a",
@@ -844,7 +1023,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q4b",
@@ -878,7 +1060,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q4c_i",
@@ -916,7 +1101,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q4c_ii",
@@ -954,7 +1142,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q5a",
@@ -1028,7 +1219,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q5b",
@@ -1054,7 +1248,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q5c",
@@ -1080,7 +1277,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6a",
@@ -1122,7 +1322,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6b",
@@ -1176,7 +1379,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6c",
@@ -1238,7 +1444,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6d_i",
@@ -1264,7 +1473,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6d_ii",
@@ -1290,7 +1502,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6d_iii",
@@ -1316,7 +1531,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6d_iv",
@@ -1342,7 +1560,10 @@
             "marks": 1
           }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
     }
   ]
 }

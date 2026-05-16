@@ -44,6 +44,23 @@ All phases run sequentially in a single command:
 - **Phase 2** — Claude receives the Phase 1 JSON + marking scheme text and enriches each question with answers. Adds `answers` with `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
 - **Phase 3** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>`.
 
+## Post-extraction Enrichment
+
+After the Claude phases complete, `src/enricher.py` adds three deterministic per-question fields with zero API cost:
+- `difficulty` (Low/Medium/High) — derived from command word × marks
+- `bloom_level` (Remember/Understand/Apply/Analyse/Evaluate/Create) — derived from command word
+- `cognitive_load` (Low/Medium/High) — derived from layout_type
+
+Then `src/statistics.py` rolls those fields up into a top-level `statistics` object on each paper: `marks_by_*` and `count_by_*` for seven axes (`topic`, `difficulty`, `bloom_level`, `cognitive_load`, `objective`, `layout_type`, `command`) — 14 dict fields in total. Mark sums per axis equal `total_marks` (modulo questions with missing field values). Useful for downstream analysis and as input for a future exam-builder tool.
+
+The enrichment and statistics both run automatically inside `extractor.extract()` just before the JSON is written. To backfill older JSONs that pre-date these steps:
+
+```bash
+python backfill_enrichment.py
+```
+
+The script is idempotent — re-running it leaves files unchanged.
+
 ## Key Decisions
 
 - **Model**: `claude-sonnet-4-6` by default; override via `--model` flag or `CLAUDE_MODEL` env var.

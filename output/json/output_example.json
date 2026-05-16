@@ -7,6 +7,126 @@
   "qp": "0478_s24_qp_12.pdf",
   "ms": "0478_s24_ms_12.pdf",
   "total_marks": 80,
+  "summary": {
+    "question_count": 10,
+    "mcq_count": 0,
+    "mean_marks_per_question": 3.4,
+    "median_marks_per_question": 3,
+    "max_marks_per_question": 6,
+    "unique_topics_count": 8
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "4.1": 3,
+      "3.3": 7,
+      "5.3": 3,
+      "2.1": 3,
+      "3.1": 4,
+      "1.1": 1,
+      "1.2": 4,
+      "5.1": 9
+    },
+    "count_by_topic": {
+      "4.1": 1,
+      "3.3": 2,
+      "5.3": 1,
+      "2.1": 1,
+      "3.1": 1,
+      "1.1": 1,
+      "1.2": 1,
+      "5.1": 2
+    },
+    "marks_by_difficulty": {
+      "Medium": 12,
+      "High": 18,
+      "Low": 4
+    },
+    "count_by_difficulty": {
+      "Medium": 4,
+      "High": 4,
+      "Low": 2
+    },
+    "marks_by_bloom_level": {
+      "Understand": 8,
+      "Remember": 3,
+      "Apply": 20,
+      "Create": 3
+    },
+    "count_by_bloom_level": {
+      "Understand": 3,
+      "Remember": 1,
+      "Apply": 5,
+      "Create": 1
+    },
+    "marks_by_cognitive_load": {
+      "Low": 6,
+      "Medium": 18,
+      "High": 10
+    },
+    "count_by_cognitive_load": {
+      "Low": 2,
+      "Medium": 6,
+      "High": 2
+    },
+    "marks_by_objective": {
+      "AO1": 19,
+      "AO2": 15
+    },
+    "count_by_objective": {
+      "AO1": 6,
+      "AO2": 4
+    },
+    "marks_by_layout_type": {
+      "SimpleSingleBlock": 3,
+      "MultiPartLabeledBlock": 4,
+      "NumberedMultiList": 3,
+      "InlineCloze": 3,
+      "MatrixGrid": 3,
+      "ValueTraceMatrix": 4,
+      "FixedRegisterArray": 1,
+      "TermDefinitionGrid": 4,
+      "LabelledPartResponse": 3,
+      "AnnotatedDiagram": 6
+    },
+    "count_by_layout_type": {
+      "SimpleSingleBlock": 1,
+      "MultiPartLabeledBlock": 1,
+      "NumberedMultiList": 1,
+      "InlineCloze": 1,
+      "MatrixGrid": 1,
+      "ValueTraceMatrix": 1,
+      "FixedRegisterArray": 1,
+      "TermDefinitionGrid": 1,
+      "LabelledPartResponse": 1,
+      "AnnotatedDiagram": 1
+    },
+    "marks_by_command": {
+      "Describe": 3,
+      "Explain": 4,
+      "State": 3,
+      "Complete": 16,
+      "Trace": 4,
+      "Show": 1,
+      "Write": 3
+    },
+    "count_by_command": {
+      "Describe": 1,
+      "Explain": 1,
+      "State": 1,
+      "Complete": 4,
+      "Trace": 1,
+      "Show": 1,
+      "Write": 1
+    },
+    "marks_by_answer_type": {
+      "text": 28,
+      "diagram": 6
+    },
+    "count_by_answer_type": {
+      "text": 9,
+      "diagram": 1
+    }
+  },
   "questions": [
     {
       "id": "Q1",
@@ -27,11 +147,23 @@
         "visuals": [],
         "scoring_rule": "Any three from",
         "marking_points": [
-          { "text": "manages hardware resources / controls peripherals", "marks": 1 },
-          { "text": "provides an interface between user and hardware", "marks": 1 },
-          { "text": "manages memory allocation / handles multitasking", "marks": 1 }
+          {
+            "text": "manages hardware resources / controls peripherals",
+            "marks": 1
+          },
+          {
+            "text": "provides an interface between user and hardware",
+            "marks": 1
+          },
+          {
+            "text": "manages memory allocation / handles multitasking",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q2",
@@ -43,7 +175,10 @@
       "page": 4,
       "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
-        "labels": ["Benefit", "Drawback"]
+        "labels": [
+          "Benefit",
+          "Drawback"
+        ]
       },
       "topic": "3.3",
       "topic_name": "Data Storage",
@@ -52,12 +187,27 @@
         "visuals": [],
         "scoring_rule": "1 mark for naming, 1 mark for explaining each",
         "marking_points": [
-          { "text": "Benefit: faster read/write speeds / no moving parts", "marks": 1 },
-          { "text": "Benefit: because data is accessed electronically not mechanically", "marks": 1 },
-          { "text": "Drawback: more expensive per gigabyte than HDD", "marks": 1 },
-          { "text": "Drawback: because flash memory cells are costly to manufacture", "marks": 1 }
+          {
+            "text": "Benefit: faster read/write speeds / no moving parts",
+            "marks": 1
+          },
+          {
+            "text": "Benefit: because data is accessed electronically not mechanically",
+            "marks": 1
+          },
+          {
+            "text": "Drawback: more expensive per gigabyte than HDD",
+            "marks": 1
+          },
+          {
+            "text": "Drawback: because flash memory cells are costly to manufacture",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3",
@@ -78,11 +228,23 @@
         "visuals": [],
         "scoring_rule": "1 mark each, any three from",
         "marking_points": [
-          { "text": "firewall to filter incoming/outgoing traffic", "marks": 1 },
-          { "text": "strong password / two-factor authentication", "marks": 1 },
-          { "text": "encryption of data in transit", "marks": 1 }
+          {
+            "text": "firewall to filter incoming/outgoing traffic",
+            "marks": 1
+          },
+          {
+            "text": "strong password / two-factor authentication",
+            "marks": 1
+          },
+          {
+            "text": "encryption of data in transit",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q4",
@@ -104,11 +266,23 @@
         "visuals": [],
         "scoring_rule": "1 mark for each correct word",
         "marking_points": [
-          { "text": "IP (Internet Protocol)", "marks": 1 },
-          { "text": "IP (Internet Protocol)", "marks": 1 },
-          { "text": "sequence", "marks": 1 }
+          {
+            "text": "IP (Internet Protocol)",
+            "marks": 1
+          },
+          {
+            "text": "IP (Internet Protocol)",
+            "marks": 1
+          },
+          {
+            "text": "sequence",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q5",
@@ -116,11 +290,17 @@
       "command": "Complete",
       "objective": "AO1",
       "marks": 3,
-      "visuals": ["table: RAM/ROM True/False comparison"],
+      "visuals": [
+        "table: RAM/ROM True/False comparison"
+      ],
       "page": 10,
       "layout_type": "MatrixGrid",
       "structure_data": {
-        "matrix_headers": ["Statement", "True", "False"],
+        "matrix_headers": [
+          "Statement",
+          "True",
+          "False"
+        ],
         "row_count": 3,
         "rows": [
           "RAM is volatile",
@@ -135,11 +315,23 @@
         "visuals": [],
         "scoring_rule": "1 mark for each correct row",
         "marking_points": [
-          { "text": "RAM is volatile — True", "marks": 1 },
-          { "text": "ROM can be written to during normal operation — False", "marks": 1 },
-          { "text": "RAM holds the currently running program — True", "marks": 1 }
+          {
+            "text": "RAM is volatile — True",
+            "marks": 1
+          },
+          {
+            "text": "ROM can be written to during normal operation — False",
+            "marks": 1
+          },
+          {
+            "text": "RAM holds the currently running program — True",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
     },
     {
       "id": "Q6",
@@ -147,13 +339,28 @@
       "command": "Trace",
       "objective": "AO2",
       "marks": 4,
-      "visuals": ["assembly code listing", "trace table: PC ACC IX MAR MDR"],
+      "visuals": [
+        "assembly code listing",
+        "trace table: PC ACC IX MAR MDR"
+      ],
       "page": 12,
       "layout_type": "ValueTraceMatrix",
       "structure_data": {
-        "matrix_headers": ["PC", "ACC", "IX", "MAR", "MDR"],
+        "matrix_headers": [
+          "PC",
+          "ACC",
+          "IX",
+          "MAR",
+          "MDR"
+        ],
         "row_count": 5,
-        "rows": ["LDD 050", "ADD #5", "STO 051", "LDD 051", "END"]
+        "rows": [
+          "LDD 050",
+          "ADD #5",
+          "STO 051",
+          "LDD 051",
+          "END"
+        ]
       },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
@@ -162,12 +369,27 @@
         "visuals": [],
         "scoring_rule": "1 mark for each correct row",
         "marking_points": [
-          { "text": "Row 1: PC=001, ACC=000, IX=000, MAR=000, MDR=105", "marks": 1 },
-          { "text": "Row 2: PC=002, ACC=105, IX=000, MAR=105, MDR=105", "marks": 1 },
-          { "text": "Row 3: PC=003, ACC=105, IX=001, MAR=001, MDR=001", "marks": 1 },
-          { "text": "Row 4: PC=004, ACC=106, IX=001, MAR=106, MDR=001", "marks": 1 }
+          {
+            "text": "Row 1: PC=001, ACC=000, IX=000, MAR=000, MDR=105",
+            "marks": 1
+          },
+          {
+            "text": "Row 2: PC=002, ACC=105, IX=000, MAR=105, MDR=105",
+            "marks": 1
+          },
+          {
+            "text": "Row 3: PC=003, ACC=105, IX=001, MAR=001, MDR=001",
+            "marks": 1
+          },
+          {
+            "text": "Row 4: PC=004, ACC=106, IX=001, MAR=106, MDR=001",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "High"
     },
     {
       "id": "Q7",
@@ -175,7 +397,9 @@
       "command": "Show",
       "objective": "AO2",
       "marks": 1,
-      "visuals": ["8-bit register diagram"],
+      "visuals": [
+        "8-bit register diagram"
+      ],
       "page": 14,
       "layout_type": "FixedRegisterArray",
       "structure_data": {
@@ -188,9 +412,15 @@
         "visuals": [],
         "scoring_rule": null,
         "marking_points": [
-          { "text": "00101101", "marks": 1 }
+          {
+            "text": "00101101",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q8",
@@ -204,10 +434,22 @@
       "structure_data": {
         "row_count": 4,
         "rows": [
-          { "term": null, "definition": "This is the smallest component of an image." },
-          { "term": "resolution", "definition": null },
-          { "term": null, "definition": "This is the number of bits used to create each colour in an image." },
-          { "term": null, "definition": "This is additional data that is stored with an image that can provide information such as the time and date the image was taken." }
+          {
+            "term": null,
+            "definition": "This is the smallest component of an image."
+          },
+          {
+            "term": "resolution",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "This is the number of bits used to create each colour in an image."
+          },
+          {
+            "term": null,
+            "definition": "This is additional data that is stored with an image that can provide information such as the time and date the image was taken."
+          }
         ]
       },
       "topic": "1.2",
@@ -217,14 +459,28 @@
         "visuals": [],
         "scoring_rule": "1 mark per correct term or definition",
         "marking_points": [
-          { "text": "Term: pixel", "marks": 1 },
-          { "text": "Definition: the number of pixels per unit area / per inch / per centimetre of an image", "marks": 1 },
-          { "text": "Term: colour depth / bit depth", "marks": 1 },
-          { "text": "Term: metadata", "marks": 1 }
+          {
+            "text": "Term: pixel",
+            "marks": 1
+          },
+          {
+            "text": "Definition: the number of pixels per unit area / per inch / per centimetre of an image",
+            "marks": 1
+          },
+          {
+            "text": "Term: colour depth / bit depth",
+            "marks": 1
+          },
+          {
+            "text": "Term: metadata",
+            "marks": 1
+          }
         ]
-      }
-    }
-    ,
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
     {
       "id": "Q9",
       "text": "An online clothing company has a homepage at the URL https://www.cieclothes.com/index.html. Write down the three different parts of the URL shown by the labels a, b and c.",
@@ -235,7 +491,11 @@
       "page": 7,
       "layout_type": "LabelledPartResponse",
       "structure_data": {
-        "labels": ["a", "b", "c"],
+        "labels": [
+          "a",
+          "b",
+          "c"
+        ],
         "reference": "https://www.cieclothes.com/index.html"
       },
       "topic": "5.1",
@@ -245,11 +505,23 @@
         "visuals": [],
         "scoring_rule": "1 mark each",
         "marking_points": [
-          { "text": "a: https:// (protocol / HTTP Secure)", "marks": 1 },
-          { "text": "b: www.cieclothes.com (domain name)", "marks": 1 },
-          { "text": "c: /index.html (file path / filename)", "marks": 1 }
+          {
+            "text": "a: https:// (protocol / HTTP Secure)",
+            "marks": 1
+          },
+          {
+            "text": "b: www.cieclothes.com (domain name)",
+            "marks": 1
+          },
+          {
+            "text": "c: /index.html (file path / filename)",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Create",
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q10",
@@ -257,28 +529,56 @@
       "command": "Complete",
       "objective": "AO2",
       "marks": 6,
-      "visuals": ["partial network diagram: Patient's computer, www.cihospital.com"],
+      "visuals": [
+        "partial network diagram: Patient's computer, www.cihospital.com"
+      ],
       "page": 11,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
         "diagram_type": "network",
-        "partial_elements": ["Patient's computer", "www.cihospital.com"]
+        "partial_elements": [
+          "Patient's computer",
+          "www.cihospital.com"
+        ]
       },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
         "type": "diagram",
-        "visuals": ["completed network diagram"],
+        "visuals": [
+          "completed network diagram"
+        ],
         "scoring_rule": "1 mark per correct labelled component or connection, max 6",
         "marking_points": [
-          { "text": "DNS server shown and labelled", "marks": 1 },
-          { "text": "arrow from patient's computer to DNS server with label (URL / domain name lookup)", "marks": 1 },
-          { "text": "arrow from DNS server back to patient's computer with label (IP address returned)", "marks": 1 },
-          { "text": "web server shown and labelled", "marks": 1 },
-          { "text": "arrow from patient's computer to web server with label (HTTP/S request)", "marks": 1 },
-          { "text": "arrow from web server to patient's computer with label (web page / HTTP response)", "marks": 1 }
+          {
+            "text": "DNS server shown and labelled",
+            "marks": 1
+          },
+          {
+            "text": "arrow from patient's computer to DNS server with label (URL / domain name lookup)",
+            "marks": 1
+          },
+          {
+            "text": "arrow from DNS server back to patient's computer with label (IP address returned)",
+            "marks": 1
+          },
+          {
+            "text": "web server shown and labelled",
+            "marks": 1
+          },
+          {
+            "text": "arrow from patient's computer to web server with label (HTTP/S request)",
+            "marks": 1
+          },
+          {
+            "text": "arrow from web server to patient's computer with label (web page / HTTP response)",
+            "marks": 1
+          }
         ]
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "High"
     }
   ]
 }
