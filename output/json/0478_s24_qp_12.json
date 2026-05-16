@@ -1,0 +1,1404 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "12",
+  "qp": "0478_s24_qp_12.pdf",
+  "ms": "0478_s24_ms_12.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 31,
+    "mcq_count": 2,
+    "mean_marks_per_question": 2.42,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 7,
+    "unique_topics_count": 13
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "1.3": 3,
+      "1.2": 3,
+      "2.1": 2,
+      "2.3": 5,
+      "1.1": 11,
+      "4.1": 5,
+      "3.1": 8,
+      "2.2": 5,
+      "3.4": 1,
+      "5.1": 11,
+      "5.3": 6,
+      "3.3": 8,
+      "6.3": 7
+    },
+    "count_by_topic": {
+      "1.3": 3,
+      "1.2": 1,
+      "2.1": 2,
+      "2.3": 2,
+      "1.1": 5,
+      "4.1": 3,
+      "3.1": 2,
+      "2.2": 1,
+      "3.4": 1,
+      "5.1": 5,
+      "5.3": 2,
+      "3.3": 2,
+      "6.3": 2
+    },
+    "marks_by_difficulty": {
+      "Low": 15,
+      "Medium": 39,
+      "High": 21
+    },
+    "count_by_difficulty": {
+      "Low": 13,
+      "Medium": 14,
+      "High": 4
+    },
+    "marks_by_bloom_level": {
+      "Understand": 47,
+      "Remember": 8,
+      "Apply": 20
+    },
+    "count_by_bloom_level": {
+      "Understand": 20,
+      "Remember": 6,
+      "Apply": 5
+    },
+    "marks_by_cognitive_load": {
+      "Low": 44,
+      "Medium": 26,
+      "High": 5
+    },
+    "count_by_cognitive_load": {
+      "Low": 23,
+      "Medium": 7,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 58,
+      "AO2": 17
+    },
+    "count_by_objective": {
+      "AO1": 25,
+      "AO2": 6
+    },
+    "marks_by_layout_type": {
+      "SimpleSingleBlock": 37,
+      "MatrixGrid": 7,
+      "NumberedMultiList": 19,
+      "InlineCloze": 7,
+      "AnnotatedDiagram": 5
+    },
+    "count_by_layout_type": {
+      "SimpleSingleBlock": 20,
+      "MatrixGrid": 3,
+      "NumberedMultiList": 6,
+      "InlineCloze": 1,
+      "AnnotatedDiagram": 1
+    },
+    "marks_by_command": {
+      "Give": 17,
+      "State": 2,
+      "Calculate": 8,
+      "Identify": 6,
+      "Explain": 13,
+      "Describe": 12,
+      "Complete": 12,
+      "Draw": 5
+    },
+    "count_by_command": {
+      "Give": 11,
+      "State": 2,
+      "Calculate": 3,
+      "Identify": 4,
+      "Explain": 4,
+      "Describe": 4,
+      "Complete": 2,
+      "Draw": 1
+    },
+    "marks_by_answer_type": {
+      "text": 68,
+      "MCQ": 2,
+      "diagram": 5
+    },
+    "count_by_answer_type": {
+      "text": 28,
+      "MCQ": 2,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "Data can be measured in bits. Give the name of the data storage measurement that is equal to 8 bits.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "(1) byte",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1b",
+      "text": "Data can be measured in bits. State how many bits there are in a kibibyte (KiB).",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "8192",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1c",
+      "text": "Data can be measured in bits. Give the name of the data storage measurement that is equal to 1024 gibibytes (GiB).",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "(1) Tebibyte // TiB",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1d",
+      "text": "Data can be measured in bits. A 16-bit colour image has a resolution of 512 pixels wide by 512 pixels high. Calculate the file size of the image in kibibytes (KiB). Show all your working.\n\nAnswer [blank] KiB",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct stage of working (max 2):",
+        "marking_points": [
+          {
+            "text": "512 × 512",
+            "marks": 1
+          },
+          {
+            "text": "262 144 * 2 // multiplied by 16 and divided by 8",
+            "marks": 1
+          },
+          {
+            "text": "524 288/1024",
+            "marks": 1
+          },
+          {
+            "text": "512 (KiB)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2a",
+      "text": "Data can be transmitted from one device to another. Tick (✓) one box to show which of the terms is not a method for transmitting data.\n\nA serial\nB simplex\nC parallel\nD parity",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A serial",
+          "B simplex",
+          "C parallel",
+          "D parity"
+        ]
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "D",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2b",
+      "text": "Data can be transmitted from one device to another. Data is broken down into smaller units to be transmitted from one device to another. Give the name of the unit that data is broken down into.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Packet",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2c_i",
+      "text": "Data can be transmitted from one device to another. Data is often encrypted when it is transmitted from one device to another. Explain how data is encrypted using symmetric encryption.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Data is encrypted and decrypted using the same key",
+            "marks": 1
+          },
+          {
+            "text": "Plain text is encrypted into cipher text // cipher text is decrypted into plain text",
+            "marks": 1
+          },
+          {
+            "text": "Data is encrypted using an algorithm …",
+            "marks": 1
+          },
+          {
+            "text": "… that uses a key",
+            "marks": 1
+          },
+          {
+            "text": "The key can be generated using an algorithm",
+            "marks": 1
+          },
+          {
+            "text": "The key is transmitted to the receiver",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2c_ii",
+      "text": "Data can be transmitted from one device to another. Data is often encrypted when it is transmitted from one device to another. Give the purpose of encryption.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "To help keep the data secure",
+            "marks": 1
+          },
+          {
+            "text": "To make the data meaningless",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3a",
+      "text": "Binary is a base 2 number system. Give the name of the number system that is base 16.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Hexadecimal",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3b_i",
+      "text": "Binary is a base 2 number system. Three denary numbers are entered into a computer. The computer converts the numbers and stores them as binary. Give the binary number that would be stored for each of the denary numbers.\n\n10\n50\n201",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "1010",
+            "marks": 1
+          },
+          {
+            "text": "110010",
+            "marks": 1
+          },
+          {
+            "text": "11001001",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3b_ii",
+      "text": "Binary is a base 2 number system. Three denary numbers are entered into a computer. The computer converts the numbers and stores them as binary. Explain why the data is converted to binary by the computer.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Two from:",
+        "marking_points": [
+          {
+            "text": "Computers use logic gates/switches …",
+            "marks": 1
+          },
+          {
+            "text": "… that only process the values 1 and 0 // that only have two states",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3c",
+      "text": "Binary is a base 2 number system. The two binary integers 00110000 and 01100110 are added together. Add the binary integers using binary addition and show your answer in binary. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for evidence of working, for example 2 carries",
+        "marking_points": [
+          {
+            "text": "One mark for evidence of working, for example 2 carries",
+            "marks": 1
+          },
+          {
+            "text": "One mark for each correct nibble (Max 2): 1001 (upper nibble)",
+            "marks": 1
+          },
+          {
+            "text": "One mark for each correct nibble (Max 2): 0110 (lower nibble) — full answer: 10010110",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3d",
+      "text": "Binary is a base 2 number system. The denary integer –32 is stored as a two's complement integer. Calculate the two's complement integer that would be stored. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "One marking for evidence of working. For example, flip and add",
+            "marks": 1
+          },
+          {
+            "text": "One mark for correct binary: 11100000",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4a",
+      "text": "A student uses both system software and application software on their computer. Give one example of system software.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Operating system",
+            "marks": 1
+          },
+          {
+            "text": "Utility software // by example",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b",
+      "text": "A student uses both system software and application software on their computer. Give two examples of application software.\n\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from.:",
+        "marking_points": [
+          {
+            "text": "Word processor",
+            "marks": 1
+          },
+          {
+            "text": "Spreadsheet",
+            "marks": 1
+          },
+          {
+            "text": "Database",
+            "marks": 1
+          },
+          {
+            "text": "Web browser",
+            "marks": 1
+          },
+          {
+            "text": "Image/photo-editor",
+            "marks": 1
+          },
+          {
+            "text": "Video-editor",
+            "marks": 1
+          },
+          {
+            "text": "Email client",
+            "marks": 1
+          },
+          {
+            "text": "Game",
+            "marks": 1
+          },
+          {
+            "text": "Social media app",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q4c",
+      "text": "A student uses both system software and application software on their computer. Describe the difference between system software and application software.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "System software manages/maintains the hardware/software",
+            "marks": 1
+          },
+          {
+            "text": "Applications software allows the user to perform tasks",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5a",
+      "text": "Instructions are processed by a central processing unit (CPU) in a computer. Complete the paragraph about fetching an instruction into the CPU to be processed. Use the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\n\naddress  arithmetic logic unit (ALU)  binary  control unit (CU)\ncurrent instruction register (CIR)  data  denary  driver\nfetch  interrupt  memory address register (MAR)\nmemory data register (MDR)  random access memory (RAM)\nread only memory (ROM)  secondary storage  signal\n\nThe program counter contains the ………………………………………………………\nof the next instruction to be processed; this is then sent to the\n……………………………………………………… using the address bus. The address is then\nsent to the ………………………………………………………\nOnce the address is received, the instruction stored at the location is\nsent to the ………………………………………………………, using the\n……………………………………………………… bus. The instruction is then\nsent to the ……………………………………………………… that is built into the\n………………………………………………………",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 7,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 7,
+        "has_word_bank": true
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct place:",
+        "marking_points": [
+          {
+            "text": "address",
+            "marks": 1
+          },
+          {
+            "text": "memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "random access memory // RAM",
+            "marks": 1
+          },
+          {
+            "text": "memory data register // MDR",
+            "marks": 1
+          },
+          {
+            "text": "data",
+            "marks": 1
+          },
+          {
+            "text": "current instruction register // CIR",
+            "marks": 1
+          },
+          {
+            "text": "control unit // CU",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q5b",
+      "text": "Instructions are processed by a central processing unit (CPU) in a computer. The CPU uses an instruction set to decode the instruction. State what is meant by an instruction set.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A list of (machine code) commands that can be processed by the CPU",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6",
+      "text": "The table contains statements about error detection methods. Complete the table by giving the correct error detection method for each statement.\n\nStatements:\n1. An odd or even process can be used.\n2. A value is calculated from the data, using an algorithm. This happens before and after the data is transmitted.\n3. A copy of the data is sent back to the sender by the receiver.\n4. Acknowledgement and timeout are used.\n5. A value is appended to data that has been calculated using the data. This value is checked on data entry.",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 5,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "Two-column table with 'error detection method' and 'statement' columns; error detection method cells are blank and to be completed"
+        }
+      ],
+      "page": 7,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "error detection method",
+          "statement"
+        ],
+        "row_count": 5,
+        "rows": [
+          "An odd or even process can be used.",
+          "A value is calculated from the data, using an algorithm. This happens before and after the data is transmitted.",
+          "A copy of the data is sent back to the sender by the receiver.",
+          "Acknowledgement and timeout are used.",
+          "A value is appended to data that has been calculated using the data. This value is checked on data entry."
+        ]
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "table",
+            "description": "Two-column table with 'error detection method' and 'statement' columns; error detection method cells are blank and to be completed"
+          }
+        ],
+        "scoring_rule": "One mark for each correct method.",
+        "marking_points": [
+          {
+            "text": "parity (check/bit/byte/block) — An odd or even process can be used.",
+            "marks": 1
+          },
+          {
+            "text": "checksum — A value is calculated from the data using an algorithm. This happens before and after the data is transmitted.",
+            "marks": 1
+          },
+          {
+            "text": "echo check — A copy of the data is sent back to the sender by the receiver.",
+            "marks": 1
+          },
+          {
+            "text": "automatic repeat query/request // ARQ — Acknowledgement and timeout are used.",
+            "marks": 1
+          },
+          {
+            "text": "check digit — A value is appended to data that has been calculated using the data. This value is checked on data entry.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7a",
+      "text": "A computer has both a media access control (MAC) address and an internet protocol (IP) address. Tick (✓) one box to show which of the statements is correct about the MAC address.\n\nA It is assigned by the manufacturer.\nB It is assigned by a router.\nC It can be static or dynamic.\nD It is made up of three different parts.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A It is assigned by the manufacturer.",
+          "B It is assigned by a router.",
+          "C It can be static or dynamic.",
+          "D It is made up of three different parts."
+        ]
+      },
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7b_i",
+      "text": "A computer has both a media access control (MAC) address and an internet protocol (IP) address. An IP address can have an IPv4 or IPv6 format. Give an example of an IP address that has an IPv4 format.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "An IP address that has numerical values separated by dots that follows the format with a max value of 255 in any xxx: xxx.xxx.xxx.xxx (Example: 10.245.3.99)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7b_ii",
+      "text": "A computer has both a media access control (MAC) address and an internet protocol (IP) address. An IP address can have an IPv4 or IPv6 format. Give two characteristics of the IPv6 format.\n\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "128-bit // 16 bytes",
+            "marks": 1
+          },
+          {
+            "text": "Hexadecimal",
+            "marks": 1
+          },
+          {
+            "text": "Separated by colons",
+            "marks": 1
+          },
+          {
+            "text": "Characters in groups of 4",
+            "marks": 1
+          },
+          {
+            "text": "Has 8 groups of characters",
+            "marks": 1
+          },
+          {
+            "text": "Double colons can be used for sets of (consecutive) zeros (only once)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8a",
+      "text": "A company has a website that is suffering a distributed denial of service (DDoS) attack. Draw and annotate a diagram to show the process of the DDoS.",
+      "command": "Draw",
+      "objective": "AO1",
+      "marks": 5,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "system architecture",
+        "partial_elements": []
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "One mark for each part of the diagram that shows:",
+        "marking_points": [
+          {
+            "text": "A perpetrator/third party sending malware // user downloads/installs malware",
+            "marks": 1
+          },
+          {
+            "text": "Each computer is turned into a bot…",
+            "marks": 1
+          },
+          {
+            "text": "… to create a botnet",
+            "marks": 1
+          },
+          {
+            "text": "Third party initiates the attack",
+            "marks": 1
+          },
+          {
+            "text": "All the bots send a request at once to a web server",
+            "marks": 1
+          },
+          {
+            "text": "… crashing the webserver",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q8b",
+      "text": "A company has a website that is suffering a distributed denial of service (DDoS) attack. Identify a solution that can be used to help prevent the DDoS attack being successful.",
+      "command": "Identify",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Proxy server",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9a",
+      "text": "A company uses both solid-state and optical secondary storage. Explain why a computer needs secondary storage.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "To store data/files permanently",
+            "marks": 1
+          },
+          {
+            "text": "… otherwise, data/programs would need to be downloaded/entered/installed every time the computer was used",
+            "marks": 1
+          },
+          {
+            "text": "To allow software to be installed on the computer",
+            "marks": 1
+          },
+          {
+            "text": "For the creation of virtual memory",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9b",
+      "text": "A company uses both solid-state and optical secondary storage. Describe three differences between solid-state and optical storage.\n\n1\n\n2\n\n3",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any six from (Max 3 for one type only):",
+        "marking_points": [
+          {
+            "text": "Solid-state has no moving parts",
+            "marks": 1
+          },
+          {
+            "text": "… optical does have moving parts",
+            "marks": 1
+          },
+          {
+            "text": "Solid-state is faster to access data",
+            "marks": 1
+          },
+          {
+            "text": "… optical is slower to access data",
+            "marks": 1
+          },
+          {
+            "text": "Solid-state uses less power to operate",
+            "marks": 1
+          },
+          {
+            "text": "… optical uses more power to operate",
+            "marks": 1
+          },
+          {
+            "text": "Solid-state runs quietly",
+            "marks": 1
+          },
+          {
+            "text": "… optical makes more noise",
+            "marks": 1
+          },
+          {
+            "text": "Solid state is more durable/robust",
+            "marks": 1
+          },
+          {
+            "text": "… optical is less durable/robust",
+            "marks": 1
+          },
+          {
+            "text": "Solid state storage has a large storage capacity",
+            "marks": 1
+          },
+          {
+            "text": "… optical has a much smaller limit to its storage capacity",
+            "marks": 1
+          },
+          {
+            "text": "Solid-state is more expensive per GB of data",
+            "marks": 1
+          },
+          {
+            "text": "… optical is cheaper per GB of data",
+            "marks": 1
+          },
+          {
+            "text": "Solid-state stores data onto silicon chips/transistors using logic (floating/control/NAND/NOR) gates to control the movement of electrons",
+            "marks": 1
+          },
+          {
+            "text": "… optical stores data by using lasers to burning pits and lands onto a disk",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q10a",
+      "text": "A garage uses an expert system to help diagnose any problems with cars that need repair. The expert system is an example of artificial intelligence (AI). Describe what is meant by AI.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The simulation of intelligent behaviours by computers",
+            "marks": 1
+          },
+          {
+            "text": "A collection of data and the rules for using that data",
+            "marks": 1
+          },
+          {
+            "text": "Has the ability to reason",
+            "marks": 1
+          },
+          {
+            "text": "Has the ability to learn/adapt",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q10b",
+      "text": "A garage uses an expert system to help diagnose any problems with cars that need repair. A car has a problem with its braking system, so it is brought into the garage. Explain how the expert system operates and how it is used to help diagnose the problem.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 9
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any five from:",
+        "marking_points": [
+          {
+            "text": "The user will enter data into the interface // The user will plug the car into an interface // The user is given questions using the interface",
+            "marks": 1
+          },
+          {
+            "text": "The inference engine will decide which questions to ask",
+            "marks": 1
+          },
+          {
+            "text": "… by using the previous answers given",
+            "marks": 1
+          },
+          {
+            "text": "The inference engine will decide on a diagnosis",
+            "marks": 1
+          },
+          {
+            "text": "… by comparing the data/answers entered to the knowledge base and rule base",
+            "marks": 1
+          },
+          {
+            "text": "… by calculating which option is most likely if there are multiple",
+            "marks": 1
+          },
+          {
+            "text": "The interface will output the diagnosis/result",
+            "marks": 1
+          },
+          {
+            "text": "The explanation system shows how the diagnosis was reached",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q11a",
+      "text": "A company has a website. Users use the internet and the world wide web to access the website. Describe the difference between the internet and the world wide web.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The internet is the infrastructure",
+            "marks": 1
+          },
+          {
+            "text": "The world wide web is a collection of web pages",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q11b",
+      "text": "A company has a website. Users use the internet and the world wide web to access the website. The website has a uniform resource locator (URL). The URL has three different parts. Identify the three different parts that are included in the URL.\n\n1\n2\n3",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "Protocol",
+            "marks": 1
+          },
+          {
+            "text": "Domain name",
+            "marks": 1
+          },
+          {
+            "text": "File name // web page name",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q11c",
+      "text": "A company has a website. Users use the internet and the world wide web to access the website. One function of a web browser is to provide an address bar for a user to enter a URL. Give three other functions of a web browser.\n\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Displays a web page",
+            "marks": 1
+          },
+          {
+            "text": "Storing bookmarks/favourites",
+            "marks": 1
+          },
+          {
+            "text": "Recording user history",
+            "marks": 1
+          },
+          {
+            "text": "Allowing use of multiple tabs",
+            "marks": 1
+          },
+          {
+            "text": "Storing cookies",
+            "marks": 1
+          },
+          {
+            "text": "Providing navigation tools",
+            "marks": 1
+          },
+          {
+            "text": "Can set a home page",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    }
+  ]
+}

@@ -1,0 +1,1512 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "12",
+  "qp": "0478_w24_qp_12.pdf",
+  "ms": "0478_w24_ms_12.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 34,
+    "mcq_count": 2,
+    "mean_marks_per_question": 2.21,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 6,
+    "unique_topics_count": 14
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "4.1": 5,
+      "1.3": 4,
+      "1.2": 3,
+      "1.1": 13,
+      "3.2": 3,
+      "3.3": 2,
+      "3.4": 6,
+      "2.2": 6,
+      "2.1": 6,
+      "3.1": 6,
+      "5.1": 9,
+      "2.3": 5,
+      "6.1": 1,
+      "6.3": 6
+    },
+    "count_by_topic": {
+      "4.1": 4,
+      "1.3": 4,
+      "1.2": 1,
+      "1.1": 7,
+      "3.2": 2,
+      "3.3": 1,
+      "3.4": 2,
+      "2.2": 2,
+      "2.1": 2,
+      "3.1": 1,
+      "5.1": 4,
+      "2.3": 1,
+      "6.1": 1,
+      "6.3": 2
+    },
+    "marks_by_difficulty": {
+      "Low": 31,
+      "Medium": 36,
+      "High": 8
+    },
+    "count_by_difficulty": {
+      "Low": 21,
+      "Medium": 11,
+      "High": 2
+    },
+    "marks_by_bloom_level": {
+      "Remember": 47,
+      "Apply": 3,
+      "Understand": 25
+    },
+    "count_by_bloom_level": {
+      "Remember": 24,
+      "Apply": 1,
+      "Understand": 9
+    },
+    "marks_by_cognitive_load": {
+      "Low": 41,
+      "Medium": 29,
+      "High": 5
+    },
+    "count_by_cognitive_load": {
+      "Low": 24,
+      "Medium": 9,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 34,
+      "AO2": 36,
+      "AO3": 5
+    },
+    "count_by_objective": {
+      "AO1": 21,
+      "AO2": 11,
+      "AO3": 2
+    },
+    "marks_by_layout_type": {
+      "SimpleSingleBlock": 39,
+      "MatrixGrid": 2,
+      "NumberedMultiList": 18,
+      "TermDefinitionGrid": 6,
+      "AnnotatedDiagram": 5,
+      "InlineCloze": 5
+    },
+    "count_by_layout_type": {
+      "SimpleSingleBlock": 22,
+      "MatrixGrid": 2,
+      "NumberedMultiList": 7,
+      "TermDefinitionGrid": 1,
+      "AnnotatedDiagram": 1,
+      "InlineCloze": 1
+    },
+    "marks_by_command": {
+      "State": 34,
+      "Identify": 13,
+      "Calculate": 3,
+      "Describe": 4,
+      "Explain": 21
+    },
+    "count_by_command": {
+      "State": 15,
+      "Identify": 9,
+      "Calculate": 1,
+      "Describe": 2,
+      "Explain": 7
+    },
+    "marks_by_answer_type": {
+      "text": 68,
+      "MCQ": 2,
+      "diagram": 5
+    },
+    "count_by_answer_type": {
+      "text": 31,
+      "MCQ": 2,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "Different types of software can be run on a computer. State what is meant by software.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Instructions/program that is used to operate a computer/hardware",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1b",
+      "text": "Different types of software can be run on a computer. Utility software is one type of software that can be run on a computer. Tick (✓) one box to show which software is an example of utility software.\nA spreadsheet\nB anti-virus\nC web browser\nD database",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A spreadsheet",
+          "B anti-virus",
+          "C web browser",
+          "D database"
+        ]
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "B",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1c",
+      "text": "Different types of software can be run on a computer. Identify the type of software that manages inputs and outputs for the computer.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Operating system // system software",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2a",
+      "text": "Data storage can be measured using different units of measurement. Identify the name of the smallest unit of measurement of data.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "bit",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2b",
+      "text": "Data storage can be measured using different units of measurement. State how many nibbles there are in 2 bytes.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "4",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2c",
+      "text": "Data storage can be measured using different units of measurement. A 10 second sound effect is recorded for a movie. It is recorded with a sample rate of 22,016 Hz and a sample resolution of 8 bits. Calculate the file size of the sound effect in kibibytes (KiB). Show all your working.\nAnswer [blank] KiB",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 6
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "22 016 × 8 then divided 8",
+            "marks": 1
+          },
+          {
+            "text": "22 016 × 10",
+            "marks": 1
+          },
+          {
+            "text": "220 160 / 1024",
+            "marks": 1
+          },
+          {
+            "text": "215 KiB",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2d_i",
+      "text": "Data storage can be measured using different units of measurement. The sound effect file is compressed for storage. State what is meant by file compression.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Reducing the size of a file",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2d_ii",
+      "text": "Data storage can be measured using different units of measurement. The sound effect file is compressed for storage. Give one benefit of compressing the file for storage.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "It will take up/use less storage space",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3a_i",
+      "text": "A user enters data that is hexadecimal into a computer system. The data is converted to binary to be processed by the computer. Give one similarity between hexadecimal and binary.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "They are both number systems",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3a_ii",
+      "text": "A user enters data that is hexadecimal into a computer system. The data is converted to binary to be processed by the computer. Give two differences between hexadecimal and binary.\n1\n2",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Binary is base-2 whereas hexadecimal is base-16",
+            "marks": 1
+          },
+          {
+            "text": "Binary only uses numbers whereas hexadecimal also uses letters // Binary only uses 0 and 1 whereas hexadecimal uses 0 to 9/A to F",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3b",
+      "text": "A user enters data that is hexadecimal into a computer system. Data that is denary can also be converted to binary. Give the binary number for each of the three denary numbers.\n15\n180\n235",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "(0000)1111",
+            "marks": 1
+          },
+          {
+            "text": "10110100",
+            "marks": 1
+          },
+          {
+            "text": "11101011",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3c",
+      "text": "A user enters data that is hexadecimal into a computer system. Denary numbers can also be converted to hexadecimal. Give the hexadecimal number for each of the three denary numbers.\n14\n100\n250",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "E",
+            "marks": 1
+          },
+          {
+            "text": "64",
+            "marks": 1
+          },
+          {
+            "text": "FA",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3d_i",
+      "text": "A user enters data that is hexadecimal into a computer system. A binary integer that is stored in a register in the computer has a logical left shift performed on it. Describe the process of the logical left shift that is performed on the binary integer.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Each/All/Every value/digit/bit in the binary number is shifted/moved to the left",
+            "marks": 1
+          },
+          {
+            "text": "The left most/most significant bit is lost",
+            "marks": 1
+          },
+          {
+            "text": "A 0 is added as the right most/least significant bit",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3d_ii",
+      "text": "A user enters data that is hexadecimal into a computer system. A binary integer that is stored in a register in the computer has a logical left shift performed on it. State what effect this will have on the binary integer.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "The binary integer is multiplied by 2",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3e",
+      "text": "A user enters data that is hexadecimal into a computer system. A negative binary integer needs to be stored in a register in the computer. Give the name of the number system that can be used to represent negative binary integers.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Two's complement",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4a",
+      "text": "A student has a smartwatch. The smartwatch has built-in input and output devices. Identify two input devices that can be built into the smartwatch.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Touchscreen",
+            "marks": 1
+          },
+          {
+            "text": "Microphone",
+            "marks": 1
+          },
+          {
+            "text": "Button",
+            "marks": 1
+          },
+          {
+            "text": "(Digital) camera",
+            "marks": 1
+          },
+          {
+            "text": "Sensor // by example",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q4b",
+      "text": "A student has a smartwatch. The smartwatch has built-in input and output devices. Identify one output device that can be built into the smartwatch.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Screen",
+            "marks": 1
+          },
+          {
+            "text": "Speaker",
+            "marks": 1
+          },
+          {
+            "text": "LED",
+            "marks": 1
+          },
+          {
+            "text": "Actuator",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4c",
+      "text": "A student has a smartwatch. The smartwatch has read only memory (ROM). Explain why the smartwatch needs ROM.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "To store the BIOS",
+            "marks": 1
+          },
+          {
+            "text": "To store the bootstrap",
+            "marks": 1
+          },
+          {
+            "text": "To help start-up the smart watch // to store start-up instructions",
+            "marks": 1
+          },
+          {
+            "text": "To store the firmware",
+            "marks": 1
+          },
+          {
+            "text": "For non-volatile storage // to store data permanently",
+            "marks": 1
+          },
+          {
+            "text": "To store data/instructions that should not change (unless needed)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4d_i",
+      "text": "A student has a smartwatch. The smartwatch uses a text message application that receives data from cloud storage. Describe what is meant by cloud storage.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "A collection of servers",
+            "marks": 1
+          },
+          {
+            "text": "Allows access to data remotely // Stores data in a remote location",
+            "marks": 1
+          },
+          {
+            "text": "Hardware can be owned/managed by a third party",
+            "marks": 1
+          },
+          {
+            "text": "Data storage that is stored/accessed using the internet",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4d_ii",
+      "text": "A student has a smartwatch. The smartwatch uses a text message application that receives data from cloud storage. Explain two benefits of the application using cloud storage.\n1\n2",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "No need to maintain the hardware",
+            "marks": 1
+          },
+          {
+            "text": "… the third party is responsible for maintaining the hardware / security of the data",
+            "marks": 1
+          },
+          {
+            "text": "Resources can be increased / decreased (on demand) // Can have unlimited storage capacity",
+            "marks": 1
+          },
+          {
+            "text": "… no need to worry about running out of storage space",
+            "marks": 1
+          },
+          {
+            "text": "… can save cost of purchase of hardware",
+            "marks": 1
+          },
+          {
+            "text": "Need less/no (secondary) storage space on the watch",
+            "marks": 1
+          },
+          {
+            "text": "… watch can remain/is small in size",
+            "marks": 1
+          },
+          {
+            "text": "… costs of watch can be kept lower",
+            "marks": 1
+          },
+          {
+            "text": "Can access the data from other/any devices",
+            "marks": 1
+          },
+          {
+            "text": "… if the watch breaks/is lost data is still available",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q4e",
+      "text": "A student has a smartwatch. The smartwatch only displays the time and text messages. A student incorrectly describes this smartwatch as a general-purpose computer. Explain why the student's description is incorrect.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 2,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The watch can only perform a dedicated/limited functions/tasks",
+            "marks": 1
+          },
+          {
+            "text": "… and a general purpose computer performs many/multiple functions",
+            "marks": 1
+          },
+          {
+            "text": "… (this means that) it is an embedded system",
+            "marks": 1
+          },
+          {
+            "text": "You cannot plug in peripherals",
+            "marks": 1
+          },
+          {
+            "text": "You cannot reprogram the smartwatch // Cannot install other software/apps",
+            "marks": 1
+          },
+          {
+            "text": "It would only have a microprocessor // It would not have a CPU",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5a",
+      "text": "A barcode scanning system uses a check digit to check for errors in data on input. Explain how the barcode scanning system operates to check for errors.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "A check digit is calculated from/using the barcode data",
+            "marks": 1
+          },
+          {
+            "text": "… using an algorithm // by example e.g. Modulo 11",
+            "marks": 1
+          },
+          {
+            "text": "… and added to the barcode",
+            "marks": 1
+          },
+          {
+            "text": "When/after the barcode is scanned the check digit is recalculated …",
+            "marks": 1
+          },
+          {
+            "text": "… using the same algorithm",
+            "marks": 1
+          },
+          {
+            "text": "If the check digits do not match an error has occurred when scanning the barcode // If the check digits match no error has occurred when scanning the barcode",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b_i",
+      "text": "A barcode scanning system uses a check digit to check for errors in data on input. After a barcode is scanned, data is sent to a stock control system to update the stock value stored for that product. The data is sent to the stock control system using serial simplex data transmission. Explain how the data is sent using serial simplex data transmission.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Bits are sent one at a time",
+            "marks": 1
+          },
+          {
+            "text": "Bits are sent down a single wire",
+            "marks": 1
+          },
+          {
+            "text": "Data is sent in one direction only",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b_ii",
+      "text": "A barcode scanning system uses a check digit to check for errors in data on input. After a barcode is scanned, data is sent to a stock control system to update the stock value stored for that product. The data is sent to the stock control system using serial simplex data transmission. Explain why serial simplex is the most appropriate method of data transmission for this purpose.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 3,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "The stock control system may be a long distance away",
+            "marks": 1
+          },
+          {
+            "text": "… parallel should not be used in long distance transmission // Serial is more reliable for long distance transmission",
+            "marks": 1
+          },
+          {
+            "text": "The data does not need to be sent quickly",
+            "marks": 1
+          },
+          {
+            "text": "… the increased speed of parallel is not needed",
+            "marks": 1
+          },
+          {
+            "text": "… as only small amounts of data need to be sent",
+            "marks": 1
+          },
+          {
+            "text": "The bits are sent/arrived in order",
+            "marks": 1
+          },
+          {
+            "text": "… the data will not be skewed // the data could be skewed if parallel was used",
+            "marks": 1
+          },
+          {
+            "text": "… there will be no data collisions",
+            "marks": 1
+          },
+          {
+            "text": "There will be less interference/crosstalk (due to single wire)",
+            "marks": 1
+          },
+          {
+            "text": "… there will be fewer errors in the data",
+            "marks": 1
+          },
+          {
+            "text": "No need for a reply/response from stock control system",
+            "marks": 1
+          },
+          {
+            "text": "… half-duplex/full-duplex is not necessary as only one way transmission needed",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b_iii",
+      "text": "A barcode scanning system uses a check digit to check for errors in data on input. After a barcode is scanned, data is sent to a stock control system to update the stock value stored for that product. The data is checked for errors after it has been transmitted to the stock control system. Give two error detection methods that could be used for this purpose.\n1\n2",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "(Odd/even) Parity check // Parity byte check // parity block check",
+            "marks": 1
+          },
+          {
+            "text": "Checksum",
+            "marks": 1
+          },
+          {
+            "text": "Echo check",
+            "marks": 1
+          },
+          {
+            "text": "(Positive/negative) ARQ // Automatic repeat query // Automatic repeat request",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q6",
+      "text": "The table contains names and descriptions of components in a central processing unit (CPU). Complete the table by giving the missing component names and descriptions.\n\nComponent name | Description\n[blank] | sends signals to manage the flow of data through the CPU\nprogram counter | [blank]\n[blank] | stores the address of the data that is about to be fetched from random access memory (RAM) into the CPU\n[blank] | transmits data between the RAM and the CPU\naccumulator | [blank]\n[blank] | stores an instruction when it is being decoded",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 6,
+        "rows": [
+          {
+            "term": null,
+            "definition": "sends signals to manage the flow of data through the CPU"
+          },
+          {
+            "term": "program counter",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "stores the address of the data that is about to be fetched from random access memory (RAM) into the CPU"
+          },
+          {
+            "term": null,
+            "definition": "transmits data between the RAM and the CPU"
+          },
+          {
+            "term": "accumulator",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "stores an instruction when it is being decoded"
+          }
+        ]
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term or definition in the correct place:",
+        "marking_points": [
+          {
+            "text": "Control unit // CU",
+            "marks": 1
+          },
+          {
+            "text": "(Program counter) Stores the address of the next instruction to be fetched",
+            "marks": 1
+          },
+          {
+            "text": "Memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "Data bus",
+            "marks": 1
+          },
+          {
+            "text": "(Accumulator) Stores the interim result for a calculation",
+            "marks": 1
+          },
+          {
+            "text": "Current instruction register // CIR",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7a",
+      "text": "A student enters the uniform resource locator (URL) for a web page into their tablet computer. State what is meant by a URL.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A text-based address for a website/web page",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7b",
+      "text": "A student enters the uniform resource locator (URL) for a web page into their tablet computer. Identify two different parts of a URL.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Protocol",
+            "marks": 1
+          },
+          {
+            "text": "Domain name",
+            "marks": 1
+          },
+          {
+            "text": "File name",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7c",
+      "text": "A student enters the URL for a web page into their tablet computer. The student enters the URL into a piece of software that then displays the web page. Identify the name of this software.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Web browser",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7d",
+      "text": "A student enters the URL for a web page into their tablet computer. Draw and annotate a diagram to show how the web page is located and retrieved to be displayed on the student's tablet computer.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "network",
+        "partial_elements": []
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct part of the diagram.",
+        "marking_points": [
+          {
+            "text": "URL sent from web browser to the DNS",
+            "marks": 1
+          },
+          {
+            "text": "DNS finding matching IP address",
+            "marks": 1
+          },
+          {
+            "text": "If it cannot find the URL, it is sent to the next DNS (until found)",
+            "marks": 1
+          },
+          {
+            "text": "IP address returned to web browser",
+            "marks": 1
+          },
+          {
+            "text": "Request sent from web browser to web server (for web page)",
+            "marks": 1
+          },
+          {
+            "text": "Web page/HTML files sent from web server to web browser",
+            "marks": 1
+          },
+          {
+            "text": "Web browser rendering HTML",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q7e",
+      "text": "A student enters the URL for a web page into their tablet computer. The data for the web page is transmitted using the secure socket layer (SSL) protocol. Complete the paragraph about the SSL protocol. Use only terms from the list. Not all terms need to be used. Some terms may be used more than once.\n\nencrypted  file  server  hypertext markup language (HTML)  hypertext transfer protocol (HTTP)  operating system  search engine  unencrypted  URL  web browser  web server\n\nThe [blank] asks the [blank] to identify itself. The [blank] sends back its digital certificate. The [blank] authenticates the digital certificate. If it is authentic, [blank] data transmission begins.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 5,
+        "has_word_bank": true
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct order:",
+        "marking_points": [
+          {
+            "text": "Web browser",
+            "marks": 1
+          },
+          {
+            "text": "Web server",
+            "marks": 1
+          },
+          {
+            "text": "Web server",
+            "marks": 1
+          },
+          {
+            "text": "Web browser",
+            "marks": 1
+          },
+          {
+            "text": "Encrypted",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8a",
+      "text": "A robot vacuum cleaner uses sensors to navigate around obstacles in a room. Tick (✓) one box to show which sensor would be the most suitable for this purpose.\nA proximity\nB flow\nC pressure\nD level",
+      "command": "Identify",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A proximity",
+          "B flow",
+          "C pressure",
+          "D level"
+        ]
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8b",
+      "text": "A robot vacuum cleaner uses sensors to navigate around obstacles in a room. An expert system can be used to diagnose an error with a robot vacuum cleaner. Circle three components that are part of an expert system.\n\nknowledge base  operating system  firewall  server  printer  actuator  inference engine  rule base  encryption",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "Knowledge base",
+            "marks": 1
+          },
+          {
+            "text": "Rule base",
+            "marks": 1
+          },
+          {
+            "text": "Inference engine",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8c",
+      "text": "A robot vacuum cleaner uses sensors to navigate around obstacles in a room. Explain how the robot vacuum cleaner can make use of machine learning.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "It could gather data during vacuuming",
+            "marks": 1
+          },
+          {
+            "text": "… and adapt its own processes",
+            "marks": 1
+          },
+          {
+            "text": "… such as where obstacles are placed in the room",
+            "marks": 1
+          },
+          {
+            "text": "… such as where dirtier areas are",
+            "marks": 1
+          },
+          {
+            "text": "… such as a path through a room",
+            "marks": 1
+          },
+          {
+            "text": "… such as the shape of a room",
+            "marks": 1
+          },
+          {
+            "text": "… such as the most efficient route to vacuum a room",
+            "marks": 1
+          },
+          {
+            "text": "… so, it knows areas to avoid/concentrate on/use different cleaning tools",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    }
+  ]
+}

@@ -1,0 +1,1421 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "13",
+  "qp": "0478_w24_qp_13.pdf",
+  "ms": "0478_w24_ms_13.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 30,
+    "mcq_count": 2,
+    "mean_marks_per_question": 2.5,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 7,
+    "unique_topics_count": 13
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "1.3": 7,
+      "3.3": 3,
+      "1.1": 11,
+      "1.2": 4,
+      "2.1": 4,
+      "3.4": 1,
+      "2.2": 5,
+      "2.3": 4,
+      "3.1": 6,
+      "5.1": 16,
+      "6.1": 6,
+      "6.3": 4,
+      "4.2": 4
+    },
+    "count_by_topic": {
+      "1.3": 4,
+      "3.3": 1,
+      "1.1": 4,
+      "1.2": 3,
+      "2.1": 2,
+      "3.4": 1,
+      "2.2": 2,
+      "2.3": 3,
+      "3.1": 2,
+      "5.1": 3,
+      "6.1": 3,
+      "6.3": 1,
+      "4.2": 1
+    },
+    "marks_by_difficulty": {
+      "Low": 14,
+      "Medium": 36,
+      "High": 25
+    },
+    "count_by_difficulty": {
+      "Low": 11,
+      "Medium": 14,
+      "High": 5
+    },
+    "marks_by_bloom_level": {
+      "Understand": 46,
+      "Apply": 21,
+      "Remember": 8
+    },
+    "count_by_bloom_level": {
+      "Understand": 20,
+      "Apply": 5,
+      "Remember": 5
+    },
+    "marks_by_cognitive_load": {
+      "Low": 39,
+      "Medium": 32,
+      "High": 4
+    },
+    "count_by_cognitive_load": {
+      "Low": 19,
+      "Medium": 10,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 55,
+      "AO2": 18,
+      "AO3": 2
+    },
+    "count_by_objective": {
+      "AO1": 23,
+      "AO2": 6,
+      "AO3": 1
+    },
+    "marks_by_layout_type": {
+      "MatrixGrid": 2,
+      "MultiPartLabeledBlock": 3,
+      "SimpleSingleBlock": 37,
+      "NumberedMultiList": 16,
+      "AnnotatedDiagram": 4,
+      "TermDefinitionGrid": 6,
+      "InlineCloze": 7
+    },
+    "count_by_layout_type": {
+      "MatrixGrid": 2,
+      "MultiPartLabeledBlock": 1,
+      "SimpleSingleBlock": 17,
+      "NumberedMultiList": 7,
+      "AnnotatedDiagram": 1,
+      "TermDefinitionGrid": 1,
+      "InlineCloze": 1
+    },
+    "marks_by_command": {
+      "Tick": 2,
+      "Give": 21,
+      "Calculate": 8,
+      "State": 3,
+      "Explain": 16,
+      "Identify": 5,
+      "Complete and annotate the diagram": 4,
+      "Complete": 13,
+      "Describe": 3
+    },
+    "count_by_command": {
+      "Tick": 2,
+      "Give": 11,
+      "Calculate": 3,
+      "State": 3,
+      "Explain": 5,
+      "Identify": 2,
+      "Complete and annotate the diagram": 1,
+      "Complete": 2,
+      "Describe": 1
+    },
+    "marks_by_answer_type": {
+      "MCQ": 2,
+      "text": 69,
+      "diagram": 4
+    },
+    "count_by_answer_type": {
+      "MCQ": 2,
+      "text": 27,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "Data can be measured using different units of storage. Tick (✓) one box to show which of the following is the largest unit of data storage.\nA tebibyte (TiB)\nB pebibyte (PiB)\nC mebibyte (MiB)\nD gibibyte (GiB)",
+      "command": "Tick",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Select"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A tebibyte (TiB)",
+          "B pebibyte (PiB)",
+          "C mebibyte (MiB)",
+          "D gibibyte (GiB)"
+        ]
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "B",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1b",
+      "text": "A computer has primary storage. Give one example of primary storage. Explain the purpose of your chosen example.\nExample\nExplanation",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Example",
+          "Explanation"
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for correct example. Two marks for matching explanation.",
+        "marking_points": [
+          {
+            "text": "RAM",
+            "marks": 1
+          },
+          {
+            "text": "To store data/instruction that is currently in use",
+            "marks": 1
+          },
+          {
+            "text": "To store software/programs that are currently in use",
+            "marks": 1
+          },
+          {
+            "text": "For volatile storage // to store data temporarily",
+            "marks": 1
+          },
+          {
+            "text": "To allow data to be accessed directly by the CPU/processor // To allow data to be stored closer to the CPU/processor",
+            "marks": 1
+          },
+          {
+            "text": "ROM",
+            "marks": 1
+          },
+          {
+            "text": "To store the BIOS",
+            "marks": 1
+          },
+          {
+            "text": "To store the bootstrap/bootloader",
+            "marks": 1
+          },
+          {
+            "text": "To store start-up instructions",
+            "marks": 1
+          },
+          {
+            "text": "To store the firmware",
+            "marks": 1
+          },
+          {
+            "text": "For non-volatile storage // to store data permanently",
+            "marks": 1
+          },
+          {
+            "text": "To store data/instructions that should not change (unless needed)",
+            "marks": 1
+          },
+          {
+            "text": "Cache",
+            "marks": 1
+          },
+          {
+            "text": "To store frequently used instructions/data",
+            "marks": 1
+          },
+          {
+            "text": "For volatile storage // to store data temporarily",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q1c_i",
+      "text": "All data is converted to binary to be processed by a computer. Calculate the binary number for the denary number 175. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for valid working, for example: 128 + 32 + 8 + 4 + 2 + 1",
+        "marking_points": [
+          {
+            "text": "One mark for valid working, for example: 128 + 32 + 8 + 4 + 2 + 1",
+            "marks": 1
+          },
+          {
+            "text": "One mark for correct answer: 10101111",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1c_ii",
+      "text": "All data is converted to binary to be processed by a computer. Give the binary number for the given hexadecimal numbers.\n15\n2D\n091\nWorking space",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "0001 0101",
+            "marks": 1
+          },
+          {
+            "text": "0010 1101",
+            "marks": 1
+          },
+          {
+            "text": "0000 1001 0001",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q1d",
+      "text": "Binary integers can be added together. Add the two binary integers using binary addition. Show all your working. Give your answer in binary.\n  1 1 1 0 0 0 1 1\n+ 1 1 0 0 1 1 0 0",
+      "command": "Calculate",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct nibble. One mark for method of working, for example: carries. One mark for identification of overflow.",
+        "marking_points": [
+          {
+            "text": "One mark for each correct nibble: 1010 1111",
+            "marks": 2
+          },
+          {
+            "text": "One mark for method of working, for example: carries",
+            "marks": 1
+          },
+          {
+            "text": "One mark for identification of overflow",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1e",
+      "text": "Calculate the denary number for the two's complement binary integer 10001110. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "One mark for correct working, for example: flip and add",
+            "marks": 1
+          },
+          {
+            "text": "One mark for correct denary: –114",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2a",
+      "text": "An employee has a report that they need to email to their employer. The employee compresses the report file before emailing it. State the effect the compression has on the report file.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "The file size will be reduced",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2b",
+      "text": "An employee has a report that they need to email to their employer. The employee compresses the report file before emailing it. Give two benefits of compressing the report file before emailing it.\n1\n2",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "It will be under the file size limit for the email",
+            "marks": 1
+          },
+          {
+            "text": "It will be uploaded/transmitted/downloaded faster",
+            "marks": 1
+          },
+          {
+            "text": "It will take less storage space (on computer)",
+            "marks": 1
+          },
+          {
+            "text": "It will use less data allowance (if mobile data used)",
+            "marks": 1
+          },
+          {
+            "text": "Requires less bandwidth",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q2c",
+      "text": "An employee has a report that they need to email to their employer. The employee decides to use lossless compression to compress the file. Explain why lossy compression is not suitable.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Data will be permanently removed",
+            "marks": 1
+          },
+          {
+            "text": "… and that could be important/necessary data",
+            "marks": 1
+          },
+          {
+            "text": "(The report will have text in it and) lossy is not suitable for text files",
+            "marks": 1
+          },
+          {
+            "text": "… as it will damage/corrupt the file",
+            "marks": 1
+          },
+          {
+            "text": "The report may have images in it and the quality of these will be reduced",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2d_i",
+      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. State what Unicode is an example of.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Character set",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2d_ii",
+      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. Give two advantages of the computer using Unicode instead of American standard code for information interchange (ASCII).\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "It can represent more characters",
+            "marks": 1
+          },
+          {
+            "text": "It can represent emojis/symbols",
+            "marks": 1
+          },
+          {
+            "text": "It can represent more languages",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q2d_iii",
+      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. Give one disadvantage of the computer using Unicode instead of ASCII.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Each character requires more storage space",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2e_i",
+      "text": "The report is broken down into packets to be emailed. Circle three items of data that can be found in the packet header.\ntrailer   originator's address   payload\ninterrupt   input   operating system\ndestination address   antivirus   packet number",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "originator's address",
+            "marks": 1
+          },
+          {
+            "text": "destination address",
+            "marks": 1
+          },
+          {
+            "text": "packet number",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2e_ii",
+      "text": "The report is broken down into packets to be emailed. Each packet is sent along a different path from the employee's device to the employer's device. Tick (✓) one box to show the name of this method of sending packets.\nA packet networking\nB packet circuiting\nC packet switching\nD packet transferring",
+      "command": "Tick",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Select"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A packet networking",
+          "B packet circuiting",
+          "C packet switching",
+          "D packet transferring"
+        ]
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "C",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2e_iii",
+      "text": "The report is broken down into packets to be emailed. A hardware device is used to control the path that each packet takes. Give the name of this hardware device.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Router",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2f_i",
+      "text": "The email data is checked for errors after it has been transmitted, using an echo check and a checksum. Explain how the echo check is used to check for errors in the email data.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "A copy of the data is sent back to the employee's device/sender",
+            "marks": 1
+          },
+          {
+            "text": "The employee's device/sender compares the data sent to the data received back",
+            "marks": 1
+          },
+          {
+            "text": "If the original and the copy do not match, an error has occurred",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2f_ii",
+      "text": "The email data is checked for errors after it has been transmitted using a checksum. In the checksum error detection method, two values are compared after transmission. If the values do not match, an error is detected. Explain why the values not matching would show an error has occurred.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The checksum is calculated from/using the data",
+            "marks": 1
+          },
+          {
+            "text": "… using the same algorithm",
+            "marks": 1
+          },
+          {
+            "text": "… so, if the values are different the data must be different",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2g_i",
+      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give one reason why the email data is encrypted.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "To keep it secure",
+            "marks": 1
+          },
+          {
+            "text": "The data is sensitive/confidential",
+            "marks": 1
+          },
+          {
+            "text": "To make it meaningless",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2g_ii",
+      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give one similarity between symmetric encryption and asymmetric encryption.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "They both use a key",
+            "marks": 1
+          },
+          {
+            "text": "They both scramble the data // both make the data meaningless",
+            "marks": 1
+          },
+          {
+            "text": "They both turn plain text into cypher text",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2g_iii",
+      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give two differences between symmetric encryption and asymmetric encryption.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Symmetric uses one/public key whereas asymmetric uses two/public and private keys",
+            "marks": 1
+          },
+          {
+            "text": "Symmetric can send the key with the data whereas asymmetric does not",
+            "marks": 1
+          },
+          {
+            "text": "Symmetric decrypts the data using the same key whereas asymmetric decrypts the data using a different key",
+            "marks": 1
+          },
+          {
+            "text": "Symmetric is less secure than asymmetric",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3a",
+      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded. Identify two other registers that are used in the fetch stage of the cycle.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Program counter // PC",
+            "marks": 1
+          },
+          {
+            "text": "Memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "Current instruction register // CIR",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3b",
+      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded. Complete and annotate the diagram to show how the data is decoded once it has been fetched into the MDR.\nMDR",
+      "command": "Complete and annotate the diagram",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [
+        "Partial diagram showing MDR box as starting element"
+      ],
+      "page": 7,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "system architecture",
+        "partial_elements": [
+          "MDR"
+        ]
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "diagram",
+        "visuals": [
+          "Partial diagram showing MDR box as starting element"
+        ],
+        "scoring_rule": "One mark for each correct part of the diagram.",
+        "marking_points": [
+          {
+            "text": "Data/Instruction sent from the MDR to the CIR/CU",
+            "marks": 1
+          },
+          {
+            "text": "… using the data bus",
+            "marks": 1
+          },
+          {
+            "text": "… the CIR that is built into the CU",
+            "marks": 1
+          },
+          {
+            "text": "Data/instruction separated into operand and op code",
+            "marks": 1
+          },
+          {
+            "text": "Control unit/CU decodes instruction",
+            "marks": 1
+          },
+          {
+            "text": "… using an instruction set",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q4",
+      "text": "Complete the table to give the missing term or description for the internet terms.\nInternet term | Description\n[blank] | the collection of web pages accessed using the internet\n[blank] | the address given to a device when it connects to the internet\nweb browser | [blank]\n[blank] | the hardware that stores a database of matching website and IP addresses\n[blank] | a type of hardware that can be used to prevent a distributed denial of service (DDoS) attack\nhacking | [blank]",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [
+        "Table with two columns: Internet term and Description, with some cells pre-filled and others blank"
+      ],
+      "page": 8,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 6,
+        "rows": [
+          {
+            "term": null,
+            "definition": "the collection of web pages accessed using the internet"
+          },
+          {
+            "term": null,
+            "definition": "the address given to a device when it connects to the internet"
+          },
+          {
+            "term": "web browser",
+            "definition": null
+          },
+          {
+            "term": null,
+            "definition": "the hardware that stores a database of matching website and IP addresses"
+          },
+          {
+            "term": null,
+            "definition": "a type of hardware that can be used to prevent a distributed denial of service (DDoS) attack"
+          },
+          {
+            "term": "hacking",
+            "definition": null
+          }
+        ]
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          "Table with two columns: Internet term and Description, with some cells pre-filled and others blank"
+        ],
+        "scoring_rule": "One mark for each correct term or description in the correct place.",
+        "marking_points": [
+          {
+            "text": "Term: World wide web // WWW",
+            "marks": 1
+          },
+          {
+            "text": "Term: IP (address)",
+            "marks": 1
+          },
+          {
+            "text": "Description: (Web browser) Software/application that allows users to view/access web pages by rendering HTML",
+            "marks": 1
+          },
+          {
+            "text": "Term: Domain name server // DNS",
+            "marks": 1
+          },
+          {
+            "text": "Term: Proxy server",
+            "marks": 1
+          },
+          {
+            "text": "Description: (Hacking) Gaining unauthorised access to a computer/system",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q5a",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds. The plough uses sensors and a microprocessor to maintain a straight line when digging the ground. State what is meant by an automated system.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "(A system) that can perform actions without human intervention",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b",
+      "text": "A farmer has a plough that is an automated system. The plough uses sensors and a microprocessor to maintain a straight line when digging the ground. Describe the role of the microprocessor in this process.",
+      "command": "Describe",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "It receives data from the sensor",
+            "marks": 1
+          },
+          {
+            "text": "It analyses the data // It checks if the data is within/out of a range",
+            "marks": 1
+          },
+          {
+            "text": "It sends signals to trigger actions based on the data",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5c",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds. Give two benefits to the farmer of using an automated system for this purpose.\n1\n2",
+      "command": "Give",
+      "objective": "AO3",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "It stops the farmer having to handle heavy equipment",
+            "marks": 1
+          },
+          {
+            "text": "It frees the farmer up to do other jobs",
+            "marks": 1
+          },
+          {
+            "text": "It doesn't need to take breaks // Can work 24/7",
+            "marks": 1
+          },
+          {
+            "text": "It can perform boring repetitive tasks",
+            "marks": 1
+          },
+          {
+            "text": "Can save money on labour costs",
+            "marks": 1
+          },
+          {
+            "text": "May be more accurate at ploughing/planting",
+            "marks": 1
+          },
+          {
+            "text": "May be more efficient than the farmer at ploughing",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q5d",
+      "text": "A farmer has a plough that is an automated system. The plough uses artificial intelligence (AI) to navigate its way around the field. Explain how the plough makes use of AI for this purpose.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "It could make use of machine learning",
+            "marks": 1
+          },
+          {
+            "text": "It could gather data from ploughing",
+            "marks": 1
+          },
+          {
+            "text": "… and use this data to adapt its own process",
+            "marks": 1
+          },
+          {
+            "text": "… so that it will make fewer mistakes",
+            "marks": 1
+          },
+          {
+            "text": "… such as the dimensions of the field",
+            "marks": 1
+          },
+          {
+            "text": "… such as the landscape of the field",
+            "marks": 1
+          },
+          {
+            "text": "… such as where obstacles are in the field",
+            "marks": 1
+          },
+          {
+            "text": "… to create a map of the field",
+            "marks": 1
+          },
+          {
+            "text": "… to develop the most efficient route to take",
+            "marks": 1
+          },
+          {
+            "text": "… so, it knows what to avoid in future",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6a",
+      "text": "Complete the statements about cookies. Use only terms from the list. Not all terms need to be used. Some terms may be used more than once.\nbinary  close  denary  expire\nhexadecimal  image  malware  operating system\npermanent  persistent  session  sound\ntemporary  web browser\n\nCookies are small text files that are stored by a [blank].\n[blank] cookies are [blank] text files that are deleted when the [blank] [blank] is closed.\n[blank] cookies are [blank] text files that are stored on a user's secondary storage device until they are manually deleted or they [blank].",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 7,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 8,
+        "has_word_bank": true
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct order:",
+        "marking_points": [
+          {
+            "text": "web browser",
+            "marks": 1
+          },
+          {
+            "text": "session",
+            "marks": 1
+          },
+          {
+            "text": "temporary",
+            "marks": 1
+          },
+          {
+            "text": "web browser // session",
+            "marks": 1
+          },
+          {
+            "text": "persistent",
+            "marks": 1
+          },
+          {
+            "text": "permanent",
+            "marks": 1
+          },
+          {
+            "text": "expire",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q6b",
+      "text": "Give three examples of the use of cookies.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "User preferences // by example",
+            "marks": 1
+          },
+          {
+            "text": "Login details",
+            "marks": 1
+          },
+          {
+            "text": "Payment details",
+            "marks": 1
+          },
+          {
+            "text": "User's personal details e.g. address",
+            "marks": 1
+          },
+          {
+            "text": "Contents of a shopping cart",
+            "marks": 1
+          },
+          {
+            "text": "Targeted advertising",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7",
+      "text": "A computer programmer uses an integrated development environment (IDE) when creating a computer program. Explain the purpose of the IDE.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "It is a piece of software",
+            "marks": 1
+          },
+          {
+            "text": "… used to write/develop/edit code",
+            "marks": 1
+          },
+          {
+            "text": "… used test/debug the code",
+            "marks": 1
+          },
+          {
+            "text": "… with features such as auto-completion // any suitable example",
+            "marks": 1
+          },
+          {
+            "text": "To translate the code to low level language/machine code",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    }
+  ]
+}

@@ -1,0 +1,1481 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "11",
+  "qp": "0478_s24_qp_11.pdf",
+  "ms": "0478_s24_ms_11.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 31,
+    "mcq_count": 2,
+    "mean_marks_per_question": 2.42,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 8,
+    "unique_topics_count": 13
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "3.2": 3,
+      "3.3": 8,
+      "1.1": 8,
+      "1.3": 1,
+      "2.1": 7,
+      "3.1": 4,
+      "4.1": 4,
+      "2.3": 4,
+      "6.1": 7,
+      "6.2": 7,
+      "6.3": 2,
+      "2.2": 13,
+      "5.3": 7
+    },
+    "count_by_topic": {
+      "3.2": 2,
+      "3.3": 4,
+      "1.1": 5,
+      "1.3": 1,
+      "2.1": 3,
+      "3.1": 1,
+      "4.1": 3,
+      "2.3": 1,
+      "6.1": 2,
+      "6.2": 3,
+      "6.3": 1,
+      "2.2": 3,
+      "5.3": 2
+    },
+    "marks_by_difficulty": {
+      "Low": 29,
+      "Medium": 35,
+      "High": 11
+    },
+    "count_by_difficulty": {
+      "Low": 19,
+      "Medium": 10,
+      "High": 2
+    },
+    "marks_by_bloom_level": {
+      "Remember": 33,
+      "Apply": 5,
+      "Understand": 37
+    },
+    "count_by_bloom_level": {
+      "Remember": 20,
+      "Apply": 2,
+      "Understand": 9
+    },
+    "marks_by_cognitive_load": {
+      "Medium": 22,
+      "Low": 49,
+      "High": 4
+    },
+    "count_by_cognitive_load": {
+      "Medium": 9,
+      "Low": 21,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 38,
+      "AO2": 35,
+      "AO3": 2
+    },
+    "count_by_objective": {
+      "AO1": 20,
+      "AO2": 10,
+      "AO3": 1
+    },
+    "marks_by_layout_type": {
+      "NumberedMultiList": 18,
+      "SimpleSingleBlock": 47,
+      "MatrixGrid": 2,
+      "AnnotatedDiagram": 4,
+      "InlineCloze": 4
+    },
+    "count_by_layout_type": {
+      "NumberedMultiList": 8,
+      "SimpleSingleBlock": 19,
+      "MatrixGrid": 2,
+      "AnnotatedDiagram": 1,
+      "InlineCloze": 1
+    },
+    "marks_by_command": {
+      "Identify": 10,
+      "Calculate": 5,
+      "State": 23,
+      "Describe": 11,
+      "Explain": 22,
+      "Draw": 4
+    },
+    "count_by_command": {
+      "Identify": 7,
+      "Calculate": 2,
+      "State": 13,
+      "Describe": 2,
+      "Explain": 6,
+      "Draw": 1
+    },
+    "marks_by_answer_type": {
+      "text": 69,
+      "MCQ": 2,
+      "diagram": 4
+    },
+    "count_by_answer_type": {
+      "text": 28,
+      "MCQ": 2,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "A student has a portable tablet computer. Identify two input devices that could be built into the portable tablet computer.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Touch screen",
+            "marks": 1
+          },
+          {
+            "text": "Microphone",
+            "marks": 1
+          },
+          {
+            "text": "Button",
+            "marks": 1
+          },
+          {
+            "text": "Webcam // (digital) camera",
+            "marks": 1
+          },
+          {
+            "text": "Accelerometer",
+            "marks": 1
+          },
+          {
+            "text": "Biometric device",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q1b",
+      "text": "A student has a portable tablet computer. Identify one output device that could be built into the portable tablet computer.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Screen",
+            "marks": 1
+          },
+          {
+            "text": "Speaker",
+            "marks": 1
+          },
+          {
+            "text": "LED",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1c",
+      "text": "A student has a portable tablet computer. Identify one type of storage device that could be built into the portable tablet computer.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "SSD // Solid-state drive // Solid-state (device)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2a",
+      "text": "Hypertext markup language (HTML) colour codes can be represented as hexadecimal. Tick (✓) one box to show which statement about the hexadecimal number system is incorrect.\nA It uses the values 0 to 9 and A to F.\nB It can be used as a shorter representation of binary.\nC It is a base 10 system.\nD It can be used to represent error codes.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Statement",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A It uses the values 0 to 9 and A to F.",
+          "B It can be used as a shorter representation of binary.",
+          "C It is a base 10 system.",
+          "D It can be used to represent error codes."
+        ]
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "C",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2b",
+      "text": "Hypertext markup language (HTML) colour codes can be represented as hexadecimal. Denary numbers can be converted to hexadecimal. Convert the three denary numbers to hexadecimal.\n20\n32\n165",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "14",
+            "marks": 1
+          },
+          {
+            "text": "20",
+            "marks": 1
+          },
+          {
+            "text": "A5",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3a",
+      "text": "The binary number 10100011 is stored in random access memory (RAM). A logical left shift of three places is performed on the binary number. Give the 8-bit binary number that will be stored after the shift has taken place.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "00011000",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3b",
+      "text": "The binary number 10100011 is stored in random access memory (RAM). Tick (✓) one box to show which statement about a logical left shift of two places is correct.\nA It would divide the binary number by 2.\nB It would multiply the binary number by 2.\nC It would divide the binary number by 4.\nD It would multiply the binary number by 4.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Statement",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A It would divide the binary number by 2.",
+          "B It would multiply the binary number by 2.",
+          "C It would divide the binary number by 4.",
+          "D It would multiply the binary number by 4."
+        ]
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "D",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3c",
+      "text": "The binary number 10100011 is stored in random access memory (RAM). 10100011 can be stored as a two's complement integer. Convert the two's complement integer 10100011 to denary. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for correct working, one mark for correct answer",
+        "marking_points": [
+          {
+            "text": "One mark for correct working Example: Flip and add",
+            "marks": 1
+          },
+          {
+            "text": "One mark for correct answer: −93",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3d",
+      "text": "The binary number is measured as a byte because it has 8 bits. State how many bytes there are in a kibibyte (KiB).",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "1024",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4a",
+      "text": "Data packets are transmitted across a network from one computer to another computer. Describe the structure of a data packet.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "A packet is split into three different sections",
+            "marks": 1
+          },
+          {
+            "text": "… the header",
+            "marks": 1
+          },
+          {
+            "text": "… the payload",
+            "marks": 1
+          },
+          {
+            "text": "… the trailer",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b",
+      "text": "Data packets are transmitted across a network from one computer to another computer. Packet switching is used to transmit the data packets across the network. Identify the device that controls which path is taken by each data packet.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Router",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4c",
+      "text": "Data packets are transmitted across a network from one computer to another computer. Serial data transmission is used to transmit the data packets across the network. Explain why serial data transmission is used to transmit the data packets.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "The network may be spread over a long distance …",
+            "marks": 1
+          },
+          {
+            "text": "… so it is more reliable",
+            "marks": 1
+          },
+          {
+            "text": "Bits will be sent/arrive in sequence",
+            "marks": 1
+          },
+          {
+            "text": "…so bits less likely to be skewed",
+            "marks": 1
+          },
+          {
+            "text": "Less crosstalk/interference",
+            "marks": 1
+          },
+          {
+            "text": "… so less likely to have errors",
+            "marks": 1
+          },
+          {
+            "text": "The data may not need to be transmitted at a fast speed // data transmission speed of serial is adequate",
+            "marks": 1
+          },
+          {
+            "text": "The cables in the network only use serial transmission",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5a",
+      "text": "A computer uses both random access memory (RAM) and secondary storage. State the purpose of secondary storage.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "To store data/files/software permanently",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b",
+      "text": "A computer uses both random access memory (RAM) and secondary storage. One type of secondary storage is optical. Circle three examples of optical storage.\nread only memory (ROM)  secure digital (SD) card  compact disk (CD)\nhard disk drive (HDD)  digital versatile disk (DVD)\nBlu-ray disk  universal serial bus (USB) drive  solid-state drive (SSD)",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "Compact disk (CD)",
+            "marks": 1
+          },
+          {
+            "text": "Digital versatile disk (DVD)",
+            "marks": 1
+          },
+          {
+            "text": "Blu-ray disk",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5c",
+      "text": "A computer uses both random access memory (RAM) and secondary storage. Explain why a computer needs RAM.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "To store data temporarily",
+            "marks": 1
+          },
+          {
+            "text": "To store data currently in use",
+            "marks": 1
+          },
+          {
+            "text": "To store software currently in use",
+            "marks": 1
+          },
+          {
+            "text": "Data can be accessed faster (than secondary storage)",
+            "marks": 1
+          },
+          {
+            "text": "To speed up the fetch stage (of the fetch-execute cycle)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5d",
+      "text": "A computer uses both random access memory (RAM) and secondary storage. The computer processes instructions using the fetch–decode–execute (FDE) cycle. Draw and annotate a diagram to show the process of the fetch stage of the FDE cycle.",
+      "command": "Draw",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "other",
+        "partial_elements": []
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "The registers MAR, MDR and PC",
+            "marks": 1
+          },
+          {
+            "text": "Address sent from PC to MAR",
+            "marks": 1
+          },
+          {
+            "text": "…using address bus (award anywhere for correct use of address bus)",
+            "marks": 1
+          },
+          {
+            "text": "…PC is incremented",
+            "marks": 1
+          },
+          {
+            "text": "Address sent from MAR to RAM",
+            "marks": 1
+          },
+          {
+            "text": "Data/instruction sent from RAM to MDR",
+            "marks": 1
+          },
+          {
+            "text": "…using data bus (award anywhere for correct use of data bus)",
+            "marks": 1
+          },
+          {
+            "text": "Data/instruction sent from MDR to CIR/CU",
+            "marks": 1
+          },
+          {
+            "text": "Control unit sending control signal for any part of the process",
+            "marks": 1
+          },
+          {
+            "text": "… using control bus (award anywhere for correct use of control bus)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q6a",
+      "text": "A computer needs firmware and system software to operate. State the purpose of firmware.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Permanently store instructions (in ROM)",
+            "marks": 1
+          },
+          {
+            "text": "Stores instructions to boot up/start up the computer",
+            "marks": 1
+          },
+          {
+            "text": "Provides the operating system with a platform to run on",
+            "marks": 1
+          },
+          {
+            "text": "Controls/manages/allows communication with hardware",
+            "marks": 1
+          },
+          {
+            "text": "Store instructions securely (to stop them being easily corrupted)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6b",
+      "text": "A computer needs firmware and system software to operate. Give one example of firmware.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Bootstrap",
+            "marks": 1
+          },
+          {
+            "text": "Bootloader",
+            "marks": 1
+          },
+          {
+            "text": "BIOS",
+            "marks": 1
+          },
+          {
+            "text": "Operating system (in embedded system)",
+            "marks": 1
+          },
+          {
+            "text": "Programs (in embedded systems)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6c",
+      "text": "A computer needs firmware and system software to operate. Give two examples of system software.\n1\n2",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Operating system",
+            "marks": 1
+          },
+          {
+            "text": "Utility software",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7",
+      "text": "Data is encrypted to keep it safe during transmission. Complete the paragraph about asymmetric encryption. Use the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\nasymmetric  certificate  cipher text\ndecrypted  encrypted  parallel key  plain text  private key\nprotected  public key  serial key  symmetric\n\n[blank] is encrypted into [blank] using a [blank] . The encrypted data is then transmitted from the sender to the receiver. The encrypted data is then decrypted using a [blank] .",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 4,
+        "has_word_bank": true
+      },
+      "topic": "2.3",
+      "topic_name": "Encryption",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct place.",
+        "marking_points": [
+          {
+            "text": "plain text",
+            "marks": 1
+          },
+          {
+            "text": "cipher text",
+            "marks": 1
+          },
+          {
+            "text": "public key",
+            "marks": 1
+          },
+          {
+            "text": "private key",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8a",
+      "text": "A farmer uses an automated robot to plant seeds in the field. State what is meant by the robot being automated.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "The robot can perform actions without human intervention",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8b",
+      "text": "A farmer uses an automated robot to plant seeds in the field. Give three characteristics of a robot.\n1\n2\n3",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "It has a mechanical structure/framework",
+            "marks": 1
+          },
+          {
+            "text": "It has electrical components",
+            "marks": 1
+          },
+          {
+            "text": "It is programmable",
+            "marks": 1
+          },
+          {
+            "text": "It can move",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8c",
+      "text": "A farmer uses an automated robot to plant seeds in the field. The robot plants seeds and stops when it reaches a fence. It then turns and continues planting seeds. The robot uses sensors and a microprocessor to know when it reaches a fence. Explain how the robot uses sensors and a microprocessor to know it has reached a fence.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 6,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 11
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any six from:",
+        "marking_points": [
+          {
+            "text": "A proximity sensor is used",
+            "marks": 1
+          },
+          {
+            "text": "The sensor continuously sends digitised data to the microprocessor",
+            "marks": 1
+          },
+          {
+            "text": "The microprocessor compares the data to a stored value/range of values",
+            "marks": 1
+          },
+          {
+            "text": "If the value is within the range/matches the robot continues planting",
+            "marks": 1
+          },
+          {
+            "text": "If the value is above/below/outside the range a signal is sent by the microprocessor to turn/stop the robot",
+            "marks": 1
+          },
+          {
+            "text": "… using an actuator to turn/stop the robot",
+            "marks": 1
+          },
+          {
+            "text": "This process repeats until the robot is turned off",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8d",
+      "text": "A farmer uses an automated robot to plant seeds in the field. Give two advantages of the farmer using an automated robot to plant seeds.\n1\n2",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The robot is more accurate when planting seeds",
+            "marks": 1
+          },
+          {
+            "text": "The robot does not need to take breaks // works 24/7",
+            "marks": 1
+          },
+          {
+            "text": "The robot will not get bored of performing a repetitive task",
+            "marks": 1
+          },
+          {
+            "text": "The farmer can perform other tasks whilst the robot is planting the seeds",
+            "marks": 1
+          },
+          {
+            "text": "The robot may be faster/more efficient (at planting seeds)",
+            "marks": 1
+          },
+          {
+            "text": "Safer as the robot can work in a more dangerous environments (e.g. with animals in a field)",
+            "marks": 1
+          },
+          {
+            "text": "Doesn't need to pay labour costs/wages",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8e",
+      "text": "A farmer uses an automated robot to plant seeds in the field. Give two disadvantages of the farmer using an automated robot to plant seeds.\n1\n2",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "6.2",
+      "topic_name": "Robotics",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The robot may have been expensive to purchase",
+            "marks": 1
+          },
+          {
+            "text": "The robot may need maintenance and this may be costly",
+            "marks": 1
+          },
+          {
+            "text": "The robot may take away jobs from humans that previously planted the seeds",
+            "marks": 1
+          },
+          {
+            "text": "Farmer/workers may be deskilled",
+            "marks": 1
+          },
+          {
+            "text": "Farmer may need training in how to use the robot",
+            "marks": 1
+          },
+          {
+            "text": "If it breaks the farmer will need to manually plant",
+            "marks": 1
+          },
+          {
+            "text": "If faulty it may cause damage to farm/seeds",
+            "marks": 1
+          },
+          {
+            "text": "Cannot adapt to a new/unexpected event",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8f",
+      "text": "A farmer uses an automated robot to plant seeds in the field. The robot is adapted to have machine learning capabilities. Explain how this will improve the robot.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "The robot can now adapt itself by changing its own rules/data/ processes",
+            "marks": 1
+          },
+          {
+            "text": "The robot will become more efficient",
+            "marks": 1
+          },
+          {
+            "text": "… as it has a greater knowledge of its surroundings/environment",
+            "marks": 1
+          },
+          {
+            "text": "… as it can remember where a fence is",
+            "marks": 1
+          },
+          {
+            "text": "… as it can remember the route it needs to take",
+            "marks": 1
+          },
+          {
+            "text": "… as it can remember where any obstacles are to avoid",
+            "marks": 1
+          },
+          {
+            "text": "… as it can remember where to start and stop sowing seeds",
+            "marks": 1
+          },
+          {
+            "text": "… as it may make fewer errors",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9a",
+      "text": "A company owner has installed a new network. Data is correct before it is transmitted across the network. The company owner is concerned that data might have errors after transmission. Explain how the data might have errors after transmission.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Data could be lost",
+            "marks": 1
+          },
+          {
+            "text": "Data could be gained/added",
+            "marks": 1
+          },
+          {
+            "text": "Data could be changed",
+            "marks": 1
+          },
+          {
+            "text": "Bits could be reassembled in the wrong order",
+            "marks": 1
+          },
+          {
+            "text": "Interference could occur",
+            "marks": 1
+          },
+          {
+            "text": "Crosstalk could occur",
+            "marks": 1
+          },
+          {
+            "text": "Data collisions could occur",
+            "marks": 1
+          },
+          {
+            "text": "Data packets could time out/reach their hop count",
+            "marks": 1
+          },
+          {
+            "text": "Network could be infected with malware",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9b_i",
+      "text": "A company owner has installed a new network. The company owner decides to introduce an error detection system to check the data for errors after transmission. The error detection system uses an odd parity check and a positive automatic repeat query (ARQ). Describe how the error detection system operates to check for errors.",
+      "command": "Describe",
+      "objective": "AO2",
+      "marks": 8,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 15
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any eight from:",
+        "marking_points": [
+          {
+            "text": "The 1s are counted (in each byte)",
+            "marks": 1
+          },
+          {
+            "text": "Each byte has a parity bit",
+            "marks": 1
+          },
+          {
+            "text": "If the number of 1s are odd the parity bit is 0 (otherwise it is 1)",
+            "marks": 1
+          },
+          {
+            "text": "(The first packet of) data is sent and a timer is started",
+            "marks": 1
+          },
+          {
+            "text": "The receiving device counts the number of 1s (in each byte)",
+            "marks": 1
+          },
+          {
+            "text": "If the number of 1s are odd/data meets odd parity an acknowledgement is sent to say the data is error free …",
+            "marks": 1
+          },
+          {
+            "text": "… the sender then sends the next packet of data …",
+            "marks": 1
+          },
+          {
+            "text": "… and the timer is restarted",
+            "marks": 1
+          },
+          {
+            "text": "If the number of 1s is even an acknowledgement is not sent",
+            "marks": 1
+          },
+          {
+            "text": "If no acknowledgement is received within a set timeframe/before timeout …",
+            "marks": 1
+          },
+          {
+            "text": "… the data packet is resent",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9b_ii",
+      "text": "A company owner has installed a new network. The company owner decides to introduce an error detection system to check the data for errors after transmission. Give two other error detection methods that could be used.\n1\n2",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "2.2",
+      "topic_name": "Methods of Error Detection",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Echo check",
+            "marks": 1
+          },
+          {
+            "text": "Checksum",
+            "marks": 1
+          },
+          {
+            "text": "Even parity check",
+            "marks": 1
+          },
+          {
+            "text": "Negative ARQ",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q9c_i",
+      "text": "A company owner has installed a new network. The company owner also installs a firewall to help protect the network from hackers and malware. Explain how the firewall operates to help protect the network.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 9
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any five from:",
+        "marking_points": [
+          {
+            "text": "Criteria can be set (for traffic)",
+            "marks": 1
+          },
+          {
+            "text": "… such as a blacklist/whitelist (of IP addresses)",
+            "marks": 1
+          },
+          {
+            "text": "It will examine traffic coming into the network",
+            "marks": 1
+          },
+          {
+            "text": "It will check that the traffic meets the set criteria",
+            "marks": 1
+          },
+          {
+            "text": "… and will reject it if it does not meet criteria",
+            "marks": 1
+          },
+          {
+            "text": "Certain ports used by hackers can be blocked/closed",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9c_ii",
+      "text": "A company owner has installed a new network. The company owner also installs a firewall to help protect the network from hackers and malware. Give two examples of malware that the firewall can help protect the network from.\n1\n2",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Virus",
+            "marks": 1
+          },
+          {
+            "text": "Worm",
+            "marks": 1
+          },
+          {
+            "text": "Trojan horse",
+            "marks": 1
+          },
+          {
+            "text": "Spyware",
+            "marks": 1
+          },
+          {
+            "text": "Adware",
+            "marks": 1
+          },
+          {
+            "text": "Ransomware",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    }
+  ]
+}

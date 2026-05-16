@@ -16,13 +16,17 @@ python extract.py <pdf_path>                                      # output: outp
 python extract.py <pdf_path> -ms <ms_pdf_path>                    # include Phase 2 (answers)
 python extract.py <pdf_path> -o results/out.json                  # custom output path
 python extract.py <pdf_path> -m claude-sonnet-4-6                 # override model
+
+python extract.py <folder>                                        # process all *_qp_*.pdf in folder
 ```
+
+In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` in the filename (e.g. `0478_m24_qp_12.pdf` → `0478_m24_ms_12.pdf`). If no match is found, Phase 2 is skipped for that paper. Existing JSON files are always overwritten.
 
 ## Architecture
 
 ```
 extract.py          # CLI entry point (argparse, loads .env)
-render.py           # CLI: render existing JSON to HTML (thin wrapper around src/renderer.py)
+render.py           # CLI: render existing JSON to HTML; accepts a file or a folder of JSONs
 src/
   pdf_reader.py     # pdfplumber: text + table/image detection per page
   prompts.py        # builds Phase 1 (extraction + topics) and Phase 2 (answers) prompt messages
@@ -42,7 +46,7 @@ All phases run sequentially in a single command:
 
 - **Phase 1** — Claude reads all PDF pages and returns a JSON object covering both question extraction and syllabus topic mapping. Top-level fields: `board`, `level`, `subject_code`, `subject_name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`, `layout_type`, `structure_data`, `topic` (e.g. `"1.2"`), `topic_name` (e.g. `"Text, Sound and Images"`). Prompt built in `src/prompts.py:build_phase12_messages()`. (Historically this was two separate calls — Phase 1 for extraction and Phase 2 for topic mapping — merged to reduce token costs by ~25–30%.)
 - **Phase 2** — Claude receives the Phase 1 JSON + marking scheme text and enriches each question with answers. Adds `answers` with `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
-- **Phase 3** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>`.
+- **Phase 3** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>` (single file) or `python render.py <folder>` (renders all `*.json` files in the folder).
 
 ## Post-extraction Enrichment
 

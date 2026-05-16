@@ -1,0 +1,1599 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "11",
+  "qp": "0478_w24_qp_11.pdf",
+  "ms": "0478_w24_ms_11.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 34,
+    "mcq_count": 2,
+    "mean_marks_per_question": 2.21,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 7,
+    "unique_topics_count": 12
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "1.3": 6,
+      "3.2": 4,
+      "3.3": 6,
+      "1.2": 1,
+      "1.1": 11,
+      "2.1": 11,
+      "3.1": 11,
+      "6.1": 1,
+      "4.2": 8,
+      "4.1": 4,
+      "5.2": 4,
+      "6.3": 8
+    },
+    "count_by_topic": {
+      "1.3": 3,
+      "3.2": 2,
+      "3.3": 2,
+      "1.2": 1,
+      "1.1": 7,
+      "2.1": 4,
+      "3.1": 5,
+      "6.1": 1,
+      "4.2": 3,
+      "4.1": 3,
+      "5.2": 1,
+      "6.3": 2
+    },
+    "marks_by_difficulty": {
+      "Low": 23,
+      "Medium": 48,
+      "High": 4
+    },
+    "count_by_difficulty": {
+      "Low": 18,
+      "Medium": 15,
+      "High": 1
+    },
+    "marks_by_bloom_level": {
+      "Remember": 25,
+      "Understand": 43,
+      "Apply": 3,
+      "Create": 4
+    },
+    "count_by_bloom_level": {
+      "Remember": 11,
+      "Understand": 21,
+      "Apply": 1,
+      "Create": 1
+    },
+    "marks_by_cognitive_load": {
+      "Low": 43,
+      "Medium": 28,
+      "High": 4
+    },
+    "count_by_cognitive_load": {
+      "Low": 23,
+      "Medium": 10,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 62,
+      "AO2": 13
+    },
+    "count_by_objective": {
+      "AO1": 29,
+      "AO2": 5
+    },
+    "marks_by_layout_type": {
+      "MatrixGrid": 2,
+      "NumberedMultiList": 17,
+      "SimpleSingleBlock": 41,
+      "MultiPartLabeledBlock": 4,
+      "AnnotatedDiagram": 4,
+      "InlineCloze": 7
+    },
+    "count_by_layout_type": {
+      "MatrixGrid": 2,
+      "NumberedMultiList": 8,
+      "SimpleSingleBlock": 21,
+      "MultiPartLabeledBlock": 1,
+      "AnnotatedDiagram": 1,
+      "InlineCloze": 1
+    },
+    "marks_by_command": {
+      "Identify": 16,
+      "Give": 16,
+      "Explain": 8,
+      "Convert": 6,
+      "Calculate": 3,
+      "Describe": 13,
+      "State": 9,
+      "Sketch": 4
+    },
+    "count_by_command": {
+      "Identify": 8,
+      "Give": 11,
+      "Explain": 3,
+      "Convert": 4,
+      "Calculate": 1,
+      "Describe": 3,
+      "State": 3,
+      "Sketch": 1
+    },
+    "marks_by_answer_type": {
+      "MCQ": 2,
+      "text": 69,
+      "diagram": 4
+    },
+    "count_by_answer_type": {
+      "MCQ": 2,
+      "text": 31,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "The size of a file can be measured using different units. Tick (✓) one box to show which of these is not a unit of measurement for a file.\nA bit\nB bot\nC nibble\nD byte",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A bit",
+          "B bot",
+          "C nibble",
+          "D byte"
+        ]
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "B",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1b_i",
+      "text": "The size of a file can be reduced by compressing it. Give two types of compression that can be used to reduce the size of a file.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Lossy",
+            "marks": 1
+          },
+          {
+            "text": "Lossless",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q1b_ii",
+      "text": "The size of a file can be reduced by compressing it. Give three benefits of reducing the size of a file for storage and transmission.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "The file requires less storage space",
+            "marks": 1
+          },
+          {
+            "text": "Takes less time to transmit",
+            "marks": 1
+          },
+          {
+            "text": "A lower bandwidth can be used to transmit the file",
+            "marks": 1
+          },
+          {
+            "text": "Less data usage for data allowance",
+            "marks": 1
+          },
+          {
+            "text": "More likely to meet file size limits set by email clients/apps",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q2a",
+      "text": "A student has a smartphone. Identify two input devices that can be built into the smartphone.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Touchscreen",
+            "marks": 1
+          },
+          {
+            "text": "Microphone",
+            "marks": 1
+          },
+          {
+            "text": "Sensor // by example",
+            "marks": 1
+          },
+          {
+            "text": "Biometric device",
+            "marks": 1
+          },
+          {
+            "text": "Button",
+            "marks": 1
+          },
+          {
+            "text": "(Digital) camera",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q2b",
+      "text": "A student has a smartphone. Identify two output devices that can be built into the smartphone.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Screen",
+            "marks": 1
+          },
+          {
+            "text": "Speaker",
+            "marks": 1
+          },
+          {
+            "text": "LED",
+            "marks": 1
+          },
+          {
+            "text": "Actuator",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q2c_i",
+      "text": "A student has a smartphone. The smartphone contains secondary storage. Explain the purpose of the secondary storage in the smartphone.",
+      "command": "Explain",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "To store data/files permanently",
+            "marks": 1
+          },
+          {
+            "text": "… otherwise, data/programs would need to be downloaded/entered/installed every time the smartphone was turned on",
+            "marks": 1
+          },
+          {
+            "text": "To allow software to be downloaded/installed on the smartphone // To store user files",
+            "marks": 1
+          },
+          {
+            "text": "For the creating of virtual memory",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2c_ii",
+      "text": "A student has a smartphone. The smartphone contains secondary storage. Identify the most suitable type of secondary storage for the smartphone. Explain your choice.\nSecondary storage type\nExplanation",
+      "command": "Identify",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Secondary storage type",
+          "Explanation"
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for: Solid state\nAny Three from:",
+        "marking_points": [
+          {
+            "text": "Secondary storage type: Solid state",
+            "marks": 1
+          },
+          {
+            "text": "It is small/thin in size",
+            "marks": 1
+          },
+          {
+            "text": "… so it would fit easily into the smartphone device",
+            "marks": 1
+          },
+          {
+            "text": "It is lightweight",
+            "marks": 1
+          },
+          {
+            "text": "… so it wouldn't make the smartphone heavy to carry",
+            "marks": 1
+          },
+          {
+            "text": "It has no moving parts",
+            "marks": 1
+          },
+          {
+            "text": "… so it would be durable/robust",
+            "marks": 1
+          },
+          {
+            "text": "… if the smartphone is dropped the data is less likely to be damaged/lost",
+            "marks": 1
+          },
+          {
+            "text": "It has fast read/write speeds",
+            "marks": 1
+          },
+          {
+            "text": "… so it would be quick to load files/software",
+            "marks": 1
+          },
+          {
+            "text": "It runs at a cool temperature",
+            "marks": 1
+          },
+          {
+            "text": "… so it wouldn't make the smartphone hot to hold for the user",
+            "marks": 1
+          },
+          {
+            "text": "It doesn't make a lot of noise",
+            "marks": 1
+          },
+          {
+            "text": "… so it wouldn't ruin the user's experience of listening to music/watching videos",
+            "marks": 1
+          },
+          {
+            "text": "It doesn't require much power",
+            "marks": 1
+          },
+          {
+            "text": "… so it won't drain the battery",
+            "marks": 1
+          },
+          {
+            "text": "It can have a large storage capacity",
+            "marks": 1
+          },
+          {
+            "text": "… so can store files that are multimedia",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3a",
+      "text": "A user enters text into a computer system, using a keyboard. An American standard code for information interchange (ASCII) character set is used to convert the text to binary. Identify one other character set that could be used to convert the text to binary.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Unicode",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3b_i",
+      "text": "A user enters text into a computer system, using a keyboard. An ASCII character set is used to convert the text to binary. The character 'A' is represented by the denary ASCII number 65. The character 'm' is represented by the denary ASCII number 109. Convert the two denary ASCII numbers to binary.\n65\n109",
+      "command": "Convert",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "65: (0)1000001",
+            "marks": 1
+          },
+          {
+            "text": "109: (0)1101101",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3b_ii",
+      "text": "A user enters text into a computer system, using a keyboard. An ASCII character set is used to convert the text to binary. The character 'A' is represented by the denary ASCII number 65. The character 'm' is represented by the denary ASCII number 109. Convert the two denary ASCII numbers to hexadecimal.\n65\n109",
+      "command": "Convert",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "65: 41",
+            "marks": 1
+          },
+          {
+            "text": "109: 6D",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3c_i",
+      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. Convert the binary ASCII number to denary.",
+      "command": "Convert",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "121",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3c_ii",
+      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. Convert the binary ASCII number to hexadecimal.",
+      "command": "Convert",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "79",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3c_iii",
+      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. A logical right shift of two places is performed on the binary ASCII number 01111001. Give the binary number after the logical right shift of two places is performed.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "00011110",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3d",
+      "text": "A user enters text into a computer system, using a keyboard. The character 'T' is represented by the binary ASCII number 01010100. The character 't' is represented by the binary ASCII number 01110100. Add the two binary numbers using binary addition. Give your answer in binary. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for correct working, for example: carries\nOne mark for each correct nibble.",
+        "marking_points": [
+          {
+            "text": "One mark for correct working, for example: carries\n111 1\n01010100\n01110100",
+            "marks": 1
+          },
+          {
+            "text": "Correct upper nibble: 1100 (from 11001000)",
+            "marks": 1
+          },
+          {
+            "text": "Correct lower nibble: 1000 (from 11001000)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4a",
+      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The employees will need to use their devices to send data to each other and share files. The company decides to send data across the network using packet switching. An employee sends an email to another employee. The email is broken down into packets. Describe the structure of a packet of data for the email.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 6,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "The data packet has three sections",
+            "marks": 1
+          },
+          {
+            "text": "It has a packet header …",
+            "marks": 1
+          },
+          {
+            "text": "… that contains data such as the destination address",
+            "marks": 1
+          },
+          {
+            "text": "It has a payload …",
+            "marks": 1
+          },
+          {
+            "text": "… that contains the main data for the email",
+            "marks": 1
+          },
+          {
+            "text": "It has a trailer …",
+            "marks": 1
+          },
+          {
+            "text": "… that contains data such as the error detection system used",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b_i",
+      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Explain the reasons why the company have chosen this method of data transmission.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any four from:",
+        "marking_points": [
+          {
+            "text": "It sends the data multiple bits at the same time // It uses multiple wires",
+            "marks": 1
+          },
+          {
+            "text": "… so the transmission speed of the data will be fast",
+            "marks": 1
+          },
+          {
+            "text": "Data may not need to travel a long distance",
+            "marks": 1
+          },
+          {
+            "text": "… as the devices are all within a single room",
+            "marks": 1
+          },
+          {
+            "text": "It sends data in both directions at the same time",
+            "marks": 1
+          },
+          {
+            "text": "… so users on the network can send data to each other with no delay",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b_ii",
+      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Give two drawbacks of the company using this method of data transmission.\n1\n2",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "More interference/crosstalk (due to multiple wires)",
+            "marks": 1
+          },
+          {
+            "text": "Data may be skewed (due to multiple bits at a time) // bits may arrive out of order",
+            "marks": 1
+          },
+          {
+            "text": "More chance of data collisions (as data sent in both directions at the same time)",
+            "marks": 1
+          },
+          {
+            "text": "More chance of error in the data",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q4b_iii",
+      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Give one other method of data transmission the company could have chosen.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Serial simplex",
+            "marks": 1
+          },
+          {
+            "text": "Serial half-duplex",
+            "marks": 1
+          },
+          {
+            "text": "Serial full-duplex",
+            "marks": 1
+          },
+          {
+            "text": "Parallel simplex",
+            "marks": 1
+          },
+          {
+            "text": "Parallel half-duplex",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5a",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Give the name of two registers that are used in the fetch stage of the cycle.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Program counter // PC",
+            "marks": 1
+          },
+          {
+            "text": "Memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "Memory data register // MDR",
+            "marks": 1
+          },
+          {
+            "text": "Current instruction register // CIR",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q5b",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Describe what happens at the decode stage of the cycle.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "CIR/CU receives the instruction from the MDR // Instruction sent from MDR to CIR/CU",
+            "marks": 1
+          },
+          {
+            "text": "… using the data bus",
+            "marks": 1
+          },
+          {
+            "text": "Instruction is separated into opcode and operand",
+            "marks": 1
+          },
+          {
+            "text": "Control unit decodes the instruction",
+            "marks": 1
+          },
+          {
+            "text": "… using an instruction set",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5c",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Give one register in the CPU that is used in the execute stage of the cycle.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Accumulator",
+            "marks": 1
+          },
+          {
+            "text": "Memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "Memory data register // MDR",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5d",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Buses are used in the CPU to transmit data through the FDE cycle. Circle three buses that are used in the CPU.\nfetch   address   register   execute\ndata   decode   calculation\ncentral   value   binary   control",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "data",
+            "marks": 1
+          },
+          {
+            "text": "address",
+            "marks": 1
+          },
+          {
+            "text": "control",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5e",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. A user changes their CPU from one with a dual core and a clock speed of 2.4 GHz to one with a dual core and a clock speed of 3.5 GHz. Explain the effect this change will have on the performance of the CPU.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "It can now execute more instructions/FDE per second",
+            "marks": 1
+          },
+          {
+            "text": "… this will increase the performance of the CPU",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6a",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. State what is meant by an embedded system.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Computer system that is designed to a perform dedicated/single function",
+            "marks": 1
+          },
+          {
+            "text": "Computer system that contains a microprocessor (and)/dedicated hardware",
+            "marks": 1
+          },
+          {
+            "text": "Computer system that is built into a larger system",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6b",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. Give the name of the translator that will be used for the program.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Assembler",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6c",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. The washing machine needs to display error codes on a small screen if there is a problem with the washing machine. The error codes are stored as binary. The binary numbers are too long to be displayed on the washing machine. State how the error codes could be reduced in length to be displayed on the screen.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Convert to hexadecimal",
+            "marks": 1
+          },
+          {
+            "text": "Convert to denary",
+            "marks": 1
+          },
+          {
+            "text": "A character set can be used",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6d",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. Give one benefit to the programmer of using assembly language to write the program.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "More control over manipulating the hardware",
+            "marks": 1
+          },
+          {
+            "text": "Faster execution for testing than a high-level language",
+            "marks": 1
+          },
+          {
+            "text": "They can use machine specific instructions",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6e",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. The programmer uses an integrated development environment (IDE) to write the program. A built-in translator to convert the program into machine code is one way that the IDE helps the computer programmer. Describe three other ways the IDE can help the programmer.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 11
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Six from (MAX 4 for stating features):",
+        "marking_points": [
+          {
+            "text": "Code editor …",
+            "marks": 1
+          },
+          {
+            "text": "… that allows the user to enter and amend code in their program",
+            "marks": 1
+          },
+          {
+            "text": "Run-time environment",
+            "marks": 1
+          },
+          {
+            "text": "… that allows a program to be run and see the outputs of their program",
+            "marks": 1
+          },
+          {
+            "text": "Error-diagnostic",
+            "marks": 1
+          },
+          {
+            "text": "… to show the programmer where there are errors in the program",
+            "marks": 1
+          },
+          {
+            "text": "Auto-completion",
+            "marks": 1
+          },
+          {
+            "text": "… to give the user options/suggestions of key commands to select",
+            "marks": 1
+          },
+          {
+            "text": "Auto-correction",
+            "marks": 1
+          },
+          {
+            "text": "… to correct a command that has a minor misspelling",
+            "marks": 1
+          },
+          {
+            "text": "Prettyprint",
+            "marks": 1
+          },
+          {
+            "text": "… changes the colour of key commands do they are easy to identify",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7a_i",
+      "text": "A computer has an operating system. The operating system provides several functions. Tick (✓) one box to show which of these is not a function of the operating system.\nA managing files\nB providing an interface\nC handling interrupts\nD loading the bootstrap",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A managing files",
+          "B providing an interface",
+          "C handling interrupts",
+          "D loading the bootstrap"
+        ]
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "D",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7a_ii",
+      "text": "A computer has an operating system. The operating system provides several functions. Identify one other function of an operating system. Describe the purpose of this function.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for identifying a function. One mark for a matching description.",
+        "marking_points": [
+          {
+            "text": "Memory management",
+            "marks": 1
+          },
+          {
+            "text": "… managing what gets allocated where in memory",
+            "marks": 1
+          },
+          {
+            "text": "Managing peripherals and drivers",
+            "marks": 1
+          },
+          {
+            "text": "… managing the communication between any input and output devices that are connected to the computer",
+            "marks": 1
+          },
+          {
+            "text": "Multitasking",
+            "marks": 1
+          },
+          {
+            "text": "… managing the process of switching between tasks that are being carrying out",
+            "marks": 1
+          },
+          {
+            "text": "Platform for running applications",
+            "marks": 1
+          },
+          {
+            "text": "… allowing communication between the applications software and the hardware",
+            "marks": 1
+          },
+          {
+            "text": "System security",
+            "marks": 1
+          },
+          {
+            "text": "… proving features such as username and password",
+            "marks": 1
+          },
+          {
+            "text": "User accounts",
+            "marks": 1
+          },
+          {
+            "text": "… allowing multiple user accounts to be created on a computer",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7b",
+      "text": "A computer has an operating system. Give the name of the set of instructions that are provided to the operating system to allow it to run.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "Firmware",
+            "marks": 1
+          },
+          {
+            "text": "Bootloader",
+            "marks": 1
+          },
+          {
+            "text": "BIOS",
+            "marks": 1
+          },
+          {
+            "text": "Bootstrap",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8",
+      "text": "Draw and annotate a diagram to show how a payment transaction is made using digital currency and blockchain.",
+      "command": "Sketch",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "other",
+        "partial_elements": []
+      },
+      "topic": "5.2",
+      "topic_name": "Digital Currency",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct part.",
+        "marking_points": [
+          {
+            "text": "Digital ledger is used",
+            "marks": 1
+          },
+          {
+            "text": "Device encrypting data",
+            "marks": 1
+          },
+          {
+            "text": "Device sending data to digital ledger",
+            "marks": 1
+          },
+          {
+            "text": "Payment being recorded on digital ledger",
+            "marks": 1
+          },
+          {
+            "text": "… including details such as digital signature/time/date stamp",
+            "marks": 1
+          },
+          {
+            "text": "Transaction is stored in a block …",
+            "marks": 1
+          },
+          {
+            "text": "… in multiples",
+            "marks": 1
+          },
+          {
+            "text": "Each block has block hash/unique identifier",
+            "marks": 1
+          },
+          {
+            "text": "When block is executed or full",
+            "marks": 1
+          },
+          {
+            "text": "… it is applied to every device that has the blockchain // Block is added to blockchain (on each device)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Create",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q9a",
+      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients. Complete the paragraph about the operation of the expert system. Use the terms from the list. Some of the terms in the list will not be used. Some terms may be used more than once.\n[word bank: artificial, binary, central processing unit (CPU), data, inference engine, interface, knowledge base, primary storage, process, real, read only memory (ROM), rule base]\n\nAn expert system is a type of [blank] intelligence. The doctor will type data about the symptoms of the illness into the [blank]. The [blank] will decide which questions to ask the doctor. It will do this by linking the facts in the [blank] to the [blank]. The [blank] [blank] will decide on a diagnosis and this will be output on the [blank].",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 7,
+      "visuals": [],
+      "page": 12,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 8,
+        "has_word_bank": true
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct order.",
+        "marking_points": [
+          {
+            "text": "artificial",
+            "marks": 1
+          },
+          {
+            "text": "interface",
+            "marks": 1
+          },
+          {
+            "text": "inference engine",
+            "marks": 1
+          },
+          {
+            "text": "knowledge base",
+            "marks": 1
+          },
+          {
+            "text": "rule base",
+            "marks": 1
+          },
+          {
+            "text": "inference engine",
+            "marks": 1
+          },
+          {
+            "text": "interface",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q9b",
+      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients. The expert system has the ability to automatically adapt its own processes and data. Give the name of this ability.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "6.3",
+      "topic_name": "Artificial Intelligence",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Machine learning",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    }
+  ]
+}

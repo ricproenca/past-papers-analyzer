@@ -1,0 +1,1422 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "13",
+  "qp": "0478_s24_qp_13.pdf",
+  "ms": "0478_s24_ms_13.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 31,
+    "mcq_count": 1,
+    "mean_marks_per_question": 2.42,
+    "median_marks_per_question": 2,
+    "max_marks_per_question": 7,
+    "unique_topics_count": 11
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "1.3": 3,
+      "1.2": 2,
+      "1.1": 13,
+      "3.3": 8,
+      "3.2": 3,
+      "6.1": 6,
+      "2.1": 7,
+      "5.3": 5,
+      "5.1": 6,
+      "3.1": 13,
+      "4.1": 9
+    },
+    "count_by_topic": {
+      "1.3": 3,
+      "1.2": 2,
+      "1.1": 7,
+      "3.3": 3,
+      "3.2": 1,
+      "6.1": 2,
+      "2.1": 3,
+      "5.3": 2,
+      "5.1": 1,
+      "3.1": 5,
+      "4.1": 2
+    },
+    "marks_by_difficulty": {
+      "Low": 19,
+      "Medium": 39,
+      "High": 17
+    },
+    "count_by_difficulty": {
+      "Low": 15,
+      "Medium": 13,
+      "High": 3
+    },
+    "marks_by_bloom_level": {
+      "Remember": 14,
+      "Understand": 46,
+      "Apply": 15
+    },
+    "count_by_bloom_level": {
+      "Remember": 10,
+      "Understand": 18,
+      "Apply": 3
+    },
+    "marks_by_cognitive_load": {
+      "Low": 38,
+      "Medium": 33,
+      "High": 4
+    },
+    "count_by_cognitive_load": {
+      "Low": 20,
+      "Medium": 10,
+      "High": 1
+    },
+    "marks_by_objective": {
+      "AO1": 38,
+      "AO2": 37
+    },
+    "count_by_objective": {
+      "AO1": 18,
+      "AO2": 13
+    },
+    "marks_by_layout_type": {
+      "SimpleSingleBlock": 37,
+      "NumberedMultiList": 16,
+      "TermDefinitionGrid": 10,
+      "MatrixGrid": 1,
+      "AnnotatedDiagram": 4,
+      "InlineCloze": 7
+    },
+    "count_by_layout_type": {
+      "SimpleSingleBlock": 19,
+      "NumberedMultiList": 7,
+      "TermDefinitionGrid": 2,
+      "MatrixGrid": 1,
+      "AnnotatedDiagram": 1,
+      "InlineCloze": 1
+    },
+    "marks_by_command": {
+      "State": 5,
+      "Identify": 9,
+      "Give": 19,
+      "Convert": 8,
+      "Calculate": 2,
+      "Complete": 13,
+      "Draw": 4,
+      "Describe": 11,
+      "Explain": 4
+    },
+    "count_by_command": {
+      "State": 5,
+      "Identify": 5,
+      "Give": 9,
+      "Convert": 4,
+      "Calculate": 1,
+      "Complete": 2,
+      "Draw": 1,
+      "Describe": 3,
+      "Explain": 1
+    },
+    "marks_by_answer_type": {
+      "text": 70,
+      "MCQ": 1,
+      "diagram": 4
+    },
+    "count_by_answer_type": {
+      "text": 29,
+      "MCQ": 1,
+      "diagram": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1a",
+      "text": "The size of a file can be measured in different units. State how many bits there are in a byte.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "8",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1b",
+      "text": "The size of a file can be measured in different units. State how many kibibytes (KiB) there are in 2 mebibytes (MiB).",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "2048",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q1c",
+      "text": "The size of a file can be measured in different units. Identify the unit of data that is equal to 4 bits.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "nibble",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2a",
+      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels. State what is meant by a 16-bit colour depth.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "16 bits used to represent each colour in the image",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2b",
+      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels. The resolution of the image is changed to 750 × 1500 pixels. Give the effect this will have on the file size of the image.",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.2",
+      "topic_name": "Text, Sound and Images",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "The file size will decrease",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3a_i",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. One address is A2F. Convert the address to binary.",
+      "command": "Convert",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct nibble, in the correct order.",
+        "marking_points": [
+          {
+            "text": "1010",
+            "marks": 1
+          },
+          {
+            "text": "0010",
+            "marks": 1
+          },
+          {
+            "text": "1111",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3a_ii",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. One address is A2F. Convert the address to denary.",
+      "command": "Convert",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "2607",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3b_i",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The binary number stored for another address is 000110011011. Convert the binary number to hexadecimal.",
+      "command": "Convert",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct character, in the correct order.",
+        "marking_points": [
+          {
+            "text": "1",
+            "marks": 1
+          },
+          {
+            "text": "9",
+            "marks": 1
+          },
+          {
+            "text": "B",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3b_ii",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The binary number stored for another address is 000110011011. Convert the binary number to denary.",
+      "command": "Convert",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 4
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "411",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3c",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. Give one reason why the addresses are displayed in hexadecimal instead of binary.",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "It is easier/quicker to read/understand/debug",
+            "marks": 1
+          },
+          {
+            "text": "It is a shorter representation of binary // It takes up less screen space",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3d",
+      "text": "A programmer is creating a computer game. Identify two other ways that hexadecimal is used in computer science.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "HTML colour codes",
+            "marks": 1
+          },
+          {
+            "text": "URL",
+            "marks": 1
+          },
+          {
+            "text": "Memory dump",
+            "marks": 1
+          },
+          {
+            "text": "IP address",
+            "marks": 1
+          },
+          {
+            "text": "MAC address",
+            "marks": 1
+          },
+          {
+            "text": "Assembly language",
+            "marks": 1
+          },
+          {
+            "text": "Error codes/messages",
+            "marks": 1
+          },
+          {
+            "text": "ASCII/Unicode",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q3e",
+      "text": "A programmer is creating a computer game. The health value for a character in the computer game can sometimes be a negative value. The negative values are stored as two's complement 8-bit integers. A character has a health value of –25. Calculate the two's complement 8-bit integer for –25. Show all your working.",
+      "command": "Calculate",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "1.1",
+      "topic_name": "Number Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for correct working, one mark for correct answer.",
+        "marking_points": [
+          {
+            "text": "One mark for correct working: Example: flip and add",
+            "marks": 1
+          },
+          {
+            "text": "11100111",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4",
+      "text": "The table contains statements about types of secondary storage. Complete the table by writing the correct type of secondary storage for each statement.\n\nStatements:\n- Pits and lands are created on a reflective surface.\n- NAND or NOR technology is used.\n- Platters are spun that are divided into tracks and sectors.\n- Electromagnets are used to read and write data.\n- Transistors are used as control gates and floating gates.\n- A red or blue laser is used to read and write data.",
+      "command": "Complete",
+      "objective": "AO1",
+      "marks": 6,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "Two-column table with 'type of secondary storage' and 'statement' headers; 6 rows with statements pre-filled and type column blank"
+        }
+      ],
+      "page": 4,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 6,
+        "rows": [
+          {
+            "term": null,
+            "definition": "Pits and lands are created on a reflective surface."
+          },
+          {
+            "term": null,
+            "definition": "NAND or NOR technology is used."
+          },
+          {
+            "term": null,
+            "definition": "Platters are spun that are divided into tracks and sectors."
+          },
+          {
+            "term": null,
+            "definition": "Electromagnets are used to read and write data."
+          },
+          {
+            "term": null,
+            "definition": "Transistors are used as control gates and floating gates."
+          },
+          {
+            "term": null,
+            "definition": "A red or blue laser is used to read and write data."
+          }
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "table",
+            "description": "Two-column table with 'type of secondary storage' and 'statement' headers; 6 rows with statements pre-filled and type column blank"
+          }
+        ],
+        "scoring_rule": "One mark for each correct type of storage.",
+        "marking_points": [
+          {
+            "text": "optical — Pits and lands are created on a reflective surface.",
+            "marks": 1
+          },
+          {
+            "text": "solid-state — NAND or NOR technology is used.",
+            "marks": 1
+          },
+          {
+            "text": "magnetic — Platters are spun that are divided into tracks and sectors.",
+            "marks": 1
+          },
+          {
+            "text": "magnetic — Electromagnets are used to read and write data.",
+            "marks": 1
+          },
+          {
+            "text": "solid-state — Transistors are used as control gates and floating gates.",
+            "marks": 1
+          },
+          {
+            "text": "optical — A red or blue laser is used to read and write data.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q5a",
+      "text": "A computer uses both random access memory (RAM) and read only memory (ROM). Tick (✓) one box to show which statement is correct about RAM.\nA It is non-volatile storage.\nB It stores the bootloader.\nC It stores data that is currently in use.\nD It is not directly accessible by the central processing unit (CPU).",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [
+        {
+          "type": "multiple choice",
+          "description": "Four options A-D with tick boxes"
+        }
+      ],
+      "page": 5,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Statement"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A It is non-volatile storage.",
+          "B It stores the bootloader.",
+          "C It stores data that is currently in use.",
+          "D It is not directly accessible by the central processing unit (CPU)."
+        ]
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "C",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5b",
+      "text": "A computer uses both random access memory (RAM) and read only memory (ROM). ROM is a type of primary storage. State the characteristic of ROM that makes it a type of primary storage.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.3",
+      "topic_name": "Data Storage",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "It is directly accessible by the CPU",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6a",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment. Circle three other input devices.\ntouch screen    hard disk drive (HDD)    headphones\nspeaker    microphone    actuator\nuniversal serial bus (USB) drive    printer    keyboard",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "1 mark for each correct answer",
+        "marking_points": [
+          {
+            "text": "touch screen",
+            "marks": 1
+          },
+          {
+            "text": "microphone",
+            "marks": 1
+          },
+          {
+            "text": "keyboard",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6b",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment. Sensors can be used in an automated system. Give two benefits of using sensors in this type of system.\n1\n2",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Data can be collected without human intervention",
+            "marks": 1
+          },
+          {
+            "text": "Gathers data faster than a human",
+            "marks": 1
+          },
+          {
+            "text": "It will be accurate at taking readings",
+            "marks": 1
+          },
+          {
+            "text": "It can take readings continuously (24/7)",
+            "marks": 1
+          },
+          {
+            "text": "It can take readings in dangerous environments",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q6c",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment. The table contains different types of sensors and a use for each. Complete the table by giving a suitable use for each type of sensor. The first one has been done for you.\n\nTypes of sensor: acoustic (example given: to monitor whether a water pipe has cracked and is leaking and dripping onto the floor), temperature, humidity, infra-red, magnetic field.",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "Two-column table with 'type of sensor' and 'use' headers; acoustic row pre-filled as example; temperature, humidity, infra-red and magnetic field rows blank"
+        }
+      ],
+      "page": 6,
+      "layout_type": "TermDefinitionGrid",
+      "structure_data": {
+        "row_count": 5,
+        "rows": [
+          {
+            "term": "acoustic",
+            "definition": "to monitor whether a water pipe has cracked and is leaking and dripping onto the floor"
+          },
+          {
+            "term": "temperature",
+            "definition": null
+          },
+          {
+            "term": "humidity",
+            "definition": null
+          },
+          {
+            "term": "infra-red",
+            "definition": null
+          },
+          {
+            "term": "magnetic field",
+            "definition": null
+          }
+        ]
+      },
+      "topic": "6.1",
+      "topic_name": "Automated Systems",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "table",
+            "description": "Two-column table with 'type of sensor' and 'use' headers; acoustic row pre-filled as example; temperature, humidity, infra-red and magnetic field rows blank"
+          }
+        ],
+        "scoring_rule": "One mark for each use (Max 1) per sensor:",
+        "marking_points": [
+          {
+            "text": "Temperature: Checking whether the water in a kettle is boiling // Monitoring the temperature in a room that is climate controlled",
+            "marks": 1
+          },
+          {
+            "text": "Humidity: Checking whether the air is dry enough in a spray-painting garage // Checking whether the air is moist enough in a greenhouse",
+            "marks": 1
+          },
+          {
+            "text": "Infra-red: Detecting motion in a room for a security system // Detecting whether a person is approaching automatic doors",
+            "marks": 1
+          },
+          {
+            "text": "Magnetic field: Counting vehicles that cross a bridge // Monitoring vehicles that enter a car park",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7a",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Draw and annotate a diagram to show how the data is transmitted using serial half-duplex data transmission.",
+      "command": "Draw",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "other",
+        "partial_elements": []
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct part of the diagram.",
+        "marking_points": [
+          {
+            "text": "Bits beings sent one at a time",
+            "marks": 1
+          },
+          {
+            "text": "Bits being sent over a single wire",
+            "marks": 1
+          },
+          {
+            "text": "Data can be sent to and from the web server/network component/computers …",
+            "marks": 1
+          },
+          {
+            "text": "… not at the same time",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q7b",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Give two benefits of the company using serial half-duplex data transmission for this purpose.\n1\n2",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Bits will not be skewed // Bits are sent in order",
+            "marks": 1
+          },
+          {
+            "text": "Less chance of error",
+            "marks": 1
+          },
+          {
+            "text": "Less crosstalk/interference",
+            "marks": 1
+          },
+          {
+            "text": "Data can be sent over a long distance (if needed)",
+            "marks": 1
+          },
+          {
+            "text": "It is possible to download and upload data to the web server",
+            "marks": 1
+          },
+          {
+            "text": "Higher bandwidth than full duplex",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7c",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Give one drawback of the company using serial half-duplex data transmission for this purpose.",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "2.1",
+      "topic_name": "Types and Methods of Data Transmission",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "The transmission of data may be relatively slow",
+            "marks": 1
+          },
+          {
+            "text": "Data cannot be sent and received at the same time",
+            "marks": 1
+          },
+          {
+            "text": "May be more data collisions",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7d_i",
+      "text": "A company has a network that includes a web server. The company uses a proxy server to help protect the web server and the network from cyber security threats. Give three cyber security threats that the proxy server can help protect against.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "DDoS // DoS",
+            "marks": 1
+          },
+          {
+            "text": "Hacking",
+            "marks": 1
+          },
+          {
+            "text": "Malware // by example",
+            "marks": 1
+          },
+          {
+            "text": "Brute-force attack",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7d_ii",
+      "text": "A company has a network that includes a web server. The company uses a proxy server to help protect the web server and the network from cyber security threats. Identify two functions of the proxy server that can be used to help protect the web server and the network.\n1\n2",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "5.3",
+      "topic_name": "Cyber Security",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any two from:",
+        "marking_points": [
+          {
+            "text": "Can limit the number of requests sent to the web server at a time",
+            "marks": 1
+          },
+          {
+            "text": "Can process common requests that will not need to enter the network",
+            "marks": 1
+          },
+          {
+            "text": "Act as a firewall",
+            "marks": 1
+          },
+          {
+            "text": "Examine incoming data to the webserver/network",
+            "marks": 1
+          },
+          {
+            "text": "Can have set rules/criteria for data to meet",
+            "marks": 1
+          },
+          {
+            "text": "Can have a blacklist/whitelist/list of IP addresses to block",
+            "marks": 1
+          },
+          {
+            "text": "Blocks traffic that doesn't meet criteria",
+            "marks": 1
+          },
+          {
+            "text": "Closing certain ports",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q7e",
+      "text": "A company has a network that includes a web server. Customers access the company's web pages that are stored on the web server. Describe how the web pages are located, retrieved and displayed on a customer's computer.",
+      "command": "Describe",
+      "objective": "AO2",
+      "marks": 6,
+      "visuals": [],
+      "page": 8,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 11
+      },
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any six from:",
+        "marking_points": [
+          {
+            "text": "The users type the URL into the address bar/web browser",
+            "marks": 1
+          },
+          {
+            "text": "The web browser sends the URL to the DNS",
+            "marks": 1
+          },
+          {
+            "text": "The DNS searches for the matching IP address",
+            "marks": 1
+          },
+          {
+            "text": "The DNS returns the IP address to the web browser",
+            "marks": 1
+          },
+          {
+            "text": "If the DNS cannot find the IP address it sends the URL to the next DNS",
+            "marks": 1
+          },
+          {
+            "text": "The web browser sends a request to the IP address/web server",
+            "marks": 1
+          },
+          {
+            "text": "The web server sends the data for the web page to the web browser",
+            "marks": 1
+          },
+          {
+            "text": "The web browser renders the HTML data to display the web page",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8a",
+      "text": "A student has a computer that has a central processing unit (CPU). Describe the role of the CPU in the computer.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 3
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "To process instructions/data",
+            "marks": 1
+          },
+          {
+            "text": "To run the fetch–decode–execute cycle",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8b_i",
+      "text": "A student has a computer that has a central processing unit (CPU). The CPU contains registers. State the purpose of a register.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any one from:",
+        "marking_points": [
+          {
+            "text": "To temporarily store data/instruction/address",
+            "marks": 1
+          },
+          {
+            "text": "To allow immediate access to data during the FDE cycle",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8b_ii",
+      "text": "A student has a computer that has a central processing unit (CPU). The CPU contains registers. Give three registers that are built into the CPU.\n1\n2\n3",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 3
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "Memory address register // MAR",
+            "marks": 1
+          },
+          {
+            "text": "Memory data register // MDR",
+            "marks": 1
+          },
+          {
+            "text": "Accumulator // ACC",
+            "marks": 1
+          },
+          {
+            "text": "Program counter // PC",
+            "marks": 1
+          },
+          {
+            "text": "Current instruction register // CIR",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8c",
+      "text": "A student has a computer that has a central processing unit (CPU). One component in the CPU is the arithmetic logic unit (ALU). Describe the purpose of the ALU.",
+      "command": "Describe",
+      "objective": "AO1",
+      "marks": 3,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any three from:",
+        "marking_points": [
+          {
+            "text": "To execute instructions",
+            "marks": 1
+          },
+          {
+            "text": "To perform calculations // by example",
+            "marks": 1
+          },
+          {
+            "text": "To perform logical operations // by example",
+            "marks": 1
+          },
+          {
+            "text": "To store interim results of calculations",
+            "marks": 1
+          },
+          {
+            "text": "Stores/reads/writes data to/from the accumulator",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8d",
+      "text": "A student has a computer that has a central processing unit (CPU). The student wants to replace the CPU to increase the performance of the computer. Explain why a different CPU can increase the performance.",
+      "command": "Explain",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 10,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "Any Four from:",
+        "marking_points": [
+          {
+            "text": "It could have more cores",
+            "marks": 1
+          },
+          {
+            "text": "… increasing the number of FDE cycles/instructions it can perform at the same time",
+            "marks": 1
+          },
+          {
+            "text": "It could have a higher clock speed",
+            "marks": 1
+          },
+          {
+            "text": "… increasing the number of FDE cycles/instructions per second it can perform",
+            "marks": 1
+          },
+          {
+            "text": "It could have a greater cache size",
+            "marks": 1
+          },
+          {
+            "text": "… meaning more frequently used data can be accessed faster",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9a",
+      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty. Complete the paragraph about the use of an interrupt in this process. Use the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\n\nWord list: binary, clock, computer, data, error, fetch–decode–execute cycle, hexadecimal, higher, interrupt queue, interrupt service routine (ISR), lower, printer, priority level, secondary storage, sorting, transmission\n\nThe [blank] sends an interrupt to the [blank]. The interrupt is given a [blank]. The processor completes its current [blank] and checks the [blank] to see if there is an interrupt with [blank] priority than the current task. If there is, it stores the current task and fetches the interrupt. It then calls the [blank], which is a sequence of instructions that handles the interrupt. The interrupt is handled, which generates a message to the user to notify them that the ink cartridge is empty.",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 7,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "InlineCloze",
+      "structure_data": {
+        "inline_gap_count": 7,
+        "has_word_bank": true
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct term in the correct place.",
+        "marking_points": [
+          {
+            "text": "printer",
+            "marks": 1
+          },
+          {
+            "text": "computer",
+            "marks": 1
+          },
+          {
+            "text": "priority level",
+            "marks": 1
+          },
+          {
+            "text": "fetch–decode–execute cycle",
+            "marks": 1
+          },
+          {
+            "text": "interrupt queue",
+            "marks": 1
+          },
+          {
+            "text": "higher",
+            "marks": 1
+          },
+          {
+            "text": "interrupt service routine (ISR)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q9b",
+      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty. Handling interrupts is one function of an operating system. Give two functions of an operating system that relate to memory.\n1\n2",
+      "command": "Give",
+      "objective": "AO1",
+      "marks": 2,
+      "visuals": [],
+      "page": 11,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 2
+      },
+      "topic": "4.1",
+      "topic_name": "Types of Software and Interrupts",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Memory management",
+            "marks": 1
+          },
+          {
+            "text": "Multitasking",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Medium"
+    }
+  ]
+}
