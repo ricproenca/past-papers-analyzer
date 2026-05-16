@@ -436,13 +436,49 @@ def _render_question(q):
     header_inner = "\n".join(header_badges)
     chevron = '<span class="chevron">▾</span>'
 
-    text_html = escape(q.get("text", ""))
+    layout_type = q.get("layout_type") or "SimpleSingleBlock"
+    structure_data = q.get("structure_data") or {}
+
+    text = q.get("text", "")
+    if layout_type != "InlineCloze":
+        text = text.replace("[blank]", "").strip()
+    if layout_type in ("MatrixGrid", "ValueTraceMatrix"):
+        rows = structure_data.get("rows") or []
+        strip_set = {row.strip() for row in rows if isinstance(row, str)}
+        if strip_set:
+            text = "\n".join(
+                line for line in text.splitlines() if line.strip() not in strip_set
+            ).strip()
+    elif layout_type == "TermDefinitionGrid":
+        # text contains a pipe-separated table (header + data rows); strip all of it
+        text = "\n".join(
+            line for line in text.splitlines() if " | " not in line
+        ).strip()
+    elif layout_type == "MultiPartLabeledBlock":
+        labels = structure_data.get("labels") or []
+        strip_set = {l.strip() for l in labels if isinstance(l, str)}
+        if strip_set:
+            text = "\n".join(
+                line for line in text.splitlines() if line.strip() not in strip_set
+            ).strip()
+    elif layout_type == "NumberedMultiList":
+        count = max(int(structure_data.get("list_count") or 1), 1)
+        expected = [str(i) for i in range(1, count + 1)]
+        lines = text.splitlines()
+        trailing, tail_start = [], len(lines)
+        for i in range(len(lines) - 1, -1, -1):
+            if lines[i].strip():
+                trailing.insert(0, lines[i].strip())
+                if len(trailing) == count:
+                    tail_start = i
+                    break
+        if trailing == expected:
+            text = "\n".join(lines[:tail_start]).strip()
+    text_html = escape(text)
+
     visual_html = ""
     if visuals:
         visual_html = f'<p class="q-visual">[Contains: {escape(", ".join(str(v) for v in visuals))}]</p>'
-
-    layout_type = q.get("layout_type") or "SimpleSingleBlock"
-    structure_data = q.get("structure_data") or {}
     renderer = _LAYOUT_RENDERERS.get(layout_type)
     if renderer is None:
         print(
