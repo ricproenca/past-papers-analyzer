@@ -416,11 +416,26 @@ def _render_fixed_register_array(q, sd):
     return f'<div class="q-input"><div class="bit-row">{boxes}</div></div>'
 
 
+def _extract_term_def_headers(q):
+    """Pull (col1, col2) from the first `X | Y` row in the question text.
+    Cambridge papers use varied headers (Function name / Component / Internet term / ...);
+    only the data row's column *positions* are conventionally term-on-left, definition-on-right.
+    Falls back to ('Term', 'Description') when no header row exists in the text."""
+    for line in q.get("text", "").splitlines():
+        if " | " in line:
+            parts = [p.strip() for p in line.split(" | ", 1)]
+            if len(parts) == 2 and parts[0] and parts[1]:
+                return parts[0], parts[1]
+    return "Term", "Description"
+
+
 def _render_term_definition_grid(q, sd):
     qid = escape(q.get("id", ""))
     rows = sd.get("rows") or []
     if not rows:
         return _render_simple_single_block(q, sd)
+
+    col1, col2 = _extract_term_def_headers(q)
 
     body_rows = []
     for i, row in enumerate(rows):
@@ -442,7 +457,7 @@ def _render_term_definition_grid(q, sd):
     return (
         f'<div class="q-input">'
         f'<table class="term-def-table">'
-        f'<thead><tr><th>Term</th><th>Definition</th></tr></thead>'
+        f'<thead><tr><th>{escape(col1)}</th><th>{escape(col2)}</th></tr></thead>'
         f'<tbody>{"".join(body_rows)}</tbody>'
         f'</table>'
         f'</div>'
