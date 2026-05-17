@@ -42,6 +42,7 @@ Build a clean, structured JSON deliverable:
         ValueTraceMatrix:       { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...] }
         FixedRegisterArray:     { "register_size": 8 }
         TermDefinitionGrid:     { "row_count": N, "rows": [{ "term": "pixel" | null, "definition": "..." | null }, ...] }
+                                  Headers vary per question ("Function name | Description", "Component | Description", ...); preserve the printed header line in "text". Blanks may appear in EITHER column and the pattern can vary row-by-row — inspect each cell independently.
         LabelledPartResponse:   { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
         AnnotatedDiagram:       { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other", "partial_elements": ["element", ...] }
         (use {} if no structural data is detectable)

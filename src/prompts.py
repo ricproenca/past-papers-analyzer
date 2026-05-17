@@ -77,17 +77,30 @@ FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
   PDF signals: [TABLE_TYPE:FixedRegisterArray register_size=N]
   structure_data: { "register_size": N }  // N is 8 or 16
 
-TermDefinitionGrid — two-column Term/Definition table with some cells pre-filled and others blank
-  PDF signals: [TABLE_TYPE:TermDefinitionGrid]; headers are "Term" and "Definition"
+TermDefinitionGrid — two-column "label / explanation" table where SOME cells are pre-filled and OTHERS blank
+  PDF signals: [TABLE_TYPE:TermDefinitionGrid]. Header names VARY across questions and are NOT always
+    "Term" and "Definition". Real Cambridge examples include:
+      "Function name | Description", "Component name | Description", "Component | Description",
+      "Internet term | Description", "Type of secondary storage | Description", "Term | Description".
+    Always copy the printed header row verbatim into the "text" field.
   structure_data: {
     "row_count": N,
     "rows": [
-      { "term": "pixel", "definition": null },
-      { "term": null, "definition": "The number of pixels per unit area of an image." }
+      { "term": "memory management",    "definition": null },                              // left filled, right blank
+      { "term": null,                   "definition": "allows applications to run" },      // left blank,  right filled
+      { "term": "managing peripherals", "definition": null }                               // left filled, right blank
     ]
   }
-  rows: one object per row — set "term" to the pre-filled term string (or null if blank),
-        and "definition" to the pre-filled definition string (or null if blank).
+  CRITICAL — read each row's LEFT cell and RIGHT cell INDEPENDENTLY. Blanks may appear in EITHER column,
+  and the pattern CHANGES row-by-row (e.g. 2 blanks in the right column + 1 in the left, like the example
+  above). Do NOT assume one column is uniformly blank just because the first row looks that way.
+  For each row, decide each cell separately:
+    • Cell has printed text  → store that text VERBATIM under "term" (left) or "definition" (right)
+    • Cell is an empty dotted/underscore answer line → store null
+  Self-check before emitting: the count of null cells across all rows should equal the question's "marks"
+  value (one blank = one mark, in the typical case). If they don't match, re-read the table row by row.
+  In the "text" field, preserve the table as "(left) | (right)" lines (header row first), writing "(blank)"
+  for empty cells.
 
 LabelledPartResponse — a reference item (URL, code, expression) with parts marked a/b/c; short inline answer slots
   PDF signals: [LAYOUT:LabelledPartResponse labels=a,b,c]; a line of the form "a ..... b ..... c ....."

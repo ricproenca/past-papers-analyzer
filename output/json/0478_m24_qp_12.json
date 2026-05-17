@@ -605,7 +605,7 @@
     },
     {
       "id": "Q3a",
-      "text": "A computer has an operating system (OS). Complete the table by writing each missing OS function name and description.\nFunction name | Description\n(blank) | managing memory\n(blank) | allows application software to run on the computer\n(blank) | managing peripherals",
+      "text": "A computer has an operating system (OS). Complete the table by writing each missing OS function name and description.\nFunction name | Description\nmemory management | (blank)\n(blank) | allows application software to run on the computer\nmanaging peripherals | (blank)",
       "command": "State",
       "objective": "AO1",
       "marks": 3,
@@ -621,16 +621,16 @@
         "row_count": 3,
         "rows": [
           {
-            "term": null,
-            "definition": "managing memory"
+            "term": "memory management",
+            "definition": null
           },
           {
             "term": null,
             "definition": "allows application software to run on the computer"
           },
           {
-            "term": null,
-            "definition": "managing peripherals"
+            "term": "managing peripherals",
+            "definition": null
           }
         ]
       },
