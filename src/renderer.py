@@ -922,7 +922,8 @@ def _render_question(q, source: dict | None = None):
         f'data-objective="{escape(obj)}" '
         f'data-bloom="{escape(q.get("bloom_level", "") or "")}" '
         f'data-command="{escape(command or "")}" '
-        f'data-marks="{escape(str(marks))}"'
+        f'data-marks="{escape(str(marks))}" '
+        f'data-layout="{escape(layout_type)}"'
     )
     if source:
         data_attrs += (

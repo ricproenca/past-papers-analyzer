@@ -64,6 +64,23 @@ DIFFICULTY_ORDER = ["Low", "Medium", "High"]
 OBJECTIVE_ORDER = ["AO1", "AO2", "AO3"]
 MARKS_BUCKETS = ["1", "2", "3", "4", "5+"]
 
+# Human-friendly labels for each layout_type. Mirrors LAYOUT_NAMES in
+# generate_stats.py — keep in sync if the canonical labels change.
+LAYOUT_NAMES = {
+    "SimpleSingleBlock":     "Open Response",
+    "NumberedMultiList":     "Multi-part List",
+    "MatrixGrid":            "Grid / Matrix",
+    "MultiPartLabeledBlock": "Labelled Multi-part",
+    "TermDefinitionGrid":    "Term–Definition Table",
+    "InlineCloze":           "Fill in the Blank",
+    "AnnotatedDiagram":      "Annotated Diagram",
+    "ValueTraceMatrix":      "Value Trace Table",
+    "LabelledPartResponse":  "Labelled Part Response",
+    "FixedRegisterArray":    "Register Array",
+}
+# Stable display order for the filter buttons.
+LAYOUT_ORDER = list(LAYOUT_NAMES.keys())
+
 
 def load_all_questions():
     """Return [(question, source)] across every paper JSON."""
@@ -219,7 +236,7 @@ TOPICS_CSS = """
 """
 
 TOPICS_JS = """
-const FILTERS = ['subtopic','difficulty','objective','bloom','command','marks','year'];
+const FILTERS = ['subtopic','difficulty','objective','bloom','command','marks','year','layout'];
 const state = Object.fromEntries(FILTERS.map(f => [f, 'all']));
 
 function matchesMarks(card) {
@@ -354,6 +371,7 @@ def build_topic_page(group_id, questions):
     present_command    = sorted(_present_simple(questions, "command"))
     present_marks      = _present_marks(questions)
     present_years      = sorted(_present_source(questions, "year"))
+    present_layout     = _present_simple(questions, "layout_type")
 
     subtopic_opts = [(st, st) for st in subtopics]
     difficulty_opts = [(d, d) for d in DIFFICULTY_ORDER]
@@ -362,6 +380,7 @@ def build_topic_page(group_id, questions):
     command_opts    = [(c, c) for c in present_command]
     marks_opts      = [(m, m) for m in MARKS_BUCKETS]
     year_opts       = [(y, y) for y in present_years]
+    layout_opts     = [(lt, LAYOUT_NAMES.get(lt, lt)) for lt in LAYOUT_ORDER]
 
     filter_bar = (
         '<div class="filter-bar">'
@@ -392,6 +411,10 @@ def build_topic_page(group_id, questions):
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Year</span>'
         f'    {_tab_group("year", year_opts, set(present_years))}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Layout</span>'
+        f'    {_tab_group("layout", layout_opts, present_layout)}'
         f'  </div>'
         f'  <div class="actions-row">'
         f'    <button class="action-btn" id="btn-reset">Reset filters</button>'
