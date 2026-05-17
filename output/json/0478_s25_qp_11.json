@@ -49,22 +49,24 @@
       "5.2": 2
     },
     "marks_by_difficulty": {
-      "Low": 31,
-      "Medium": 44
+      "Low": 16,
+      "Medium": 42,
+      "High": 17
     },
     "count_by_difficulty": {
-      "Low": 23,
-      "Medium": 13
+      "Low": 16,
+      "Medium": 17,
+      "High": 3
     },
     "marks_by_bloom_level": {
-      "Remember": 48,
-      "Apply": 6,
-      "Understand": 21
+      "Understand": 50,
+      "Remember": 8,
+      "Apply": 17
     },
     "count_by_bloom_level": {
-      "Remember": 26,
-      "Apply": 3,
-      "Understand": 7
+      "Understand": 25,
+      "Remember": 8,
+      "Apply": 3
     },
     "marks_by_cognitive_load": {
       "Low": 43,
@@ -75,13 +77,13 @@
       "Medium": 10
     },
     "marks_by_objective": {
-      "AO1": 60,
-      "AO2": 14,
+      "AO1": 49,
+      "AO2": 25,
       "AO3": 1
     },
     "count_by_objective": {
-      "AO1": 28,
-      "AO2": 7,
+      "AO1": 23,
+      "AO2": 12,
       "AO3": 1
     },
     "marks_by_layout_type": {
@@ -99,16 +101,22 @@
       "InlineCloze": 1
     },
     "marks_by_command": {
-      "Identify": 6,
-      "State": 42,
-      "Calculate": 6,
+      "Tick": 2,
+      "State": 4,
+      "Give": 21,
+      "Identify": 4,
+      "Convert": 6,
+      "Complete": 17,
       "Describe": 13,
       "Explain": 8
     },
     "count_by_command": {
-      "Identify": 6,
-      "State": 20,
-      "Calculate": 3,
+      "Tick": 2,
+      "State": 4,
+      "Give": 13,
+      "Identify": 4,
+      "Convert": 3,
+      "Complete": 3,
       "Describe": 4,
       "Explain": 3
     },
@@ -124,8 +132,8 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "The size of a file can be measured using different data storage units. Tick (✓) one box to show the smallest data storage unit.\nA byte\nB gibibyte (GiB)\nC kibibyte (KiB)\nD nibble",
-      "command": "Identify",
+      "text": "The size of a file can be measured using different data storage units.\n\nTick (✓) one box to show the smallest data storage unit.\n\nA byte\nB gibibyte (GiB)\nC kibibyte (KiB)\nD nibble",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -158,12 +166,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q1b",
-      "text": "The size of a file can be measured using different data storage units. State how many tebibytes (TiB) are equal to 2 pebibytes (PiB).",
+      "text": "The size of a file can be measured using different data storage units.\n\nState how many tebibytes (TiB) are equal to 2 pebibytes (PiB).",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -192,8 +200,8 @@
     },
     {
       "id": "Q1c_i",
-      "text": "The size of a file can be measured using different data storage units. The size of a file needs to be reduced. Give the name of the process that is used to reduce the size of a file.",
-      "command": "State",
+      "text": "The size of a file can be measured using different data storage units. The size of a file needs to be reduced.\n\nGive the name of the process that is used to reduce the size of a file.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -216,13 +224,13 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q1c_ii",
-      "text": "The size of a file can be measured using different data storage units. The size of a file needs to be reduced. One reason the size of a file may need reducing is so that it has a shorter transmission time. Give one other reason why the size of a file may need reducing.",
-      "command": "State",
+      "text": "The size of a file can be measured using different data storage units. The size of a file needs to be reduced. One reason the size of a file may need reducing is so that it has a shorter transmission time.\n\nGive one other reason why the size of a file may need reducing.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -257,12 +265,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q2a",
-      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket system has an output device that creates a paper ticket. Identify an appropriate output device to produce the paper ticket.",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket system has an output device that creates a paper ticket.\n\nIdentify an appropriate output device to produce the paper ticket.",
       "command": "Identify",
       "objective": "AO2",
       "marks": 1,
@@ -291,9 +299,9 @@
     },
     {
       "id": "Q2b_i",
-      "text": "A clothes store has a ticket system. Each ticket number is stored as a binary number in the ticket machine. Two ticket numbers are 14B and 97A. Convert the two ticket numbers from hexadecimal to binary.\n14B\n97A",
-      "command": "Calculate",
-      "objective": "AO1",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. Each ticket number is stored as a binary number in the ticket machine. Two ticket numbers are 14B and 97A.\n\nConvert the two ticket numbers from hexadecimal to binary.\n14B\n97A",
+      "command": "Convert",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -306,7 +314,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "14B: 0001 0100 1011",
@@ -319,13 +327,13 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q2b_ii",
-      "text": "A clothes store has a ticket system. Each ticket number is stored as a binary number in the ticket machine. Give two reasons why the ticket number is displayed as hexadecimal instead of binary.\n1\n2",
-      "command": "State",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. Each ticket number is stored as a binary number in the ticket machine.\n\nGive two reasons why the ticket number is displayed as hexadecimal instead of binary.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -351,15 +359,15 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q2c_i",
-      "text": "A clothes store has a ticket system. The ticket numbers could also be represented as denary. Convert the two ticket numbers from hexadecimal to denary.\n02C\n10B",
-      "command": "Calculate",
-      "objective": "AO1",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket numbers could also be represented as denary.\n\nConvert the two ticket numbers from hexadecimal to denary.\n02C\n10B",
+      "command": "Convert",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -372,7 +380,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "02C: 44",
@@ -385,14 +393,14 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q2c_ii",
-      "text": "A clothes store has a ticket system. The ticket numbers could also be represented as denary. Convert the two denary numbers into hexadecimal.\n109\n415",
-      "command": "Calculate",
-      "objective": "AO1",
+      "text": "A clothes store has a ticket system to allow customers to speak to a personal shopper. The ticket displays a ticket number in hexadecimal, for example 11B. The ticket numbers could also be represented as denary.\n\nConvert the two denary numbers into hexadecimal.\n109\n415",
+      "command": "Convert",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -405,7 +413,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": null,
+        "scoring_rule": "1 mark for each correct answer",
         "marking_points": [
           {
             "text": "109: (0)6D",
@@ -418,13 +426,13 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q3",
-      "text": "An image is converted to binary to be represented by a computer. Complete the table with the missing terms and definition about representing an image.\n\nTerm | Definition\n[blank] | This is the smallest component of an image.\nresolution | [blank]\n[blank] | This is the number of bits used to create each colour in an image.\n[blank] | This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
-      "command": "State",
+      "text": "An image is converted to binary to be represented by a computer.\n\nComplete the table with the missing terms and definition about representing an image.\n\nTerm | Definition\n(blank) | This is the smallest component of an image.\nresolution | (blank)\n(blank) | This is the number of bits used to create each colour in an image.\n(blank) | This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 4,
       "visuals": [],
@@ -459,31 +467,31 @@
         "scoring_rule": "One mark for each correct term or definition.",
         "marking_points": [
           {
-            "text": "pixel",
+            "text": "Term: pixel — Definition: It is the smallest component of an image.",
             "marks": 1
           },
           {
-            "text": "The number of pixels high by the number of pixels wide // The number of pixels in an image",
+            "text": "Term: resolution — Definition: The number of pixels high by the number of pixels wide // The number of pixels in an image",
             "marks": 1
           },
           {
-            "text": "colour depth // bit depth",
+            "text": "Term: colour depth // bit depth — Definition: This is the number of bits that are used to create each colour in an image.",
             "marks": 1
           },
           {
-            "text": "metadata // header",
+            "text": "Term: metadata // header — Definition: This is additional data that is stored with an image that can provide information such as the time and date the image was taken.",
             "marks": 1
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q4a_i",
-      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. The data is sent using serial full-duplex data transmission. Give two reasons why serial full-duplex is a suitable data transmission method for the data.\n1\n2",
-      "command": "State",
+      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. The data is sent using serial full-duplex data transmission.\n\nGive two reasons why serial full-duplex is a suitable data transmission method for the data.\n1\n2",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -521,14 +529,14 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q4a_ii",
-      "text": "A restaurant has an electronic ordering system. The data is sent using serial full-duplex data transmission. Give one improvement that would be made to the data transmission if parallel transmission is used instead of serial transmission.",
-      "command": "State",
+      "text": "A restaurant has an electronic ordering system. The system allows customers to select the food they want to order. The data for the order is transmitted across their network to a computer in the restaurant kitchen. The data is sent using serial full-duplex data transmission.\n\nGive one improvement that would be made to the data transmission if parallel transmission is used instead of serial transmission.",
+      "command": "Give",
       "objective": "AO2",
       "marks": 1,
       "visuals": [],
@@ -551,12 +559,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q4b_i",
-      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission. Describe the process of the checksum error detection method.",
+      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission.\n\nDescribe the process of the checksum error detection method.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 5,
@@ -605,7 +613,7 @@
     },
     {
       "id": "Q4b_ii",
-      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission. Identify one other error detection method that could be used to check for errors in the data.",
+      "text": "A restaurant has an electronic ordering system. A checksum is used to check the data for errors after transmission.\n\nIdentify one other error detection method that could be used to check for errors in the data.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -638,8 +646,8 @@
     },
     {
       "id": "Q4c_i",
-      "text": "A restaurant has an electronic ordering system. A customer can also order food from home using the internet. The data for their order is broken down into packets and transmitted across the internet to the computer in the restaurant kitchen. Tick (✓) one box to show which item would not be included in a packet's header.\nA destination address\nB originator's address\nC packet number\nD payload",
-      "command": "Identify",
+      "text": "A restaurant has an electronic ordering system. A customer can also order food from home using the internet. The data for their order is broken down into packets and transmitted across the internet to the computer in the restaurant kitchen.\n\nTick (✓) one box to show which item would not be included in a packet's header.\n\nA destination address\nB originator's address\nC packet number\nD payload",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -672,14 +680,14 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q4c_ii",
-      "text": "A restaurant has an electronic ordering system. A customer can also order food from home using the internet. The data for their order is broken down into packets and transmitted across the internet to the computer in the restaurant kitchen. The packets of data may need to be reordered when they arrive at the computer in the restaurant kitchen. Explain why the packets of data may need to be reordered.",
+      "text": "A restaurant has an electronic ordering system. A customer can also order food from home using the internet. The data for their order is broken down into packets and transmitted across the internet to the computer in the restaurant kitchen. The packets of data may need to be reordered when they arrive at the computer in the restaurant kitchen.\n\nExplain why the packets of data may need to be reordered.",
       "command": "Explain",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 5,
@@ -718,8 +726,8 @@
     },
     {
       "id": "Q5a",
-      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture. Complete the table with the missing terms and definitions about processing data.\n\nTerm | Definition\ncurrent instruction register (CIR) | [blank]\n[blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions.\n[blank] | This is a list of all the commands that can be processed by the CPU.\ncache | [blank]\naccumulator | [blank]",
-      "command": "State",
+      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture.\n\nComplete the table with the missing terms and definitions about processing data.\n\nTerm | Definition\ncurrent instruction register (CIR) | (blank)\n(blank) | This is a processing unit within the CPU that can fetch, decode and execute instructions.\n(blank) | This is a list of all the commands that can be processed by the CPU.\ncache | (blank)\naccumulator | (blank)",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 5,
       "visuals": [],
@@ -762,11 +770,11 @@
             "marks": 1
           },
           {
-            "text": "core",
+            "text": "Term: core — Definition: This is a processing unit within the CPU that can fetch, decode and execute instructions.",
             "marks": 1
           },
           {
-            "text": "instruction set",
+            "text": "Term: instruction set — Definition: This is a list of all the commands that can be processed by the CPU.",
             "marks": 1
           },
           {
@@ -779,13 +787,13 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q5b",
-      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture. Identify the component in the CPU that is responsible for decoding an instruction.",
+      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture.\n\nIdentify the component in the CPU that is responsible for decoding an instruction.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -814,9 +822,9 @@
     },
     {
       "id": "Q5c",
-      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture. Explain how the clock speed can affect the performance of a CPU.",
+      "text": "Data is processed by the central processing unit (CPU) in a computer that has a Von Neumann architecture.\n\nExplain how the clock speed can affect the performance of a CPU.",
       "command": "Explain",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 6,
@@ -855,8 +863,8 @@
     },
     {
       "id": "Q6a",
-      "text": "Data can be encrypted using asymmetric encryption. Complete the paragraph about asymmetric encryption. Use the terms from the list. Some of the terms in the list will not be used. You may use a term more than once.\nalgorithm binary cipher text compression error hardware hexadecimal meaningless plain text private public readable transmission unreadable\n\nData is encrypted using an encryption key. This is a type of [blank] that scrambles the [blank] [blank] and turns it into [blank]. This makes the data [blank]. A [blank] key is used to encrypt the data. This key cannot be used to decrypt the data. A [blank] key is used to decrypt the data. Any device is able to request the [blank] key, but only your device knows the [blank] key.",
-      "command": "State",
+      "text": "Data can be encrypted using asymmetric encryption.\n\nComplete the paragraph about asymmetric encryption. Use the terms from the list. Some of the terms in the list will not be used. You may use a term more than once.\n\nalgorithm binary cipher text compression error hardware hexadecimal meaningless plain text private public readable transmission unreadable\n\nData is encrypted using an encryption key. This is a type of [blank] that scrambles the [blank] [blank] and turns it into [blank] . This makes the data [blank] . A [blank] key is used to encrypt the data. This key cannot be used to decrypt the data. A [blank] key is used to decrypt the data. Any device is able to request the [blank] key, but only your device knows the [blank] key.",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 8,
       "visuals": [],
@@ -907,14 +915,14 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q6b",
-      "text": "Data can be encrypted using asymmetric encryption. Data can also be encrypted using symmetric encryption. Give one reason why a person would use asymmetric encryption instead of symmetric encryption.",
-      "command": "State",
+      "text": "Data can be encrypted using asymmetric encryption. Data can also be encrypted using symmetric encryption.\n\nGive one reason why a person would use asymmetric encryption instead of symmetric encryption.",
+      "command": "Give",
       "objective": "AO3",
       "marks": 1,
       "visuals": [],
@@ -941,12 +949,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q7a",
-      "text": "A student's computer has primary storage. One example of primary storage is random access memory (RAM). Identify one other example of primary storage.",
+      "text": "A student's computer has primary storage. One example of primary storage is random access memory (RAM).\n\nIdentify one other example of primary storage.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -979,7 +987,7 @@
     },
     {
       "id": "Q7b",
-      "text": "A student's computer has primary storage. One example of primary storage is random access memory (RAM). Explain why RAM is an example of primary storage and not secondary storage.",
+      "text": "A student's computer has primary storage. One example of primary storage is random access memory (RAM).\n\nExplain why RAM is an example of primary storage and not secondary storage.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 3,
@@ -1020,7 +1028,7 @@
     },
     {
       "id": "Q7c",
-      "text": "A student's computer has primary storage. The student is editing a large video file for a project and during this process the RAM becomes full. This makes the computer crash. Describe how virtual memory could be used in this process to stop the computer crashing.",
+      "text": "A student's computer has primary storage. The student is editing a large video file for a project and during this process the RAM becomes full. This makes the computer crash.\n\nDescribe how virtual memory could be used in this process to stop the computer crashing.",
       "command": "Describe",
       "objective": "AO2",
       "marks": 3,
@@ -1038,7 +1046,7 @@
         "scoring_rule": "Any three from:",
         "marking_points": [
           {
-            "text": "Virtual memory can act as an extension to the RAM .",
+            "text": "Virtual memory can act as an extension to the RAM.",
             "marks": 1
           },
           {
@@ -1061,8 +1069,8 @@
     },
     {
       "id": "Q7d_i",
-      "text": "A student's computer uses solid-state (flash memory) storage. Give two features of solid-state (flash memory) storage.\n1\n2",
-      "command": "State",
+      "text": "A student's computer has primary storage. The computer uses solid-state (flash memory) storage.\n\nGive two features of solid-state (flash memory) storage.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -1104,14 +1112,14 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q7d_ii",
-      "text": "A student's computer uses solid-state (flash memory) storage. Give two examples of solid-state (flash memory) storage.\n1\n2",
-      "command": "State",
+      "text": "A student's computer has primary storage. The computer uses solid-state (flash memory) storage.\n\nGive two examples of solid-state (flash memory) storage.\n1\n2",
+      "command": "Give",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -1141,14 +1149,14 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q8a",
-      "text": "A robot is used to move car parts in a factory. One characteristic of the robot is that it has a mechanical structure. Give one other characteristic of a robot.",
-      "command": "State",
+      "text": "A robot is used to move car parts in a factory. One characteristic of the robot is that it has a mechanical structure.\n\nGive one other characteristic of a robot.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1179,12 +1187,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8b",
-      "text": "A robot is used to move car parts in a factory. The robot has firmware. State what is meant by firmware.",
+      "text": "A robot is used to move car parts in a factory. The robot has firmware.\n\nState what is meant by firmware.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1221,8 +1229,8 @@
     },
     {
       "id": "Q8c",
-      "text": "A robot is used to move car parts in a factory. Interrupts are generated when the robot is operating in the factory. Give two examples of interrupts that may be generated when the robot is in operation.\n1\n2",
-      "command": "State",
+      "text": "A robot is used to move car parts in a factory. Interrupts are generated when the robot is operating in the factory.\n\nGive two examples of interrupts that may be generated when the robot is in operation.\n1\n2",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -1272,14 +1280,14 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q8d",
-      "text": "A robot is used to move car parts in a factory. Give two advantages to the workers in the factory of using robots to move the car parts.\n1\n2",
-      "command": "State",
+      "text": "A robot is used to move car parts in a factory.\n\nGive two advantages to the workers in the factory of using robots to move the car parts.\n1\n2",
+      "command": "Give",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
@@ -1321,13 +1329,13 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q8e",
-      "text": "A robot is used to move car parts in a factory. The robots have the ability to automatically adapt their own processes. State the name of the ability described.",
+      "text": "A robot is used to move car parts in a factory. The robots have the ability to automatically adapt their own processes.\n\nState the name of the ability described.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1356,7 +1364,7 @@
     },
     {
       "id": "Q9a",
-      "text": "Each employee in a finance company has a computer and an electronic account. Each computer has an operating system. One function of the operating system is to manage memory. Describe the role of the operating system in managing memory.",
+      "text": "Each employee in a finance company has a computer and an electronic account. Each computer has an operating system. One function of the operating system is to manage memory.\n\nDescribe the role of the operating system in managing memory.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
@@ -1413,7 +1421,7 @@
     },
     {
       "id": "Q9b_i",
-      "text": "Each employee in a finance company has a computer and an electronic account. The finance company is concerned that a hacker may perform a brute-force attack to gain access to an employee's account. Describe how the hacker would perform the brute-force attack.",
+      "text": "Each employee in a finance company has a computer and an electronic account. The finance company is concerned that a hacker may perform a brute-force attack to gain access to an employee's account.\n\nDescribe how the hacker would perform the brute-force attack.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -1450,8 +1458,8 @@
     },
     {
       "id": "Q9b_ii",
-      "text": "Each employee in a finance company has a computer and an electronic account. The finance company is concerned that a hacker may perform a brute-force attack to gain access to an employee's account. Give three cyber security solutions that could be used to help prevent a brute-force attack from being successful.\n1\n2\n3",
-      "command": "State",
+      "text": "Each employee in a finance company has a computer and an electronic account. The finance company is concerned that a hacker may perform a brute-force attack to gain access to an employee's account.\n\nGive three cyber security solutions that could be used to help prevent a brute-force attack from being successful.\n1\n2\n3",
+      "command": "Give",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
@@ -1485,13 +1493,13 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q9c_i",
-      "text": "Each employee in a finance company has a computer and an electronic account. The company uses a digital currency to purchase a new car. State what is meant by a digital currency.",
+      "text": "Each employee in a finance company has a computer and an electronic account. The company uses a digital currency to purchase a new car.\n\nState what is meant by a digital currency.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1520,8 +1528,8 @@
     },
     {
       "id": "Q9c_ii",
-      "text": "Each employee in a finance company has a computer and an electronic account. The company uses a digital currency to purchase a new car. The digital currency uses a process that involves a digital ledger. The ledger has time stamped transactions that cannot be altered. Give the name of this process.",
-      "command": "State",
+      "text": "Each employee in a finance company has a computer and an electronic account. The company uses a digital currency to purchase a new car. The digital currency uses a process that involves a digital ledger. The ledger has time stamped transactions that cannot be altered.\n\nGive the name of this process.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1544,7 +1552,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     }
   ]

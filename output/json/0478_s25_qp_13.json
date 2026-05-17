@@ -75,24 +75,24 @@
       "High": 1
     },
     "marks_by_objective": {
-      "AO1": 63,
-      "AO2": 12
+      "AO1": 60,
+      "AO2": 15
     },
     "count_by_objective": {
-      "AO1": 27,
-      "AO2": 7
+      "AO1": 26,
+      "AO2": 8
     },
     "marks_by_layout_type": {
-      "SimpleSingleBlock": 34,
-      "MatrixGrid": 3,
+      "SimpleSingleBlock": 32,
+      "MatrixGrid": 5,
       "TermDefinitionGrid": 8,
       "NumberedMultiList": 17,
       "AnnotatedDiagram": 5,
       "InlineCloze": 8
     },
     "count_by_layout_type": {
-      "SimpleSingleBlock": 20,
-      "MatrixGrid": 3,
+      "SimpleSingleBlock": 19,
+      "MatrixGrid": 4,
       "TermDefinitionGrid": 2,
       "NumberedMultiList": 7,
       "AnnotatedDiagram": 1,
@@ -134,7 +134,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer. Give one input device the student can use to record the song.",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nGive one input device the student can use to record the song.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -163,7 +163,7 @@
     },
     {
       "id": "Q1b",
-      "text": "A student records himself singing a song for his music project. The student uses sound editing software to edit the recorded sound. Tick (✓) one box to show whether sound editing software is an example of application, security, system or utility software.\nA application software\nB security software\nC system software\nD utility software",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nThe student uses sound editing software to edit the recorded sound.\n\nTick (✓) one box to show whether sound editing software is an example of application, security, system or utility software.\n\nA application software\nB security software\nC system software\nD utility software",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -202,7 +202,7 @@
     },
     {
       "id": "Q1c_i",
-      "text": "A student records himself singing a song for his music project. Two binary numbers stored from the recording are 00011001 and 10110100. Convert the two binary numbers to denary numbers.\n00011001\n10110100",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nTwo binary numbers stored from the recording are 00011001 and 10110100.\n\nConvert the two binary numbers to denary numbers.\n\n00011001\n10110100\n\nWorking space",
       "command": "Convert",
       "objective": "AO1",
       "marks": 2,
@@ -217,7 +217,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "25",
@@ -235,7 +235,7 @@
     },
     {
       "id": "Q1c_ii",
-      "text": "A student records himself singing a song for his music project. Two binary numbers stored from the recording are 00011001 and 10110100. Convert the two binary numbers to hexadecimal numbers.\n00011001\n10110100",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nTwo binary numbers stored from the recording are 00011001 and 10110100.\n\nConvert the two binary numbers to hexadecimal numbers.\n\n00011001\n10110100\n\nWorking space",
       "command": "Convert",
       "objective": "AO1",
       "marks": 2,
@@ -250,7 +250,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "19",
@@ -268,7 +268,7 @@
     },
     {
       "id": "Q1c_iii",
-      "text": "A student records himself singing a song for his music project. A logical right shift of two places is performed on the binary number 10100100. Give the binary number that would be stored after the logical shift has taken place.",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nTwo binary numbers stored from the recording are 00011001 and 10110100.\n\nA logical right shift of two places is performed on the binary number 10100100.\n\nGive the binary number that would be stored after the logical shift has taken place.\n\nWorking space",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -297,7 +297,7 @@
     },
     {
       "id": "Q1d",
-      "text": "A student records himself singing a song for his music project. The two's complement 8-bit binary integer 11001001 is also stored. Convert the two's complement 8-bit binary integer to denary. Show all of your working.\nDenary value",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nThe two's complement 8-bit binary integer 11001001 is also stored.\n\nConvert the two's complement 8-bit binary integer to denary. Show all of your working.\n\nWorking space\n\nDenary value",
       "command": "Convert",
       "objective": "AO1",
       "marks": 2,
@@ -330,7 +330,7 @@
     },
     {
       "id": "Q1e",
-      "text": "A student records himself singing a song for his music project. The table contains terms and descriptions about the process of converting analogue sound to binary. Complete the table with the missing term and descriptions.\nTerm | Description\n[blank] | This is the measurement of the height (amplitude) of a sound wave taken at regular time intervals.\nsample rate | [blank]\nsample resolution | [blank]",
+      "text": "A student records himself singing a song for his music project. The recorded sound is converted to binary to be processed by a computer.\n\nThe table contains terms and descriptions about the process of converting analogue sound to binary.\n\nComplete the table with the missing term and descriptions.\n\nTerm | Description\n(blank) | This is the measurement of the height (amplitude) of a sound wave taken at regular time intervals.\nsample rate | (blank)\nsample resolution | (blank)",
       "command": "Complete",
       "objective": "AO1",
       "marks": 3,
@@ -362,15 +362,15 @@
         "scoring_rule": "One mark for each correct missing term or definition.",
         "marking_points": [
           {
-            "text": "(sound) sampling/sample",
+            "text": "Term: (sound) sampling/sample",
             "marks": 1
           },
           {
-            "text": "The number of samples recorded each second",
+            "text": "sample rate: The number of samples recorded each second",
             "marks": 1
           },
           {
-            "text": "The number of bits that are used to record each sample",
+            "text": "sample resolution: The number of bits that are used to record each sample",
             "marks": 1
           }
         ]
@@ -381,7 +381,7 @@
     },
     {
       "id": "Q2a",
-      "text": "A company employee is editing a video for the company's website. Data is stored in the random access memory (RAM) when the video is edited. The RAM becomes full and pages of data are transmitted to a partitioned section of the secondary storage to stop the computer from crashing. Give the name of the partitioned section of the secondary storage that is used in this process.",
+      "text": "A company employee is editing a video for the company's website. Data is stored in the random access memory (RAM) when the video is edited. The RAM becomes full and pages of data are transmitted to a partitioned section of the secondary storage to stop the computer from crashing.\n\nGive the name of the partitioned section of the secondary storage that is used in this process.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -410,7 +410,7 @@
     },
     {
       "id": "Q2b",
-      "text": "A company employee is editing a video for the company's website. The secondary storage is a hard disk drive (HDD). An HDD is an example of magnetic storage. One feature of magnetic storage is that it uses platters. Give three other features of magnetic storage.\n1\n2\n3",
+      "text": "A company employee is editing a video for the company's website. Data is stored in the random access memory (RAM) when the video is edited. The RAM becomes full and pages of data are transmitted to a partitioned section of the secondary storage to stop the computer from crashing.\n\nThe secondary storage is a hard disk drive (HDD). An HDD is an example of magnetic storage. One feature of magnetic storage is that it uses platters.\n\nGive three other features of magnetic storage.\n\n1\n2\n3",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -455,7 +455,7 @@
     },
     {
       "id": "Q2c",
-      "text": "A company employee is editing a video for the company's website. The secondary storage is a hard disk drive (HDD). Give the reasons why an HDD is an example of secondary storage.",
+      "text": "A company employee is editing a video for the company's website. Data is stored in the random access memory (RAM) when the video is edited. The RAM becomes full and pages of data are transmitted to a partitioned section of the secondary storage to stop the computer from crashing.\n\nThe secondary storage is a hard disk drive (HDD).\n\nGive the reasons why an HDD is an example of secondary storage.",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -470,7 +470,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "It is not directly accessed by the CPU.",
@@ -488,7 +488,7 @@
     },
     {
       "id": "Q3a",
-      "text": "A computer with a Von Neumann architecture has several hardware components. Complete the table with the missing terms and descriptions about computer hardware.\nTerm | Description\n[blank] | This is the address given to a network interface card (NIC) when it is manufactured.\nregister | [blank]\nclock | [blank]\ncontrol unit (CU) | [blank]\n[blank] | This is a processing unit within the CPU that can fetch, decode and execute instructions.",
+      "text": "A computer with a Von Neumann architecture has several hardware components.\n\nComplete the table with the missing terms and descriptions about computer hardware.\n\nTerm | Description\n(blank) | This is the address given to a network interface card (NIC) when it is manufactured.\nregister | (blank)\nclock | (blank)\ncontrol unit (CU) | (blank)\n(blank) | This is a processing unit within the CPU that can fetch, decode and execute instructions.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 5,
@@ -528,23 +528,23 @@
         "scoring_rule": "One mark for each correct missing term or description.",
         "marking_points": [
           {
-            "text": "MAC address",
+            "text": "MAC address: This is the address given to a network interface card (NIC) when it is manufactured.",
             "marks": 1
           },
           {
-            "text": "A component in the central processing unit (CPU) that is used to temporarily store data.",
+            "text": "register: A component in the central processing unit (CPU) that is used to temporarily store data.",
             "marks": 1
           },
           {
-            "text": "It controls the number of fetch-decode-execute cycles that are performed per second.",
+            "text": "clock: It controls the number of fetch-decode-execute cycles that are performed per second.",
             "marks": 1
           },
           {
-            "text": "A component in the CPU that manages the flow of data around the CPU // A component that decodes the instructions",
+            "text": "control unit: A component in the CPU that manages the flow of data around the CPU // A component that decodes the instructions",
             "marks": 1
           },
           {
-            "text": "core",
+            "text": "core: This is a processing unit within the CPU that can fetch, decode and execute instructions.",
             "marks": 1
           }
         ]
@@ -555,7 +555,7 @@
     },
     {
       "id": "Q3b",
-      "text": "A computer with a Von Neumann architecture has several hardware components. Identify three registers that are used in the fetch stage of the fetch–decode–execute (FDE) cycle.\n1\n2\n3",
+      "text": "A computer with a Von Neumann architecture has several hardware components.\n\nIdentify three registers that are used in the fetch stage of the fetch–decode–execute (FDE) cycle.\n\n1\n2\n3",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,
@@ -596,15 +596,28 @@
     },
     {
       "id": "Q3c",
-      "text": "A computer with a Von Neumann architecture has several hardware components. Circle the two buses that are used in the fetch stage of the FDE cycle.\nbinary  control  denary  data\ninformation  hardware  software",
+      "text": "A computer with a Von Neumann architecture has several hardware components.\n\nCircle the two buses that are used in the fetch stage of the FDE cycle.\n\nbinary   control   denary   data\ninformation   hardware   software",
       "command": "Circle",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 7,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "MatrixGrid",
       "structure_data": {
-        "line_count": 1
+        "matrix_headers": [
+          "Option",
+          "Select"
+        ],
+        "row_count": 7,
+        "rows": [
+          "binary",
+          "control",
+          "denary",
+          "data",
+          "information",
+          "hardware",
+          "software"
+        ]
       },
       "topic": "3.1",
       "topic_name": "Computer Architecture",
@@ -629,7 +642,7 @@
     },
     {
       "id": "Q4a",
-      "text": "A computer has an operating system. One function of the operating system is handling interrupts. Describe the role of the operating system in handling interrupts.",
+      "text": "A computer has an operating system. One function of the operating system is handling interrupts.\n\nDescribe the role of the operating system in handling interrupts.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -666,7 +679,7 @@
     },
     {
       "id": "Q4b",
-      "text": "A computer has an operating system. One function of the operating system is handling interrupts. Give two other functions of an operating system.\n1\n2",
+      "text": "A computer has an operating system. One function of the operating system is handling interrupts.\n\nGive two other functions of an operating system.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -723,7 +736,7 @@
     },
     {
       "id": "Q4c_i",
-      "text": "A computer has an operating system. Hardware and software interrupts are two types of interrupt. Give one example of a hardware interrupt.",
+      "text": "A computer has an operating system. One function of the operating system is handling interrupts.\n\nHardware and software interrupts are two types of interrupt.\n\nGive one example of a hardware interrupt.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -760,7 +773,7 @@
     },
     {
       "id": "Q4c_ii",
-      "text": "A computer has an operating system. Hardware and software interrupts are two types of interrupt. Give one example of a software interrupt.",
+      "text": "A computer has an operating system. One function of the operating system is handling interrupts.\n\nHardware and software interrupts are two types of interrupt.\n\nGive one example of a software interrupt.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -793,7 +806,7 @@
     },
     {
       "id": "Q5a",
-      "text": "An online company has a website that allows a user to buy products. The user types in the uniform resource locator (URL) for the website and this is sent to a domain name server (DNS). Describe the role of the DNS.",
+      "text": "An online company has a website that allows a user to buy products. The user types in the uniform resource locator (URL) for the website and this is sent to a domain name server (DNS).\n\nDescribe the role of the DNS.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -834,7 +847,7 @@
     },
     {
       "id": "Q5b",
-      "text": "An online company has a website that allows a user to buy products. The website asks a user to input their username and password to log into their account. The company want to make their login system more secure. Tick (✓) one box to show one other security method that could be added to make the login system more secure.\nA access levels\nB firewall\nC spyware\nD two-step verification",
+      "text": "An online company has a website that allows a user to buy products.\n\nThe website asks a user to input their username and password to log into their account. The company want to make their login system more secure.\n\nTick (✓) one box to show one other security method that could be added to make the login system more secure.\n\nA access levels\nB firewall\nC spyware\nD two-step verification",
       "command": "Tick",
       "objective": "AO2",
       "marks": 1,
@@ -873,12 +886,12 @@
     },
     {
       "id": "Q5c_i",
-      "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks. Complete and annotate a diagram to show how a DDoS attack is carried out on the web server.\nweb server",
+      "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks.\n\nComplete and annotate a diagram to show how a DDoS attack is carried out on the web server.\n\nweb server",
       "command": "Complete and annotate",
       "objective": "AO1",
       "marks": 5,
       "visuals": [
-        "Partial diagram showing a web server node"
+        "Partial diagram showing a web server"
       ],
       "page": 8,
       "layout_type": "AnnotatedDiagram",
@@ -893,7 +906,7 @@
       "answers": {
         "type": "diagram",
         "visuals": [
-          "Example diagram showing botnet with bots, third party, requests to web server, and annotations"
+          "Partial diagram showing a web server"
         ],
         "scoring_rule": "One mark for each part of the diagram that shows:",
         "marking_points": [
@@ -929,7 +942,7 @@
     },
     {
       "id": "Q5c_ii",
-      "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks. Identify two tasks that can be performed by a proxy server that are not performed by a firewall.\n1\n2",
+      "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks.\n\nIdentify two tasks that can be performed by a proxy server that are not performed by a firewall.\n\n1\n2",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -944,7 +957,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "Hide a public IP address",
@@ -962,7 +975,7 @@
     },
     {
       "id": "Q5d_i",
-      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. The items remain in the cart after the user closes their web browser. Tick (✓) one box to show the type of cookie that is used for this process.\nA dynamic\nB persistent\nC session\nD static",
+      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. The items remain in the cart after the user closes their web browser.\n\nTick (✓) one box to show the type of cookie that is used for this process.\n\nA dynamic\nB persistent\nC session\nD static",
       "command": "Tick",
       "objective": "AO2",
       "marks": 1,
@@ -1001,7 +1014,7 @@
     },
     {
       "id": "Q5d_ii",
-      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. Give three other ways that the company can use cookies.\n1\n2\n3",
+      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart.\n\nGive three other ways that the company can use cookies.\n\n1\n2\n3",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -1042,7 +1055,7 @@
     },
     {
       "id": "Q5d_iii",
-      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart. Cookies are stored by a web browser. Give two other functions of a web browser.\n1\n2",
+      "text": "An online company has a website that allows a user to buy products. The company uses cookies to allow users to keep items in a shopping cart.\n\nCookies are stored by a web browser.\n\nGive two other functions of a web browser.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -1087,7 +1100,7 @@
     },
     {
       "id": "Q6a",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated system uses sensors. Give one other component that would be part of the automated system.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated system uses sensors.\n\nGive one other component that would be part of the automated system.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1124,7 +1137,7 @@
     },
     {
       "id": "Q6b",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. One sensor that is part of the automated system is a temperature sensor. Give one other sensor that could be part of the automated system.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated system uses sensors. One sensor that is part of the automated system is a temperature sensor.\n\nGive one other sensor that could be part of the automated system.",
       "command": "Give",
       "objective": "AO2",
       "marks": 1,
@@ -1165,7 +1178,7 @@
     },
     {
       "id": "Q6c_i",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. An alert is sent to an employee in the weather office if a temperature above 40 °C is detected. Explain how a temperature above 40 °C is detected for the alert.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. An alert is sent to an employee in the weather office if a temperature above 40 °C is detected.\n\nExplain how a temperature above 40 °C is detected for the alert.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 3,
@@ -1206,9 +1219,9 @@
     },
     {
       "id": "Q6c_ii",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. An alert is sent to an employee in the weather office if a temperature above 40 °C is detected. The data for the alert is sent using serial simplex data transmission. Explain how the data is sent using serial simplex data transmission.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. An alert is sent to an employee in the weather office if a temperature above 40 °C is detected. The data for the alert is sent using serial simplex data transmission.\n\nExplain how the data is sent using serial simplex data transmission.",
       "command": "Explain",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 10,
@@ -1243,7 +1256,7 @@
     },
     {
       "id": "Q6d",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. Give two advantages to the weather station employees of using an automated weather system.\n1\n2",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather.\n\nGive two advantages to the weather station employees of using an automated weather system.\n\n1\n2",
       "command": "Give",
       "objective": "AO2",
       "marks": 2,
@@ -1284,7 +1297,7 @@
     },
     {
       "id": "Q6e",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. Give one disadvantage to the weather station employees of using an automated weather system.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather.\n\nGive one disadvantage to the weather station employees of using an automated weather system.",
       "command": "Give",
       "objective": "AO2",
       "marks": 1,
@@ -1317,7 +1330,7 @@
     },
     {
       "id": "Q6f_i",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated weather system is upgraded and given machine learning capabilities. Machine learning is part of a branch of computer science. Identify the name of this branch of computer science.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated weather system is upgraded and given machine learning capabilities.\n\nMachine learning is part of a branch of computer science.\n\nIdentify the name of this branch of computer science.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -1346,7 +1359,7 @@
     },
     {
       "id": "Q6f_ii",
-      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated weather system is upgraded and given machine learning capabilities. Explain how the machine learning capabilities can be used to predict future weather.",
+      "text": "A weather station uses automated systems to collect and analyse data about the weather. The automated weather system is upgraded and given machine learning capabilities.\n\nExplain how the machine learning capabilities can be used to predict future weather.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 3,
@@ -1403,7 +1416,7 @@
     },
     {
       "id": "Q7a",
-      "text": "Data is sent from an employee's computer to a server. The data is correct when it is sent, but an error is detected when the data is received. Describe how an error can occur in the data during transmission.",
+      "text": "Data is sent from an employee's computer to a server. The data is correct when it is sent, but an error is detected when the data is received.\n\nDescribe how an error can occur in the data during transmission.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -1418,7 +1431,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "It can suffer Interference/crosstalk.",
@@ -1436,7 +1449,7 @@
     },
     {
       "id": "Q7b",
-      "text": "Data is sent from an employee's computer to a server. Methods of error detection and correction can be added to make sure that errors are identified after data is transmitted. Complete the statements about methods of error detection and correction. Use terms from the list. Not all terms need to be used. You should only use each term once.\nacknowledgement  automatic repeat query (ARQ)  binary  bit\nbyte  calculation  check digit  checksum  correct\necho check  error  even  incorrect  negative\nnumber  odd  positive  timeout\n\nA parity check is set to be [blank] or [blank]. A parity [blank] is added to each byte before transmission to make it match the set parity.\nAn [blank] involves comparing the data sent to the data received back from the receiving device.\nAn [blank] uses acknowledgement and [blank]. The acknowledgement system can be [blank] or [blank].",
+      "text": "Data is sent from an employee's computer to a server. The data is correct when it is sent, but an error is detected when the data is received.\n\nMethods of error detection and correction can be added to make sure that errors are identified after data is transmitted.\n\nComplete the statements about methods of error detection and correction.\n\nUse terms from the list. Not all terms need to be used. You should only use each term once.\n\nacknowledgement   automatic repeat query (ARQ)   binary   bit\nbyte   calculation   check digit   checksum   correct\necho check   error   even   incorrect   negative\nnumber   odd   positive   timeout\n\nA parity check is set to be [blank] or [blank]. A parity [blank] is added to each byte before transmission to make it match the set parity.\n\nAn [blank] involves comparing the data sent to the data received back from the receiving device.\n\nAn [blank] uses acknowledgement and [blank]. The acknowledgement system can be [blank] or [blank].",
       "command": "Complete",
       "objective": "AO1",
       "marks": 8,

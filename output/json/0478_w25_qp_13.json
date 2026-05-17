@@ -55,14 +55,16 @@
       "High": 5
     },
     "marks_by_bloom_level": {
-      "Remember": 14,
-      "Understand": 44,
-      "Create": 17
+      "Understand": 47,
+      "Create": 6,
+      "Apply": 11,
+      "Remember": 11
     },
     "count_by_bloom_level": {
-      "Remember": 9,
-      "Understand": 23,
-      "Create": 3
+      "Understand": 26,
+      "Create": 1,
+      "Apply": 2,
+      "Remember": 6
     },
     "marks_by_cognitive_load": {
       "Low": 50,
@@ -75,12 +77,12 @@
       "High": 1
     },
     "marks_by_objective": {
-      "AO1": 61,
-      "AO2": 14
+      "AO1": 67,
+      "AO2": 8
     },
     "count_by_objective": {
-      "AO1": 31,
-      "AO2": 4
+      "AO1": 32,
+      "AO2": 3
     },
     "marks_by_layout_type": {
       "MatrixGrid": 3,
@@ -97,19 +99,23 @@
       "AnnotatedDiagram": 1
     },
     "marks_by_command": {
-      "Identify": 13,
+      "Tick": 3,
       "Give": 15,
       "Explain": 20,
       "Describe": 9,
-      "Write": 17,
+      "Write": 6,
+      "Complete": 11,
+      "Identify": 10,
       "State": 1
     },
     "count_by_command": {
-      "Identify": 8,
+      "Tick": 3,
       "Give": 13,
       "Explain": 7,
       "Describe": 3,
-      "Write": 3,
+      "Write": 1,
+      "Complete": 2,
+      "Identify": 5,
       "State": 1
     },
     "marks_by_answer_type": {
@@ -126,8 +132,8 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "A flower shop has a room that has an air-conditioning system. It is used to keep the room at a constant temperature for storing flowers. The owner uses a keypad to set the temperature for the room.\n\nTick (✓) one box to show whether a keypad is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
-      "command": "Identify",
+      "text": "A flower shop has a room that has an air-conditioning system. It is used to keep the room at a constant temperature for storing flowers. The owner uses a keypad to set the temperature for the room.\n\nTick (✓) one box to show whether a keypad is an example of an input, output, process or storage device.\n\nA input\nB output\nC process\nD storage",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -136,7 +142,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Device type"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -160,7 +166,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
@@ -368,7 +374,7 @@
     },
     {
       "id": "Q1d",
-      "text": "If the owner of the shop wants to make the room very cold, she may need to enter a negative denary number. The negative denary number could be represented using two's complement.\n\nGive the two's complement 8-bit binary integer that would be stored for the temperature –5. Show all your working.\n\nTwo's complement 8-bit binary integer [blank]",
+      "text": "If the owner of the shop wants to make the room very cold, she may need to enter a negative denary number. The negative denary number could be represented using two's complement.\n\nGive the two's complement 8-bit binary integer that would be stored for the temperature –5. Show all your working.\n\nWorking space\n\nTwo's complement 8-bit binary integer [blank]",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -383,14 +389,14 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for correct method of working, for example flip and add 1\nOne mark for correct answer",
+        "scoring_rule": "1 mark for correct method of working, 1 mark for correct answer",
         "marking_points": [
           {
             "text": "One mark for correct method of working, for example flip and add 1",
             "marks": 1
           },
           {
-            "text": "11111011",
+            "text": "One mark for correct answer 11111011",
             "marks": 1
           }
         ]
@@ -401,8 +407,8 @@
     },
     {
       "id": "Q1e_i",
-      "text": "The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level.\n\nTick (✓) one box to show whether the sensor is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
-      "command": "Identify",
+      "text": "The air-conditioning system uses a temperature sensor and a microprocessor to keep the temperature of the room at a constant level.\n\nTick (✓) one box to show whether the sensor is an example of an input, output, process or storage device.\n\nA input\nB output\nC process\nD storage",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -411,7 +417,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Device type"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -435,7 +441,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
@@ -621,8 +627,8 @@
     },
     {
       "id": "Q2c_i",
-      "text": "The computer has primary storage. One example of primary storage is cache.\n\nTick (✓) one box to show the correct statement that describes the purpose of cache.\nA It stores important instructions.\nB It stores the next instruction to be processed.\nC It stores frequently used instructions.\nD It stores instructions so they are not lost when the power is turned off.",
-      "command": "Identify",
+      "text": "The computer has primary storage. One example of primary storage is cache.\n\nTick (✓) one box to show the correct statement that describes the purpose of cache.\n\nA It stores important instructions.\nB It stores the next instruction to be processed.\nC It stores frequently used instructions.\nD It stores instructions so they are not lost when the power is turned off.",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -631,7 +637,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Statement"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -655,7 +661,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
@@ -685,7 +691,7 @@
             "marks": 1
           },
           {
-            "text": "Data: RAM — Data/programs/software/instructions that are currently in use // ROM — Startup instructions / Bootstrap / Firmware // Virtual memory — Pages from RAM that are not immediately needed / Data/programs/software/instructions that are currently in use",
+            "text": "Data: Data/programs/software/instructions that are currently in use (for RAM) // Startup instructions / Bootstrap / Firmware (for ROM/BIOS) // Pages from RAM that are not immediately needed / Data/programs/software/instructions that are currently in use (for Virtual memory)",
             "marks": 1
           }
         ]
@@ -696,16 +702,11 @@
     },
     {
       "id": "Q2d",
-      "text": "The computer also has secondary storage.\n\nWrite the name of the type of secondary storage for each description in the table. Each type of secondary storage may be used more than once.\n\nType of secondary storage | Description\n[blank] | It burns pits and lands onto a disk.\n[blank] | It uses control gates and flow gates.\n[blank] | It uses NAND or NOR technology.\n[blank] | The surface of each platter is divided into tracks and sectors.\n[blank] | It has a read/write arm that moves a laser across a disc.\n[blank] | It controls the flow of electrons using transistors.",
+      "text": "The computer also has secondary storage.\n\nWrite the name of the type of secondary storage for each description in the table. Each type of secondary storage may be used more than once.\n\nType of secondary storage | Description\n(blank) | It burns pits and lands onto a disk.\n(blank) | It uses control gates and flow gates.\n(blank) | It uses NAND or NOR technology.\n(blank) | The surface of each platter is divided into tracks and sectors.\n(blank) | It has a read/write arm that moves a laser across a disc.\n(blank) | It controls the flow of electrons using transistors.",
       "command": "Write",
       "objective": "AO1",
       "marks": 6,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Two-column table mapping secondary storage types to descriptions"
-        }
-      ],
+      "visuals": [],
       "page": 6,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -741,36 +742,31 @@
       "topic_name": "Data Storage",
       "answers": {
         "type": "text",
-        "visuals": [
-          {
-            "type": "table",
-            "description": "Two-column table mapping secondary storage types to descriptions"
-          }
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each correct storage type",
         "marking_points": [
           {
-            "text": "Optical (for: It burns pits and lands onto a disk.)",
+            "text": "It burns pits and lands onto a disk. — Optical",
             "marks": 1
           },
           {
-            "text": "Solid-state (for: It uses control gates and flow gates.)",
+            "text": "It uses control gates and flow gates. — Solid-state",
             "marks": 1
           },
           {
-            "text": "Solid-state (for: It uses NAND or NOR technology.)",
+            "text": "It uses NAND or NOR technology. — Solid-state",
             "marks": 1
           },
           {
-            "text": "Magnetic (for: The surface of each platter is divided into tracks and sectors.)",
+            "text": "The surface of each platter is divided into tracks and sectors. — Magnetic",
             "marks": 1
           },
           {
-            "text": "Optical (for: It has a read/write arm that moves a laser across a disc.)",
+            "text": "It has a read/write arm that moves a laser across a disc. — Optical",
             "marks": 1
           },
           {
-            "text": "Solid-state (for: It controls the flow of electrons using transistors.)",
+            "text": "It controls the flow of electrons using transistors. — Solid-state",
             "marks": 1
           }
         ]
@@ -781,25 +777,22 @@
     },
     {
       "id": "Q3a",
-      "text": "Data is split into packets before it is transmitted across a network.\n\nThe diagram shows a packet with three sections. Complete the diagram by writing the name of each section of the packet. Write an example in each section of what would be stored in that part of the packet.\n\nPacket\nFirst — The first section is called the [blank] Example [blank]\nSecond — The second section is called the [blank] Example [blank]\nThird — The third section is called the [blank] Example [blank]",
-      "command": "Write",
+      "text": "Data is split into packets before it is transmitted across a network.\n\nThe diagram shows a packet with three sections. Complete the diagram by writing the name of each section of the packet. Write an example in each section of what would be stored in that part of the packet.\n\nPacket\n\nFirst\nThe first section is called the [blank] Example [blank]\n\nSecond\nThe second section is called the [blank] Example [blank]\n\nThird\nThe third section is called the [blank] Example [blank]",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 6,
       "visuals": [
-        {
-          "type": "diagram",
-          "description": "Packet structure diagram with three labelled sections to be completed"
-        }
+        "Packet diagram with three sections labelled First, Second, Third"
       ],
       "page": 6,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
         "diagram_type": "other",
         "partial_elements": [
+          "Packet",
           "First",
           "Second",
-          "Third",
-          "Packet"
+          "Third"
         ]
       },
       "topic": "2.1",
@@ -807,15 +800,12 @@
       "answers": {
         "type": "diagram",
         "visuals": [
-          {
-            "type": "diagram",
-            "description": "Packet structure diagram with three labelled sections to be completed"
-          }
+          "Packet diagram with three sections labelled First, Second, Third"
         ],
         "scoring_rule": "One mark for each correct section\nOne mark for each correct example of what it stores",
         "marking_points": [
           {
-            "text": "First section: Header",
+            "text": "First section name: Header",
             "marks": 1
           },
           {
@@ -823,7 +813,7 @@
             "marks": 1
           },
           {
-            "text": "Second section: Payload",
+            "text": "Second section name: Payload",
             "marks": 1
           },
           {
@@ -831,7 +821,7 @@
             "marks": 1
           },
           {
-            "text": "Third section: Trailer",
+            "text": "Third section name: Trailer",
             "marks": 1
           },
           {
@@ -841,7 +831,7 @@
         ]
       },
       "difficulty": "High",
-      "bloom_level": "Create",
+      "bloom_level": "Apply",
       "cognitive_load": "High"
     },
     {
@@ -928,9 +918,9 @@
     },
     {
       "id": "Q4a",
-      "text": "A cyber security company specialises in security solutions that help prevent hackers being successful.\n\nIdentify two security solutions that can be provided to help prevent hackers being successful. Explain how each solution helps prevent hackers being successful.\n\nSolution 1\nExplanation\nSolution 2\nExplanation",
+      "text": "A cyber security company specialises in security solutions that help prevent hackers being successful.\n\nIdentify two security solutions that can be provided to help prevent hackers being successful. Explain how each solution helps prevent hackers being successful.\n\nSolution 1\nExplanation\n\nSolution 2\nExplanation",
       "command": "Identify",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 6,
       "visuals": [],
       "page": 8,
@@ -1045,7 +1035,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "Two marks for:\nAny one from:",
+        "scoring_rule": "Two marks for: ... Any one from:",
         "marking_points": [
           {
             "text": "Involves manipulating/deceiving people",
@@ -1149,16 +1139,11 @@
     },
     {
       "id": "Q5a",
-      "text": "Text, images and sound are represented as binary to be processed by a computer.\n\nComplete the table by writing the missing terms and descriptions about representing text, images and sound as binary.\n\nTerm | Description\ncharacter set | [blank]\n[blank] | This is the number of samples taken each second when recording sound.\npixel | [blank]\nresolution | [blank]\n[blank] | This is the number of bits used to represent a colour in an image.",
-      "command": "Write",
+      "text": "Text, images and sound are represented as binary to be processed by a computer.\n\nComplete the table by writing the missing terms and descriptions about representing text, images and sound as binary.\n\nTerm | Description\ncharacter set | (blank)\n(blank) | This is the number of samples taken each second when recording sound.\npixel | (blank)\nresolution | (blank)\n(blank) | This is the number of bits used to represent a colour in an image.",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 5,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Two-column Term/Description table with some cells pre-filled and others blank"
-        }
-      ],
+      "visuals": [],
       "page": 10,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -1190,12 +1175,7 @@
       "topic_name": "Text, Sound and Images",
       "answers": {
         "type": "text",
-        "visuals": [
-          {
-            "type": "table",
-            "description": "Two-column Term/Description table with some cells pre-filled and others blank"
-          }
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each correct term or description",
         "marking_points": [
           {
@@ -1221,7 +1201,7 @@
         ]
       },
       "difficulty": "High",
-      "bloom_level": "Create",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {

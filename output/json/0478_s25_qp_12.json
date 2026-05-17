@@ -48,23 +48,23 @@
     },
     "marks_by_difficulty": {
       "Low": 7,
-      "Medium": 47,
-      "High": 21
+      "Medium": 41,
+      "High": 27
     },
     "count_by_difficulty": {
       "Low": 7,
-      "Medium": 16,
-      "High": 4
+      "Medium": 15,
+      "High": 5
     },
     "marks_by_bloom_level": {
-      "Understand": 61,
+      "Understand": 55,
       "Remember": 3,
-      "Apply": 11
+      "Apply": 17
     },
     "count_by_bloom_level": {
-      "Understand": 22,
+      "Understand": 21,
       "Remember": 3,
-      "Apply": 2
+      "Apply": 3
     },
     "marks_by_cognitive_load": {
       "Low": 40,
@@ -78,11 +78,13 @@
     },
     "marks_by_objective": {
       "AO1": 54,
-      "AO2": 21
+      "AO2": 19,
+      "AO3": 2
     },
     "count_by_objective": {
       "AO1": 21,
-      "AO2": 6
+      "AO2": 5,
+      "AO3": 1
     },
     "marks_by_layout_type": {
       "SimpleSingleBlock": 39,
@@ -109,10 +111,9 @@
       "Explain": 21,
       "Tick": 1,
       "State": 2,
-      "Complete": 11,
+      "Complete": 17,
       "Identify": 1,
-      "Describe": 7,
-      "Complete and annotate": 6
+      "Describe": 7
     },
     "count_by_command": {
       "Give": 8,
@@ -121,10 +122,9 @@
       "Explain": 7,
       "Tick": 1,
       "State": 2,
-      "Complete": 2,
+      "Complete": 3,
       "Identify": 1,
-      "Describe": 2,
-      "Complete and annotate": 1
+      "Describe": 2
     },
     "marks_by_answer_type": {
       "text": 68,
@@ -140,7 +140,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "A computer stores data temporarily in random access memory (RAM). RAM is one example of primary storage. Give one other example of primary storage.",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nRAM is one example of primary storage.\n\nGive one other example of primary storage.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -173,7 +173,7 @@
     },
     {
       "id": "Q1b",
-      "text": "A computer stores data temporarily in random access memory (RAM). Give one reason why data is only stored temporarily in the RAM.",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nGive one reason why data is only stored temporarily in the RAM.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -206,7 +206,7 @@
     },
     {
       "id": "Q1c",
-      "text": "A computer stores data temporarily in random access memory (RAM). The denary numbers 19 and 230 are converted to binary numbers to be stored in the RAM. Convert the two denary numbers to binary numbers.\n19\n230",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nThe denary numbers 19 and 230 are converted to binary numbers to be stored in the RAM.\n\nConvert the two denary numbers to binary numbers.\n\n19\n230",
       "command": "Convert",
       "objective": "AO1",
       "marks": 2,
@@ -239,7 +239,7 @@
     },
     {
       "id": "Q1d",
-      "text": "A computer stores data temporarily in random access memory (RAM). The hexadecimal numbers 35 and 8AD are converted to binary numbers to be stored in the RAM. Convert the two hexadecimal numbers to binary numbers.\n35\n8AD",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nThe hexadecimal numbers 35 and 8AD are converted to binary numbers to be stored in the RAM.\n\nConvert the two hexadecimal numbers to binary numbers.\n\n35\n8AD",
       "command": "Convert",
       "objective": "AO1",
       "marks": 2,
@@ -272,7 +272,7 @@
     },
     {
       "id": "Q1e",
-      "text": "A computer stores data temporarily in random access memory (RAM). The 8-bit binary numbers 01100101 and 01110000 are stored in RAM. The binary numbers are added together. Add the two binary numbers using binary addition. Give your answer in binary. You must show all your working.\n  0 1 1 0 0 1 0 1\n+ 0 1 1 1 0 0 0 0",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nThe 8-bit binary numbers 01100101 and 01110000 are stored in RAM. The binary numbers are added together.\n\nAdd the two binary numbers using binary addition. Give your answer in binary. You must show all your working.\n\n  0 1 1 0 0 1 0 1\n+ 0 1 1 1 0 0 0 0",
       "command": "Add",
       "objective": "AO1",
       "marks": 3,
@@ -280,21 +280,21 @@
       "page": 3,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
-        "line_count": 4
+        "line_count": 3
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for each correct nibble (MAX 2)\nOne mark for a correct method of working e.g. showing carries.",
+        "scoring_rule": "One mark for each correct nibble (MAX 2) One mark for a correct method of working e.g. showing carries.",
         "marking_points": [
           {
-            "text": "1101 (correct upper nibble of result)",
+            "text": "1101 (correct second nibble of answer)",
             "marks": 1
           },
           {
-            "text": "0101 (correct lower nibble of result)",
+            "text": "0101 (correct first nibble of answer)",
             "marks": 1
           },
           {
@@ -309,7 +309,7 @@
     },
     {
       "id": "Q1f",
-      "text": "A computer stores data temporarily in random access memory (RAM). An overflow occurs when two other 8-bit binary numbers are added together. Explain why the overflow error occurs.",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nAn overflow occurs when two other 8-bit binary numbers are added together.\n\nExplain why the overflow error occurs.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -342,7 +342,7 @@
     },
     {
       "id": "Q1g",
-      "text": "A computer stores data temporarily in random access memory (RAM). The negative denary number –22 is stored in RAM. Negative denary numbers can be represented as binary using two's complement. Give the two's complement 8-bit binary integer that would be stored for the denary number –22. You must show all your working.\nTwo's complement 8-bit binary integer [blank]",
+      "text": "A computer stores data temporarily in random access memory (RAM).\n\nThe negative denary number –22 is stored in RAM. Negative denary numbers can be represented as binary using two's complement.\n\nGive the two's complement 8-bit binary integer that would be stored for the denary number –22. You must show all your working.\n\nTwo's complement 8-bit binary integer [blank]",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -364,7 +364,7 @@
             "marks": 1
           },
           {
-            "text": "11101010",
+            "text": "One mark for correct answer: 11101010",
             "marks": 1
           }
         ]
@@ -375,7 +375,7 @@
     },
     {
       "id": "Q2a",
-      "text": "A student has an image file stored on their computer. The image file was taken by a digital camera. Tick (✓) one box to show whether a digital camera is an example of an input, output, process or storage device.\nA input\nB output\nC process\nD storage",
+      "text": "A student has an image file stored on their computer.\n\nThe image file was taken by a digital camera.\n\nTick (✓) one box to show whether a digital camera is an example of an input, output, process or storage device.\n\nA input\nB output\nC process\nD storage",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -385,7 +385,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Device type"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -414,7 +414,7 @@
     },
     {
       "id": "Q2b_i",
-      "text": "A student has an image file stored on their computer. The size of the image file is 3072 bytes. Give the size of the image file in kibibytes (KiB).",
+      "text": "A student has an image file stored on their computer.\n\nThe size of the image file is 3072 bytes.\n\nGive the size of the image file in kibibytes (KiB).",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -443,7 +443,7 @@
     },
     {
       "id": "Q2b_ii",
-      "text": "A student has an image file stored on their computer. The size of the image file is 3072 bytes. State the number of nibbles in 1 byte.",
+      "text": "A student has an image file stored on their computer.\n\nThe size of the image file is 3072 bytes.\n\nState the number of nibbles in 1 byte.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -472,7 +472,7 @@
     },
     {
       "id": "Q2c_i",
-      "text": "A student has an image file stored on their computer. The image file has a colour depth of 32 bits. State what is meant by a colour depth of 32 bits.",
+      "text": "A student has an image file stored on their computer.\n\nThe image file has a colour depth of 32 bits.\n\nState what is meant by a colour depth of 32 bits.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -501,7 +501,7 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "A student has an image file stored on their computer. The image file has a colour depth of 32 bits. The colour depth of the image file is changed to 64 bits. Explain what effect this change has on the image file.",
+      "text": "A student has an image file stored on their computer.\n\nThe image file has a colour depth of 32 bits. The colour depth of the image file is changed to 64 bits.\n\nExplain what effect this change has on the image file.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 2,
@@ -534,7 +534,7 @@
     },
     {
       "id": "Q2d",
-      "text": "A student has an image file stored on their computer. The student uses lossless compression to compress the image file. Explain how the image file is compressed using lossless compression.",
+      "text": "A student has an image file stored on their computer.\n\nThe student uses lossless compression to compress the image file.\n\nExplain how the image file is compressed using lossless compression.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 3,
@@ -583,7 +583,7 @@
     },
     {
       "id": "Q3a",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. The programmer uses a high-level language to write the program. One reason for writing the program using a high-level language is that it is easier to read and write. Give two other reasons why the programmer chose to use a high-level language.\n1\n2",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nThe programmer uses a high-level language to write the program. One reason for writing the program using a high-level language is that it is easier to read and write.\n\nGive two other reasons why the programmer chose to use a high-level language.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -620,7 +620,7 @@
     },
     {
       "id": "Q3b_i",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. The programmer uses an integrated development environment (IDE) to write the program. One function of the IDE is to provide a translator. Complete the statements about translators. Use the terms from the list. Some of the terms will not be used. You should only use a term once.\n\nWord bank: all together, all, assembler, binary, error, executable file, executing, interrupt, line by line, partial code, some, translating, whole code\n\nA compiler translates the [blank] at once before [blank] it. A compiler produces an error report that displays [blank] errors. An interpreter translates and executes the code [blank]. An interpreter stops execution when an [blank] is found and continues once it is corrected.",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nThe programmer uses an integrated development environment (IDE) to write the program. One function of the IDE is to provide a translator.\n\nComplete the statements about translators. Use the terms from the list. Some of the terms will not be used. You should only use a term once.\n\nall together   all   assembler   binary   error\nexecutable file   executing   interrupt   line by line\npartial code   some   translating   whole code\n\nA compiler translates the [blank] at once before [blank] it. A compiler produces an error report that displays [blank] errors.\n\nAn interpreter translates and executes the code [blank]. An interpreter stops execution when an [blank] is found and continues once it is corrected.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 5,
@@ -666,7 +666,7 @@
     },
     {
       "id": "Q3b_ii",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. The programmer uses an integrated development environment (IDE) to write the program. One function of the IDE is to provide a translator. Give two other functions commonly found in an IDE. State the role of each function.\nFunction 1\nRole\nFunction 2\nRole",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nThe programmer uses an integrated development environment (IDE) to write the program. One function of the IDE is to provide a translator.\n\nGive two other functions commonly found in an IDE. State the role of each function.\n\nFunction 1\nRole\nFunction 2\nRole",
       "command": "Give",
       "objective": "AO1",
       "marks": 4,
@@ -689,19 +689,51 @@
         "scoring_rule": "One mark for each correct function. One mark for each correct matching role description.",
         "marking_points": [
           {
-            "text": "Function 1: Code editor // Run-time environment // Error diagnostics // Auto-completion // Auto-correction // Prettyprint",
+            "text": "Code editor",
             "marks": 1
           },
           {
-            "text": "Role matching Function 1: e.g. Allows the programmer to write/change the program. // Allows the user to run the code and see the output. // Features that can be used to find errors in the code // A programmer starts to type a command word, and the IDE suggests option for completing it. // If a programmer misspells a command word it is changed to the correct spelling // The command words/identifiers are given different colours",
+            "text": "Allows the programmer to write/change the program.",
             "marks": 1
           },
           {
-            "text": "Function 2: Code editor // Run-time environment // Error diagnostics // Auto-completion // Auto-correction // Prettyprint (different from Function 1)",
+            "text": "Run-time environment",
             "marks": 1
           },
           {
-            "text": "Role matching Function 2: e.g. Allows the programmer to write/change the program. // Allows the user to run the code and see the output. // Features that can be used to find errors in the code // A programmer starts to type a command word, and the IDE suggests option for completing it. // If a programmer misspells a command word it is changed to the correct spelling // The command words/identifiers are given different colours",
+            "text": "Allows the user to run the code and see the output.",
+            "marks": 1
+          },
+          {
+            "text": "Error diagnostics",
+            "marks": 1
+          },
+          {
+            "text": "Features that can be used to find errors in the code",
+            "marks": 1
+          },
+          {
+            "text": "Auto-completion",
+            "marks": 1
+          },
+          {
+            "text": "A programmer starts to type a command word, and the IDE suggests option for completing it.",
+            "marks": 1
+          },
+          {
+            "text": "Auto-correction",
+            "marks": 1
+          },
+          {
+            "text": "If a programmer misspells a command word it is changed to the correct spelling",
+            "marks": 1
+          },
+          {
+            "text": "Prettyprint",
+            "marks": 1
+          },
+          {
+            "text": "The command words/identifiers are given different colours",
             "marks": 1
           }
         ]
@@ -712,7 +744,7 @@
     },
     {
       "id": "Q3c_i",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. The programmer wants to print a list of all her books on paper. Identify a suitable type of printer that she could use to print this list.",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nThe programmer wants to print a list of all her books on paper.\n\nIdentify a suitable type of printer that she could use to print this list.",
       "command": "Identify",
       "objective": "AO2",
       "marks": 1,
@@ -745,7 +777,7 @@
     },
     {
       "id": "Q3c_ii",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. The programmer needs to connect the printer to her computer. The printer is on the same desk as her computer. Give a suitable method of data transmission that could be used to connect the computer to the printer. Explain your choice.\nData transmission method\nExplanation",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nThe programmer needs to connect the printer to her computer. The printer is on the same desk as her computer.\n\nGive a suitable method of data transmission that could be used to connect the computer to the printer. Explain your choice.\n\nData transmission method\nExplanation",
       "command": "Give",
       "objective": "AO2",
       "marks": 6,
@@ -774,15 +806,15 @@
             "marks": 1
           },
           {
-            "text": "Data transmission method: Half-duplex",
+            "text": "Direction: Half-duplex",
             "marks": 1
           },
           {
-            "text": "Data transmission method: Full-duplex",
+            "text": "Direction: Full-duplex",
             "marks": 1
           },
           {
-            "text": "Data transmission method: Simplex",
+            "text": "Direction: Simplex",
             "marks": 1
           },
           {
@@ -833,7 +865,7 @@
     },
     {
       "id": "Q3c_iii",
-      "text": "A programmer writes a program to store and sort all the data for the books in her home library. An even parity check is used to detect errors in the data after it has been transmitted to the printer. Describe how an even parity check detects an error.",
+      "text": "A programmer writes a program to store and sort all the data for the books in her home library.\n\nAn even parity check is used to detect errors in the data after it has been transmitted to the printer.\n\nDescribe how an even parity check detects an error.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 4,
@@ -874,16 +906,11 @@
     },
     {
       "id": "Q4a",
-      "text": "An employee uses a computer that has a Von Neumann architecture to complete many different tasks in their working day. The computer has a central processing unit (CPU). Complete the table of components in the CPU and their descriptions.\n\nComponent | Description\n[blank] | It sends signals to all the components in the CPU to manage the flow of data through the CPU.\n[blank] | It carries out all the arithmetic and logic operations in the CPU.\ncache | [blank]\nprogram counter (PC) | [blank]\n[blank] | It controls the number of fetch–decode–execute (FDE) cycles that are performed per second.\n[blank] | It stores data immediately before it is transmitted to RAM and immediately after it is received from RAM.",
+      "text": "An employee uses a computer that has a Von Neumann architecture to complete many different tasks in their working day.\n\nThe computer has a central processing unit (CPU).\n\nComplete the table of components in the CPU and their descriptions.\n\nComponent | Description\n(blank) | It sends signals to all the components in the CPU to manage the flow of data through the CPU.\n(blank) | It carries out all the arithmetic and logic operations in the CPU.\ncache | (blank)\nprogram counter (PC) | (blank)\n(blank) | It controls the number of fetch–decode–execute (FDE) cycles that are performed per second.\n(blank) | It stores data immediately before it is transmitted to RAM and immediately after it is received from RAM.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 6,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Two-column table listing CPU components and their descriptions, with some cells blank for completion."
-        }
-      ],
+      "visuals": [],
       "page": 9,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -907,7 +934,7 @@
           },
           {
             "term": null,
-            "definition": "It controls the number of fetch-decode-execute (FDE) cycles that are performed per second."
+            "definition": "It controls the number of fetch–decode–execute (FDE) cycles that are performed per second."
           },
           {
             "term": null,
@@ -931,7 +958,7 @@
             "marks": 1
           },
           {
-            "text": "cache: It stores frequently used data/instructions",
+            "text": "Cache: It stores frequently used data/instructions",
             "marks": 1
           },
           {
@@ -954,7 +981,7 @@
     },
     {
       "id": "Q4b",
-      "text": "An employee uses a computer that has a Von Neumann architecture to complete many different tasks in their working day. The computer is an example of a general purpose computer and not an embedded system. Explain why the computer is not an embedded system.",
+      "text": "An employee uses a computer that has a Von Neumann architecture to complete many different tasks in their working day.\n\nThe computer is an example of a general purpose computer and not an embedded system.\n\nExplain why the computer is not an embedded system.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -999,7 +1026,7 @@
     },
     {
       "id": "Q5a",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. One computer is an expert system that is used to help diagnose a patient's illness. The doctor inputs the patient's symptoms into an interface and a diagnosis is output. Describe how the expert system decides the diagnosis.",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nOne computer is an expert system that is used to help diagnose a patient's illness. The doctor inputs the patient's symptoms into an interface and a diagnosis is output.\n\nDescribe how the expert system decides the diagnosis.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
@@ -1044,7 +1071,7 @@
     },
     {
       "id": "Q5b_i",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. The hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient. One feature of the robot is that it has electrical components. Give two examples of the electrical components of a robot.\n1\n2",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nThe hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient.\n\nOne feature of the robot is that it has electrical components.\n\nGive two examples of the electrical components of a robot.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -1059,7 +1086,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "Any two from:\nExamples:",
+        "scoring_rule": "Any two from: Examples:",
         "marking_points": [
           {
             "text": "Sensors",
@@ -1081,7 +1108,7 @@
     },
     {
       "id": "Q5b_ii",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. The hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient. Explain the advantages of using the robot to perform surgery.",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nThe hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient.\n\nExplain the advantages of using the robot to perform surgery.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 4,
@@ -1096,7 +1123,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "Any four from:\nExamples:",
+        "scoring_rule": "Any four from: Examples:",
         "marking_points": [
           {
             "text": "a doctor doesn't need to travel to the hospital to do the surgery.",
@@ -1150,9 +1177,9 @@
     },
     {
       "id": "Q5b_iii",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. The hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient. Explain one disadvantage of using the robot to perform surgery.",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nThe hospital has a robot that is used to perform surgery. A doctor controls the robot from a different location to perform surgery on a patient.\n\nExplain one disadvantage of using the robot to perform surgery.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 2,
       "visuals": [],
       "page": 11,
@@ -1215,15 +1242,12 @@
     },
     {
       "id": "Q5c_i",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. Patients use a web page to log into their account to pay for the treatment they have received in the hospital. The patient enters the uniform resource locator (URL) for the web page into their browser and the web page is requested and displayed. Complete and annotate the diagram to show how the web page is requested for the patient.\n\nPartial elements shown: Patient's computer, www.cihospital.com, URL input into patient's computer",
-      "command": "Complete and annotate",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nPatients use a web page to log into their account to pay for the treatment they have received in the hospital.\n\nThe patient enters the uniform resource locator (URL) for the web page into their browser and the web page is requested and displayed.\n\nComplete and annotate the diagram to show how the web page is requested for the patient.\n\nPatient's computer\nwww.cihospital.com\nURL input into patient's computer",
+      "command": "Complete",
       "objective": "AO2",
       "marks": 6,
       "visuals": [
-        {
-          "type": "diagram",
-          "description": "Partial diagram showing Patient's computer and the URL www.cihospital.com with label 'URL input into patient's computer'. Students must complete and annotate to show how the web page is requested."
-        }
+        "Partial diagram showing Patient's computer and www.cihospital.com with label 'URL input into patient's computer'"
       ],
       "page": 11,
       "layout_type": "AnnotatedDiagram",
@@ -1240,10 +1264,7 @@
       "answers": {
         "type": "diagram",
         "visuals": [
-          {
-            "type": "diagram",
-            "description": "Completed diagram showing DNS lookup and web server request process: Patient's computer sends URL to DNS; DNS searches for matching IP address; if not found, sent to another DNS; IP address sent from DNS to patient's computer; request sent from patient's computer to web server; web page/HTML data sent from web server to patient's computer."
-          }
+          "Completed diagram showing Patient's computer, DNS servers, web server, with annotated arrows for URL to DNS, IP address returned, request to web server, and web page data returned"
         ],
         "scoring_rule": "One mark for each correct part of the diagram.",
         "marking_points": [
@@ -1277,13 +1298,13 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "High"
     },
     {
       "id": "Q5c_ii",
-      "text": "A hospital has computers and technology that it uses when caring for its patients. Patients use a web page to log into their account to pay for the treatment they have received in the hospital. A patient is making a payment through a secure connection. The secure connection is created using the secure socket layer (SSL) protocol. Explain how a secure connection is created using the SSL protocol.",
+      "text": "A hospital has computers and technology that it uses when caring for its patients.\n\nPatients use a web page to log into their account to pay for the treatment they have received in the hospital. A patient is making a payment through a secure connection. The secure connection is created using the secure socket layer (SSL) protocol.\n\nExplain how a secure connection is created using the SSL protocol.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 6,
