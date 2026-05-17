@@ -820,6 +820,32 @@ def _render_question(q, source: dict | None = None):
             text = "\n".join(
                 line for line in text.splitlines() if line.strip() not in strip_set
             ).strip()
+        if strip_set and layout_type == "MatrixGrid":
+            # Normalised chunk-strip: handles every (rows-prefix × text-prefix)
+            # corner of MatrixGrid duplication with one principled comparison.
+            #
+            # Drop any line whose 2+-space-separated chunks are ALL row labels,
+            # where "is a row label" tolerates a short letter/number prefix on
+            # EITHER side. This covers:
+            #   - s24/11 Q5b: flow-list,    unprefixed rows  → chunks ∈ strip_set
+            #   - m25/12 Q1c: per-line "A …", unprefixed rows → _norm(chunk) ∈ strip_set_norm
+            #   - m24/12 Q1a: per-line "A …", prefixed   rows → chunks ∈ strip_set
+            #   - s24/13 Q6a: flow-list,    prefixed   rows → _norm(chunk) ∈ strip_set_norm
+            #                                                  (rows normalised too)
+            _PREFIX_RE = re.compile(r"^(?:[A-Za-z]|\d{1,2}\.?)\s+(.+)$")
+            def _norm(s: str) -> str:
+                m = _PREFIX_RE.match(s.strip())
+                return m.group(1).strip() if m else s.strip()
+            strip_set_norm = {_norm(r) for r in rows if isinstance(r, str)}
+            def _is_row_token(token: str) -> bool:
+                s = token.strip()
+                return s in strip_set or _norm(s) in strip_set_norm
+            def _all_chunks_are_options(line: str) -> bool:
+                chunks = [c.strip() for c in re.split(r"\s{2,}", line) if c.strip()]
+                return bool(chunks) and all(_is_row_token(c) for c in chunks)
+            text = "\n".join(
+                line for line in text.splitlines() if not _all_chunks_are_options(line)
+            ).strip()
     elif layout_type == "MultiPartLabeledBlock":
         labels = structure_data.get("labels") or []
         strip_set = {l.strip() for l in labels if isinstance(l, str)}

@@ -43,24 +43,24 @@
       "4.1": 2
     },
     "marks_by_difficulty": {
-      "Low": 19,
-      "Medium": 39,
-      "High": 17
+      "Low": 16,
+      "Medium": 38,
+      "High": 21
     },
     "count_by_difficulty": {
-      "Low": 15,
+      "Low": 14,
       "Medium": 13,
-      "High": 3
+      "High": 4
     },
     "marks_by_bloom_level": {
-      "Remember": 14,
+      "Remember": 10,
       "Understand": 46,
-      "Apply": 15
+      "Apply": 19
     },
     "count_by_bloom_level": {
-      "Remember": 10,
-      "Understand": 18,
-      "Apply": 3
+      "Remember": 8,
+      "Understand": 19,
+      "Apply": 4
     },
     "marks_by_cognitive_load": {
       "Low": 38,
@@ -73,47 +73,51 @@
       "High": 1
     },
     "marks_by_objective": {
-      "AO1": 38,
-      "AO2": 37
+      "AO1": 50,
+      "AO2": 25
     },
     "count_by_objective": {
-      "AO1": 18,
-      "AO2": 13
+      "AO1": 22,
+      "AO2": 9
     },
     "marks_by_layout_type": {
-      "SimpleSingleBlock": 37,
+      "SimpleSingleBlock": 34,
       "NumberedMultiList": 16,
       "TermDefinitionGrid": 10,
-      "MatrixGrid": 1,
+      "MatrixGrid": 4,
       "AnnotatedDiagram": 4,
       "InlineCloze": 7
     },
     "count_by_layout_type": {
-      "SimpleSingleBlock": 19,
+      "SimpleSingleBlock": 18,
       "NumberedMultiList": 7,
       "TermDefinitionGrid": 2,
-      "MatrixGrid": 1,
+      "MatrixGrid": 2,
       "AnnotatedDiagram": 1,
       "InlineCloze": 1
     },
     "marks_by_command": {
       "State": 5,
-      "Identify": 9,
-      "Give": 19,
+      "Identify": 5,
+      "Give": 15,
       "Convert": 8,
       "Calculate": 2,
-      "Complete": 13,
+      "Complete": 17,
+      "Tick": 1,
+      "Circle": 3,
       "Draw": 4,
       "Describe": 11,
       "Explain": 4
     },
     "count_by_command": {
       "State": 5,
-      "Identify": 5,
-      "Give": 9,
+      "Identify": 3,
+      "Give": 8,
       "Convert": 4,
       "Calculate": 1,
-      "Complete": 2,
+      "Complete": 3,
+      "Tick": 1,
+      "Circle": 1,
       "Draw": 1,
       "Describe": 3,
       "Explain": 1
@@ -132,7 +136,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "The size of a file can be measured in different units. State how many bits there are in a byte.",
+      "text": "The size of a file can be measured in different units.\n\nState how many bits there are in a byte.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -161,7 +165,7 @@
     },
     {
       "id": "Q1b",
-      "text": "The size of a file can be measured in different units. State how many kibibytes (KiB) there are in 2 mebibytes (MiB).",
+      "text": "The size of a file can be measured in different units.\n\nState how many kibibytes (KiB) there are in 2 mebibytes (MiB).",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -190,7 +194,7 @@
     },
     {
       "id": "Q1c",
-      "text": "The size of a file can be measured in different units. Identify the unit of data that is equal to 4 bits.",
+      "text": "The size of a file can be measured in different units.\n\nIdentify the unit of data that is equal to 4 bits.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -219,7 +223,7 @@
     },
     {
       "id": "Q2a",
-      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels. State what is meant by a 16-bit colour depth.",
+      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels.\n\nState what is meant by a 16-bit colour depth.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -248,7 +252,7 @@
     },
     {
       "id": "Q2b",
-      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels. The resolution of the image is changed to 750 × 1500 pixels. Give the effect this will have on the file size of the image.",
+      "text": "An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels.\n\nThe resolution of the image is changed to 750 × 1500 pixels.\n\nGive the effect this will have on the file size of the image.",
       "command": "Give",
       "objective": "AO2",
       "marks": 1,
@@ -277,9 +281,9 @@
     },
     {
       "id": "Q3a_i",
-      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. One address is A2F. Convert the address to binary.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nOne address is A2F.\n\nConvert the address to binary.",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 3,
@@ -314,9 +318,9 @@
     },
     {
       "id": "Q3a_ii",
-      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. One address is A2F. Convert the address to denary.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nOne address is A2F.\n\nConvert the address to denary.\n\nWorking space",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
@@ -343,9 +347,9 @@
     },
     {
       "id": "Q3b_i",
-      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The binary number stored for another address is 000110011011. Convert the binary number to hexadecimal.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nThe binary number stored for another address is 000110011011.\n\nConvert the binary number to hexadecimal.",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 3,
@@ -380,9 +384,9 @@
     },
     {
       "id": "Q3b_ii",
-      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The binary number stored for another address is 000110011011. Convert the binary number to denary.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nThe binary number stored for another address is 000110011011.\n\nConvert the binary number to denary.\n\nWorking space",
       "command": "Convert",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 1,
       "visuals": [],
       "page": 3,
@@ -409,7 +413,7 @@
     },
     {
       "id": "Q3c",
-      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. The addresses are displayed as hexadecimal numbers. Give one reason why the addresses are displayed in hexadecimal instead of binary.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nGive one reason why the addresses are displayed in hexadecimal instead of binary.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -442,7 +446,7 @@
     },
     {
       "id": "Q3d",
-      "text": "A programmer is creating a computer game. Identify two other ways that hexadecimal is used in computer science.\n1\n2",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nIdentify two other ways that hexadecimal is used in computer science.\n\n1\n2",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -499,9 +503,9 @@
     },
     {
       "id": "Q3e",
-      "text": "A programmer is creating a computer game. The health value for a character in the computer game can sometimes be a negative value. The negative values are stored as two's complement 8-bit integers. A character has a health value of –25. Calculate the two's complement 8-bit integer for –25. Show all your working.",
+      "text": "A programmer is creating a computer game. One character is not moving correctly. The programmer needs to debug the program. To do this they need to look at addresses that are locations in memory. The addresses are displayed as hexadecimal numbers.\n\nThe health value for a character in the computer game can sometimes be a negative value. The negative values are stored as two's complement 8-bit integers.\n\nA character has a health value of –25.\n\nCalculate the two's complement 8-bit integer for –25. Show all your working.",
       "command": "Calculate",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 2,
       "visuals": [],
       "page": 4,
@@ -532,14 +536,14 @@
     },
     {
       "id": "Q4",
-      "text": "The table contains statements about types of secondary storage. Complete the table by writing the correct type of secondary storage for each statement.\n\nStatements:\n- Pits and lands are created on a reflective surface.\n- NAND or NOR technology is used.\n- Platters are spun that are divided into tracks and sectors.\n- Electromagnets are used to read and write data.\n- Transistors are used as control gates and floating gates.\n- A red or blue laser is used to read and write data.",
+      "text": "The table contains statements about types of secondary storage.\n\nComplete the table by writing the correct type of secondary storage for each statement.\n\ntype of secondary storage | statement\n(blank) | Pits and lands are created on a reflective surface.\n(blank) | NAND or NOR technology is used.\n(blank) | Platters are spun that are divided into tracks and sectors.\n(blank) | Electromagnets are used to read and write data.\n(blank) | Transistors are used as control gates and floating gates.\n(blank) | A red or blue laser is used to read and write data.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 6,
       "visuals": [
         {
           "type": "table",
-          "description": "Two-column table with 'type of secondary storage' and 'statement' headers; 6 rows with statements pre-filled and type column blank"
+          "description": "Two-column table with 'type of secondary storage' and 'statement' headers; type column is blank for all six rows"
         }
       ],
       "page": 4,
@@ -580,7 +584,7 @@
         "visuals": [
           {
             "type": "table",
-            "description": "Two-column table with 'type of secondary storage' and 'statement' headers; 6 rows with statements pre-filled and type column blank"
+            "description": "Two-column table with 'type of secondary storage' and 'statement' headers; type column is blank for all six rows"
           }
         ],
         "scoring_rule": "One mark for each correct type of storage.",
@@ -617,22 +621,17 @@
     },
     {
       "id": "Q5a",
-      "text": "A computer uses both random access memory (RAM) and read only memory (ROM). Tick (✓) one box to show which statement is correct about RAM.\nA It is non-volatile storage.\nB It stores the bootloader.\nC It stores data that is currently in use.\nD It is not directly accessible by the central processing unit (CPU).",
-      "command": "Identify",
+      "text": "A computer uses both random access memory (RAM) and read only memory (ROM).\n\nTick (✓) one box to show which statement is correct about RAM.\n\nA It is non-volatile storage.\nB It stores the bootloader.\nC It stores data that is currently in use.\nD It is not directly accessible by the central processing unit (CPU).",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
-      "visuals": [
-        {
-          "type": "multiple choice",
-          "description": "Four options A-D with tick boxes"
-        }
-      ],
+      "visuals": [],
       "page": 5,
       "layout_type": "MatrixGrid",
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Statement"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -656,12 +655,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q5b",
-      "text": "A computer uses both random access memory (RAM) and read only memory (ROM). ROM is a type of primary storage. State the characteristic of ROM that makes it a type of primary storage.",
+      "text": "A computer uses both random access memory (RAM) and read only memory (ROM).\n\nROM is a type of primary storage.\n\nState the characteristic of ROM that makes it a type of primary storage.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -690,15 +689,30 @@
     },
     {
       "id": "Q6a",
-      "text": "A sensor is an input device that is used to capture data from its surrounding environment. Circle three other input devices.\ntouch screen    hard disk drive (HDD)    headphones\nspeaker    microphone    actuator\nuniversal serial bus (USB) drive    printer    keyboard",
-      "command": "Identify",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment.\n\nCircle three other input devices.\n\ntouch screen    hard disk drive (HDD)    headphones\nspeaker    microphone    actuator\nuniversal serial bus (USB) drive    printer    keyboard",
+      "command": "Circle",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "MatrixGrid",
       "structure_data": {
-        "line_count": 1
+        "matrix_headers": [
+          "Option",
+          "Select"
+        ],
+        "row_count": 9,
+        "rows": [
+          "A touch screen",
+          "B hard disk drive (HDD)",
+          "C headphones",
+          "D speaker",
+          "E microphone",
+          "F actuator",
+          "G universal serial bus (USB) drive",
+          "H printer",
+          "I keyboard"
+        ]
       },
       "topic": "3.2",
       "topic_name": "Input and Output Devices",
@@ -721,13 +735,13 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q6b",
-      "text": "A sensor is an input device that is used to capture data from its surrounding environment. Sensors can be used in an automated system. Give two benefits of using sensors in this type of system.\n1\n2",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment.\n\nSensors can be used in an automated system.\n\nGive two benefits of using sensors in this type of system.\n\n1\n2",
       "command": "Give",
       "objective": "AO2",
       "marks": 2,
@@ -772,14 +786,14 @@
     },
     {
       "id": "Q6c",
-      "text": "A sensor is an input device that is used to capture data from its surrounding environment. The table contains different types of sensors and a use for each. Complete the table by giving a suitable use for each type of sensor. The first one has been done for you.\n\nTypes of sensor: acoustic (example given: to monitor whether a water pipe has cracked and is leaking and dripping onto the floor), temperature, humidity, infra-red, magnetic field.",
-      "command": "Give",
+      "text": "A sensor is an input device that is used to capture data from its surrounding environment.\n\nThe table contains different types of sensors and a use for each.\n\nComplete the table by giving a suitable use for each type of sensor. The first one has been done for you.\n\ntype of sensor | use\nacoustic | to monitor whether a water pipe has cracked and is leaking and dripping onto the floor\ntemperature | (blank)\nhumidity | (blank)\ninfra-red | (blank)\nmagnetic field | (blank)",
+      "command": "Complete",
       "objective": "AO2",
       "marks": 4,
       "visuals": [
         {
           "type": "table",
-          "description": "Two-column table with 'type of sensor' and 'use' headers; acoustic row pre-filled as example; temperature, humidity, infra-red and magnetic field rows blank"
+          "description": "Two-column table listing sensor types and their uses; acoustic row is pre-filled; temperature, humidity, infra-red, and magnetic field rows are blank"
         }
       ],
       "page": 6,
@@ -816,7 +830,7 @@
         "visuals": [
           {
             "type": "table",
-            "description": "Two-column table with 'type of sensor' and 'use' headers; acoustic row pre-filled as example; temperature, humidity, infra-red and magnetic field rows blank"
+            "description": "Two-column table listing sensor types and their uses; acoustic row is pre-filled; temperature, humidity, infra-red, and magnetic field rows are blank"
           }
         ],
         "scoring_rule": "One mark for each use (Max 1) per sensor:",
@@ -839,13 +853,13 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q7a",
-      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Draw and annotate a diagram to show how the data is transmitted using serial half-duplex data transmission.",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nDraw and annotate a diagram to show how the data is transmitted using serial half-duplex data transmission.",
       "command": "Draw",
       "objective": "AO1",
       "marks": 4,
@@ -887,7 +901,7 @@
     },
     {
       "id": "Q7b",
-      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Give two benefits of the company using serial half-duplex data transmission for this purpose.\n1\n2",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nGive two benefits of the company using serial half-duplex data transmission for this purpose.\n\n1\n2",
       "command": "Give",
       "objective": "AO2",
       "marks": 2,
@@ -936,7 +950,7 @@
     },
     {
       "id": "Q7c",
-      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission. Give one drawback of the company using serial half-duplex data transmission for this purpose.",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nGive one drawback of the company using serial half-duplex data transmission for this purpose.",
       "command": "Give",
       "objective": "AO2",
       "marks": 1,
@@ -973,9 +987,9 @@
     },
     {
       "id": "Q7d_i",
-      "text": "A company has a network that includes a web server. The company uses a proxy server to help protect the web server and the network from cyber security threats. Give three cyber security threats that the proxy server can help protect against.\n1\n2\n3",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nThe company uses a proxy server to help protect the web server and the network from cyber security threats.\n\nGive three cyber security threats that the proxy server can help protect against.\n\n1\n2\n3",
       "command": "Give",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 8,
@@ -1014,9 +1028,9 @@
     },
     {
       "id": "Q7d_ii",
-      "text": "A company has a network that includes a web server. The company uses a proxy server to help protect the web server and the network from cyber security threats. Identify two functions of the proxy server that can be used to help protect the web server and the network.\n1\n2",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nThe company uses a proxy server to help protect the web server and the network from cyber security threats.\n\nIdentify two functions of the proxy server that can be used to help protect the web server and the network.\n\n1\n2",
       "command": "Identify",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 8,
@@ -1071,7 +1085,7 @@
     },
     {
       "id": "Q7e",
-      "text": "A company has a network that includes a web server. Customers access the company's web pages that are stored on the web server. Describe how the web pages are located, retrieved and displayed on a customer's computer.",
+      "text": "A company has a network that includes a web server. Data is transmitted across the network using serial half-duplex data transmission.\n\nCustomers access the company's web pages that are stored on the web server.\n\nDescribe how the web pages are located, retrieved and displayed on a customer's computer.",
       "command": "Describe",
       "objective": "AO2",
       "marks": 6,
@@ -1128,7 +1142,7 @@
     },
     {
       "id": "Q8a",
-      "text": "A student has a computer that has a central processing unit (CPU). Describe the role of the CPU in the computer.",
+      "text": "A student has a computer that has a central processing unit (CPU).\n\nDescribe the role of the CPU in the computer.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -1161,7 +1175,7 @@
     },
     {
       "id": "Q8b_i",
-      "text": "A student has a computer that has a central processing unit (CPU). The CPU contains registers. State the purpose of a register.",
+      "text": "A student has a computer that has a central processing unit (CPU).\n\nThe CPU contains registers.\n\nState the purpose of a register.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1194,7 +1208,7 @@
     },
     {
       "id": "Q8b_ii",
-      "text": "A student has a computer that has a central processing unit (CPU). The CPU contains registers. Give three registers that are built into the CPU.\n1\n2\n3",
+      "text": "A student has a computer that has a central processing unit (CPU).\n\nThe CPU contains registers.\n\nGive three registers that are built into the CPU.\n\n1\n2\n3",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -1239,7 +1253,7 @@
     },
     {
       "id": "Q8c",
-      "text": "A student has a computer that has a central processing unit (CPU). One component in the CPU is the arithmetic logic unit (ALU). Describe the purpose of the ALU.",
+      "text": "A student has a computer that has a central processing unit (CPU).\n\nOne component in the CPU is the arithmetic logic unit (ALU).\n\nDescribe the purpose of the ALU.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
@@ -1284,7 +1298,7 @@
     },
     {
       "id": "Q8d",
-      "text": "A student has a computer that has a central processing unit (CPU). The student wants to replace the CPU to increase the performance of the computer. Explain why a different CPU can increase the performance.",
+      "text": "A student has a computer that has a central processing unit (CPU).\n\nThe student wants to replace the CPU to increase the performance of the computer.\n\nExplain why a different CPU can increase the performance.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 4,
@@ -1333,9 +1347,9 @@
     },
     {
       "id": "Q9a",
-      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty. Complete the paragraph about the use of an interrupt in this process. Use the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\n\nWord list: binary, clock, computer, data, error, fetch–decode–execute cycle, hexadecimal, higher, interrupt queue, interrupt service routine (ISR), lower, printer, priority level, secondary storage, sorting, transmission\n\nThe [blank] sends an interrupt to the [blank]. The interrupt is given a [blank]. The processor completes its current [blank] and checks the [blank] to see if there is an interrupt with [blank] priority than the current task. If there is, it stores the current task and fetches the interrupt. It then calls the [blank], which is a sequence of instructions that handles the interrupt. The interrupt is handled, which generates a message to the user to notify them that the ink cartridge is empty.",
+      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty.\n\nComplete the paragraph about the use of an interrupt in this process.\n\nUse the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\n\nbinary  clock  computer  data  error\nfetch–decode–execute cycle  hexadecimal  higher  interrupt queue\ninterrupt service routine (ISR)  lower  printer  priority level\nsecondary storage  sorting  transmission\n\nThe [blank] sends an interrupt to the [blank] . The interrupt is given a [blank] . The processor completes its current [blank] and checks the [blank] to see if there is an interrupt with [blank] priority than the current task. If there is, it stores the current task and fetches the interrupt. It then calls the [blank] , which is a sequence of instructions that handles the interrupt. The interrupt is handled, which generates a message to the user to notify them that the ink cartridge is empty.",
       "command": "Complete",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 7,
       "visuals": [],
       "page": 11,
@@ -1387,7 +1401,7 @@
     },
     {
       "id": "Q9b",
-      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty. Handling interrupts is one function of an operating system. Give two functions of an operating system that relate to memory.\n1\n2",
+      "text": "A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty.\n\nHandling interrupts is one function of an operating system.\n\nGive two functions of an operating system that relate to memory.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
