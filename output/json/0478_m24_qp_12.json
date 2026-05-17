@@ -17,8 +17,8 @@
   },
   "statistics": {
     "marks_by_topic": {
-      "1.1": 8,
-      "1.2": 7,
+      "1.1": 9,
+      "1.2": 6,
       "3.1": 9,
       "3.3": 4,
       "4.1": 10,
@@ -32,8 +32,8 @@
       "2.1": 3
     },
     "count_by_topic": {
-      "1.1": 6,
-      "1.2": 5,
+      "1.1": 7,
+      "1.2": 4,
       "3.1": 4,
       "3.3": 3,
       "4.1": 4,
@@ -77,13 +77,13 @@
       "High": 2
     },
     "marks_by_objective": {
-      "AO1": 53,
-      "AO2": 19,
+      "AO1": 61,
+      "AO2": 11,
       "AO3": 3
     },
     "count_by_objective": {
-      "AO1": 28,
-      "AO2": 6,
+      "AO1": 30,
+      "AO2": 4,
       "AO3": 1
     },
     "marks_by_layout_type": {
@@ -142,7 +142,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "Computers represent different types of data in binary.\n\nTick (✓) one box to show the reason why computers use binary to represent data.\n\nOption | Tick\nA Computers only allow 1s and 0s to be entered.\nB Computers are made of switches and gates that can only be on or off.\nC Binary does not need to be converted into other forms of data to be displayed.\nD Both computers and humans can quickly process binary data.",
+      "text": "Computers represent different types of data in binary.\n\nTick (✓) one box to show the reason why computers use binary to represent data.\n\nA Computers only allow 1s and 0s to be entered.\nB Computers are made of switches and gates that can only be on or off.\nC Binary does not need to be converted into other forms of data to be displayed.\nD Both computers and humans can quickly process binary data.",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -181,7 +181,7 @@
     },
     {
       "id": "Q1b_i",
-      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nTick (✓) one box to identify the ASCII denary number for the character 'Q'.\n\nOption | Tick\nA 81\nB 80\nC 79\nD 77",
+      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nTick (✓) one box to identify the ASCII denary number for the character 'Q'.\n\nA 81\nB 80\nC 79\nD 77",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -220,7 +220,7 @@
     },
     {
       "id": "Q1b_ii",
-      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nGive the binary number for the ASCII denary number for 'N'.\n\nWorking space",
+      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nGive the binary number for the ASCII denary number for 'N'.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -230,8 +230,8 @@
       "structure_data": {
         "line_count": 3
       },
-      "topic": "1.2",
-      "topic_name": "Text, Sound and Images",
+      "topic": "1.1",
+      "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -249,7 +249,7 @@
     },
     {
       "id": "Q1b_iii",
-      "text": "Computers represent different types of data in binary. One form of data is characters.\n\nExplain how the word 'RED' is represented using a character set.",
+      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nExplain how the word 'RED' is represented using a character set.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -352,38 +352,7 @@
       "command": "Identify",
       "objective": "AO1",
       "marks": 4,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Table of five statements about registers in the fetch-decode-execute cycle",
-          "headers": [
-            "Letter",
-            "Statement"
-          ],
-          "rows": [
-            [
-              "A",
-              "PC stores the address of the next instruction to be accessed"
-            ],
-            [
-              "B",
-              "MAR stores the instructions of the program that is running"
-            ],
-            [
-              "C",
-              "MDR stores the data passed to it from the PC"
-            ],
-            [
-              "D",
-              "ACC stores the result of each calculation"
-            ],
-            [
-              "E",
-              "CIR stores the instruction currently being executed"
-            ]
-          ]
-        }
-      ],
+      "visuals": [],
       "page": 4,
       "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
@@ -454,7 +423,7 @@
     },
     {
       "id": "Q2b_ii",
-      "text": "A computer has a central processing unit (CPU). The CPU is changed to a dual-core 3.5 GHz processor.\n\nExplain how the number of cores affects the performance of a CPU.",
+      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache. The CPU is changed to a dual-core 3.5 GHz processor.\n\nExplain how the number of cores affects the performance of a CPU.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -491,7 +460,7 @@
     },
     {
       "id": "Q2b_iii",
-      "text": "A computer has a central processing unit (CPU). The amount of cache is increased to 64 kB.\n\nExplain how the amount of cache affects the performance of a computer.",
+      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache. The amount of cache is increased to 64 kB.\n\nExplain how the amount of cache affects the performance of a computer.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -639,30 +608,7 @@
       "command": "Complete",
       "objective": "AO1",
       "marks": 3,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "OS functions table with missing names and descriptions",
-          "headers": [
-            "Function name",
-            "Description"
-          ],
-          "rows": [
-            [
-              "managing memory",
-              ""
-            ],
-            [
-              "",
-              "allows application software to run on the computer"
-            ],
-            [
-              "managing peripherals",
-              ""
-            ]
-          ]
-        }
-      ],
+      "visuals": [],
       "page": 6,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -759,11 +705,7 @@
         "scoring_rule": "One mark for input device and matching interrupt:",
         "marking_points": [
           {
-            "text": "Keyboard / Key pressed",
-            "marks": 1
-          },
-          {
-            "text": "Mouse / Mouse moved // button clicked",
+            "text": "Keyboard / Key pressed // Mouse / Mouse moved // button clicked",
             "marks": 1
           }
         ]
@@ -845,20 +787,22 @@
       "id": "Q4",
       "text": "A student enters a uniform resource locator (URL) into their web browser.\n\nDraw and annotate a diagram to show the process from the user entering the URL to the web browser displaying the web page.",
       "command": "Draw",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 5,
       "visuals": [],
       "page": 8,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
-        "diagram_type": "network",
+        "diagram_type": "data flow",
         "partial_elements": []
       },
       "topic": "5.1",
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
         "type": "diagram",
-        "visuals": [],
+        "visuals": [
+          "Example diagram showing: Student's computer sending URL to DNS, DNS table/database of URLs and IPs, DNS sending IP back to computer, DNS sending to higher DNS if not found, computer sending request to IP of web server, web server processing request, web page data sent back to computer"
+        ],
         "scoring_rule": "Any five marks for each part of diagram:",
         "marking_points": [
           {
@@ -897,7 +841,7 @@
     },
     {
       "id": "Q5",
-      "text": "Complete the description of digital currencies using the terms provided.\n\nblockchains  changed  datachains  decentralised  deleted  encryption  passport  physical address  physically  records  time-stamp  traced  transaction-chains  virtually\n\nA digital currency does not exist [blank], it can only be accessed electronically.\n\nSome digital currencies have digital ledgers called [blank]\n\nThese are decentralised databases where each transaction is stored as a new set of data with a [blank] and is linked to the previous set of data. This means that transactions cannot be altered, only new transactions added, which allows the location of the data to be [blank]",
+      "text": "Complete the description of digital currencies using the terms provided.\n\nblockchains  changed  datachains  decentralised\ndeleted  encryption  passport  physical address\nphysically  records  time-stamp  traced\ntransaction-chains  virtually\n\nA digital currency does not exist [blank], it can only be accessed electronically.\n\nSome digital currencies have digital ledgers called [blank]\n\nThese are decentralised databases where each transaction is stored as a new set of data with a [blank] and is linked to the previous set of data. This means that transactions cannot be altered, only new transactions added, which allows the location of the data to be [blank]",
       "command": "Complete",
       "objective": "AO1",
       "marks": 4,
@@ -939,7 +883,7 @@
     },
     {
       "id": "Q6a",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished.\n\nOne reason the self-driving tractor is a robot is because it has a mechanical structure that includes wheels, an engine, and a framework.\n\nGive one other reason why the self-driving tractor is an example of a robot.",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished. One reason the self-driving tractor is a robot is because it has a mechanical structure that includes wheels, an engine, and a framework.\n\nGive one other reason why the self-driving tractor is an example of a robot.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1025,7 +969,7 @@
     },
     {
       "id": "Q6b_ii",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer.\n\nIdentify one other sensor that the self-driving tractor might use and how it will use the sensor.\n\nSensor\nUse",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. If a person is detected within 3 metres whilst the tractor is moving, the self-driving tractor must stop.\n\nIdentify one other sensor that the self-driving tractor might use and how it will use the sensor.\n\nSensor\nUse",
       "command": "Identify",
       "objective": "AO2",
       "marks": 2,
@@ -1046,16 +990,12 @@
         "scoring_rule": "One mark for sensor and One mark for matching use:",
         "marking_points": [
           {
-            "text": "Accelerometer … …to adjust for uneven ground // to detect if the tractor crashes",
-            "marks": 2
+            "text": "Sensor: Accelerometer // Proximity // Light",
+            "marks": 1
           },
           {
-            "text": "Proximity … …to detect if near the end of the field // to detect other obstacles",
-            "marks": 2
-          },
-          {
-            "text": "Light … … to identify when to turn the headlights on",
-            "marks": 2
+            "text": "Use: Accelerometer: to adjust for uneven ground // to detect if the tractor crashes; Proximity: to detect if near the end of the field // to detect other obstacles; Light: to identify when to turn the headlights on",
+            "marks": 1
           }
         ]
       },
@@ -1065,7 +1005,7 @@
     },
     {
       "id": "Q6c",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer.\n\nExplain the drawbacks of a farmer using a self-driving tractor to sow seeds and harvest crops.",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished.\n\nExplain the drawbacks of a farmer using a self-driving tractor to sow seeds and harvest crops.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 3,
@@ -1177,7 +1117,7 @@
       "id": "Q6e_i",
       "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits the data it has collected to the farmer's computer in their house. The transmission uses an echo check.\n\nDescribe the role of the self-driving tractor and the farmer's computer in the echo check.",
       "command": "Describe",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 11,
@@ -1216,117 +1156,11 @@
     },
     {
       "id": "Q6e_ii",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits data to the farmer's computer. Another method of error checking is a parity block check.\n\nThe table shows 7 bytes that are transmitted using odd parity. The parity bit has been completed for each byte.\n\nComplete the parity byte for the data.\n\n(blank) | parity bit | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1\nbyte 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0\nbyte 2 | 1 | 0 | 0 | 0 | 0 | 1 | 1 | 0\nbyte 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 4 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 1\nbyte 5 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 6 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1\nbyte 7 | 1 | 1 | 0 | 0 | 1 | 1 | 0 | 1\nparity byte | (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank)",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits the data it has collected to the farmer's computer in their house. Another method of error checking is a parity block check.\n\nThe table shows 7 bytes that are transmitted using odd parity. The parity bit has been completed for each byte.\n\nComplete the parity byte for the data.\n\n| | parity bit | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 |\n|---|---|---|---|---|---|---|---|---|\n| byte 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 |\n| byte 2 | 1 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |\n| byte 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |\n| byte 4 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 1 |\n| byte 5 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |\n| byte 6 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |\n| byte 7 | 1 | 1 | 0 | 0 | 1 | 1 | 0 | 1 |\n| parity byte | | | | | | | | |",
       "command": "Complete",
       "objective": "AO2",
       "marks": 3,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Parity block check table with 7 bytes using odd parity; parity byte row is blank",
-          "headers": [
-            "",
-            "parity bit",
-            "bit 7",
-            "bit 6",
-            "bit 5",
-            "bit 4",
-            "bit 3",
-            "bit 2",
-            "bit 1"
-          ],
-          "rows": [
-            [
-              "byte 1",
-              "1",
-              "1",
-              "0",
-              "0",
-              "1",
-              "1",
-              "1",
-              "0"
-            ],
-            [
-              "byte 2",
-              "1",
-              "0",
-              "0",
-              "0",
-              "0",
-              "1",
-              "1",
-              "0"
-            ],
-            [
-              "byte 3",
-              "0",
-              "1",
-              "0",
-              "0",
-              "0",
-              "0",
-              "0",
-              "0"
-            ],
-            [
-              "byte 4",
-              "0",
-              "1",
-              "0",
-              "0",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            [
-              "byte 5",
-              "1",
-              "0",
-              "0",
-              "0",
-              "0",
-              "0",
-              "0",
-              "0"
-            ],
-            [
-              "byte 6",
-              "0",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            [
-              "byte 7",
-              "1",
-              "1",
-              "0",
-              "0",
-              "1",
-              "1",
-              "0",
-              "1"
-            ],
-            [
-              "parity byte",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ]
-          ]
-        }
-      ],
+      "visuals": [],
       "page": 12,
       "layout_type": "ValueTraceMatrix",
       "structure_data": {
@@ -1429,40 +1263,11 @@
       "topic_name": "Methods of Error Detection",
       "answers": {
         "type": "text",
-        "visuals": [
-          {
-            "type": "table",
-            "description": "Completed parity byte row",
-            "headers": [
-              "",
-              "parity bit",
-              "bit 7",
-              "bit 6",
-              "bit 5",
-              "bit 4",
-              "bit 3",
-              "bit 2",
-              "bit 1"
-            ],
-            "rows": [
-              [
-                "parity byte",
-                "1",
-                "0",
-                "0",
-                "0",
-                "1",
-                "0",
-                "1",
-                "0"
-              ]
-            ]
-          }
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for two correct\nTwo marks for five correct\nThree marks for all eight correct",
         "marking_points": [
           {
-            "text": "parity byte: 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0",
+            "text": "parity byte: 1 0 0 0 1 0 1 0 (parity bit=1, bit7=0, bit6=0, bit5=0, bit4=1, bit3=0, bit2=1, bit1=0)",
             "marks": 3
           }
         ]
@@ -1625,7 +1430,7 @@
     },
     {
       "id": "Q8a_i",
-      "text": "Hexadecimal can be used to represent binary numbers.\n\nConvert the denary number 236 into hexadecimal.\n\nWorking space",
+      "text": "Hexadecimal can be used to represent binary numbers.\n\nConvert the denary number 236 into hexadecimal.",
       "command": "Convert",
       "objective": "AO1",
       "marks": 1,
@@ -1732,7 +1537,7 @@
     },
     {
       "id": "Q8b_ii",
-      "text": "Two's complement can be used to represent positive and negative binary integers.\n\nConvert the denary number 45 into an 8-bit two's complement integer.\n\nWorking space",
+      "text": "Two's complement can be used to represent positive and negative binary integers.\n\nConvert the denary number 45 into an 8-bit two's complement integer.",
       "command": "Convert",
       "objective": "AO1",
       "marks": 1,

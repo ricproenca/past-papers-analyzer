@@ -112,22 +112,24 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     padding: .25rem .7rem; font-size: .85rem; color: #1e3a5f; font-weight: 500;
 }
 
-/* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) */
-.matrix-table, .trace-table, .term-def-table {
+/* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid, embedded reference) */
+.matrix-table, .trace-table, .term-def-table, .ref-table {
     width: 100%; border-collapse: collapse; font-size: .875rem;
     border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden;
 }
-.matrix-table th, .trace-table th, .term-def-table th {
+.matrix-table th, .trace-table th, .term-def-table th, .ref-table th {
     background: #f3f4f6; padding: .5rem .75rem; text-align: left;
     font-weight: 600; border-bottom: 1px solid #d1d5db;
 }
-.matrix-table td, .trace-table td, .term-def-table td {
+.matrix-table td, .trace-table td, .term-def-table td, .ref-table td {
     padding: .5rem .75rem; border-bottom: 1px solid #e5e7eb;
     vertical-align: middle;
 }
 .matrix-table tbody tr:last-child td,
 .trace-table tbody tr:last-child td,
-.term-def-table tbody tr:last-child td { border-bottom: none; }
+.term-def-table tbody tr:last-child td,
+.ref-table tbody tr:last-child td { border-bottom: none; }
+.ref-table { margin: .75rem 0 1rem; }
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
 
@@ -215,17 +217,113 @@ def _badge(text, cls):
 # Layout-specific input renderers
 # ============================================================================
 
+def _pipe_table_lines(lines: list[str]) -> list[str] | None:
+    """If `lines` (non-empty, already-stripped) form a valid pipe-table —
+    2+ rows, every row contains '|', all rows have the same '|'-separated
+    column count, ≥2 columns — return the same list. Otherwise None.
+
+    Single source of truth for pipe-table detection. Used by both:
+    - `_maybe_pipe_table` to render genuine reference tables in prose stems
+    - `_strip_pipe_tables` to remove pipe-mirrors of tables already rendered
+      by a structured layout renderer (MatrixGrid / ValueTraceMatrix /
+      TermDefinitionGrid)."""
+    if len(lines) < 2:
+        return None
+    if not all("|" in ln for ln in lines):
+        return None
+    col_counts = [len(ln.split("|")) for ln in lines]
+    if len(set(col_counts)) != 1 or col_counts[0] < 2:
+        return None
+    return lines
+
+
+def _find_pipe_table_blocks(text: str) -> list[tuple[int, int]]:
+    """Scan `text` line-by-line and return [(start, end_exclusive), ...] index
+    ranges of every contiguous pipe-table run, where a run is the maximal
+    sequence of non-blank '|'-containing lines that share the same column
+    count. Runs shorter than 2 lines, or with fewer than 2 columns, are
+    skipped — matching the `_pipe_table_lines` predicate."""
+    raw_lines = text.splitlines()
+    blocks = []
+    i = 0
+    while i < len(raw_lines):
+        if "|" not in raw_lines[i] or not raw_lines[i].strip():
+            i += 1
+            continue
+        start = i
+        first_cols = len(raw_lines[i].split("|"))
+        j = i + 1
+        while (
+            j < len(raw_lines)
+            and raw_lines[j].strip()
+            and "|" in raw_lines[j]
+            and len(raw_lines[j].split("|")) == first_cols
+        ):
+            j += 1
+        if j - start >= 2 and first_cols >= 2:
+            blocks.append((start, j))
+        i = max(j, i + 1)
+    return blocks
+
+
+def _strip_pipe_tables(text: str) -> str:
+    """Drop every detected pipe-table run from `text`. Used by layouts that
+    own a structured table renderer so the model's pipe-mirror in the text
+    field doesn't render as a duplicate `ref-table` above the real one."""
+    if not text or "|" not in text:
+        return text
+    blocks = _find_pipe_table_blocks(text)
+    if not blocks:
+        return text
+    raw_lines = text.splitlines()
+    drop = [False] * len(raw_lines)
+    for start, end in blocks:
+        for k in range(start, end):
+            drop[k] = True
+    return "\n".join(ln for ln, d in zip(raw_lines, drop) if not d).strip()
+
+
+def _maybe_pipe_table(paragraph: str) -> str | None:
+    """If `paragraph` is a pipe-separated reference table, return rendered
+    <table class="ref-table"> HTML. Otherwise return None.
+
+    First line is treated as the header row. This handles reference tables
+    embedded in question stems (e.g. Q2a's "Letter | Statement" lookup
+    table) that aren't part of the answer structure."""
+    lines = [ln.strip() for ln in paragraph.splitlines() if ln.strip()]
+    if _pipe_table_lines(lines) is None:
+        return None
+
+    def _cells(ln: str) -> list[str]:
+        return [c.strip() for c in ln.split("|")]
+
+    th_html = "".join(f"<th>{escape(c)}</th>" for c in _cells(lines[0]))
+    body_html = "".join(
+        "<tr>" + "".join(f"<td>{escape(c)}</td>" for c in _cells(ln)) + "</tr>"
+        for ln in lines[1:]
+    )
+    return (
+        f'<table class="ref-table"><thead><tr>{th_html}</tr></thead>'
+        f'<tbody>{body_html}</tbody></table>'
+    )
+
+
 def _render_prose_paragraphs(text: str, css_class: str = "q-text") -> str:
     """Split prose on blank lines and emit one <p class="..."> per paragraph.
 
-    Returns '' for empty/whitespace text. Single-paragraph text yields one <p>.
-    Used for every layout type's stem rendering so that PDF paragraph breaks
-    captured as \\n\\n in the JSON appear as semantically distinct paragraphs
-    in the HTML."""
+    Paragraphs that look like a pipe-separated reference table are rendered as
+    <table> instead. Returns '' for empty/whitespace text."""
     if not text or not text.strip():
         return ""
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    return "".join(f'<p class="{css_class}">{escape(p)}</p>' for p in paragraphs)
+    parts = []
+    for p in paragraphs:
+        table_html = _maybe_pipe_table(p)
+        if table_html:
+            parts.append(table_html)
+        else:
+            parts.append(f'<p class="{css_class}">{escape(p)}</p>')
+    return "".join(parts)
 
 
 def _render_simple_single_block(q, sd):
@@ -695,18 +793,33 @@ def _render_question(q, source: dict | None = None):
     text = q.get("text", "")
     if layout_type != "InlineCloze":
         text = text.replace("[blank]", "").strip()
+    if layout_type in ("MatrixGrid", "ValueTraceMatrix", "TermDefinitionGrid"):
+        # These layouts own a structured table renderer. The model frequently
+        # mirrors that table into the text field as pipe-separated lines (a
+        # human-readable mirror it was told to write). Strip all such runs so
+        # they don't render as a duplicate `ref-table` above the real one.
+        text = _strip_pipe_tables(text)
     if layout_type in ("MatrixGrid", "ValueTraceMatrix"):
+        # Belt-and-braces: also drop any lingering bare row-label / single-row
+        # header lines that survived pipe-table stripping (e.g. a "byte 1"
+        # standing alone on its own line outside the table block, or a
+        # "Option | Tick" 1-row pipe stub that didn't trigger the ≥2-line
+        # pipe-table detector).
         rows = structure_data.get("rows") or []
         strip_set = {row.strip() for row in rows if isinstance(row, str)}
+        headers = structure_data.get("matrix_headers") or []
+        header_tokens = [h.strip() for h in headers if isinstance(h, str) and h.strip()]
+        if header_tokens:
+            def _is_header_pipe_line(line: str) -> bool:
+                parts = [p.strip() for p in line.split("|")]
+                return parts == header_tokens
+            text = "\n".join(
+                line for line in text.splitlines() if not _is_header_pipe_line(line)
+            ).strip()
         if strip_set:
             text = "\n".join(
                 line for line in text.splitlines() if line.strip() not in strip_set
             ).strip()
-    elif layout_type == "TermDefinitionGrid":
-        # text contains a pipe-separated table (header + data rows); strip all of it
-        text = "\n".join(
-            line for line in text.splitlines() if " | " not in line
-        ).strip()
     elif layout_type == "MultiPartLabeledBlock":
         labels = structure_data.get("labels") or []
         strip_set = {l.strip() for l in labels if isinstance(l, str)}

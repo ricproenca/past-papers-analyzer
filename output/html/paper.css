@@ -106,22 +106,24 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     padding: .25rem .7rem; font-size: .85rem; color: #1e3a5f; font-weight: 500;
 }
 
-/* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) */
-.matrix-table, .trace-table, .term-def-table {
+/* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid, embedded reference) */
+.matrix-table, .trace-table, .term-def-table, .ref-table {
     width: 100%; border-collapse: collapse; font-size: .875rem;
     border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden;
 }
-.matrix-table th, .trace-table th, .term-def-table th {
+.matrix-table th, .trace-table th, .term-def-table th, .ref-table th {
     background: #f3f4f6; padding: .5rem .75rem; text-align: left;
     font-weight: 600; border-bottom: 1px solid #d1d5db;
 }
-.matrix-table td, .trace-table td, .term-def-table td {
+.matrix-table td, .trace-table td, .term-def-table td, .ref-table td {
     padding: .5rem .75rem; border-bottom: 1px solid #e5e7eb;
     vertical-align: middle;
 }
 .matrix-table tbody tr:last-child td,
 .trace-table tbody tr:last-child td,
-.term-def-table tbody tr:last-child td { border-bottom: none; }
+.term-def-table tbody tr:last-child td,
+.ref-table tbody tr:last-child td { border-bottom: none; }
+.ref-table { margin: .75rem 0 1rem; }
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
 

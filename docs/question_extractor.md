@@ -43,6 +43,7 @@ Build a clean, structured JSON deliverable:
                                   Two sub-patterns: (1) matrix comparison — multiple option columns, one tick per row;
                                   (2) single-select MCQ — exactly 2 columns ["Option","Tick"|"Select"|"Choose"], one option per row
                                   with the letter prefix ("A <statement>", "B <statement>", ...). Never put option letters in headers.
+                                  For sub-pattern (2) the canonical headers live in structure_data ONLY — never emit a synthetic "Option | Tick" pipe-row in the question's text field.
         ValueTraceMatrix:       { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...], "row_values": [["1","0",...] | null, ...] (optional) }
                                   matrix_headers: only the data columns (the leftmost row-label column is added by the renderer). Set row_values when the PDF table has rows already filled in (e.g. parity check tables): each entry parallel to rows, null = all cells blank in that row, ["v0","v1",...] = list of prefilled values per column (use "" or null inside the list for an individual blank cell). Omit row_values entirely for pure trace tables where all data cells are blank.
         FixedRegisterArray:     { "register_size": 8 }

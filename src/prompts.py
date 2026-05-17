@@ -85,6 +85,12 @@ MatrixGrid — table that requires ticks/selections. Covers TWO sub-patterns:
         question to a single row like ["Tick one box"] with letters as headers.
       • The renderer derives tick-count (one/two/three/…) from the question text directly,
         so no extra field is needed.
+      • CRITICAL — text field: the headers ["Option","Tick"] (or similar) are CANONICAL
+        placeholders that live in structure_data ONLY. The PDF does NOT print a literal
+        "Option | Tick" row above the options. NEVER write a synthetic header line like
+        "Option | Tick" (or any "<left> | <right>" canonical-header line) into the "text"
+        field. The text field must contain only the prose stem and what is actually printed
+        on the PDF — never the pipe-separated canonical headers.
       Common command words for this pattern: "Tick", "Circle", "Select".
 
   Distinguishing the two: if the question reads "Tick one box to show…" with options labelled
