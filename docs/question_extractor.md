@@ -9,6 +9,7 @@ RULES:
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
+- Preserve paragraph breaks from the PDF in the "text" field using `\n\n` between distinct prose paragraphs. Don't insert `\n\n` for line wraps or between a paragraph and a table / answer slots.
 
 
 OUTCOME FROM PAPER:

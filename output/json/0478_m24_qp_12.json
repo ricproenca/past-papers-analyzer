@@ -47,23 +47,23 @@
       "2.1": 2
     },
     "marks_by_difficulty": {
-      "Low": 28,
+      "Low": 24,
       "Medium": 37,
-      "High": 10
+      "High": 14
     },
     "count_by_difficulty": {
       "Low": 19,
-      "Medium": 14,
-      "High": 2
+      "Medium": 13,
+      "High": 3
     },
     "marks_by_bloom_level": {
-      "Remember": 41,
-      "Understand": 30,
-      "Apply": 4
+      "Understand": 46,
+      "Remember": 19,
+      "Apply": 10
     },
     "count_by_bloom_level": {
-      "Remember": 22,
-      "Understand": 10,
+      "Understand": 21,
+      "Remember": 11,
       "Apply": 3
     },
     "marks_by_cognitive_load": {
@@ -77,13 +77,13 @@
       "High": 2
     },
     "marks_by_objective": {
-      "AO1": 61,
-      "AO2": 11,
+      "AO1": 53,
+      "AO2": 19,
       "AO3": 3
     },
     "count_by_objective": {
-      "AO1": 30,
-      "AO2": 4,
+      "AO1": 28,
+      "AO2": 6,
       "AO3": 1
     },
     "marks_by_layout_type": {
@@ -107,18 +107,26 @@
       "ValueTraceMatrix": 1
     },
     "marks_by_command": {
-      "Identify": 15,
-      "State": 26,
+      "Tick": 2,
+      "Give": 5,
       "Explain": 21,
+      "Identify": 13,
+      "State": 6,
       "Describe": 9,
-      "Calculate": 4
+      "Complete": 10,
+      "Draw": 5,
+      "Convert": 4
     },
     "count_by_command": {
-      "Identify": 8,
-      "State": 14,
+      "Tick": 2,
+      "Give": 5,
       "Explain": 7,
+      "Identify": 6,
+      "State": 5,
       "Describe": 3,
-      "Calculate": 3
+      "Complete": 3,
+      "Draw": 1,
+      "Convert": 3
     },
     "marks_by_answer_type": {
       "MCQ": 2,
@@ -134,8 +142,8 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "Computers represent different types of data in binary. Tick (✓) one box to show the reason why computers use binary to represent data.\nA Computers only allow 1s and 0s to be entered.\nB Computers are made of switches and gates that can only be on or off.\nC Binary does not need to be converted into other forms of data to be displayed.\nD Both computers and humans can quickly process binary data.",
-      "command": "Identify",
+      "text": "Computers represent different types of data in binary.\n\nTick (✓) one box to show the reason why computers use binary to represent data.\n\nOption | Tick\nA Computers only allow 1s and 0s to be entered.\nB Computers are made of switches and gates that can only be on or off.\nC Binary does not need to be converted into other forms of data to be displayed.\nD Both computers and humans can quickly process binary data.",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -168,13 +176,13 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q1b_i",
-      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78. Tick (✓) one box to identify the ASCII denary number for the character 'Q'.\nA 81\nB 80\nC 79\nD 77",
-      "command": "Identify",
+      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nTick (✓) one box to identify the ASCII denary number for the character 'Q'.\n\nOption | Tick\nA 81\nB 80\nC 79\nD 77",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -207,13 +215,13 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q1b_ii",
-      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78. Give the binary number for the ASCII denary number for 'N'.",
-      "command": "State",
+      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78.\n\nGive the binary number for the ASCII denary number for 'N'.\n\nWorking space",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -236,12 +244,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q1b_iii",
-      "text": "Computers represent different types of data in binary. One form of data is characters. The American standard code for information interchange (ASCII) denary number for the character 'N' is 78. Explain how the word 'RED' is represented using a character set.",
+      "text": "Computers represent different types of data in binary. One form of data is characters.\n\nExplain how the word 'RED' is represented using a character set.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -274,7 +282,7 @@
     },
     {
       "id": "Q1c_i",
-      "text": "Computers represent different types of data in binary. Sound can be represented as binary. Explain why recording sound with a higher sampling resolution creates a more accurate recording.",
+      "text": "Computers represent different types of data in binary. Sound can be represented as binary.\n\nExplain why recording sound with a higher sampling resolution creates a more accurate recording.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -311,8 +319,8 @@
     },
     {
       "id": "Q1c_ii",
-      "text": "Computers represent different types of data in binary. Sound can be represented as binary. Give one other way that the accuracy of a sound recording can be improved.",
-      "command": "State",
+      "text": "Computers represent different types of data in binary. Sound can be represented as binary.\n\nGive one other way that the accuracy of a sound recording can be improved.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -335,17 +343,46 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q2a",
-      "text": "A computer has a central processing unit (CPU). The CPU includes the registers: Program counter (PC), Memory address register (MAR), Memory data register (MDR), Accumulator (ACC), Current instruction register (CIR).\n\nThe table contains five statements about the role of registers in the fetch–decode–execute cycle of a CPU.\n\nLetter | Statement\nA | PC stores the address of the next instruction to be accessed\nB | MAR stores the instructions of the program that is running\nC | MDR stores the data passed to it from the PC\nD | ACC stores the result of each calculation\nE | CIR stores the instruction currently being executed\n\nTwo of the statements are not correct. Identify the letter of each incorrect statement. Suggest a corrected statement for each.\n\nIncorrect statement 1\nCorrected statement\n\nIncorrect statement 2\nCorrected statement",
+      "text": "A computer has a central processing unit (CPU). The CPU includes the registers: Program counter (PC), Memory address register (MAR), Memory data register (MDR), Accumulator (ACC), Current instruction register (CIR).\n\nThe table contains five statements about the role of registers in the fetch–decode–execute cycle of a CPU.\n\nLetter | Statement\nA | PC stores the address of the next instruction to be accessed\nB | MAR stores the instructions of the program that is running\nC | MDR stores the data passed to it from the PC\nD | ACC stores the result of each calculation\nE | CIR stores the instruction currently being executed\n\nTwo of the statements are not correct.\n\nIdentify the letter of each incorrect statement. Suggest a corrected statement for each.\n\nIncorrect statement 1\nCorrected statement\n\nIncorrect statement 2\nCorrected statement",
       "command": "Identify",
       "objective": "AO1",
       "marks": 4,
       "visuals": [
-        "Table of five statements about CPU registers"
+        {
+          "type": "table",
+          "description": "Table of five statements about registers in the fetch-decode-execute cycle",
+          "headers": [
+            "Letter",
+            "Statement"
+          ],
+          "rows": [
+            [
+              "A",
+              "PC stores the address of the next instruction to be accessed"
+            ],
+            [
+              "B",
+              "MAR stores the instructions of the program that is running"
+            ],
+            [
+              "C",
+              "MDR stores the data passed to it from the PC"
+            ],
+            [
+              "D",
+              "ACC stores the result of each calculation"
+            ],
+            [
+              "E",
+              "CIR stores the instruction currently being executed"
+            ]
+          ]
+        }
       ],
       "page": 4,
       "layout_type": "MultiPartLabeledBlock",
@@ -361,9 +398,7 @@
       "topic_name": "Computer Architecture",
       "answers": {
         "type": "text",
-        "visuals": [
-          "Table of five statements about CPU registers"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for letter and One mark for matching correction.",
         "marking_points": [
           {
@@ -390,7 +425,7 @@
     },
     {
       "id": "Q2b_i",
-      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache. State what is meant by a 3.5 GHz processor.",
+      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache.\n\nState what is meant by a 3.5 GHz processor.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -419,7 +454,7 @@
     },
     {
       "id": "Q2b_ii",
-      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache. The CPU is changed to a dual-core 3.5 GHz processor. Explain how the number of cores affects the performance of a CPU.",
+      "text": "A computer has a central processing unit (CPU). The CPU is changed to a dual-core 3.5 GHz processor.\n\nExplain how the number of cores affects the performance of a CPU.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -456,7 +491,7 @@
     },
     {
       "id": "Q2b_iii",
-      "text": "A computer has a central processing unit (CPU). The computer has a single core 3.5 GHz processor and an 8 kB cache. The amount of cache is increased to 64 kB. Explain how the amount of cache affects the performance of a computer.",
+      "text": "A computer has a central processing unit (CPU). The amount of cache is increased to 64 kB.\n\nExplain how the amount of cache affects the performance of a computer.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -493,7 +528,7 @@
     },
     {
       "id": "Q2c_i",
-      "text": "A computer has a central processing unit (CPU). The computer has both primary and secondary storage. Random access memory (RAM) is one example of primary storage. Describe what is meant by RAM.",
+      "text": "A computer has both primary and secondary storage. Random access memory (RAM) is one example of primary storage.\n\nDescribe what is meant by RAM.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -530,7 +565,7 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "A computer has a central processing unit (CPU). The computer has both primary and secondary storage. Read only memory (ROM) is another example of primary storage. ROM often stores the start-up instructions for a computer. Identify one other item of data that is commonly stored in ROM.",
+      "text": "A computer has both primary and secondary storage. Read only memory (ROM) is another example of primary storage. ROM often stores the start-up instructions for a computer.\n\nIdentify one other item of data that is commonly stored in ROM.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -567,7 +602,7 @@
     },
     {
       "id": "Q2c_iii",
-      "text": "A computer has a central processing unit (CPU). The computer has both primary and secondary storage. Some computers make use of virtual memory. State the purpose of virtual memory.",
+      "text": "A computer has both primary and secondary storage. Some computers make use of virtual memory.\n\nState the purpose of virtual memory.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -600,12 +635,33 @@
     },
     {
       "id": "Q3a",
-      "text": "A computer has an operating system (OS). Complete the table by writing each missing OS function name and description.\n\nFunction name | Description\nmanaging memory | (blank)\n(blank) | allows application software to run on the computer\nmanaging peripherals | (blank)",
-      "command": "State",
+      "text": "A computer has an operating system (OS).\n\nComplete the table by writing each missing OS function name and description.\n\nFunction name | Description\nmanaging memory | (blank)\n(blank) | allows application software to run on the computer\nmanaging peripherals | (blank)",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 3,
       "visuals": [
-        "Table with Function name and Description columns; some cells blank"
+        {
+          "type": "table",
+          "description": "OS functions table with missing names and descriptions",
+          "headers": [
+            "Function name",
+            "Description"
+          ],
+          "rows": [
+            [
+              "managing memory",
+              ""
+            ],
+            [
+              "",
+              "allows application software to run on the computer"
+            ],
+            [
+              "managing peripherals",
+              ""
+            ]
+          ]
+        }
       ],
       "page": 6,
       "layout_type": "TermDefinitionGrid",
@@ -630,32 +686,30 @@
       "topic_name": "Types of Software and Interrupts",
       "answers": {
         "type": "text",
-        "visuals": [
-          "Table with Function name and Description columns; some cells blank"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark each:",
         "marking_points": [
           {
-            "text": "managing memory description: allocates memory to processes // prevents two processes accessing the same memory",
+            "text": "managing memory: allocates memory to processes // prevents two processes accessing the same memory",
             "marks": 1
           },
           {
-            "text": "Function name: platform for running applications",
+            "text": "platform for running applications",
             "marks": 1
           },
           {
-            "text": "managing peripherals description: allocates data to buffers // transmits data to hardware // receives data from hardware",
+            "text": "managing peripherals: allocates data to buffers // transmits data to hardware // receives data from hardware",
             "marks": 1
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q3b_i",
-      "text": "A computer has an operating system (OS). The OS handles interrupts. State the purpose of an interrupt.",
+      "text": "A computer has an operating system (OS). The OS handles interrupts.\n\nState the purpose of an interrupt.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -684,7 +738,7 @@
     },
     {
       "id": "Q3b_ii",
-      "text": "A computer has an operating system (OS). The OS handles interrupts. Identify one input device and one example of an interrupt that it can generate.\n\nInput device\nInterrupt",
+      "text": "A computer has an operating system (OS). The OS handles interrupts.\n\nIdentify one input device and one example of an interrupt that it can generate.\n\nInput device\nInterrupt",
       "command": "Identify",
       "objective": "AO2",
       "marks": 1,
@@ -705,11 +759,11 @@
         "scoring_rule": "One mark for input device and matching interrupt:",
         "marking_points": [
           {
-            "text": "Input device: Keyboard // Mouse",
-            "marks": 0
+            "text": "Keyboard / Key pressed",
+            "marks": 1
           },
           {
-            "text": "Interrupt: Key pressed // Mouse moved // button clicked",
+            "text": "Mouse / Mouse moved // button clicked",
             "marks": 1
           }
         ]
@@ -720,7 +774,7 @@
     },
     {
       "id": "Q3b_iii",
-      "text": "A computer has an operating system (OS). The OS handles interrupts. A processor is currently executing a program. The processor receives an interrupt. Explain how the processor manages the current program and the interrupt.",
+      "text": "A computer has an operating system (OS). The OS handles interrupts. A processor is currently executing a program. The processor receives an interrupt.\n\nExplain how the processor manages the current program and the interrupt.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 5,
@@ -789,15 +843,15 @@
     },
     {
       "id": "Q4",
-      "text": "A student enters a uniform resource locator (URL) into their web browser. Draw and annotate a diagram to show the process from the user entering the URL to the web browser displaying the web page.",
-      "command": "State",
-      "objective": "AO1",
+      "text": "A student enters a uniform resource locator (URL) into their web browser.\n\nDraw and annotate a diagram to show the process from the user entering the URL to the web browser displaying the web page.",
+      "command": "Draw",
+      "objective": "AO2",
       "marks": 5,
       "visuals": [],
       "page": 8,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
-        "diagram_type": "data flow",
+        "diagram_type": "network",
         "partial_elements": []
       },
       "topic": "5.1",
@@ -838,18 +892,16 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "High"
     },
     {
       "id": "Q5",
-      "text": "Complete the description of digital currencies using the terms provided.\n\nblockchains  changed  datachains  decentralised\ndeleted  encryption  passport  physical address\nphysically  records  time-stamp  traced\ntransaction-chains  virtually\n\nA digital currency does not exist [blank], it can only be accessed electronically. Some digital currencies have digital ledgers called [blank]. These are decentralised databases where each transaction is stored as a new set of data with a [blank] and is linked to the previous set of data. This means that transactions cannot be altered, only new transactions added, which allows the location of the data to be [blank].",
-      "command": "State",
+      "text": "Complete the description of digital currencies using the terms provided.\n\nblockchains  changed  datachains  decentralised  deleted  encryption  passport  physical address  physically  records  time-stamp  traced  transaction-chains  virtually\n\nA digital currency does not exist [blank], it can only be accessed electronically.\n\nSome digital currencies have digital ledgers called [blank]\n\nThese are decentralised databases where each transaction is stored as a new set of data with a [blank] and is linked to the previous set of data. This means that transactions cannot be altered, only new transactions added, which allows the location of the data to be [blank]",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 4,
-      "visuals": [
-        "Word bank: blockchains, changed, datachains, decentralised, deleted, encryption, passport, physical address, physically, records, time-stamp, traced, transaction-chains, virtually"
-      ],
+      "visuals": [],
       "page": 9,
       "layout_type": "InlineCloze",
       "structure_data": {
@@ -860,9 +912,7 @@
       "topic_name": "Digital Currency",
       "answers": {
         "type": "text",
-        "visuals": [
-          "Word bank: blockchains, changed, datachains, decentralised, deleted, encryption, passport, physical address, physically, records, time-stamp, traced, transaction-chains, virtually"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each term in correct place:",
         "marking_points": [
           {
@@ -883,14 +933,14 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q6a",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished. One reason the self-driving tractor is a robot is because it has a mechanical structure that includes wheels, an engine, and a framework. Give one other reason why the self-driving tractor is an example of a robot.",
-      "command": "State",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished.\n\nOne reason the self-driving tractor is a robot is because it has a mechanical structure that includes wheels, an engine, and a framework.\n\nGive one other reason why the self-driving tractor is an example of a robot.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -917,12 +967,12 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q6b_i",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished. If a person is detected within 3 metres whilst the tractor is moving, the self-driving tractor must stop. Explain how an infra-red sensor, microprocessor and actuator can be used to stop the self-driving tractor if a person is detected within 3 metres.",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. If a person is detected within 3 metres whilst the tractor is moving, the self-driving tractor must stop.\n\nExplain how an infra-red sensor, microprocessor and actuator can be used to stop the self-driving tractor if a person is detected within 3 metres.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 5,
@@ -975,7 +1025,7 @@
     },
     {
       "id": "Q6b_ii",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished. If a person is detected within 3 metres whilst the tractor is moving, the self-driving tractor must stop. Identify one other sensor that the self-driving tractor might use and how it will use the sensor.\n\nSensor\nUse",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer.\n\nIdentify one other sensor that the self-driving tractor might use and how it will use the sensor.\n\nSensor\nUse",
       "command": "Identify",
       "objective": "AO2",
       "marks": 2,
@@ -996,12 +1046,16 @@
         "scoring_rule": "One mark for sensor and One mark for matching use:",
         "marking_points": [
           {
-            "text": "Sensor: Accelerometer // Proximity // Light",
-            "marks": 1
+            "text": "Accelerometer … …to adjust for uneven ground // to detect if the tractor crashes",
+            "marks": 2
           },
           {
-            "text": "Use: …to adjust for uneven ground // to detect if the tractor crashes // to detect if near the end of the field // to detect other obstacles // to identify when to turn the headlights on",
-            "marks": 1
+            "text": "Proximity … …to detect if near the end of the field // to detect other obstacles",
+            "marks": 2
+          },
+          {
+            "text": "Light … … to identify when to turn the headlights on",
+            "marks": 2
           }
         ]
       },
@@ -1011,7 +1065,7 @@
     },
     {
       "id": "Q6c",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor moves automatically through the field, turning at each end and stopping when it has finished. Explain the drawbacks of a farmer using a self-driving tractor to sow seeds and harvest crops.",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer.\n\nExplain the drawbacks of a farmer using a self-driving tractor to sow seeds and harvest crops.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 3,
@@ -1080,7 +1134,7 @@
     },
     {
       "id": "Q6d",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor has an in-built expert system that the farmer can use to solve any errors with the tractor. Identify three components of an expert system.\n1\n2\n3",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. The self-driving tractor has an in-built expert system that the farmer can use to solve any errors with the tractor.\n\nIdentify three components of an expert system.\n\n1\n2\n3",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,
@@ -1121,9 +1175,9 @@
     },
     {
       "id": "Q6e_i",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits the data it has collected to the farmer's computer in their house. The transmission uses an echo check. Describe the role of the self-driving tractor and the farmer's computer in the echo check.",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits the data it has collected to the farmer's computer in their house. The transmission uses an echo check.\n\nDescribe the role of the self-driving tractor and the farmer's computer in the echo check.",
       "command": "Describe",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 11,
@@ -1162,12 +1216,116 @@
     },
     {
       "id": "Q6e_ii",
-      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits the data it has collected to the farmer's computer in their house. Another method of error checking is a parity block check. The table shows 7 bytes that are transmitted using odd parity. The parity bit has been completed for each byte. Complete the parity byte for the data.\n\nparity bit | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1\nbyte 1: 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0\nbyte 2: 1 | 0 | 0 | 0 | 0 | 1 | 1 | 0\nbyte 3: 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 4: 0 | 1 | 0 | 0 | 1 | 1 | 1 | 1\nbyte 5: 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 6: 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1\nbyte 7: 1 | 1 | 0 | 0 | 1 | 1 | 0 | 1\nparity byte: (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank)",
-      "command": "State",
+      "text": "A self-driving tractor sows seeds and harvests crops for a farmer. At the end of each day the self-driving tractor transmits data to the farmer's computer. Another method of error checking is a parity block check.\n\nThe table shows 7 bytes that are transmitted using odd parity. The parity bit has been completed for each byte.\n\nComplete the parity byte for the data.\n\n(blank) | parity bit | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1\nbyte 1 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0\nbyte 2 | 1 | 0 | 0 | 0 | 0 | 1 | 1 | 0\nbyte 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 4 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 1\nbyte 5 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0\nbyte 6 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1\nbyte 7 | 1 | 1 | 0 | 0 | 1 | 1 | 0 | 1\nparity byte | (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank) | (blank)",
+      "command": "Complete",
       "objective": "AO2",
       "marks": 3,
       "visuals": [
-        "Parity block check table with 7 bytes and blank parity byte row"
+        {
+          "type": "table",
+          "description": "Parity block check table with 7 bytes using odd parity; parity byte row is blank",
+          "headers": [
+            "",
+            "parity bit",
+            "bit 7",
+            "bit 6",
+            "bit 5",
+            "bit 4",
+            "bit 3",
+            "bit 2",
+            "bit 1"
+          ],
+          "rows": [
+            [
+              "byte 1",
+              "1",
+              "1",
+              "0",
+              "0",
+              "1",
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "byte 2",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "byte 3",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "byte 4",
+              "0",
+              "1",
+              "0",
+              "0",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            [
+              "byte 5",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "byte 6",
+              "0",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            [
+              "byte 7",
+              "1",
+              "1",
+              "0",
+              "0",
+              "1",
+              "1",
+              "0",
+              "1"
+            ],
+            [
+              "parity byte",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
       ],
       "page": 12,
       "layout_type": "ValueTraceMatrix",
@@ -1272,7 +1430,34 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "Parity block check table with 7 bytes and blank parity byte row"
+          {
+            "type": "table",
+            "description": "Completed parity byte row",
+            "headers": [
+              "",
+              "parity bit",
+              "bit 7",
+              "bit 6",
+              "bit 5",
+              "bit 4",
+              "bit 3",
+              "bit 2",
+              "bit 1"
+            ],
+            "rows": [
+              [
+                "parity byte",
+                "1",
+                "0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          }
         ],
         "scoring_rule": "One mark for two correct\nTwo marks for five correct\nThree marks for all eight correct",
         "marking_points": [
@@ -1282,13 +1467,13 @@
           }
         ]
       },
-      "difficulty": "Low",
-      "bloom_level": "Remember",
+      "difficulty": "Medium",
+      "bloom_level": "Apply",
       "cognitive_load": "High"
     },
     {
       "id": "Q7a_i",
-      "text": "Data is transmitted using the internet. The data is encrypted before transmission. State the purpose of encrypting data.",
+      "text": "Data is transmitted using the internet. The data is encrypted before transmission.\n\nState the purpose of encrypting data.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1317,7 +1502,7 @@
     },
     {
       "id": "Q7a_ii",
-      "text": "Data is transmitted using the internet. The data is encrypted before transmission. Describe the differences between symmetric and asymmetric encryption.",
+      "text": "Data is transmitted using the internet. The data is encrypted before transmission.\n\nDescribe the differences between symmetric and asymmetric encryption.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 4,
@@ -1366,7 +1551,7 @@
     },
     {
       "id": "Q7b_i",
-      "text": "Data is transmitted using the internet. The data is transmitted using packet switching. Identify two items of data contained in a packet header.\n1\n2",
+      "text": "Data is transmitted using the internet. The data is transmitted using packet switching.\n\nIdentify two items of data contained in a packet header.\n\n1\n2",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -1403,8 +1588,8 @@
     },
     {
       "id": "Q7b_ii",
-      "text": "Data is transmitted using the internet. The data is transmitted using packet switching. Give the purpose of a router in the packet-switching process.",
-      "command": "State",
+      "text": "Data is transmitted using the internet. The data is transmitted using packet switching.\n\nGive the purpose of a router in the packet-switching process.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1435,13 +1620,13 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8a_i",
-      "text": "Hexadecimal can be used to represent binary numbers. Convert the denary number 236 into hexadecimal. Show your working.",
-      "command": "Calculate",
+      "text": "Hexadecimal can be used to represent binary numbers.\n\nConvert the denary number 236 into hexadecimal.\n\nWorking space",
+      "command": "Convert",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1463,14 +1648,14 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "difficulty": "Low",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8a_ii",
-      "text": "Hexadecimal can be used to represent binary numbers. Give one benefit of using hexadecimal instead of binary to represent data.",
-      "command": "State",
+      "text": "Hexadecimal can be used to represent binary numbers.\n\nGive one benefit of using hexadecimal instead of binary to represent data.",
+      "command": "Give",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1509,13 +1694,13 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Remember",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8b_i",
-      "text": "Two's complement can be used to represent positive and negative binary integers. Convert the two's complement integer 10110111 into denary. Show all your working.",
-      "command": "Calculate",
+      "text": "Two's complement can be used to represent positive and negative binary integers.\n\nConvert the two's complement integer 10110111 into denary. Show all your working.",
+      "command": "Convert",
       "objective": "AO1",
       "marks": 2,
       "visuals": [],
@@ -1542,13 +1727,13 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8b_ii",
-      "text": "Two's complement can be used to represent positive and negative binary integers. Convert the denary number 45 into an 8-bit two's complement integer. Show your working.",
-      "command": "Calculate",
+      "text": "Two's complement can be used to represent positive and negative binary integers.\n\nConvert the denary number 45 into an 8-bit two's complement integer.\n\nWorking space",
+      "command": "Convert",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1570,13 +1755,13 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Apply",
+      "difficulty": "Low",
+      "bloom_level": "Understand",
       "cognitive_load": "Low"
     },
     {
       "id": "Q8c",
-      "text": "Logical shifts are performed on binary integers. State the mathematical effect of a right shift of four places on a positive binary integer.",
+      "text": "Logical shifts are performed on binary integers.\n\nState the mathematical effect of a right shift of four places on a positive binary integer.",
       "command": "State",
       "objective": "AO1",
       "marks": 2,

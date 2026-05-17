@@ -215,6 +215,19 @@ def _badge(text, cls):
 # Layout-specific input renderers
 # ============================================================================
 
+def _render_prose_paragraphs(text: str, css_class: str = "q-text") -> str:
+    """Split prose on blank lines and emit one <p class="..."> per paragraph.
+
+    Returns '' for empty/whitespace text. Single-paragraph text yields one <p>.
+    Used for every layout type's stem rendering so that PDF paragraph breaks
+    captured as \\n\\n in the JSON appear as semantically distinct paragraphs
+    in the HTML."""
+    if not text or not text.strip():
+        return ""
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    return "".join(f'<p class="{css_class}">{escape(p)}</p>' for p in paragraphs)
+
+
 def _render_simple_single_block(q, sd):
     qid = escape(q.get("id", ""))
     rows = max(int(sd.get("line_count") or 3), 2)
@@ -334,7 +347,7 @@ def _render_inline_cloze(q, sd):
 
     intro, word_bank, cloze_text = _parse_cloze_text(text)
 
-    intro_html = f'<p class="q-text">{escape(intro)}</p>' if intro else ""
+    intro_html = _render_prose_paragraphs(intro)
 
     bank_html = ""
     if word_bank:
@@ -714,8 +727,6 @@ def _render_question(q, source: dict | None = None):
                     break
         if trailing == expected:
             text = "\n".join(lines[:tail_start]).strip()
-    text_html = escape(text)
-
     visual_html = ""
     if visuals:
         visual_html = f'<p class="q-visual">[Contains: {escape(", ".join(str(v) for v in visuals))}]</p>'
@@ -733,7 +744,7 @@ def _render_question(q, source: dict | None = None):
         # Cloze renderer owns the text — replaces the standard q-text paragraph
         body_inner = input_html
     else:
-        body_inner = f'<p class="q-text">{text_html}</p>{input_html}'
+        body_inner = _render_prose_paragraphs(text) + input_html
 
     answers_html = ""
     if answers:
