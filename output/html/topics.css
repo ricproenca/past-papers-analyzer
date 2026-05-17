@@ -1,0 +1,113 @@
+
+/* Extends paper.css for topic revision pages */
+.topic-page-header {
+    background: #1e3a5f; color: #fff;
+    padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+}
+.topic-page-header h1 { font-size: 1.4rem; font-weight: 700; }
+.topic-page-header .crumbs { font-size: .85rem; opacity: .85; margin-top: .25rem; }
+.topic-page-header a.back-link {
+    color: #fff; text-decoration: none; font-size: .85rem;
+    padding: .4rem .85rem; border: 1px solid rgba(255,255,255,.4); border-radius: 6px;
+}
+.topic-page-header a.back-link:hover { background: rgba(255,255,255,.1); }
+
+.filter-bar {
+    position: sticky; top: 0; z-index: 10;
+    background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: .85rem 1rem; margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    display: flex; flex-direction: column; gap: .55rem;
+}
+.filter-row { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.filter-label {
+    font-size: .7rem; font-weight: 700; color: #6b7280;
+    text-transform: uppercase; letter-spacing: .06em;
+    width: 5.5rem; flex-shrink: 0;
+}
+.tab-group { display: flex; gap: .35rem; flex-wrap: wrap; }
+.tab-btn {
+    padding: .3rem .75rem; border-radius: 6px;
+    border: 1.5px solid #e5e7eb; background: #fff;
+    color: #4b5563; font-size: .8rem; font-weight: 500;
+    cursor: pointer; transition: all .12s;
+}
+.tab-btn:hover:not(:disabled) { border-color: #1e3a5f; color: #1e3a5f; }
+.tab-btn.active { background: #1e3a5f; color: #fff; border-color: #1e3a5f; }
+.tab-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+.actions-row { display: flex; gap: .5rem; flex-wrap: wrap; padding-top: .25rem; }
+.action-btn {
+    padding: .35rem .85rem; border-radius: 6px;
+    border: 1px solid #d1d5db; background: #fff;
+    font-size: .8rem; font-weight: 500; cursor: pointer;
+    color: #374151;
+}
+.action-btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+.action-btn.primary { background: #1e3a5f; color: #fff; border-color: #1e3a5f; }
+.action-btn.primary:hover { background: #2d4f7a; }
+
+.counter {
+    font-size: .85rem; color: #6b7280; margin-bottom: 1rem; padding-left: .25rem;
+}
+.counter strong { color: #1e3a5f; }
+
+.empty-state {
+    background: #fff; border-radius: 10px; padding: 3rem 1.5rem;
+    text-align: center; color: #6b7280; font-size: .9rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* === Index page (topics.html) === */
+.topics-index-header {
+    background: #1e3a5f; color: #fff;
+    padding: 2rem 1.5rem; margin-bottom: 2rem; border-radius: 10px;
+}
+.topics-index-header h1 { font-size: 1.75rem; font-weight: 700; }
+.topics-index-header p { font-size: .95rem; opacity: .8; margin-top: .35rem; }
+.topics-index-header .links {
+    margin-top: 1rem; display: flex; gap: .6rem; flex-wrap: wrap;
+}
+.topics-index-header .links a {
+    color: #fff; text-decoration: none; font-size: .8rem;
+    padding: .35rem .8rem; border: 1px solid rgba(255,255,255,.4); border-radius: 6px;
+}
+.topics-index-header .links a:hover { background: rgba(255,255,255,.12); }
+
+.topic-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+.topic-card {
+    background: #fff; border-radius: 10px; padding: 1.4rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    text-decoration: none; color: inherit;
+    border: 2px solid transparent; transition: all .15s;
+    display: flex; flex-direction: column; gap: .6rem;
+}
+.topic-card:hover { border-color: #1e3a5f; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08); }
+.topic-card .topic-num {
+    font-size: 2rem; font-weight: 700; color: #1e3a5f; line-height: 1;
+}
+.topic-card .topic-name {
+    font-size: 1.05rem; font-weight: 600; color: #1f2937;
+}
+.topic-card .topic-desc {
+    font-size: .825rem; color: #6b7280; line-height: 1.45;
+}
+.topic-card .topic-meta {
+    margin-top: auto; padding-top: .65rem; border-top: 1px solid #f3f4f6;
+    font-size: .75rem; color: #6b7280; display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: .35rem;
+}
+.topic-card .topic-meta strong { color: #1e3a5f; font-weight: 700; }
+.subtopic-chips { display: flex; gap: .25rem; flex-wrap: wrap; }
+.subtopic-chip {
+    font-size: .7rem; padding: .12rem .45rem; border-radius: 999px;
+    background: #eff6ff; color: #1e3a5f; font-weight: 600;
+}

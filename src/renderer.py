@@ -1,5 +1,6 @@
 """Render extracted JSON data as a self-contained HTML review page."""
 
+import re
 from html import escape
 from pathlib import Path
 
@@ -36,6 +37,8 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .badge-cmd { background: #8b5cf6; }
 .badge-topic { background: #0891b2; }
 .badge-page { background: #d1d5db; color: #374151; }
+.badge-paper { background: #1e3a5f; text-decoration: none; }
+.badge-paper:hover { background: #2d4f7a; }
 .chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
 .card.open .chevron { transform: rotate(180deg); }
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
@@ -94,6 +97,19 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 }
 .word-bank-note {
     margin-top: .75rem; font-size: .8rem; color: #6b7280; font-style: italic;
+}
+.word-bank {
+    display: flex; flex-wrap: wrap; gap: .4rem;
+    padding: .75rem .9rem; margin: .85rem 0;
+    background: #f0f7ff; border: 1px solid #c7dcf6; border-radius: 8px;
+}
+.word-bank-label {
+    width: 100%; font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: #3b5b85; margin-bottom: .15rem;
+}
+.word-chip {
+    background: #fff; border: 1px solid #c7dcf6; border-radius: 999px;
+    padding: .25rem .7rem; font-size: .85rem; color: #1e3a5f; font-weight: 500;
 }
 
 /* Tables (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) */
@@ -214,10 +230,102 @@ def _render_numbered_multi_list(q, sd):
     return f'<div class="q-input">{"".join(slots)}</div>'
 
 
+_WORD_BANK_RE = re.compile(r"^\s*\[word bank:\s*(.+?)\]\s*$", re.IGNORECASE)
+_ELLIPSIS_RUN_RE = re.compile(r"[…]{2,}|\.{3,}")
+_PROSE_END_RE = re.compile(r"[.!?]\s*$")
+
+
+def _tokenize_bank_line(text: str):
+    """Split a word-bank line into items. Uses 2+ spaces if present
+    (preserves multi-word terms), otherwise single whitespace."""
+    if re.search(r"\s{2,}", text):
+        return [t.strip() for t in re.split(r"\s{2,}", text) if t.strip()]
+    return text.split()
+
+
+def _parse_cloze_text(text: str):
+    """Split a cloze question's text into (intro, word_bank_items, cloze_paragraph).
+
+    PDF-extracted gap placeholders that came through as runs of `…` (U+2026) or
+    `...` are normalized to `[blank]` first.
+
+    The cloze paragraph is everything from the first line containing `[blank]`.
+    The word bank is detected by:
+      (A) An explicit `[word bank: a, b, c]` line — split on commas (preserves
+          multi-word terms like "central processing unit (CPU)").
+      (B) Walking backward from just before the cloze paragraph, collecting
+          consecutive non-empty lines that don't end with sentence-final
+          punctuation. Multi-line banks are joined and re-tokenized.
+    """
+    text = _ELLIPSIS_RUN_RE.sub("[blank]", text)
+    lines = text.splitlines()
+    cloze_start = next((i for i, ln in enumerate(lines) if "[blank]" in ln), None)
+    if cloze_start is None:
+        return text, None, ""
+
+    pre = list(lines[:cloze_start])
+    cloze = "\n".join(lines[cloze_start:]).strip()
+
+    word_bank = None
+
+    # Pattern A — explicit marker, comma-separated
+    for i, line in enumerate(pre):
+        m = _WORD_BANK_RE.match(line)
+        if m:
+            word_bank = [w.strip() for w in m.group(1).split(",") if w.strip()]
+            del pre[i]
+            break
+
+    # Pattern B — walk backwards, collect consecutive non-prose lines
+    if word_bank is None:
+        bank_lines = []
+        cut_idx = len(pre)
+        for i in range(len(pre) - 1, -1, -1):
+            s = pre[i].strip()
+            if not s:
+                if bank_lines:
+                    cut_idx = i
+                    break
+                cut_idx = i
+                continue
+            if _PROSE_END_RE.search(s):
+                cut_idx = i + 1
+                break
+            bank_lines.insert(0, s)
+            cut_idx = i
+        if bank_lines:
+            joined = "  ".join(bank_lines) if any(re.search(r"\s{2,}", b) for b in bank_lines) else " ".join(bank_lines)
+            word_bank = _tokenize_bank_line(joined)
+            pre = pre[:cut_idx]
+
+    intro = "\n".join(pre).strip()
+    return intro, word_bank, cloze
+
+
 def _render_inline_cloze(q, sd):
     qid = escape(q.get("id", ""))
     text = q.get("text", "")
-    parts = text.split("[blank]")
+
+    intro, word_bank, cloze_text = _parse_cloze_text(text)
+
+    intro_html = f'<p class="q-text">{escape(intro)}</p>' if intro else ""
+
+    bank_html = ""
+    if word_bank:
+        chips = "".join(
+            f'<span class="word-chip">{escape(w)}</span>' for w in word_bank
+        )
+        bank_html = (
+            f'<div class="word-bank">'
+            f'<span class="word-bank-label">Word bank</span>{chips}'
+            f'</div>'
+        )
+    elif sd.get("has_word_bank"):
+        bank_html = (
+            '<p class="word-bank-note">(Word bank provided in the original paper)</p>'
+        )
+
+    parts = (cloze_text or text).split("[blank]")
     pieces = []
     for i, part in enumerate(parts):
         pieces.append(f'<span>{escape(part)}</span>')
@@ -225,11 +333,9 @@ def _render_inline_cloze(q, sd):
             pieces.append(
                 f'<input type="text" class="cloze-blank" name="{qid}_g{i}">'
             )
-    word_bank = (
-        '<p class="word-bank-note">(Word bank provided in the original paper)</p>'
-        if sd.get("has_word_bank") else ""
-    )
-    return f'<div class="cloze-body">{"".join(pieces)}</div>{word_bank}'
+    cloze_html = f'<div class="cloze-body">{"".join(pieces)}</div>'
+
+    return f'{intro_html}{bank_html}{cloze_html}'
 
 
 def _render_matrix_grid(q, sd):
@@ -409,10 +515,11 @@ _LAYOUT_RENDERERS = {
 }
 
 
-def _render_question(q):
+def _render_question(q, source: dict | None = None):
     obj = q.get("objective", "")
     obj_badge = f'<span class="badge badge-obj" data-obj="{escape(obj)}">{escape(obj)}</span>'
 
+    qid = q.get("id", "")
     marks = q.get("marks", "?")
     topic = q.get("topic")
     topic_name = q.get("topic_name")
@@ -422,7 +529,7 @@ def _render_question(q):
     answers = q.get("answers")
 
     header_badges = [
-        f'<span class="q-id">{escape(q.get("id", ""))}</span>',
+        f'<span class="q-id">{escape(qid)}</span>',
         _badge(f"{marks} mark{'s' if marks != 1 else ''}", "badge-marks"),
         obj_badge,
     ]
@@ -432,6 +539,13 @@ def _render_question(q):
         header_badges.append(_badge(f"{topic} {topic_name}", "badge-topic"))
     if page:
         header_badges.append(_badge(f"p.{page}", "badge-page"))
+    if source:
+        href = f'{escape(source["paper"])}.html#{escape(qid)}'
+        label = f'{source["session"]} · QP{source["variant"]} · {qid}'
+        header_badges.append(
+            f'<a class="badge badge-paper" href="{href}" '
+            f'onclick="event.stopPropagation()">{escape(label)}</a>'
+        )
 
     header_inner = "\n".join(header_badges)
     chevron = '<span class="chevron">▾</span>'
@@ -524,13 +638,34 @@ def _render_question(q):
             f'</div>'
         )
 
+    data_attrs = (
+        f'id="{escape(qid)}" '
+        f'data-topic="{escape(topic or "")}" '
+        f'data-subtopic="{escape(topic or "")}" '
+        f'data-difficulty="{escape(q.get("difficulty", "") or "")}" '
+        f'data-objective="{escape(obj)}" '
+        f'data-bloom="{escape(q.get("bloom_level", "") or "")}" '
+        f'data-command="{escape(command or "")}" '
+        f'data-marks="{escape(str(marks))}"'
+    )
+    if source:
+        data_attrs += (
+            f' data-year="{escape(source["year"])}"'
+            f' data-session="{escape(source["session"])}"'
+            f' data-paper="{escape(source["paper"])}"'
+        )
+
     return (
-        f'<div class="card">'
+        f'<div class="card" {data_attrs}>'
         f'<div class="q-header">{header_inner}{chevron}</div>'
         f'<div class="q-body" data-layout="{escape(layout_type)}">{body_inner}{visual_html}</div>'
         f'{answers_html}'
         f'</div>'
     )
+
+
+# Public alias for cross-module callers (e.g. generate_topics.py)
+render_question_card = _render_question
 
 
 def render_html(data: dict) -> str:
