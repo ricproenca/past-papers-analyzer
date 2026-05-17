@@ -1,3 +1,4 @@
+import json
 import re
 
 import pdfplumber
@@ -5,6 +6,12 @@ from typing import List, Dict, Any
 
 _REGISTER_NAMES = frozenset({'PC', 'ACC', 'IX', 'MAR', 'MDR', 'CIR', 'IR', 'SR'})
 _TERM_DEF_HEADERS = frozenset({'TERM', 'DEFINITION'})
+# Right-column header signatures that identify a TermDefinitionGrid even when the
+# left header isn't literally "Term" (e.g. "Function name | Description").
+_TERM_DEF_RIGHT_RE = re.compile(r"descrip|defin", re.IGNORECASE)
+# Characters that make up a Cambridge "blank-line" cell when nothing else is printed:
+# unicode horizontal ellipsis, ASCII dot/period, whitespace.
+_BLANK_CELL_RE = re.compile(r"^[\s.…]*$")
 
 # Generic labeled answer slots: 2+ consecutive lines like "Label ....." or "Label: ....."
 # The label is a capitalized word or short phrase (Justification, Primary storage, Input, etc.).
@@ -99,6 +106,19 @@ def _annotate_anchors(raw_text: str) -> str:
     return text
 
 
+def _is_blank_cell(cell) -> bool:
+    """A cell counts as 'blank' when its only content is a dotted answer line
+    (Cambridge prints these as runs of '.' or U+2026 ellipsis) or pure whitespace."""
+    return bool(_BLANK_CELL_RE.match(str(cell or "")))
+
+
+def _clean_cell(cell) -> str:
+    """Return the cell text with line-joining whitespace collapsed, or '' if blank."""
+    if _is_blank_cell(cell):
+        return ""
+    return re.sub(r"\s+", " ", str(cell)).strip()
+
+
 def _classify_table(table: list) -> str:
     """Return a TABLE_TYPE annotation string for a pdfplumber table."""
     if not table:
@@ -120,7 +140,12 @@ def _classify_table(table: list) -> str:
 
     header_tokens = {str(cell or "").strip().upper() for cell in first_row}
 
-    # TermDefinitionGrid: exactly "Term" and "Definition" columns
+    # TermDefinitionGrid: two columns, right header looks like "Description"/"Definition".
+    # Covers literal "Term | Definition" AND variants like "Function name | Description",
+    # "Component | Description", "Internet term | Description", etc.
+    if ncols == 2 and _TERM_DEF_RIGHT_RE.search(str(first_row[1] or "")):
+        return "TermDefinitionGrid"
+    # Backward-compat fallback in case headers ever come through reordered.
     if _TERM_DEF_HEADERS <= header_tokens:
         return "TermDefinitionGrid"
 
@@ -136,11 +161,36 @@ def _table_to_markdown(table: list) -> str:
         return ""
     rows = []
     for i, row in enumerate(table):
-        cells = [str(cell or "").strip() for cell in row]
+        cells = [_clean_cell(cell) for cell in row]
         rows.append("| " + " | ".join(cells) + " |")
         if i == 0:
             rows.append("|" + "|".join(["---"] * len(cells)) + "|")
     return "\n".join(rows)
+
+
+def _term_def_block(table: list) -> str:
+    """Build the authoritative [TERM_DEF_TABLE_DATA] JSON block for a TermDefinitionGrid table.
+
+    Every cell is either a verbatim string of the printed text OR "" for a blank
+    answer line. The model is instructed (in prompts.py) to copy this verbatim into
+    structure_data.rows, converting "" to null."""
+    if not table or len(table) < 2:
+        return ""
+    header_row = table[0]
+    headers = [_clean_cell(c) for c in header_row]
+    rows = []
+    for raw_row in table[1:]:
+        if len(raw_row) < 2:
+            continue
+        left  = _clean_cell(raw_row[0])
+        right = _clean_cell(raw_row[1])
+        rows.append({"term": left, "definition": right})
+    payload = {"headers": headers, "rows": rows}
+    return (
+        "[TERM_DEF_TABLE_DATA]\n"
+        + json.dumps(payload, ensure_ascii=False)
+        + "\n[/TERM_DEF_TABLE_DATA]"
+    )
 
 
 def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
@@ -169,7 +219,12 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
                     ttype = _classify_table(t)
                     md = _table_to_markdown(t)
                     if md:
-                        table_parts.append(f"[TABLE_TYPE:{ttype}]\n{md}")
+                        part = f"[TABLE_TYPE:{ttype}]\n{md}"
+                        if ttype == "TermDefinitionGrid":
+                            block = _term_def_block(t)
+                            if block:
+                                part = part + "\n" + block
+                        table_parts.append(part)
                 if table_parts:
                     text = text + "\n\n[TABLES]\n" + "\n\n".join(table_parts)
 

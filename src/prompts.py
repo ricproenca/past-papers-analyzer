@@ -63,44 +63,128 @@ InlineCloze — fill-in-the-gap prose; blanks appear as [blank] mid-sentence; ma
   structure_data: { "inline_gap_count": N, "has_word_bank": true/false }
   Set has_word_bank to true if a word bank list or table is visible near the question.
 
-MatrixGrid — comparison table with state/category column headers requiring ticks or tokens
-  PDF signals: [TABLE_TYPE:MatrixGrid]; headers like "True / False", "RAM / ROM / Flash", "Tick one box"
-  structure_data: { "matrix_headers": ["Statement", "True", "False"], "row_count": N, "rows": ["statement text", ...] }
-  rows: the text of each statement/feature row (left-most column), in order
+MatrixGrid — table that requires ticks/selections. Covers TWO sub-patterns:
 
-ValueTraceMatrix — register or variable trace table (assembly language / algorithm tracing)
-  PDF signals: [TABLE_TYPE:ValueTraceMatrix]; headers include PC, ACC, IX, MAR, MDR, CIR, SR or variable names
-  structure_data: { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...] }
-  rows: the instruction or step label for each row (left-most column), in order
+  (1) MATRIX COMPARISON — multiple option columns; each row gets ONE tick.
+      Example headers: ["Statement", "True", "False"], ["Feature", "RAM", "ROM", "Flash"].
+      structure_data: { "matrix_headers": ["Statement","True","False"], "row_count": N,
+                        "rows": ["statement text", ...] }
+      rows: the text of each statement/feature row (left-most column), in order.
+
+  (2) SINGLE-SELECT MCQ — one tick column with N alternative options labelled A/B/C/…
+      Triggered by "Tick (✓) one box…", "Tick (✓) two boxes…", etc. each option is one row.
+      structure_data: { "matrix_headers": ["Option", "Tick"], "row_count": N,
+                        "rows": ["A <full statement>", "B <full statement>", ...] }
+      • Headers MUST be exactly two columns: the LEFT header is the row-label (e.g. "Option",
+        "Statement"); the RIGHT header signals selection — use one of: "Tick", "Select",
+        "Choose", "Mark".
+      • rows MUST be one row PER OPTION. Each row string starts with the option letter/number
+        (A, B, C, …) followed by a space and the full statement text. Do NOT put the option
+        letters in matrix_headers (that produces an unusable layout). Do NOT collapse the
+        question to a single row like ["Tick one box"] with letters as headers.
+      • The renderer derives tick-count (one/two/three/…) from the question text directly,
+        so no extra field is needed.
+      Common command words for this pattern: "Tick", "Circle", "Select".
+
+  Distinguishing the two: if the question reads "Tick one box to show…" with options labelled
+  A/B/C/D listed BELOW the prompt, it is pattern (2). If each row already has its own True/False
+  or category choice, it is pattern (1).
+
+ValueTraceMatrix — multi-column data table where students fill in cell values; covers BOTH:
+    (a) algorithm/register trace tables (all data cells blank — students compute values)
+    (b) data-grid tables with rows prefilled and only some rows blank (e.g. parity block check tables)
+  PDF signals: [TABLE_TYPE:ValueTraceMatrix]; headers include PC, ACC, IX, MAR, MDR, CIR, SR, variable names,
+    or bit/byte positions like "parity bit, bit 7, bit 6, …, bit 1".
+  structure_data: {
+    "matrix_headers": ["parity bit","bit 7","bit 6","bit 5","bit 4","bit 3","bit 2","bit 1"],
+    "row_count": N,
+    "rows": ["byte 1","byte 2","byte 3","byte 4","byte 5","byte 6","byte 7","parity byte"],
+    "row_values": [
+      ["1","1","0","0","1","1","1","0"],   // byte 1 — fully prefilled
+      ["1","0","0","0","0","1","1","0"],   // byte 2 — fully prefilled
+      ["0","1","0","0","0","0","0","0"],   // byte 3 — fully prefilled
+      ["0","1","0","0","1","1","1","1"],   // byte 4 — fully prefilled
+      ["1","0","0","0","0","0","0","0"],   // byte 5 — fully prefilled
+      ["0","1","1","1","1","1","1","1"],   // byte 6 — fully prefilled
+      ["1","1","0","0","1","1","0","1"],   // byte 7 — fully prefilled
+      null                                  // parity byte — all 8 cells blank
+    ]
+  }
+  matrix_headers: only the DATA column headers; do NOT include the leftmost row-label column.
+  rows: the step / instruction / byte label for each row (left-most column), in order.
+  row_values (NEW, optional): parallel array to rows giving prefilled cell values per row:
+    • null (or omit the field entirely) → that row's data cells are ALL blank for the student to fill
+    • [v0, v1, …] → list of strings, one per matrix_headers column, in the same order;
+                    use null or "" inside the array for an individual blank cell
+  When most cells in the table are prefilled and only a subset of rows / cells are blank (typical of
+  parity check tables or "complete the table" data-fill questions), POPULATE row_values. When the table
+  is a pure trace (algorithm walk-through, register trace), OMIT row_values — the renderer treats every
+  data cell as blank.
+  Self-check: the number of blank cells in your row_values (counting all nulls — including each entry of
+  any null/missing row entry) should align with the question's "marks" value (one blank = one mark, typical).
 
 FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
   PDF signals: [TABLE_TYPE:FixedRegisterArray register_size=N]
   structure_data: { "register_size": N }  // N is 8 or 16
 
-TermDefinitionGrid — two-column "label / explanation" table where SOME cells are pre-filled and OTHERS blank
-  PDF signals: [TABLE_TYPE:TermDefinitionGrid]. Header names VARY across questions and are NOT always
-    "Term" and "Definition". Real Cambridge examples include:
-      "Function name | Description", "Component name | Description", "Component | Description",
-      "Internet term | Description", "Type of secondary storage | Description", "Term | Description".
-    Always copy the printed header row verbatim into the "text" field.
-  structure_data: {
-    "row_count": N,
-    "rows": [
-      { "term": "memory management",    "definition": null },                              // left filled, right blank
-      { "term": null,                   "definition": "allows applications to run" },      // left blank,  right filled
-      { "term": "managing peripherals", "definition": null }                               // left filled, right blank
-    ]
-  }
-  CRITICAL — read each row's LEFT cell and RIGHT cell INDEPENDENTLY. Blanks may appear in EITHER column,
-  and the pattern CHANGES row-by-row (e.g. 2 blanks in the right column + 1 in the left, like the example
-  above). Do NOT assume one column is uniformly blank just because the first row looks that way.
-  For each row, decide each cell separately:
-    • Cell has printed text  → store that text VERBATIM under "term" (left) or "definition" (right)
-    • Cell is an empty dotted/underscore answer line → store null
-  Self-check before emitting: the count of null cells across all rows should equal the question's "marks"
-  value (one blank = one mark, in the typical case). If they don't match, re-read the table row by row.
-  In the "text" field, preserve the table as "(left) | (right)" lines (header row first), writing "(blank)"
-  for empty cells.
+TermDefinitionGrid — two-column "label / explanation" table where SOME cells are pre-filled and OTHERS blank.
+
+  ===========================================================================
+  MANDATORY EXTRACTION RULE (overrides all instinct/heuristics):
+  ===========================================================================
+  When the page text contains a `[TERM_DEF_TABLE_DATA]…[/TERM_DEF_TABLE_DATA]` JSON block
+  (the preprocessor emits one for every TermDefinitionGrid table), it is THE AUTHORITATIVE
+  source for cell contents. You MUST:
+    1. Parse the JSON inside the block.
+    2. Copy its "rows" array INTO structure_data.rows POSITIONALLY, with this transformation
+       and NO OTHER changes:
+         • For each cell value, if it is "" (empty string) → write null in structure_data.
+         • If it is a non-empty string → copy that exact string verbatim.
+       Do NOT swap fields. Do NOT move text from "term" to "definition" or vice-versa even if
+       the wording "looks like" a description or a name. The LEFT cell in the PDF goes to
+       "term"; the RIGHT cell goes to "definition". Always.
+    3. Set "row_count" to the number of rows you wrote.
+  Do NOT re-read the markdown table to "verify" or "correct" cell positions. The model has
+  no better view of the PDF than the preprocessor does; trust the JSON block.
+
+  In the "text" field, also keep the table as "(left) | (right)" lines with the header row
+  first; write "(blank)" for empty cells — this is a human-readable mirror only, not a
+  source of truth.
+
+  Header names VARY across questions: real Cambridge examples include
+    "Function name | Description", "Component name | Description", "Internet term | Description",
+    "Type of secondary storage | Description", "Term | Description", "Term | Definition".
+  Headers come from the JSON block's "headers" array — copy verbatim into "text".
+
+  Example. If the page text contains:
+    [TERM_DEF_TABLE_DATA]
+    {"headers": ["Function name", "Description"],
+     "rows": [
+       {"term": "managing memory",    "definition": ""},
+       {"term": "",                   "definition": "allows application software to run on the computer"},
+       {"term": "managing peripherals","definition": ""}
+     ]}
+    [/TERM_DEF_TABLE_DATA]
+  Then structure_data MUST be:
+    {
+      "row_count": 3,
+      "rows": [
+        { "term": "managing memory",    "definition": null },
+        { "term": null,                 "definition": "allows application software to run on the computer" },
+        { "term": "managing peripherals","definition": null }
+      ]
+    }
+  And "text" includes the lines:
+    Function name | Description
+    managing memory | (blank)
+    (blank) | allows application software to run on the computer
+    managing peripherals | (blank)
+
+  Fallback (no JSON block emitted — rare): read each row's LEFT and RIGHT cell independently
+  from the markdown table. Blanks may appear in EITHER column and the pattern can vary row by
+  row. Set the cell's field to null if it is an empty dotted/underscore answer line, else copy
+  the printed text verbatim. Self-check: total nulls across rows should match the question's
+  "marks" value (one blank = one mark, typical case).
 
 LabelledPartResponse — a reference item (URL, code, expression) with parts marked a/b/c; short inline answer slots
   PDF signals: [LAYOUT:LabelledPartResponse labels=a,b,c]; a line of the form "a ..... b ..... c ....."

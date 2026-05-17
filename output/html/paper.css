@@ -124,11 +124,37 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .term-def-table tbody tr:last-child td { border-bottom: none; }
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
+
+/* Single-select MCQ option list (Tick one/N boxes) */
+.option-table {
+    width: 100%; border-collapse: collapse; font-size: .9rem;
+    border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden;
+}
+.option-table tr { border-bottom: 1px solid #e5e7eb; }
+.option-table tr:last-child { border-bottom: none; }
+.option-table tr:hover { background: #f9fafb; }
+.option-table td { padding: .55rem .75rem; vertical-align: middle; }
+.option-table td.opt-letter {
+    width: 2.25rem; font-weight: 700; color: #1e3a5f; text-align: center;
+}
+.option-table td.opt-text { line-height: 1.5; }
+.option-table td.opt-input {
+    width: 3rem; text-align: center;
+}
+.option-table td.opt-input input { transform: scale(1.2); cursor: pointer; }
+.tick-hint {
+    font-size: .8rem; color: #6b7280; font-style: italic;
+    margin-bottom: .5rem;
+}
 .trace-cell {
     width: 100%; padding: .3rem .5rem; font-family: ui-monospace, monospace;
     font-size: .85rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;
 }
 .term-def-table td.prefilled { background: #f9fafb; color: #4b5563; }
+.trace-table td.prefilled {
+    background: #f9fafb; color: #1f2937;
+    font-family: ui-monospace, monospace; text-align: center;
+}
 .term-def-table .term-input, .term-def-table textarea {
     width: 100%; font-family: inherit; font-size: .875rem;
     padding: .35rem .5rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;

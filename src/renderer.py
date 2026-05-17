@@ -130,11 +130,37 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .term-def-table tbody tr:last-child td { border-bottom: none; }
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
+
+/* Single-select MCQ option list (Tick one/N boxes) */
+.option-table {
+    width: 100%; border-collapse: collapse; font-size: .9rem;
+    border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden;
+}
+.option-table tr { border-bottom: 1px solid #e5e7eb; }
+.option-table tr:last-child { border-bottom: none; }
+.option-table tr:hover { background: #f9fafb; }
+.option-table td { padding: .55rem .75rem; vertical-align: middle; }
+.option-table td.opt-letter {
+    width: 2.25rem; font-weight: 700; color: #1e3a5f; text-align: center;
+}
+.option-table td.opt-text { line-height: 1.5; }
+.option-table td.opt-input {
+    width: 3rem; text-align: center;
+}
+.option-table td.opt-input input { transform: scale(1.2); cursor: pointer; }
+.tick-hint {
+    font-size: .8rem; color: #6b7280; font-style: italic;
+    margin-bottom: .5rem;
+}
 .trace-cell {
     width: 100%; padding: .3rem .5rem; font-family: ui-monospace, monospace;
     font-size: .85rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;
 }
 .term-def-table td.prefilled { background: #f9fafb; color: #4b5563; }
+.trace-table td.prefilled {
+    background: #f9fafb; color: #1f2937;
+    font-family: ui-monospace, monospace; text-align: center;
+}
 .term-def-table .term-input, .term-def-table textarea {
     width: 100%; font-family: inherit; font-size: .875rem;
     padding: .35rem .5rem; border: 1px solid #d1d5db; border-radius: 4px; background: #fff;
@@ -338,6 +364,33 @@ def _render_inline_cloze(q, sd):
     return f'{intro_html}{bank_html}{cloze_html}'
 
 
+_TICK_HEADER_RE = re.compile(r"^(tick|select|choose|mark)\b", re.IGNORECASE)
+_TICK_COUNT_RE = re.compile(
+    r"tick\s*(?:\(\s*✓\s*\))?\s*(one|two|three|four|five|six|\d+)\s+box",
+    re.IGNORECASE,
+)
+_OPTION_LETTER_RE = re.compile(r"^\s*([A-Z]|\d{1,2})\b[\s\.\)]+(.+)$")
+_NUM_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+
+
+def _detect_tick_count(text: str, fallback: int) -> int:
+    m = _TICK_COUNT_RE.search(text or "")
+    if not m:
+        return max(int(fallback or 1), 1)
+    w = m.group(1).lower()
+    if w.isdigit():
+        return int(w)
+    return _NUM_WORDS.get(w, fallback)
+
+
+def _split_option_row(row_text: str):
+    """Split 'A bit' into ('A','bit'); return (None, row_text) if no letter prefix."""
+    m = _OPTION_LETTER_RE.match(str(row_text or ""))
+    if not m:
+        return None, str(row_text or "")
+    return m.group(1), m.group(2).strip()
+
+
 def _render_matrix_grid(q, sd):
     qid = escape(q.get("id", ""))
     headers = sd.get("matrix_headers") or ["Statement"]
@@ -345,9 +398,55 @@ def _render_matrix_grid(q, sd):
     if not headers or not rows:
         return _render_simple_single_block(q, sd)
 
-    head = "".join(f'<th>{escape(str(h))}</th>' for h in headers)
     option_headers = headers[1:]  # first column = statement, remaining = options
 
+    # Single-select MCQ pattern: 2 headers AND (the right header reads like "Tick/Select/..."
+    # OR every row begins with an A/B/C-style option letter AND the question text contains
+    # "Tick (✓) N box(es)"). Render as: [letter] [statement] [radio/checkbox] per row, with
+    # a SHARED input name for tick-one (mutually exclusive) and checkboxes for tick-N.
+    qtext = q.get("text", "") or ""
+    right_header = str(option_headers[0] or "").strip() if option_headers else ""
+    all_rows_lettered = bool(rows) and all(
+        _OPTION_LETTER_RE.match(str(r or "")) for r in rows
+    )
+    is_single_select = (
+        len(option_headers) == 1
+        and (
+            bool(_TICK_HEADER_RE.match(right_header))
+            or (all_rows_lettered and bool(_TICK_COUNT_RE.search(qtext)))
+        )
+    )
+
+    if is_single_select:
+        tick_count = _detect_tick_count(q.get("text", ""), q.get("marks", 1) or 1)
+        input_type = "radio" if tick_count == 1 else "checkbox"
+        body_rows = []
+        for r, row_text in enumerate(rows):
+            letter, statement = _split_option_row(row_text)
+            letter_html = f'<td class="opt-letter">{escape(letter)}</td>' if letter else '<td class="opt-letter"></td>'
+            statement_html = f'<td class="opt-text">{escape(statement)}</td>'
+            name = f"{qid}_choice" if input_type == "radio" else f"{qid}_pick{r}"
+            value = letter or str(r)
+            input_html = (
+                f'<td class="opt-input">'
+                f'<input type="{input_type}" name="{name}" value="{escape(value)}">'
+                f'</td>'
+            )
+            body_rows.append(f"<tr>{letter_html}{statement_html}{input_html}</tr>")
+        note = ""
+        if tick_count > 1:
+            note = f'<p class="tick-hint">Tick {tick_count} boxes.</p>'
+        return (
+            f'<div class="q-input">'
+            f'{note}'
+            f'<table class="option-table">'
+            f'<tbody>{"".join(body_rows)}</tbody>'
+            f'</table>'
+            f'</div>'
+        )
+
+    # Multi-option matrix comparison (e.g. ["Statement","True","False"]) — unchanged
+    head = "".join(f'<th>{escape(str(h))}</th>' for h in headers)
     body_rows = []
     for r, row_text in enumerate(rows):
         cells = [f'<td>{escape(str(row_text))}</td>']
@@ -370,13 +469,20 @@ def _render_matrix_grid(q, sd):
 
 def _render_value_trace_matrix(q, sd):
     qid = escape(q.get("id", ""))
-    headers = sd.get("matrix_headers") or []
+    headers = list(sd.get("matrix_headers") or [])
     rows = sd.get("rows") or []
+    row_values = sd.get("row_values") or []
     if not headers:
         return _render_simple_single_block(q, sd)
 
-    # Step column on the left if rows are given; otherwise headers stand alone
     has_step_col = bool(rows)
+
+    # If a step column is going to be auto-prepended AND the data already supplied
+    # an empty leading header (intended as a placeholder for that step column),
+    # drop the duplicate so we don't render two leftmost columns.
+    if has_step_col and headers and not str(headers[0]).strip():
+        headers = headers[1:]
+
     head_cells = (['<th>Step</th>'] if has_step_col else []) + [
         f'<th>{escape(str(h))}</th>' for h in headers
     ]
@@ -387,10 +493,15 @@ def _render_value_trace_matrix(q, sd):
         cells = []
         if has_step_col:
             cells.append(f'<td>{escape(str(row_label))}</td>')
-        for c, _ in enumerate(headers):
-            cells.append(
-                f'<td><input type="text" class="trace-cell" name="{qid}_t{r}_{c}"></td>'
-            )
+        prefill = row_values[r] if r < len(row_values) else None
+        for c in range(len(headers)):
+            val = prefill[c] if (isinstance(prefill, list) and c < len(prefill)) else None
+            if val is None or val == "":
+                cells.append(
+                    f'<td><input type="text" class="trace-cell" name="{qid}_t{r}_{c}"></td>'
+                )
+            else:
+                cells.append(f'<td class="prefilled">{escape(str(val))}</td>')
         body_rows.append(f'<tr>{"".join(cells)}</tr>')
 
     return (

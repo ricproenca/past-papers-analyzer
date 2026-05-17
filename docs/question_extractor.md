@@ -39,10 +39,14 @@ Build a clean, structured JSON deliverable:
         NumberedMultiList:      { "list_count": N }
         InlineCloze:            { "inline_gap_count": N, "has_word_bank": true/false }
         MatrixGrid:             { "matrix_headers": ["Statement", "True", "False"], "row_count": N, "rows": ["statement text", ...] }
-        ValueTraceMatrix:       { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...] }
+                                  Two sub-patterns: (1) matrix comparison — multiple option columns, one tick per row;
+                                  (2) single-select MCQ — exactly 2 columns ["Option","Tick"|"Select"|"Choose"], one option per row
+                                  with the letter prefix ("A <statement>", "B <statement>", ...). Never put option letters in headers.
+        ValueTraceMatrix:       { "matrix_headers": ["PC", "ACC", "MAR"], "row_count": N, "rows": ["LDD 050", "ADD #5", ...], "row_values": [["1","0",...] | null, ...] (optional) }
+                                  matrix_headers: only the data columns (the leftmost row-label column is added by the renderer). Set row_values when the PDF table has rows already filled in (e.g. parity check tables): each entry parallel to rows, null = all cells blank in that row, ["v0","v1",...] = list of prefilled values per column (use "" or null inside the list for an individual blank cell). Omit row_values entirely for pure trace tables where all data cells are blank.
         FixedRegisterArray:     { "register_size": 8 }
         TermDefinitionGrid:     { "row_count": N, "rows": [{ "term": "pixel" | null, "definition": "..." | null }, ...] }
-                                  Headers vary per question ("Function name | Description", "Component | Description", ...); preserve the printed header line in "text". Blanks may appear in EITHER column and the pattern can vary row-by-row — inspect each cell independently.
+                                  The preprocessor emits an authoritative `[TERM_DEF_TABLE_DATA]…[/TERM_DEF_TABLE_DATA]` JSON block for every such table — Claude must copy its rows positionally into structure_data.rows (with "" → null). LEFT cell → "term"; RIGHT cell → "definition". Headers vary per question.
         LabelledPartResponse:   { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
         AnnotatedDiagram:       { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other", "partial_elements": ["element", ...] }
         (use {} if no structural data is detectable)
