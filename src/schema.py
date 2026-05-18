@@ -8,6 +8,7 @@ _VALID_LAYOUT_TYPES = {
     "SimpleSingleBlock", "MultiPartLabeledBlock", "NumberedMultiList",
     "InlineCloze", "MatrixGrid", "ValueTraceMatrix", "FixedRegisterArray",
     "TermDefinitionGrid", "LabelledPartResponse", "AnnotatedDiagram",
+    "CodeBlockResponse",
 }
 
 

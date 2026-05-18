@@ -18,45 +18,73 @@ from src.renderer import _CSS as PAPER_CSS, _JS as PAPER_JS, render_question_car
 
 
 TOPIC_GROUPS = {
-    "1": ("Data Representation",
-          ["1.1", "1.2", "1.3"],
-          "Number systems, text/sound/images, storage & compression"),
-    "2": ("Data Transmission",
-          ["2.1", "2.2", "2.3"],
-          "Transmission methods, error detection, encryption"),
-    "3": ("Hardware",
-          ["3.1", "3.2", "3.3", "3.4"],
-          "Architecture, I/O devices, storage, network hardware"),
-    "4": ("Software",
-          ["4.1", "4.2"],
-          "Software types, programming languages & translators"),
-    "5": ("Internet & Cyber",
-          ["5.1", "5.2", "5.3"],
-          "Web, digital currency, cyber security"),
-    "6": ("Emerging Tech",
-          ["6.1", "6.2", "6.3"],
-          "Automated systems, robotics, AI"),
+    # Paper 1 — chapters 1–6 (theory)
+    "1":  ("Data Representation",
+           ["1.1", "1.2", "1.3"],
+           "Number systems, text/sound/images, storage & compression"),
+    "2":  ("Data Transmission",
+           ["2.1", "2.2", "2.3"],
+           "Transmission methods, error detection, encryption"),
+    "3":  ("Hardware",
+           ["3.1", "3.2", "3.3", "3.4"],
+           "Architecture, I/O devices, storage, network hardware"),
+    "4":  ("Software",
+           ["4.1", "4.2"],
+           "Software types, programming languages & translators"),
+    "5":  ("Internet & Cyber",
+           ["5.1", "5.2", "5.3"],
+           "Web, digital currency, cyber security"),
+    "6":  ("Emerging Tech",
+           ["6.1", "6.2", "6.3"],
+           "Automated systems, robotics, AI"),
+    # Paper 2 — chapters 7–10 (problem solving, programming, databases, logic)
+    "7":  ("Algorithm Design",
+           ["7.1", "7.2", "7.3", "7.4", "7.5"],
+           "Computational thinking, algorithms, methods, validation, test data"),
+    "8":  ("Programming",
+           ["8.1", "8.2", "8.3"],
+           "Programming concepts, arrays, file handling"),
+    "9":  ("Databases",
+           ["9.1", "9.2"],
+           "Database structure and SQL queries"),
+    "10": ("Boolean Logic",
+           ["10.1", "10.2", "10.3", "10.4"],
+           "Logic gates, circuits, truth tables, expressions"),
 }
 
 TOPIC_NAMES = {
-    "1.1": "Number Systems",
-    "1.2": "Text, Sound and Images",
-    "1.3": "Data Storage and Compression",
-    "2.1": "Types and Methods of Data Transmission",
-    "2.2": "Methods of Error Detection",
-    "2.3": "Encryption",
-    "3.1": "Computer Architecture",
-    "3.2": "Input and Output Devices",
-    "3.3": "Data Storage",
-    "3.4": "Network Hardware",
-    "4.1": "Types of Software and Interrupts",
-    "4.2": "Programming Languages, Translators and IDEs",
-    "5.1": "The Internet and the World Wide Web",
-    "5.2": "Digital Currency",
-    "5.3": "Cyber Security",
-    "6.1": "Automated Systems",
-    "6.2": "Robotics",
-    "6.3": "Artificial Intelligence",
+    "1.1":  "Number Systems",
+    "1.2":  "Text, Sound and Images",
+    "1.3":  "Data Storage and Compression",
+    "2.1":  "Types and Methods of Data Transmission",
+    "2.2":  "Methods of Error Detection",
+    "2.3":  "Encryption",
+    "3.1":  "Computer Architecture",
+    "3.2":  "Input and Output Devices",
+    "3.3":  "Data Storage",
+    "3.4":  "Network Hardware",
+    "4.1":  "Types of Software and Interrupts",
+    "4.2":  "Programming Languages, Translators and IDEs",
+    "5.1":  "The Internet and the World Wide Web",
+    "5.2":  "Digital Currency",
+    "5.3":  "Cyber Security",
+    "6.1":  "Automated Systems",
+    "6.2":  "Robotics",
+    "6.3":  "Artificial Intelligence",
+    "7.1":  "Computational Thinking Skills",
+    "7.2":  "Algorithms",
+    "7.3":  "Standard Methods of Solution",
+    "7.4":  "Validation and Verification",
+    "7.5":  "Test Data",
+    "8.1":  "Programming Concepts",
+    "8.2":  "Arrays",
+    "8.3":  "File Handling",
+    "9.1":  "Database Structure",
+    "9.2":  "SQL",
+    "10.1": "Logic Gates",
+    "10.2": "Logic Circuits",
+    "10.3": "Truth Tables",
+    "10.4": "Logic Expressions",
 }
 
 SESSION_LETTER_NAMES = {"m": "March", "s": "Summer", "w": "Winter"}
@@ -87,6 +115,7 @@ LAYOUT_NAMES = {
     "ValueTraceMatrix":      "Value Trace Table",
     "LabelledPartResponse":  "Labelled Part Response",
     "FixedRegisterArray":    "Register Array",
+    "CodeBlockResponse":     "Code Block",
 }
 # Stable display order for the filter buttons.
 LAYOUT_ORDER = list(LAYOUT_NAMES.keys())
@@ -579,7 +608,10 @@ function updateIndexCounts() {
         const n = keys.filter(paperMatches).length;
         totalShown += n;
         const card = document.querySelector('[data-topic-group="' + g + '"]');
-        if (card) card.querySelector('.q-count').textContent = n;
+        if (card) {
+            card.querySelector('.q-count').textContent = n;
+            card.style.display = n === 0 ? 'none' : '';
+        }
     }
     const total = document.getElementById('index-total');
     if (total) total.textContent = totalShown;
@@ -640,7 +672,9 @@ def main():
 
     by_group = {g: [] for g in TOPIC_GROUPS}
     for q, src in all_qs:
-        g = (q.get("topic") or "")[:1]
+        # Bucket by chapter — the part before the dot. "10.2" → "10", "3.4" → "3".
+        # First-char slicing breaks for chapter 10 (would route 10.x to bucket "1").
+        g = (q.get("topic") or "").split(".")[0]
         if g in by_group:
             by_group[g].append((q, src))
 

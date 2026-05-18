@@ -610,14 +610,36 @@ const PAPERS = {
       "mean_marks_per_question": 3.57,
       "median_marks_per_question": 3,
       "max_marks_per_question": 15,
-      "unique_topics_count": 1
+      "unique_topics_count": 12
     },
     "statistics": {
       "marks_by_topic": {
-        "4.2": 75
+        "7.3": 5,
+        "8.3": 1,
+        "7.1": 4,
+        "7.4": 7,
+        "7.5": 6,
+        "7.2": 15,
+        "8.1": 2,
+        "9.1": 4,
+        "9.2": 7,
+        "10.2": 5,
+        "10.3": 4,
+        "8.2": 15
       },
       "count_by_topic": {
-        "4.2": 21
+        "7.3": 2,
+        "8.3": 1,
+        "7.1": 1,
+        "7.4": 3,
+        "7.5": 1,
+        "7.2": 5,
+        "8.1": 1,
+        "9.1": 2,
+        "9.2": 2,
+        "10.2": 1,
+        "10.3": 1,
+        "8.2": 1
       },
       "marks_by_difficulty": {
         "Low": 10,
@@ -642,29 +664,30 @@ const PAPERS = {
         "Apply": 4
       },
       "marks_by_cognitive_load": {
-        "Low": 42,
-        "High": 24,
+        "Low": 18,
+        "High": 48,
         "Medium": 9
       },
       "count_by_cognitive_load": {
-        "Low": 13,
-        "High": 5,
+        "Low": 10,
+        "High": 8,
         "Medium": 3
       },
       "marks_by_objective": {
         "AO1": 8,
-        "AO2": 54,
-        "AO3": 13
+        "AO2": 60,
+        "AO3": 7
       },
       "count_by_objective": {
         "AO1": 5,
-        "AO2": 12,
-        "AO3": 4
+        "AO2": 14,
+        "AO3": 2
       },
       "marks_by_layout_type": {
         "MatrixGrid": 2,
         "AnnotatedDiagram": 9,
-        "SimpleSingleBlock": 40,
+        "SimpleSingleBlock": 16,
+        "CodeBlockResponse": 24,
         "ValueTraceMatrix": 15,
         "NumberedMultiList": 5,
         "MultiPartLabeledBlock": 4
@@ -672,7 +695,8 @@ const PAPERS = {
       "count_by_layout_type": {
         "MatrixGrid": 2,
         "AnnotatedDiagram": 2,
-        "SimpleSingleBlock": 11,
+        "SimpleSingleBlock": 8,
+        "CodeBlockResponse": 3,
         "ValueTraceMatrix": 3,
         "NumberedMultiList": 1,
         "MultiPartLabeledBlock": 2
@@ -700,14 +724,14 @@ const PAPERS = {
       "marks_by_answer_type": {
         "MCQ": 2,
         "diagram": 9,
-        "text": 42,
-        "pseudocode": 22
+        "text": 38,
+        "pseudocode": 26
       },
       "count_by_answer_type": {
         "MCQ": 2,
         "diagram": 2,
-        "text": 14,
-        "pseudocode": 3
+        "text": 13,
+        "pseudocode": 4
       }
     }
   },
@@ -2357,7 +2381,21 @@ const TOPIC_NAMES = {
   "5.3": "Cyber Security",
   "6.1": "Automated Systems",
   "6.2": "Robotics",
-  "6.3": "Artificial Intelligence"
+  "6.3": "Artificial Intelligence",
+  "7.1": "Computational Thinking Skills",
+  "7.2": "Algorithms",
+  "7.3": "Standard Methods of Solution",
+  "7.4": "Validation and Verification",
+  "7.5": "Test Data",
+  "8.1": "Programming Concepts",
+  "8.2": "Arrays",
+  "8.3": "File Handling",
+  "9.1": "Database Structure",
+  "9.2": "SQL",
+  "10.1": "Logic Gates",
+  "10.2": "Logic Circuits",
+  "10.3": "Truth Tables",
+  "10.4": "Logic Expressions"
 };
 const SESSION_LABELS = {
   "m24": "March 2024",
@@ -2384,12 +2422,16 @@ let currentStats      = {};
 const charts = {};
 
 const TOPIC_GROUP_LABELS = {
-  '1': 'Data Representation',
-  '2': 'Data Transmission',
-  '3': 'Hardware',
-  '4': 'Software',
-  '5': 'Internet & Cyber',
-  '6': 'Emerging Tech',
+  '1':  'Data Representation',
+  '2':  'Data Transmission',
+  '3':  'Hardware',
+  '4':  'Software',
+  '5':  'Internet & Cyber',
+  '6':  'Emerging Tech',
+  '7':  'Algorithm Design',
+  '8':  'Programming',
+  '9':  'Databases',
+  '10': 'Boolean Logic',
 };
 
 const LAYOUT_NAMES = {
@@ -2403,6 +2445,7 @@ const LAYOUT_NAMES = {
   'ValueTraceMatrix':      'Value Trace Table',
   'LabelledPartResponse':  'Labelled Part Response',
   'FixedRegisterArray':    'Register Array',
+  'CodeBlockResponse':     'Code Block',
 };
 
 function sessionYear(s) {
@@ -2722,7 +2765,7 @@ function buildTopicGroupTabs() {
     currentTopicGroup = 'all'; buildTopicGroupTabs(); renderTopicChart(currentStats);
   });
   container.appendChild(allBtn);
-  for (const g of ['1','2','3','4','5','6']) {
+  for (const g of ['1','2','3','4','5','6','7','8','9','10']) {
     const btn = document.createElement('button');
     const ok  = Object.keys(currentStats.marks_by_topic || {}).some(k => k.startsWith(g + '.'));
     btn.className = 'tab-btn' + (currentTopicGroup === g ? ' active' : '');

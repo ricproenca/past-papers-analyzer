@@ -74,8 +74,24 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     background: #fff; color: #1f2937; resize: vertical;
 }
 .answer-textarea:focus, .answer-input:focus, .cloze-blank:focus, .bit-box:focus,
-.trace-cell:focus, .term-input:focus {
+.trace-cell:focus, .term-input:focus, .code-textarea:focus {
     outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+/* Code-block answer space (pseudocode / SQL / algorithm) */
+.code-block-language {
+    display: inline-block; font-size: .68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: #6b7280; background: #f3f4f6;
+    padding: .15rem .55rem; border-radius: 999px;
+    margin-bottom: .4rem;
+}
+.code-textarea {
+    width: 100%; padding: .65rem .85rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .85rem; line-height: 1.55; tab-size: 2;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    background: #fafafa; color: #1f2937; resize: vertical;
 }
 
 /* Labeled / numbered slots */
@@ -334,6 +350,35 @@ def _render_simple_single_block(q, sd):
         f'<div class="q-input">'
         f'<textarea class="answer-textarea" rows="{rows}" '
         f'name="{qid}_a" placeholder="Write your answer..."></textarea>'
+        f'</div>'
+    )
+
+
+_CODE_LANGUAGE_LABELS = {"pseudocode": "Pseudocode", "sql": "SQL", "code": "Code"}
+
+
+def _render_code_block_response(q, sd):
+    qid = escape(q.get("id", ""))
+    try:
+        marks = int(q.get("marks") or 0)
+    except (TypeError, ValueError):
+        marks = 0
+    raw_lc = sd.get("line_count")
+    try:
+        lc = int(raw_lc) if raw_lc is not None else None
+    except (TypeError, ValueError):
+        lc = None
+    # Cap at min(lc, 30) so an over-eager line_count doesn't produce a 50+ row
+    # textarea; floor at max(marks * 2, 4) so very high-mark questions still
+    # get reasonable room when the model omits line_count.
+    rows = min(lc, 30) if (lc and lc >= 4) else max(marks * 2, 4)
+    lang = (sd.get("language") or "pseudocode").lower()
+    label = _CODE_LANGUAGE_LABELS.get(lang, "Code")
+    return (
+        f'<div class="q-input code-block-input">'
+        f'<div class="code-block-language">{escape(label)}</div>'
+        f'<textarea class="code-textarea" rows="{rows}" '
+        f'name="{qid}_code" placeholder="Write your {escape(label.lower())}..."></textarea>'
         f'</div>'
     )
 
@@ -750,6 +795,7 @@ _LAYOUT_RENDERERS = {
     "TermDefinitionGrid":     _render_term_definition_grid,
     "LabelledPartResponse":   _render_labelled_part_response,
     "AnnotatedDiagram":       _render_annotated_diagram,
+    "CodeBlockResponse":      _render_code_block_response,
 }
 
 

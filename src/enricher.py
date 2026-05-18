@@ -27,6 +27,7 @@ LOAD_MAP = {
     "FixedRegisterArray":    "Medium",
     "ValueTraceMatrix":      "High",
     "AnnotatedDiagram":      "High",
+    "CodeBlockResponse":     "High",
 }
 
 

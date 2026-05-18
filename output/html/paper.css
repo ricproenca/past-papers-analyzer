@@ -68,8 +68,24 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     background: #fff; color: #1f2937; resize: vertical;
 }
 .answer-textarea:focus, .answer-input:focus, .cloze-blank:focus, .bit-box:focus,
-.trace-cell:focus, .term-input:focus {
+.trace-cell:focus, .term-input:focus, .code-textarea:focus {
     outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+/* Code-block answer space (pseudocode / SQL / algorithm) */
+.code-block-language {
+    display: inline-block; font-size: .68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: #6b7280; background: #f3f4f6;
+    padding: .15rem .55rem; border-radius: 999px;
+    margin-bottom: .4rem;
+}
+.code-textarea {
+    width: 100%; padding: .65rem .85rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .85rem; line-height: 1.55; tab-size: 2;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    background: #fafafa; color: #1f2937; resize: vertical;
 }
 
 /* Labeled / numbered slots */

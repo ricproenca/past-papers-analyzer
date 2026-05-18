@@ -9,6 +9,7 @@ RULES:
 - Read all questions, let categories emerge, reconcile to syllabus in the end.
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
+- Paper routing — Paper 1 (variants 1x) covers chapters 1–6 (theory). Paper 2 (variants 2x) covers chapters 7–10. Pseudocode/algorithm-writing questions map to 7.2 (when the focus is algorithm design / trace / flowchart) or 8.1 (when the focus is a specific programming construct like an array operation). SQL questions map to 9.2. Logic gates / logic circuits / truth tables / Boolean expressions map to 10.x. The variant field in `qp` filename (e.g. `0478_m25_qp_22.pdf` → variant 22) determines the paper number from the first digit.
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
 - Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
 - Preserve paragraph breaks from the PDF in the "text" field. When the source PDF visually shows two prose paragraphs separated by a blank line / vertical gap (e.g. a setup paragraph "X happens in context Y." followed by a new instruction paragraph "Describe the process for Z."), put a literal blank line (`\n\n`) between them in the "text" field. Do NOT insert `\n\n` for line wraps within one paragraph, between a prose paragraph and a table, or between a paragraph and answer-space labels — those already have their own structure markers and don't need extra blank lines.
@@ -36,7 +37,7 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
-    "layout_type": the question's visual answer format — exactly one of the 10 types listed in LAYOUT TYPES below
+    "layout_type": the question's visual answer format — exactly one of the 11 types listed in LAYOUT TYPES below
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
     "topic": topic from the syllabus (e.g. "1.2") — see TOPICS below
     "topic_name": the name of the topic (e.g. "Text, Sound and Images") — see TOPICS below
@@ -210,6 +211,19 @@ AnnotatedDiagram — a partially drawn diagram canvas; student adds missing node
   diagram_type: choose the closest category for the diagram shown.
   partial_elements: list every pre-drawn or pre-labelled node/component visible in the question diagram.
 
+CodeBlockResponse — student writes multi-line pseudocode, SQL, or an algorithm into a monospace area.
+  PDF signals: Paper 2 only (variants 21/22/23); command word "Write" combined with marks ≥ 3 AND the body
+               references "pseudocode", "an algorithm", "a SQL query/statement", or "code".
+               A 1- or 2-mark "write the SELECT statement" should stay SimpleSingleBlock — Code block is for
+               substantive write-ups, not single-line answers.
+  structure_data: {
+    "language": "pseudocode" | "sql" | "code",
+    "line_count": N
+  }
+  language: "pseudocode" for algorithm / pseudocode writing; "sql" for SQL queries; "code" for any other.
+  line_count: roughly marks × 2 (so a 5-mark pseudocode question gets 10 lines of room). Adjust upward
+              if the question explicitly asks for many distinct steps.
+
 Fallback rule: if no annotation is present and no table exists, assign SimpleSingleBlock with line_count: 1.
 
 COMMAND WORDS:
@@ -247,7 +261,21 @@ TOPICS (code — name — key content):
 5.3 Cyber Security — malware, phishing, brute-force, DDoS; firewalls, anti-malware, authentication, encryption
 6.1 Automated Systems — feedback loops; sensors and actuators; control systems; autonomous vehicles
 6.2 Robotics — actuators, effectors; robot applications; advantages and limitations
-6.3 Artificial Intelligence — machine learning; neural networks; expert systems; natural language processing"""
+6.3 Artificial Intelligence — machine learning; neural networks; expert systems; natural language processing
+7.1 Computational Thinking Skills — decomposition, abstraction, pattern recognition
+7.2 Algorithms — pseudocode; flowcharts (start/stop, process, decision, input/output); trace tables / dry-runs
+7.3 Standard Methods of Solution — linear search; bubble sort; totalling; counting; maximum / minimum / average; record-counting
+7.4 Validation and Verification — presence, range, length, type, format, check digit; double-entry; visual check
+7.5 Test Data — normal, abnormal, boundary, extreme; test plans
+8.1 Programming Concepts — variables, constants, data types; sequence, selection, iteration; procedures and functions; library routines; string and arithmetic operators
+8.2 Arrays — 1D and 2D arrays; declare, populate, traverse, search, sort
+8.3 File Handling — open, read, write, append, close; line-by-line processing
+9.1 Database Structure — single-table databases; record, field, primary key; field data types; validation rules
+9.2 SQL — SELECT, FROM, WHERE, ORDER BY (ASC/DESC); aggregate functions SUM, COUNT, AVG, MIN, MAX; LIKE wildcards
+10.1 Logic Gates — AND, OR, NOT, NAND, NOR, XOR (symbols, functions)
+10.2 Logic Circuits — drawing logic circuits from expressions; combining gates
+10.3 Truth Tables — completing or constructing truth tables from circuits or expressions
+10.4 Logic Expressions — writing/simplifying Boolean expressions; expressions from problem statements"""
 
 PHASE3_SYSTEM = """Update the JSON deliverable. For each question, find its answer in the marking scheme and add an "answers" key:
     "type": type of answer — "text", "diagram", "pseudocode", or "MCQ"
