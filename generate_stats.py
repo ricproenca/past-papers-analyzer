@@ -171,6 +171,59 @@ body {
   color: #718096;
   margin-bottom: 0.75rem;
 }
+.unit-pill {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.4rem;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+.unit-pill.marks { background: #dbeafe; color: #1e3a5f; }
+.unit-pill.count { background: #fef3c7; color: #92400e; }
+
+.reading-guide {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.reading-guide h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-bottom: 0.75rem;
+}
+.reading-guide .intro {
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.reading-guide .intro p { margin-bottom: 0.35rem; }
+.reading-guide .intro p:last-child { margin-bottom: 0; }
+.reading-guide dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+.reading-guide dt {
+  font-weight: 700;
+  color: #2d3748;
+  white-space: nowrap;
+}
+.reading-guide dd { color: #4a5568; }
+.reading-guide dd p { margin-bottom: 0.35rem; }
+.reading-guide dd p:last-child { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .reading-guide dl { grid-template-columns: 1fr; gap: 0.15rem 0; }
+  .reading-guide dt { margin-top: 0.6rem; }
+}
 .chart-wrapper { position: relative; min-height: 180px; }
 .chart-wrapper.tall { height: 500px; }
 .chart-wrapper.medium { height: 260px; }
@@ -254,6 +307,12 @@ function aggregateStats(paperKeys) {
   return result;
 }
 
+function chaptersFromStats(stats) {
+  return new Set(
+    Object.keys(stats.marks_by_topic || {}).map(k => k.split('.')[0])
+  ).size;
+}
+
 function aggregateSummary(paperKeys, stats) {
   const totalMarks = paperKeys.reduce((s, pk) => s + (PAPERS[pk].total_marks || 0), 0);
   const qCount     = paperKeys.reduce((s, pk) => s + (PAPERS[pk].summary.question_count || 0), 0);
@@ -266,17 +325,20 @@ function aggregateSummary(paperKeys, stats) {
     mean_marks_per_question: qCount ? (totalMarks / qCount).toFixed(2) : 0,
     max_marks_per_question: maxMarks,
     unique_topics_count: Object.keys(stats.marks_by_topic || {}).length,
+    unique_chapters_count: chaptersFromStats(stats),
   };
 }
 
 function getCurrentData() {
   const paperKeys = getFilteredPaperKeys();
   if (paperKeys.length === 0) {
-    return { stats: {}, summary: { question_count: 0, mcq_count: 0, mean_marks_per_question: 0, max_marks_per_question: 0, unique_topics_count: 0 }, totalMarks: 0 };
+    return { stats: {}, summary: { question_count: 0, mcq_count: 0, mean_marks_per_question: 0, max_marks_per_question: 0, unique_topics_count: 0, unique_chapters_count: 0 }, totalMarks: 0 };
   }
   if (paperKeys.length === 1) {
     const p = PAPERS[paperKeys[0]];
-    return { stats: p.statistics, summary: p.summary, totalMarks: p.total_marks };
+    const stats = p.statistics || {};
+    const summary = { ...(p.summary || {}), unique_chapters_count: chaptersFromStats(stats) };
+    return { stats, summary, totalMarks: p.total_marks };
   }
   const stats   = aggregateStats(paperKeys);
   const summary = aggregateSummary(paperKeys, stats);
@@ -291,6 +353,64 @@ function sortedEntries(obj, limit) {
 
 function destroyChart(id) {
   if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+function makeHBarGrouped(id, labels, datasets) {
+  // Plot bars as % of each series' own total so the two series are directly
+  // comparable (a 25% Marks bar is the same length as a 25% Questions bar).
+  // Raw values stay accessible via the tooltip.
+  destroyChart(id);
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  const totals = datasets.map(ds => ds.data.reduce((s, v) => s + v, 0));
+  charts[id] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: datasets.map((ds, i) => ({
+        label: ds.label,
+        data: ds.data.map(v => totals[i] > 0 ? (v / totals[i]) * 100 : 0),
+        rawData: ds.data,
+        backgroundColor: ds.color,
+        borderRadius: 3,
+        borderSkipped: false,
+      })),
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { right: 56 } },
+      plugins: {
+        legend: { display: true, position: 'top', labels: { font: { size: 11 }, boxWidth: 12, padding: 12 } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const raw = ctx.dataset.rawData[ctx.dataIndex];
+              const pct = ctx.parsed.x.toFixed(1);
+              return ` ${ctx.dataset.label}: ${raw} (${pct}%)`;
+            }
+          }
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: '#4a5568',
+          font: { size: 10, weight: '600' },
+          formatter: (value) => `${value.toFixed(1)}%`,
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          grid: { color: '#f0f4f8' },
+          ticks: { font: { size: 11 }, callback: (v) => `${v}%` }
+        },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
 }
 
 function makeHBar(id, labels, data, color) {
@@ -370,6 +490,7 @@ function renderSummaryCards(summary, totalMarks) {
     { value: summary.mcq_count,                   label: 'MCQ' },
     { value: summary.mean_marks_per_question,     label: 'Mean Marks/Q' },
     { value: summary.max_marks_per_question,      label: 'Max Marks/Q' },
+    { value: summary.unique_chapters_count,       label: 'Chapters Covered' },
     { value: summary.unique_topics_count,         label: 'Topics Covered' },
   ];
   document.getElementById('summary-cards').innerHTML = cards
@@ -411,8 +532,18 @@ function renderObjectiveChart(stats) {
 }
 
 function renderLayoutChart(stats) {
-  const entries = sortedEntries(stats.marks_by_layout_type || {});
-  makeHBar('chart-layout', entries.map(([k]) => LAYOUT_NAMES[k] || k), entries.map(([, v]) => v), '#8b5cf6');
+  const marksMap = stats.marks_by_layout_type || {};
+  const countMap = stats.count_by_layout_type || {};
+  const keys = new Set([...Object.keys(marksMap), ...Object.keys(countMap)]);
+  const entries = [...keys]
+    .map(k => [k, marksMap[k] || 0, countMap[k] || 0])
+    .filter(([, m, c]) => m > 0 || c > 0)
+    .sort((a, b) => b[1] - a[1]);
+  const labels = entries.map(([k]) => LAYOUT_NAMES[k] || k);
+  makeHBarGrouped('chart-layout', labels, [
+    { label: 'Marks',     data: entries.map(([, m]) => m), color: '#8b5cf6' },
+    { label: 'Questions', data: entries.map(([, , c]) => c), color: '#fb923c' },
+  ]);
 }
 
 function renderCommandChart(stats) {
@@ -604,7 +735,7 @@ def generate_html(papers: dict, sessions: dict) -> str:
     <div class="charts-container">
       <div class="chart-card">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
-          <h2 style="margin-bottom:0">Topic Coverage</h2>
+          <h2 style="margin-bottom:0">Topic Coverage <span class="unit-pill marks">Marks</span></h2>
           <div class="tab-group" id="topic-group-tabs"></div>
         </div>
         <div class="chart-wrapper tall"><canvas id="chart-topic"></canvas></div>
@@ -612,41 +743,107 @@ def generate_html(papers: dict, sessions: dict) -> str:
 
       <div class="chart-row">
         <div class="chart-card">
-          <h2>Difficulty</h2>
+          <h2>Difficulty <span class="unit-pill marks">Marks</span></h2>
           <div class="chart-wrapper"><canvas id="chart-difficulty"></canvas></div>
         </div>
         <div class="chart-card">
-          <h2>Bloom's Taxonomy</h2>
+          <h2>Bloom's Taxonomy <span class="unit-pill marks">Marks</span></h2>
           <div class="chart-wrapper"><canvas id="chart-bloom"></canvas></div>
         </div>
         <div class="chart-card">
-          <h2>Cognitive Load</h2>
+          <h2>Cognitive Load <span class="unit-pill marks">Marks</span></h2>
           <div class="chart-wrapper"><canvas id="chart-cognitive"></canvas></div>
         </div>
       </div>
 
       <div class="chart-row-2">
         <div class="chart-card">
-          <h2>Assessment Objectives</h2>
+          <h2>Assessment Objectives <span class="unit-pill marks">Marks</span></h2>
           <p class="chart-note">Cambridge target: AO1 40% · AO2 40% · AO3 20%</p>
           <div class="chart-wrapper"><canvas id="chart-objective"></canvas></div>
         </div>
         <div class="chart-card">
-          <h2>Answer Types</h2>
+          <h2>Answer Types <span class="unit-pill marks">Marks</span></h2>
           <div class="chart-wrapper medium"><canvas id="chart-answer-type"></canvas></div>
         </div>
       </div>
 
       <div class="chart-card">
-        <h2>Layout Types</h2>
-        <div class="chart-wrapper medium"><canvas id="chart-layout"></canvas></div>
+        <h2>Layout Types <span class="unit-pill marks">Marks</span> <span class="unit-pill count">Questions</span></h2>
+        <div class="chart-wrapper tall"><canvas id="chart-layout"></canvas></div>
       </div>
 
       <div class="chart-card">
-        <h2>Command Words <span style="font-size:0.7rem;color:#718096;font-weight:400">(by count, top 12)</span></h2>
+        <h2>Command Words <span class="unit-pill count">Questions</span> <span style="font-size:0.7rem;color:#718096;font-weight:400">(top 12)</span></h2>
         <div class="chart-wrapper medium"><canvas id="chart-command"></canvas></div>
       </div>
     </div>
+
+    <section class="reading-guide">
+      <h2>Reading the Charts</h2>
+      <div class="intro">
+        <p>Each chart shows the unit it measures next to its title.</p>
+        <p><span class="unit-pill marks">Marks</span> = share of paper marks for that category.</p>
+        <p><span class="unit-pill count">Questions</span> = number of questions.</p>
+        <p>Percentages on bars and slices are always relative to the currently selected papers, not the whole corpus.</p>
+      </div>
+      <dl>
+        <dt>Topic Coverage</dt>
+        <dd>
+          <p>Marks per syllabus subtopic (1.1, 1.2, … 6.3).</p>
+          <p>Long bars mark heavily-examined areas; use the chapter tabs (1–6) to drill into one chapter.</p>
+          <p>Surfaces examiner emphasis when revising.</p>
+        </dd>
+
+        <dt>Difficulty</dt>
+        <dd>
+          <p>Marks split across Low / Medium / High difficulty.</p>
+          <p>Derived from command-word × marks.</p>
+          <p>Reveals whether a paper leans easy/balanced/hard and where the demanding questions concentrate.</p>
+        </dd>
+
+        <dt>Bloom's Taxonomy</dt>
+        <dd>
+          <p>Marks by cognitive level (Remember → Create), derived from the command word.</p>
+          <p>Shows the depth of thinking the paper requires.</p>
+          <p>A Remember-heavy paper rewards recall; an Apply-/Analyse-heavy paper rewards practice on worked problems.</p>
+        </dd>
+
+        <dt>Cognitive Load</dt>
+        <dd>
+          <p>Marks by question-layout demand.</p>
+          <p>Open-response and multi-part layouts score Higher; single-block and grid layouts score Lower.</p>
+          <p>A high-load paper takes more time per mark.</p>
+        </dd>
+
+        <dt>Assessment Objectives</dt>
+        <dd>
+          <p>Marks split AO1 (knowledge) / AO2 (application) / AO3 (evaluation).</p>
+          <p>Cambridge targets AO1 40% · AO2 40% · AO3 20%.</p>
+          <p>Use this chart to spot drift from the published spec.</p>
+        </dd>
+
+        <dt>Answer Types</dt>
+        <dd>
+          <p>Marks by the kind of answer required (text, MCQ, table-fill, pseudocode, diagram, …).</p>
+          <p>Highlights which response formats students need to practise most.</p>
+        </dd>
+
+        <dt>Layout Types</dt>
+        <dd>
+          <p>Two bars per layout: marks (purple) and number of questions (orange).</p>
+          <p>Both bars plot the share of their own series total, so a 25% Marks bar is the same length as a 25% Questions bar.</p>
+          <p>When the orange bar is longer than the purple, the layout has many low-mark questions; when the purple is longer, the layout has fewer questions but each is worth more.</p>
+          <p>Hover any bar for the raw count.</p>
+        </dd>
+
+        <dt>Command Words</dt>
+        <dd>
+          <p>The only count-based chart: number of questions per command verb (State, Explain, Describe, …), top 12.</p>
+          <p>Shows the verbs students need to be most fluent at responding to.</p>
+        </dd>
+      </dl>
+    </section>
   </div>
 
   <script>
