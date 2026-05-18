@@ -39,6 +39,7 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .badge-page { background: #d1d5db; color: #374151; }
 .badge-paper { background: #1e3a5f; text-decoration: none; }
 .badge-paper:hover { background: #2d4f7a; }
+.badge-paper-num { background: #be185d; }
 .chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
 .card.open .chevron { transform: rotate(180deg); }
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
@@ -777,6 +778,9 @@ def _render_question(q, source: dict | None = None):
     if page:
         header_badges.append(_badge(f"p.{page}", "badge-page"))
     if source:
+        paper_num = (source.get("variant") or "")[:1]
+        if paper_num:
+            header_badges.append(_badge(f"Paper {paper_num}", "badge-paper-num"))
         href = f'{escape(source["paper"])}.html#{escape(qid)}'
         label = f'{source["session"]} · QP{source["variant"]} · {qid}'
         header_badges.append(
@@ -926,10 +930,16 @@ def _render_question(q, source: dict | None = None):
         f'data-layout="{escape(layout_type)}"'
     )
     if source:
+        v = source.get("variant") or ""
+        paper_num = v[:1]
+        variant_num = v[1:2]
         data_attrs += (
             f' data-year="{escape(source["year"])}"'
             f' data-session="{escape(source["session"])}"'
             f' data-paper="{escape(source["paper"])}"'
+            f' data-variant="{escape(v)}"'
+            f' data-variant-num="{escape(variant_num)}"'
+            f' data-paper-num="{escape(paper_num)}"'
         )
 
     return (
@@ -945,6 +955,19 @@ def _render_question(q, source: dict | None = None):
 render_question_card = _render_question
 
 
+_SESSION_LETTER_NAMES = {"m": "March", "s": "Summer", "w": "Winter"}
+
+
+def _parse_session_label(qp: str) -> str:
+    """Parse 'm25' / 's24' from a qp filename into 'March 2025' / 'Summer 2024'."""
+    m = re.search(r"_([msw])(\d{2})_qp_", qp or "")
+    if not m:
+        return ""
+    letter, yy = m.groups()
+    name = _SESSION_LETTER_NAMES.get(letter, letter)
+    return f"{name} 20{yy}"
+
+
 def render_html(data: dict) -> str:
     board = escape(data.get("board", ""))
     level = escape(data.get("level", ""))
@@ -952,9 +975,21 @@ def render_html(data: dict) -> str:
     code = escape(data.get("subject_code", ""))
     variant = escape(str(data.get("variant", "")))
     total = data.get("total_marks", "?")
-    qp = escape(data.get("qp", ""))
+    qp = data.get("qp", "")
 
-    title = f"{board} {level} {subject} ({code}) Variant {variant}"
+    paper_num = variant[:1] if variant else ""
+    variant_num = variant[1:2] if len(variant) >= 2 else ""
+    session_label = _parse_session_label(qp)
+
+    parts = [f"{board} {level} {subject} ({code})"]
+    if paper_num:
+        parts.append(f"Paper {paper_num}")
+    if variant_num:
+        parts.append(f"Variant {variant_num}")
+    if session_label:
+        parts.append(session_label)
+    title = " · ".join(parts)
+
     questions = data.get("questions", [])
     q_cards = "\n".join(_render_question(q) for q in questions)
 
@@ -970,7 +1005,7 @@ def render_html(data: dict) -> str:
 <div class="page">
   <div class="paper-header">
     <h1>{title}</h1>
-    <p>{qp} &nbsp;·&nbsp; {len(questions)} questions &nbsp;·&nbsp; {total} marks total</p>
+    <p>{len(questions)} questions &nbsp;·&nbsp; {total} marks total</p>
   </div>
   {q_cards}
 </div>

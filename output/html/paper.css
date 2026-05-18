@@ -33,6 +33,7 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .badge-page { background: #d1d5db; color: #374151; }
 .badge-paper { background: #1e3a5f; text-decoration: none; }
 .badge-paper:hover { background: #2d4f7a; }
+.badge-paper-num { background: #be185d; }
 .chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
 .card.open .chevron { transform: rotate(180deg); }
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }

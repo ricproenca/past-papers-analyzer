@@ -1,5 +1,5 @@
 
-const FILTERS = ['subtopic','difficulty','objective','bloom','command','marks','year','layout'];
+const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
 const state = Object.fromEntries(FILTERS.map(f => [f, 'all']));
 
 function matchesMarks(card) {

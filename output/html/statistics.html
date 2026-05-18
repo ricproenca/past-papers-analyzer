@@ -192,12 +192,16 @@ body {
         <div class="tab-group" id="year-tabs"></div>
       </div>
       <div class="selector-row">
-        <span class="selector-label">Session</span>
-        <div class="tab-group" id="session-tabs"></div>
+        <span class="selector-label">Paper</span>
+        <div class="tab-group" id="paper-tabs"></div>
       </div>
       <div class="selector-row">
         <span class="selector-label">Variant</span>
         <div class="tab-group" id="variant-pills"></div>
+      </div>
+      <div class="selector-row">
+        <span class="selector-label">Session</span>
+        <div class="tab-group" id="session-tabs"></div>
       </div>
     </div>
 
@@ -592,6 +596,118 @@ const PAPERS = {
         "text": 27,
         "MCQ": 2,
         "diagram": 1
+      }
+    }
+  },
+  "0478_m25_qp_22": {
+    "session": "m25",
+    "variant": "22",
+    "qp": "0478_m25_qp_22.pdf",
+    "total_marks": 75,
+    "summary": {
+      "question_count": 21,
+      "mcq_count": 2,
+      "mean_marks_per_question": 3.57,
+      "median_marks_per_question": 3,
+      "max_marks_per_question": 15,
+      "unique_topics_count": 1
+    },
+    "statistics": {
+      "marks_by_topic": {
+        "4.2": 75
+      },
+      "count_by_topic": {
+        "4.2": 21
+      },
+      "marks_by_difficulty": {
+        "Low": 10,
+        "Medium": 22,
+        "High": 43
+      },
+      "count_by_difficulty": {
+        "Low": 8,
+        "Medium": 6,
+        "High": 7
+      },
+      "marks_by_bloom_level": {
+        "Understand": 21,
+        "Remember": 13,
+        "Create": 22,
+        "Apply": 19
+      },
+      "count_by_bloom_level": {
+        "Understand": 7,
+        "Remember": 7,
+        "Create": 3,
+        "Apply": 4
+      },
+      "marks_by_cognitive_load": {
+        "Low": 42,
+        "High": 24,
+        "Medium": 9
+      },
+      "count_by_cognitive_load": {
+        "Low": 13,
+        "High": 5,
+        "Medium": 3
+      },
+      "marks_by_objective": {
+        "AO1": 8,
+        "AO2": 54,
+        "AO3": 13
+      },
+      "count_by_objective": {
+        "AO1": 5,
+        "AO2": 12,
+        "AO3": 4
+      },
+      "marks_by_layout_type": {
+        "MatrixGrid": 2,
+        "AnnotatedDiagram": 9,
+        "SimpleSingleBlock": 40,
+        "ValueTraceMatrix": 15,
+        "NumberedMultiList": 5,
+        "MultiPartLabeledBlock": 4
+      },
+      "count_by_layout_type": {
+        "MatrixGrid": 2,
+        "AnnotatedDiagram": 2,
+        "SimpleSingleBlock": 11,
+        "ValueTraceMatrix": 3,
+        "NumberedMultiList": 1,
+        "MultiPartLabeledBlock": 2
+      },
+      "marks_by_command": {
+        "Tick": 2,
+        "Draw": 9,
+        "State": 4,
+        "Identify": 9,
+        "Write": 22,
+        "Complete": 19,
+        "Explain": 7,
+        "Give": 3
+      },
+      "count_by_command": {
+        "Tick": 2,
+        "Draw": 2,
+        "State": 3,
+        "Identify": 4,
+        "Write": 3,
+        "Complete": 4,
+        "Explain": 2,
+        "Give": 1
+      },
+      "marks_by_answer_type": {
+        "MCQ": 2,
+        "diagram": 9,
+        "text": 42,
+        "pseudocode": 22
+      },
+      "count_by_answer_type": {
+        "MCQ": 2,
+        "diagram": 2,
+        "text": 14,
+        "pseudocode": 3
       }
     }
   },
@@ -2199,7 +2315,8 @@ const SESSIONS = {
     "0478_m24_qp_12"
   ],
   "m25": [
-    "0478_m25_qp_12"
+    "0478_m25_qp_12",
+    "0478_m25_qp_22"
   ],
   "s24": [
     "0478_s24_qp_11",
@@ -2260,6 +2377,7 @@ const BLOOM_COLORS = ['#f87171','#fb923c','#facc15','#4ade80','#60a5fa','#a78bfa
 
 let currentYear       = 'all';
 let currentSession    = 'all';
+let currentPaperNum   = 'all';
 let currentVariant    = 'all';
 let currentTopicGroup = 'all';
 let currentStats      = {};
@@ -2301,6 +2419,7 @@ function getFilteredSessionKeys() {
 
 function getFilteredPaperKeys() {
   let paperKeys = getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []);
+  if (currentPaperNum !== 'all') paperKeys = paperKeys.filter(pk => (PAPERS[pk].variant || '')[0] === currentPaperNum);
   if (currentVariant !== 'all') paperKeys = paperKeys.filter(pk => PAPERS[pk].variant === currentVariant);
   return paperKeys;
 }
@@ -2577,9 +2696,10 @@ function renderAll() {
   currentStats = stats;
   const yearLabel    = currentYear === 'all' ? 'All years' : currentYear;
   const sessionLabel = currentSession === 'all' ? 'All sessions' : (SESSION_LABELS[currentSession] || currentSession);
+  const paperLabel   = currentPaperNum === 'all' ? 'All papers' : `Paper ${currentPaperNum}`;
   const variantLabel = currentVariant === 'all' ? 'All variants' : `Variant ${currentVariant}`;
   document.getElementById('current-label').textContent =
-    `Showing: ${yearLabel} — ${sessionLabel} — ${variantLabel}`;
+    `Showing: ${yearLabel} — ${sessionLabel} — ${paperLabel} — ${variantLabel}`;
   renderSummaryCards(summary, totalMarks);
   buildTopicGroupTabs();
   renderTopicChart(stats);
@@ -2625,8 +2745,8 @@ function buildYearTabs() {
     btn.className = 'tab-btn' + (yr === currentYear ? ' active' : '');
     btn.textContent = label;
     btn.addEventListener('click', () => {
-      currentYear = yr; currentSession = 'all'; currentVariant = 'all';
-      buildYearTabs(); buildSessionTabs(); buildVariantPills(); renderAll();
+      currentYear = yr; currentSession = 'all'; currentPaperNum = 'all'; currentVariant = 'all';
+      buildYearTabs(); buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
     });
     container.appendChild(btn);
   }
@@ -2643,8 +2763,8 @@ function buildSessionTabs() {
   allBtn.className = 'tab-btn' + (currentSession === 'all' ? ' active' : '');
   allBtn.textContent = 'All';
   allBtn.addEventListener('click', () => {
-    currentSession = 'all'; currentVariant = 'all';
-    buildSessionTabs(); buildVariantPills(); renderAll();
+    currentSession = 'all'; currentPaperNum = 'all'; currentVariant = 'all';
+    buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
   });
   container.appendChild(allBtn);
 
@@ -2653,9 +2773,40 @@ function buildSessionTabs() {
     btn.className = 'tab-btn' + (s === currentSession ? ' active' : '');
     btn.textContent = SESSION_LABELS[s] || s;
     btn.addEventListener('click', () => {
-      currentSession = s; currentVariant = 'all';
-      buildSessionTabs(); buildVariantPills(); renderAll();
+      currentSession = s; currentPaperNum = 'all'; currentVariant = 'all';
+      buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
     });
+    container.appendChild(btn);
+  }
+}
+
+function buildPaperTabs() {
+  const container = document.getElementById('paper-tabs');
+  container.innerHTML = '';
+  let sessionPapers = getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []);
+  const available = new Set(sessionPapers.map(pk => (PAPERS[pk].variant || '')[0]).filter(Boolean));
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn' + (currentPaperNum === 'all' ? ' active' : '');
+  allBtn.textContent = 'All';
+  allBtn.addEventListener('click', () => {
+    currentPaperNum = 'all'; currentVariant = 'all';
+    buildPaperTabs(); buildVariantPills(); renderAll();
+  });
+  container.appendChild(allBtn);
+
+  for (const p of ['1', '2']) {
+    const btn = document.createElement('button');
+    const ok  = available.has(p);
+    btn.className = 'tab-btn' + (currentPaperNum === p ? ' active' : '');
+    btn.textContent = `Paper ${p}`;
+    btn.disabled = !ok;
+    if (ok) {
+      btn.addEventListener('click', () => {
+        currentPaperNum = p; currentVariant = 'all';
+        buildPaperTabs(); buildVariantPills(); renderAll();
+      });
+    }
     container.appendChild(btn);
   }
 }
@@ -2675,7 +2826,7 @@ function buildVariantPills() {
   });
   container.appendChild(allBtn);
 
-  for (const v of ['11', '12', '13']) {
+  for (const v of ['11', '12', '13', '21', '22', '23']) {
     const btn = document.createElement('button');
     const ok  = available.has(v);
     btn.className = 'tab-btn' + (currentVariant === v ? ' active' : '');
@@ -2692,6 +2843,7 @@ function buildVariantPills() {
 
 buildYearTabs();
 buildSessionTabs();
+buildPaperTabs();
 buildVariantPills();
 renderAll();
 buildTopicGroupTabs();

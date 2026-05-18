@@ -1,0 +1,1172 @@
+{
+  "board": "CIE",
+  "level": "IGCSE",
+  "subject_code": "0478",
+  "subject_name": "Computer Science",
+  "variant": "22",
+  "qp": "0478_m25_qp_22.pdf",
+  "ms": "0478_m25_ms_22.pdf",
+  "total_marks": 75,
+  "summary": {
+    "question_count": 21,
+    "mcq_count": 2,
+    "mean_marks_per_question": 3.57,
+    "median_marks_per_question": 3,
+    "max_marks_per_question": 15,
+    "unique_topics_count": 1
+  },
+  "statistics": {
+    "marks_by_topic": {
+      "4.2": 75
+    },
+    "count_by_topic": {
+      "4.2": 21
+    },
+    "marks_by_difficulty": {
+      "Low": 10,
+      "Medium": 22,
+      "High": 43
+    },
+    "count_by_difficulty": {
+      "Low": 8,
+      "Medium": 6,
+      "High": 7
+    },
+    "marks_by_bloom_level": {
+      "Understand": 21,
+      "Remember": 13,
+      "Create": 22,
+      "Apply": 19
+    },
+    "count_by_bloom_level": {
+      "Understand": 7,
+      "Remember": 7,
+      "Create": 3,
+      "Apply": 4
+    },
+    "marks_by_cognitive_load": {
+      "Low": 42,
+      "High": 24,
+      "Medium": 9
+    },
+    "count_by_cognitive_load": {
+      "Low": 13,
+      "High": 5,
+      "Medium": 3
+    },
+    "marks_by_objective": {
+      "AO1": 8,
+      "AO2": 54,
+      "AO3": 13
+    },
+    "count_by_objective": {
+      "AO1": 5,
+      "AO2": 12,
+      "AO3": 4
+    },
+    "marks_by_layout_type": {
+      "MatrixGrid": 2,
+      "AnnotatedDiagram": 9,
+      "SimpleSingleBlock": 40,
+      "ValueTraceMatrix": 15,
+      "NumberedMultiList": 5,
+      "MultiPartLabeledBlock": 4
+    },
+    "count_by_layout_type": {
+      "MatrixGrid": 2,
+      "AnnotatedDiagram": 2,
+      "SimpleSingleBlock": 11,
+      "ValueTraceMatrix": 3,
+      "NumberedMultiList": 1,
+      "MultiPartLabeledBlock": 2
+    },
+    "marks_by_command": {
+      "Tick": 2,
+      "Draw": 9,
+      "State": 4,
+      "Identify": 9,
+      "Write": 22,
+      "Complete": 19,
+      "Explain": 7,
+      "Give": 3
+    },
+    "count_by_command": {
+      "Tick": 2,
+      "Draw": 2,
+      "State": 3,
+      "Identify": 4,
+      "Write": 3,
+      "Complete": 4,
+      "Explain": 2,
+      "Give": 1
+    },
+    "marks_by_answer_type": {
+      "MCQ": 2,
+      "diagram": 9,
+      "text": 42,
+      "pseudocode": 22
+    },
+    "count_by_answer_type": {
+      "MCQ": 2,
+      "diagram": 2,
+      "text": 14,
+      "pseudocode": 3
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "Tick (✓) one box to complete this sentence.\n\nA standard method of solution used to find a piece of data in an array is a",
+      "command": "Tick",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A bubble sort.",
+          "B counting routine.",
+          "C linear search.",
+          "D selection search."
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "C",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q2",
+      "text": "Tick (✓) one box to complete this sentence.\n\nThe pseudocode to store a hotel name held in the variable Name to a text file is",
+      "command": "Tick",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "MatrixGrid",
+      "structure_data": {
+        "matrix_headers": [
+          "Option",
+          "Tick"
+        ],
+        "row_count": 4,
+        "rows": [
+          "A READFILE Hotels.txt, Name",
+          "B WRITEFILE Hotels.txt, Name",
+          "C WRITEFILE Name, Hotels.txt",
+          "D STOREFILE Hotels.txt, Name"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "MCQ",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "B",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q3",
+      "text": "Four development life cycle stages and five descriptions are shown.\n\nDraw one line from each stage to the most appropriate description.\n\nNot all descriptions will be used.\n\nStage | Description\ntesting | identifying the problem and requirements\nreviewing | the final solution to suggest further developments\nanalysis | making sure the program code works as expected\ncoding | using structure diagrams, flowcharts and pseudocode to plan the solution\ndesign | using a programming language to create the solution",
+      "command": "Draw",
+      "objective": "AO1",
+      "marks": 4,
+      "visuals": [],
+      "page": 2,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "other",
+        "partial_elements": [
+          "testing",
+          "reviewing",
+          "analysis",
+          "coding",
+          "design",
+          "identifying the problem and requirements",
+          "the final solution to suggest further developments",
+          "making sure the program code works as expected",
+          "using structure diagrams, flowcharts and pseudocode to plan the solution",
+          "using a programming language to create the solution"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "diagram",
+        "visuals": [],
+        "scoring_rule": "One mark for each correct line",
+        "marking_points": [
+          {
+            "text": "testing → making sure the program code works as expected",
+            "marks": 1
+          },
+          {
+            "text": "reviewing → the final solution to suggest further developments",
+            "marks": 1
+          },
+          {
+            "text": "analysis → identifying the problem and requirements",
+            "marks": 1
+          },
+          {
+            "text": "coding → using a programming language to create the solution",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q4a",
+      "text": "A presence check is a type of validation check.\n\nState the purpose of a presence check.",
+      "command": "State",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "To check that a value has been entered.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b_i",
+      "text": "A value input into a computer system must be an integer.\n\nIdentify the validation check used to test whether the value input meets this requirement.",
+      "command": "Identify",
+      "objective": "AO1",
+      "marks": 1,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "Type (check)",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q4b_ii",
+      "text": "A value input into a computer system must be an integer.\n\nWrite the pseudocode for an algorithm to allow a number to be input into an appropriate variable and check whether the number is an integer. If the number is an integer, it is accepted. If the number is not an integer, an error message is output. Re-input of the number is required until a valid number is input.",
+      "command": "Write",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [],
+      "page": 3,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 9
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "pseudocode",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point:",
+        "marking_points": [
+          {
+            "text": "MP1 Condition controlled loop used",
+            "marks": 1
+          },
+          {
+            "text": "MP2 Working input and re-input of value into declared variable",
+            "marks": 1
+          },
+          {
+            "text": "MP3 Use of selection/loop entry/exit condition to test if input is an integer",
+            "marks": 1
+          },
+          {
+            "text": "MP4 Appropriate use of error message",
+            "marks": 1
+          },
+          {
+            "text": "MP5 Working complete termination of loop",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q5",
+      "text": "A program is written to only accept data that contains more than 9 characters. The program needs to be tested. The table, when completed, shows appropriate test data that matches the type of test data and the purpose of the test data.\n\nComplete the table by inserting the missing information.\n\nTest data | Type of test data | Purpose of test data\nABC | [blank] | [blank]\n[blank] | Boundary | [blank]\n[blank] | [blank] | to make sure that the program accepts data that is an appropriate length",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 6,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "Test data table with columns: Test data, Type of test data, Purpose of test data. Row 1: ABC, (blank), (blank). Row 2: (blank), Boundary, (blank). Row 3: (blank), (blank), to make sure that the program accepts data that is an appropriate length."
+        }
+      ],
+      "page": 4,
+      "layout_type": "ValueTraceMatrix",
+      "structure_data": {
+        "matrix_headers": [
+          "Type of test data",
+          "Purpose of test data"
+        ],
+        "row_count": 3,
+        "rows": [
+          "ABC",
+          "(blank)",
+          "(blank)"
+        ],
+        "row_values": [
+          [
+            null,
+            null
+          ],
+          [
+            "Boundary",
+            null
+          ],
+          [
+            null,
+            "to make sure that the program accepts data that is an appropriate length"
+          ]
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "table",
+            "description": "Test data table with columns: Test data, Type of test data, Purpose of test data. Row 1: ABC, (blank), (blank). Row 2: (blank), Boundary, (blank). Row 3: (blank), (blank), to make sure that the program accepts data that is an appropriate length."
+          }
+        ],
+        "scoring_rule": "One mark for each correct box",
+        "marking_points": [
+          {
+            "text": "Row 1 Type: Abnormal",
+            "marks": 1
+          },
+          {
+            "text": "Row 1 Purpose: to make sure that the program rejects data that is too short",
+            "marks": 1
+          },
+          {
+            "text": "Row 2 Test data: Password1 // Password22",
+            "marks": 1
+          },
+          {
+            "text": "Row 2 Purpose: to make sure that the program rejects data that is only just too short // to make sure that the program accepts data that is only just at the correct length",
+            "marks": 1
+          },
+          {
+            "text": "Row 3 Test data: CambridgeInternational",
+            "marks": 1
+          },
+          {
+            "text": "Row 3 Type: Normal",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q6a",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE T←otal : INTEGER\n05 Highest← 1500\n06 Total 0←\n07 FOR Count 1 TO 1000\n08 INPUT N←umbers[Count]\n09 Total Total + Count\n10 IF Numbers[Count] > Total\n11 THEN ←\n12 Highest Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nIdentify the line numbers of five errors in the pseudocode and suggest a correction for each error.",
+      "command": "Identify",
+      "objective": "AO3",
+      "marks": 5,
+      "visuals": [],
+      "page": 4,
+      "layout_type": "NumberedMultiList",
+      "structure_data": {
+        "list_count": 5
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point",
+        "marking_points": [
+          {
+            "text": "Line 02 / DECLARE Highest : STRING should be DECLARE Highest : INTEGER",
+            "marks": 1
+          },
+          {
+            "text": "Line 05 / Highest ← 1500 should be Highest ← 0",
+            "marks": 1
+          },
+          {
+            "text": "Line 09 / Total ← Total + Count should be Total ← Total + Numbers[Count]",
+            "marks": 1
+          },
+          {
+            "text": "Line 10 / IF Numbers[Count] > Total should be IF Numbers[Count] > Highest",
+            "marks": 1
+          },
+          {
+            "text": "Line 17 / OUTPUT \"The average is \", Average / 1000 should be OUTPUT \"The average is \", Total / 1000",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q6b",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
+      "command": "Write",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 2
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "pseudocode",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point",
+        "marking_points": [
+          {
+            "text": "MP1 Correct use of ROUND function to round the average",
+            "marks": 1
+          },
+          {
+            "text": "MP2 … set to 2 decimal places with OUTPUT command.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Create",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q6c",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 4,
+      "visuals": [],
+      "page": 5,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 7
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point, max four",
+        "marking_points": [
+          {
+            "text": "MP1 Declaration of new variable for smallest value at start of algorithm/before it is used",
+            "marks": 1
+          },
+          {
+            "text": "MP2 Initialisation of smallest variable to a high number / the first input",
+            "marks": 1
+          },
+          {
+            "text": "MP3 New selection statement after input to compare input with current smallest number",
+            "marks": 1
+          },
+          {
+            "text": "MP4 If input is smaller than current smallest variable, it should replace it",
+            "marks": 1
+          },
+          {
+            "text": "MP5 Outside the loop, output the current value of the smallest variable.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7a",
+      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No: STOP / Yes: INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes: INPUT Value2 → OUTPUT Value1 + Value2 / No: IS Operator = 'S'? → Yes: OUTPUT Value1 – Value2 / No: IS Operator = 'M'? → Yes: OUTPUT Value1 * Value2 / No: OUTPUT Value1 / Value2 → (loop back)\n\nComplete the trace table for the input data:\nY , 7, S, 9, Y, 5, M, 12, Y, 25, D, 5, N, 10, A, 6\n\nAnswer | Value1 | Operator | Value2 | OUTPUT",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [
+        {
+          "type": "flowchart",
+          "description": "Flowchart for a calculator algorithm that inputs Answer, Value1, Operator, Value2 and outputs the result of addition, subtraction, multiplication or division depending on the operator entered."
+        }
+      ],
+      "page": 7,
+      "layout_type": "ValueTraceMatrix",
+      "structure_data": {
+        "matrix_headers": [
+          "Answer",
+          "Value1",
+          "Operator",
+          "Value2",
+          "OUTPUT"
+        ],
+        "row_count": 12,
+        "rows": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "flowchart",
+            "description": "Flowchart for a calculator algorithm that inputs Answer, Value1, Operator, Value2 and outputs the result of addition, subtraction, multiplication or division depending on the operator entered."
+          }
+        ],
+        "scoring_rule": "One mark per correct column",
+        "marking_points": [
+          {
+            "text": "Answer column: Continue? / Y / Continue? / Y / Continue? / Y / Continue? / N",
+            "marks": 1
+          },
+          {
+            "text": "Value1 column: 7 / 5 / 25",
+            "marks": 1
+          },
+          {
+            "text": "Operator column: S / M / D",
+            "marks": 1
+          },
+          {
+            "text": "Value2 column: 9 / 12 / 5",
+            "marks": 1
+          },
+          {
+            "text": "OUTPUT column: −2 / 60 / 5",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q7b",
+      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No: STOP / Yes: INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes: INPUT Value2 → OUTPUT Value1 + Value2 / No: IS Operator = 'S'? → Yes: OUTPUT Value1 – Value2 / No: IS Operator = 'M'? → Yes: OUTPUT Value1 * Value2 / No: OUTPUT Value1 / Value2 → (loop back)\n\nState the purpose of the algorithm on page 6.",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 1,
+      "visuals": [
+        {
+          "type": "flowchart",
+          "description": "Flowchart for a calculator algorithm that inputs Answer, Value1, Operator, Value2 and outputs the result of addition, subtraction, multiplication or division depending on the operator entered."
+        }
+      ],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": null,
+        "marking_points": [
+          {
+            "text": "It is a calculator.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7c_i",
+      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No: STOP / Yes: INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes: INPUT Value2 → OUTPUT Value1 + Value2 / No: IS Operator = 'S'? → Yes: OUTPUT Value1 – Value2 / No: IS Operator = 'M'? → Yes: OUTPUT Value1 * Value2 / No: OUTPUT Value1 / Value2 → (loop back)\n\nThere are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nExplain how you would change the algorithm to prevent the problems described.",
+      "command": "Explain",
+      "objective": "AO3",
+      "marks": 3,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point",
+        "marking_points": [
+          {
+            "text": "MP1 Include two process boxes",
+            "marks": 1
+          },
+          {
+            "text": "MP2 … after the Answer and Operator input boxes",
+            "marks": 1
+          },
+          {
+            "text": "MP3 Use of UCASE in both boxes to change the input given to upper case.",
+            "marks": 1
+          },
+          {
+            "text": "MP4 Change the condition in all the (4) decision boxes",
+            "marks": 1
+          },
+          {
+            "text": "MP5 … for the variables Answer and Operator",
+            "marks": 1
+          },
+          {
+            "text": "MP6 Using OR e.g. OR Answer = 'y' and OR Operator = 'a'",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q7c_ii",
+      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No: STOP / Yes: INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes: INPUT Value2 → OUTPUT Value1 + Value2 / No: IS Operator = 'S'? → Yes: OUTPUT Value1 – Value2 / No: IS Operator = 'M'? → Yes: OUTPUT Value1 * Value2 / No: OUTPUT Value1 / Value2 → (loop back)\n\nThere are problems with the given algorithm. Identify one more error related to inputs when the algorithm is run.",
+      "command": "Identify",
+      "objective": "AO3",
+      "marks": 1,
+      "visuals": [],
+      "page": 7,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 1
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark, for example:",
+        "marking_points": [
+          {
+            "text": "Only tests for A, S, and M; any other input is assumed to be D (for division)",
+            "marks": 1
+          },
+          {
+            "text": "Divide by 0 error (if D and 0 are entered)",
+            "marks": 1
+          },
+          {
+            "text": "Wrong data type e.g. character instead of number",
+            "marks": 1
+          },
+          {
+            "text": "No data entered (enter without a preceding value)",
+            "marks": 1
+          },
+          {
+            "text": "If Yes/yes entered the algorithm stops",
+            "marks": 1
+          },
+          {
+            "text": "No input prompts.",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8a",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\nCode | City | Capital | Country | Continent | Population\nASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999\nEUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025\nASY1 | Beijing | TRUE | China | Asia | 21,766,214\nSAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415\nAFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200\nEUN1 | Frankfurt | FALSE | Germany | Europe | 796,437\nASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839\nASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230\nASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724\nAFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912\nSAY2 | Lima | TRUE | Peru | South America | 11,206,000\nEUY1 | London | TRUE | UK | Europe | 9,648,110\nEUY4 | Madrid | TRUE | Spain | Europe | 6,751,374\nASN2 | Mumbai | FALSE | India | Asia | 21,296,516\nNAN1 | New York City | FALSE | USA | North America | 7,888,121\nEUY2 | Paris | TRUE | France | Europe | 11,206,000\nASN1 | Shanghai | FALSE | China | Asia | 29,210,808\nASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859\nAUN1 | Sydney | FALSE | Australia | Australia | 5,120,894\nASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104\nNAN2 | Toronto | FALSE | Canada | North America | 6,371,958\nEUN2 | Valencia | FALSE | Spain | Europe | 838,301\nSAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445\n\nState the number of fields and records in this database table.\n\nFields\nRecords",
+      "command": "State",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "MajorCity database table with fields: Code, City, Capital, Country, Continent, Population and 23 records."
+        }
+      ],
+      "page": 8,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Fields",
+          "Records"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per correct answer",
+        "marking_points": [
+          {
+            "text": "Fields: 6",
+            "marks": 1
+          },
+          {
+            "text": "Records: 23",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8b",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world (fields: Code, City, Capital, Country, Continent, Population).\n\nIdentify the field in the database table that is most suitable to be the primary key and give one reason for your choice.\n\nPrimary key field\nReason",
+      "command": "Identify",
+      "objective": "AO2",
+      "marks": 2,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "MultiPartLabeledBlock",
+      "structure_data": {
+        "labels": [
+          "Primary key field",
+          "Reason"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per correct answer",
+        "marking_points": [
+          {
+            "text": "Primary key field: Code",
+            "marks": 1
+          },
+          {
+            "text": "Reason: It is the only field with unique contents. // It is a unique identifier",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Low",
+      "bloom_level": "Remember",
+      "cognitive_load": "Medium"
+    },
+    {
+      "id": "Q8c",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world (fields: Code, City, Capital, Country, Continent, Population).\n\nGive the output from the structured query language (SQL) statement:\n\nSELECT City, Country, Population\nFROM MajorCity\nWHERE Continent = \"South America\"\nORDER BY Population;",
+      "command": "Give",
+      "objective": "AO2",
+      "marks": 3,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 5
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point",
+        "marking_points": [
+          {
+            "text": "MP1 Correct data present – spelt correctly",
+            "marks": 1
+          },
+          {
+            "text": "MP2 Correct layout – three columns, with no additional punctuation",
+            "marks": 1
+          },
+          {
+            "text": "MP3 Correct order and no integrity errors: Valencia Venezuela 1,983,445 / Lima Peru 11,206,000 / Buenos Aires Argentina 15,490,415",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q8d",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world (fields: Code, City, Capital, Country, Continent, Population).\n\nComplete the SQL statement to list only the code, city, country and continent of all the cities in the database table that are capital cities.\n\nSELECT",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [],
+      "page": 9,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 2
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [],
+        "scoring_rule": "One mark per mark point",
+        "marking_points": [
+          {
+            "text": "MP1 At least two correct fields in SELECT",
+            "marks": 1
+          },
+          {
+            "text": "MP2 Remaining two correct fields in SELECT",
+            "marks": 1
+          },
+          {
+            "text": "MP3 FROM MajorCity",
+            "marks": 1
+          },
+          {
+            "text": "MP4 WHERE Capital = TRUE;",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "Low"
+    },
+    {
+      "id": "Q9a",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nDraw a logic circuit for this logic expression.\n\nEach logic gate must have a maximum of two inputs.\n\nDo not simplify the logic expression.\n\nA\nB  Z\nC",
+      "command": "Draw",
+      "objective": "AO2",
+      "marks": 5,
+      "visuals": [
+        {
+          "type": "diagram",
+          "description": "Partial logic circuit diagram with input labels A, B, C on the left and output Z on the right. Student must draw the gates."
+        }
+      ],
+      "page": 10,
+      "layout_type": "AnnotatedDiagram",
+      "structure_data": {
+        "diagram_type": "circuit",
+        "partial_elements": [
+          "A",
+          "B",
+          "C",
+          "Z"
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "diagram",
+        "visuals": [
+          {
+            "type": "diagram",
+            "description": "Logic circuit for Z = (A NAND B) XOR (NOT (NOT B NAND C)) with inputs A, B, C and output Z."
+          }
+        ],
+        "scoring_rule": "One mark for each correct gate, with the correct input(s) as shown.",
+        "marking_points": [
+          {
+            "text": "NAND gate with inputs A and B",
+            "marks": 1
+          },
+          {
+            "text": "NAND gate with inputs NOT B and C (NOT gate on B feeding into NAND with C)",
+            "marks": 1
+          },
+          {
+            "text": "NOT gate on output of second NAND gate",
+            "marks": 1
+          },
+          {
+            "text": "XOR gate with inputs from first NAND output and NOT output",
+            "marks": 1
+          },
+          {
+            "text": "Correct overall connection to output Z",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "Medium",
+      "bloom_level": "Understand",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q9b",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nComplete the truth table from the given logic expression.\n\nWorking space\n\nA | B | C | Working space | Z\n0 | 0 | 0 | | \n0 | 0 | 1 | | \n0 | 1 | 0 | | \n0 | 1 | 1 | | \n1 | 0 | 0 | | \n1 | 0 | 1 | | \n1 | 1 | 0 | | \n1 | 1 | 1 | |",
+      "command": "Complete",
+      "objective": "AO2",
+      "marks": 4,
+      "visuals": [
+        {
+          "type": "table",
+          "description": "Truth table with columns A, B, C, Working space, Z and 8 rows for all input combinations."
+        }
+      ],
+      "page": 10,
+      "layout_type": "ValueTraceMatrix",
+      "structure_data": {
+        "matrix_headers": [
+          "A",
+          "B",
+          "C",
+          "Working space",
+          "Z"
+        ],
+        "row_count": 8,
+        "rows": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "row_values": [
+          [
+            "0",
+            "0",
+            "0",
+            null,
+            null
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            null,
+            null
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            null,
+            null
+          ],
+          [
+            "0",
+            "1",
+            "1",
+            null,
+            null
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            null,
+            null
+          ],
+          [
+            "1",
+            "0",
+            "1",
+            null,
+            null
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            null,
+            null
+          ],
+          [
+            "1",
+            "1",
+            "1",
+            null,
+            null
+          ]
+        ]
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "text",
+        "visuals": [
+          {
+            "type": "table",
+            "description": "Truth table with columns A, B, C, Working space, Z and 8 rows for all input combinations."
+          }
+        ],
+        "scoring_rule": "Four marks for all eight correct outputs\nThree marks for six or seven correct outputs\nTwo marks for four or five correct outputs\nOne mark for two or three correct outputs",
+        "marking_points": [
+          {
+            "text": "A=0 B=0 C=0 Z=1",
+            "marks": 1
+          },
+          {
+            "text": "A=0 B=0 C=1 Z=0",
+            "marks": 1
+          },
+          {
+            "text": "A=0 B=1 C=0 Z=1",
+            "marks": 1
+          },
+          {
+            "text": "A=0 B=1 C=1 Z=1",
+            "marks": 1
+          },
+          {
+            "text": "A=1 B=0 C=0 Z=1",
+            "marks": 1
+          },
+          {
+            "text": "A=1 B=0 C=1 Z=0",
+            "marks": 1
+          },
+          {
+            "text": "A=1 B=1 C=0 Z=0",
+            "marks": 1
+          },
+          {
+            "text": "A=1 B=1 C=1 Z=0",
+            "marks": 1
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Apply",
+      "cognitive_load": "High"
+    },
+    {
+      "id": "Q10",
+      "text": "A sports club uses a six-character alphanumeric membership code to identify each member of the club.\n\nThe one-dimensional (1D) array MemberID[] is used to store the unique membership codes for club members.\n\nThe two-dimensional (2D) array Name[] is used to store the names of the club members. The first and last name of each member will be stored in separate array elements.\n\nThe system can store details for a maximum of 1000 members.\n\nThe position of any member's data is the same in both arrays. For example, the data in index 2 of MemberID[] belongs to the member in index 2 of Name[].\n\nThe variable NewID is used to input a new membership code.\n\nWrite a program that meets the following requirements:\n• Provide a menu that offers the choices: inputting a new member, outputting a list of membership codes and first and last names, or stopping.\n• Input and validate a response to the menu.\n• When inputting a new member, input a new membership code and check that it contains six characters:\n  ○ If the new code is six characters, check it against all the previously stored membership codes to make sure it is unique.\n  ○ If the code is not unique, a new code must be entered and checked.\n  ○ If the code is unique, it is stored in the first available space in the appropriate array and the new member is required to enter their first name and last name, which are also stored in the corresponding location of the appropriate array.\n• When outputting a list of membership codes and names, output for each member: their membership code, first name and last name.\n• The program will continue until the stop option on the menu is selected.\n\nYou must use pseudocode or program code and add comments to explain how your code works.\n\nYou do not need to declare any arrays, variables or constants; assume this has already been done.\n\nYou do not need to initialise the data in the arrays.\n\nYou do need to initialise any variables or constants used if appropriate.\n\nAll inputs and outputs must contain suitable messages.",
+      "command": "Write",
+      "objective": "AO2",
+      "marks": 15,
+      "visuals": [],
+      "page": 12,
+      "layout_type": "SimpleSingleBlock",
+      "structure_data": {
+        "line_count": 35
+      },
+      "topic": "4.2",
+      "topic_name": "Types of Programming Language, Translators and IDEs",
+      "answers": {
+        "type": "pseudocode",
+        "visuals": [],
+        "scoring_rule": "Marks are available for: AO2 (maximum 9 marks); AO3 (maximum 6 marks)",
+        "marking_points": [
+          {
+            "text": "AO2 1–3: At least one programming technique has been used. Any use of selection, iteration, counting, totalling, input and output. Some data has been stored but not appropriately. Any use of variables or arrays or other language dependent data structures e.g. Python lists.",
+            "marks": 3
+          },
+          {
+            "text": "AO2 4–6: Some programming techniques used are appropriate to the problem. More than one technique seen applied to the scenario, check the list of techniques needed. Some of the data structures chosen are appropriate and store some of the data required. More than one data structure used to store data required by the scenario.",
+            "marks": 3
+          },
+          {
+            "text": "AO2 7–9: The range of programming techniques used is appropriate to the problem. All criteria stated for the scenario have been covered by the use of appropriate programming techniques, check the list of techniques needed. The data structures chosen are appropriate and store all the data required. The data structures used store all the data required by the scenario.",
+            "marks": 3
+          },
+          {
+            "text": "AO3 1–2: Program seen without relevant comments. Some identifier names used are appropriate. Some of the data structures used have meaningful names. The solution is illogical. The solution is inaccurate in many places. Solution contains few lines of code with errors that attempt to perform a task given in the scenario. The solution attempts at least one of the requirements. Solution contains lines of code that attempt at least one task given in the scenario.",
+            "marks": 2
+          },
+          {
+            "text": "AO3 3–4: Program seen with some relevant comment(s). The majority of identifiers used are appropriately named. Most of the data structures used have meaningful names. The solution contains parts that may be illogical. The solution contains parts that are inaccurate. Solution contains lines of code with some errors that logically perform tasks given in the scenario. Ignore minor syntax errors. The solution attempts to meet most of the requirements. Solution contains lines of code that attempt most tasks given in the scenario.",
+            "marks": 2
+          },
+          {
+            "text": "AO3 5–6: The program has been fully commented. Suitable identifiers with names meaningful to their purpose have been used throughout. All of the data structures used have meaningful names. The program is in a logical order. The solution is accurate. Solution logically performs all the tasks given in the scenario. Ignore minor syntax errors. The solution meets all the requirements given in the question. Solution performs all the tasks given in the scenario.",
+            "marks": 2
+          }
+        ]
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "Low"
+    }
+  ]
+}

@@ -244,6 +244,7 @@ const BLOOM_COLORS = ['#f87171','#fb923c','#facc15','#4ade80','#60a5fa','#a78bfa
 
 let currentYear       = 'all';
 let currentSession    = 'all';
+let currentPaperNum   = 'all';
 let currentVariant    = 'all';
 let currentTopicGroup = 'all';
 let currentStats      = {};
@@ -285,6 +286,7 @@ function getFilteredSessionKeys() {
 
 function getFilteredPaperKeys() {
   let paperKeys = getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []);
+  if (currentPaperNum !== 'all') paperKeys = paperKeys.filter(pk => (PAPERS[pk].variant || '')[0] === currentPaperNum);
   if (currentVariant !== 'all') paperKeys = paperKeys.filter(pk => PAPERS[pk].variant === currentVariant);
   return paperKeys;
 }
@@ -561,9 +563,10 @@ function renderAll() {
   currentStats = stats;
   const yearLabel    = currentYear === 'all' ? 'All years' : currentYear;
   const sessionLabel = currentSession === 'all' ? 'All sessions' : (SESSION_LABELS[currentSession] || currentSession);
+  const paperLabel   = currentPaperNum === 'all' ? 'All papers' : `Paper ${currentPaperNum}`;
   const variantLabel = currentVariant === 'all' ? 'All variants' : `Variant ${currentVariant}`;
   document.getElementById('current-label').textContent =
-    `Showing: ${yearLabel} — ${sessionLabel} — ${variantLabel}`;
+    `Showing: ${yearLabel} — ${sessionLabel} — ${paperLabel} — ${variantLabel}`;
   renderSummaryCards(summary, totalMarks);
   buildTopicGroupTabs();
   renderTopicChart(stats);
@@ -609,8 +612,8 @@ function buildYearTabs() {
     btn.className = 'tab-btn' + (yr === currentYear ? ' active' : '');
     btn.textContent = label;
     btn.addEventListener('click', () => {
-      currentYear = yr; currentSession = 'all'; currentVariant = 'all';
-      buildYearTabs(); buildSessionTabs(); buildVariantPills(); renderAll();
+      currentYear = yr; currentSession = 'all'; currentPaperNum = 'all'; currentVariant = 'all';
+      buildYearTabs(); buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
     });
     container.appendChild(btn);
   }
@@ -627,8 +630,8 @@ function buildSessionTabs() {
   allBtn.className = 'tab-btn' + (currentSession === 'all' ? ' active' : '');
   allBtn.textContent = 'All';
   allBtn.addEventListener('click', () => {
-    currentSession = 'all'; currentVariant = 'all';
-    buildSessionTabs(); buildVariantPills(); renderAll();
+    currentSession = 'all'; currentPaperNum = 'all'; currentVariant = 'all';
+    buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
   });
   container.appendChild(allBtn);
 
@@ -637,9 +640,40 @@ function buildSessionTabs() {
     btn.className = 'tab-btn' + (s === currentSession ? ' active' : '');
     btn.textContent = SESSION_LABELS[s] || s;
     btn.addEventListener('click', () => {
-      currentSession = s; currentVariant = 'all';
-      buildSessionTabs(); buildVariantPills(); renderAll();
+      currentSession = s; currentPaperNum = 'all'; currentVariant = 'all';
+      buildSessionTabs(); buildPaperTabs(); buildVariantPills(); renderAll();
     });
+    container.appendChild(btn);
+  }
+}
+
+function buildPaperTabs() {
+  const container = document.getElementById('paper-tabs');
+  container.innerHTML = '';
+  let sessionPapers = getFilteredSessionKeys().flatMap(s => SESSIONS[s] || []);
+  const available = new Set(sessionPapers.map(pk => (PAPERS[pk].variant || '')[0]).filter(Boolean));
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn' + (currentPaperNum === 'all' ? ' active' : '');
+  allBtn.textContent = 'All';
+  allBtn.addEventListener('click', () => {
+    currentPaperNum = 'all'; currentVariant = 'all';
+    buildPaperTabs(); buildVariantPills(); renderAll();
+  });
+  container.appendChild(allBtn);
+
+  for (const p of ['1', '2']) {
+    const btn = document.createElement('button');
+    const ok  = available.has(p);
+    btn.className = 'tab-btn' + (currentPaperNum === p ? ' active' : '');
+    btn.textContent = `Paper ${p}`;
+    btn.disabled = !ok;
+    if (ok) {
+      btn.addEventListener('click', () => {
+        currentPaperNum = p; currentVariant = 'all';
+        buildPaperTabs(); buildVariantPills(); renderAll();
+      });
+    }
     container.appendChild(btn);
   }
 }
@@ -659,7 +693,7 @@ function buildVariantPills() {
   });
   container.appendChild(allBtn);
 
-  for (const v of ['11', '12', '13']) {
+  for (const v of ['11', '12', '13', '21', '22', '23']) {
     const btn = document.createElement('button');
     const ok  = available.has(v);
     btn.className = 'tab-btn' + (currentVariant === v ? ' active' : '');
@@ -676,6 +710,7 @@ function buildVariantPills() {
 
 buildYearTabs();
 buildSessionTabs();
+buildPaperTabs();
 buildVariantPills();
 renderAll();
 buildTopicGroupTabs();
@@ -719,12 +754,16 @@ def generate_html(papers: dict, sessions: dict) -> str:
         <div class="tab-group" id="year-tabs"></div>
       </div>
       <div class="selector-row">
-        <span class="selector-label">Session</span>
-        <div class="tab-group" id="session-tabs"></div>
+        <span class="selector-label">Paper</span>
+        <div class="tab-group" id="paper-tabs"></div>
       </div>
       <div class="selector-row">
         <span class="selector-label">Variant</span>
         <div class="tab-group" id="variant-pills"></div>
+      </div>
+      <div class="selector-row">
+        <span class="selector-label">Session</span>
+        <div class="tab-group" id="session-tabs"></div>
       </div>
     </div>
 

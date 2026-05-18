@@ -59,6 +59,16 @@ TOPIC_NAMES = {
     "6.3": "Artificial Intelligence",
 }
 
+SESSION_LETTER_NAMES = {"m": "March", "s": "Summer", "w": "Winter"}
+
+
+def _session_label(token: str) -> str:
+    if len(token) < 3:
+        return token
+    name = SESSION_LETTER_NAMES.get(token[0], token[0])
+    return f"{name} 20{token[1:]}"
+
+
 BLOOM_ORDER = ["Remember", "Understand", "Apply", "Analyse", "Evaluate", "Create"]
 DIFFICULTY_ORDER = ["Low", "Medium", "High"]
 OBJECTIVE_ORDER = ["AO1", "AO2", "AO3"]
@@ -92,10 +102,11 @@ def load_all_questions():
             continue
         sess_letter, yr, variant = m.groups()
         source = {
-            "paper":   stem,
-            "session": f"{sess_letter}{yr}",
-            "variant": variant,
-            "year":    f"20{yr}",
+            "paper":     stem,
+            "session":   f"{sess_letter}{yr}",
+            "variant":   variant,
+            "year":      f"20{yr}",
+            "paper_num": variant[:1],
         }
         try:
             data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -236,7 +247,7 @@ TOPICS_CSS = """
 """
 
 TOPICS_JS = """
-const FILTERS = ['subtopic','difficulty','objective','bloom','command','marks','year','layout'];
+const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
 const state = Object.fromEntries(FILTERS.map(f => [f, 'all']));
 
 function matchesMarks(card) {
@@ -370,20 +381,36 @@ def build_topic_page(group_id, questions):
     present_bloom      = _present_simple(questions, "bloom_level")
     present_command    = sorted(_present_simple(questions, "command"))
     present_marks      = _present_marks(questions)
-    present_years      = sorted(_present_source(questions, "year"))
-    present_layout     = _present_simple(questions, "layout_type")
+    present_years       = sorted(_present_source(questions, "year"))
+    present_layout      = _present_simple(questions, "layout_type")
+    present_paper_nums  = _present_source(questions, "paper_num")
+    present_variant_nums = {(v[1:2] if len(v) >= 2 else v) for v in _present_source(questions, "variant")}
 
-    subtopic_opts = [(st, st) for st in subtopics]
-    difficulty_opts = [(d, d) for d in DIFFICULTY_ORDER]
-    objective_opts  = [(o, o) for o in OBJECTIVE_ORDER]
-    bloom_opts      = [(b, b) for b in BLOOM_ORDER]
-    command_opts    = [(c, c) for c in present_command]
-    marks_opts      = [(m, m) for m in MARKS_BUCKETS]
-    year_opts       = [(y, y) for y in present_years]
-    layout_opts     = [(lt, LAYOUT_NAMES.get(lt, lt)) for lt in LAYOUT_ORDER]
+    subtopic_opts    = [(st, st) for st in subtopics]
+    difficulty_opts  = [(d, d) for d in DIFFICULTY_ORDER]
+    objective_opts   = [(o, o) for o in OBJECTIVE_ORDER]
+    bloom_opts       = [(b, b) for b in BLOOM_ORDER]
+    command_opts     = [(c, c) for c in present_command]
+    marks_opts       = [(m, m) for m in MARKS_BUCKETS]
+    year_opts        = [(y, y) for y in present_years]
+    layout_opts      = [(lt, LAYOUT_NAMES.get(lt, lt)) for lt in LAYOUT_ORDER]
+    paper_opts       = [("1", "Paper 1"), ("2", "Paper 2")]
+    variant_num_opts = [(v, v) for v in ("1", "2", "3")]
 
     filter_bar = (
         '<div class="filter-bar">'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Year</span>'
+        f'    {_tab_group("year", year_opts, set(present_years))}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Paper</span>'
+        f'    {_tab_group("paperNum", paper_opts, present_paper_nums)}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Variant</span>'
+        f'    {_tab_group("variantNum", variant_num_opts, present_variant_nums)}'
+        f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Subtopic</span>'
         f'    {_tab_group("subtopic", subtopic_opts, present_subtopics)}'
@@ -397,20 +424,16 @@ def build_topic_page(group_id, questions):
         f'    {_tab_group("objective", objective_opts, present_objective)}'
         f'  </div>'
         f'  <div class="filter-row">'
+        f'    <span class="filter-label">Marks</span>'
+        f'    {_tab_group("marks", marks_opts, present_marks)}'
+        f'  </div>'
+        f'  <div class="filter-row">'
         f'    <span class="filter-label">Bloom</span>'
         f'    {_tab_group("bloom", bloom_opts, present_bloom)}'
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Command</span>'
         f'    {_tab_group("command", command_opts, set(present_command))}'
-        f'  </div>'
-        f'  <div class="filter-row">'
-        f'    <span class="filter-label">Marks</span>'
-        f'    {_tab_group("marks", marks_opts, present_marks)}'
-        f'  </div>'
-        f'  <div class="filter-row">'
-        f'    <span class="filter-label">Year</span>'
-        f'    {_tab_group("year", year_opts, set(present_years))}'
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Layout</span>'
@@ -474,8 +497,12 @@ def build_topic_page(group_id, questions):
 </html>"""
 
 
-def build_index(by_group, total_papers):
-    """Build topics.html index page."""
+def build_index(by_group, total_papers, papers_meta, group_paper_keys):
+    """Build topics.html index page with year/paper/session/variant filters.
+
+    papers_meta: { paper_stem: { year, session, paper_num, variant_num } }
+    group_paper_keys: { group_id: [paper_stem, …] }  one entry per question in the group
+    """
     cards = []
     for group_id, (name, subtopics, desc) in TOPIC_GROUPS.items():
         qs = by_group.get(group_id, [])
@@ -483,19 +510,96 @@ def build_index(by_group, total_papers):
             f'<span class="subtopic-chip">{escape(st)}</span>' for st in subtopics
         )
         cards.append(
-            f'<a class="topic-card" href="topic_{group_id}.html">'
+            f'<a class="topic-card" href="topic_{group_id}.html" data-topic-group="{group_id}">'
             f'  <div class="topic-num">{group_id}</div>'
             f'  <div class="topic-name">{escape(name)}</div>'
             f'  <div class="topic-desc">{escape(desc)}</div>'
             f'  <div class="subtopic-chips">{chips}</div>'
             f'  <div class="topic-meta">'
-            f'    <span><strong>{len(qs)}</strong> questions</span>'
+            f'    <span><strong class="q-count">{len(qs)}</strong> questions</span>'
             f'    <span>{len(subtopics)} subtopics</span>'
             f'  </div>'
             f'</a>'
         )
 
     total_questions = sum(len(v) for v in by_group.values())
+
+    # Filter option discovery
+    years    = sorted({m["year"]        for m in papers_meta.values()})
+    papers   = sorted({m["paper_num"]   for m in papers_meta.values() if m["paper_num"]})
+    sessions = sorted({m["session"]     for m in papers_meta.values()})
+    variants = sorted({m["variant_num"] for m in papers_meta.values() if m["variant_num"]})
+
+    year_opts    = [(y, y) for y in years]
+    paper_opts   = [("1", "Paper 1"), ("2", "Paper 2")]
+    session_opts = [(s, _session_label(s)) for s in sessions]
+    variant_opts = [(v, v) for v in ("1", "2", "3")]
+
+    filter_bar = (
+        '<div class="filter-bar">'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Year</span>'
+        f'    {_tab_group("year", year_opts, set(years))}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Paper</span>'
+        f'    {_tab_group("paperNum", paper_opts, set(papers))}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Session</span>'
+        f'    {_tab_group("session", session_opts, set(sessions))}'
+        f'  </div>'
+        f'  <div class="filter-row">'
+        f'    <span class="filter-label">Variant</span>'
+        f'    {_tab_group("variantNum", variant_opts, set(variants))}'
+        f'  </div>'
+        '</div>'
+    )
+
+    index_data = (
+        f"const PAPERS_META = {json.dumps(papers_meta)};\n"
+        f"const GROUP_PAPER_KEYS = {json.dumps(group_paper_keys)};\n"
+    )
+    index_js = """
+const indexState = { year: 'all', paperNum: 'all', session: 'all', variantNum: 'all' };
+
+function paperMatches(pk) {
+    const m = PAPERS_META[pk];
+    if (!m) return false;
+    if (indexState.year       !== 'all' && m.year        !== indexState.year)       return false;
+    if (indexState.paperNum   !== 'all' && m.paper_num   !== indexState.paperNum)   return false;
+    if (indexState.session    !== 'all' && m.session     !== indexState.session)    return false;
+    if (indexState.variantNum !== 'all' && m.variant_num !== indexState.variantNum) return false;
+    return true;
+}
+
+function updateIndexCounts() {
+    let totalShown = 0;
+    for (const [g, keys] of Object.entries(GROUP_PAPER_KEYS)) {
+        const n = keys.filter(paperMatches).length;
+        totalShown += n;
+        const card = document.querySelector('[data-topic-group="' + g + '"]');
+        if (card) card.querySelector('.q-count').textContent = n;
+    }
+    const total = document.getElementById('index-total');
+    if (total) total.textContent = totalShown;
+}
+
+document.querySelectorAll('.tab-group[data-filter]').forEach(group => {
+    const filter = group.dataset.filter;
+    group.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.disabled) return;
+            indexState[filter] = btn.dataset.value;
+            group.querySelectorAll('.tab-btn').forEach(b =>
+                b.classList.toggle('active', b.dataset.value === indexState[filter])
+            );
+            updateIndexCounts();
+        });
+    });
+});
+updateIndexCounts();
+"""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -510,15 +614,20 @@ def build_index(by_group, total_papers):
 <div class="page">
   <div class="topics-index-header">
     <h1>Cambridge IGCSE 0478 · Topic Revision</h1>
-    <p>Browse {total_questions} questions across {total_papers} past papers, grouped by syllabus topic.</p>
+    <p>Browse <strong id="index-total">{total_questions}</strong> questions across {total_papers} past papers, grouped by syllabus topic.</p>
     <div class="links">
       <a href="statistics.html">📊 Statistics</a>
     </div>
   </div>
+  {filter_bar}
   <div class="topic-index-grid">
     {"".join(cards)}
   </div>
 </div>
+<script>
+{index_data}
+{index_js}
+</script>
 </body>
 </html>"""
 
@@ -553,10 +662,24 @@ def main():
         path.write_text(build_topic_page(g, by_group[g]), encoding="utf-8")
         print(f"Written: {path}  ({len(by_group[g])} questions)")
 
-    # Index
-    total_papers = len({src["paper"] for _, src in all_qs})
+    # Index — embed per-paper metadata + per-group paper-keys so JS filters work
+    papers_meta = {}
+    for _, src in all_qs:
+        if src["paper"] not in papers_meta:
+            papers_meta[src["paper"]] = {
+                "year":        src["year"],
+                "session":     src["session"],
+                "paper_num":   src["paper_num"],
+                "variant_num": src["variant"][1:2] if len(src["variant"]) >= 2 else "",
+            }
+    group_paper_keys = {g: [src["paper"] for _, src in by_group[g]] for g in TOPIC_GROUPS}
+    total_papers = len(papers_meta)
+
     index_path = out_dir / "topics.html"
-    index_path.write_text(build_index(by_group, total_papers), encoding="utf-8")
+    index_path.write_text(
+        build_index(by_group, total_papers, papers_meta, group_paper_keys),
+        encoding="utf-8",
+    )
     print(f"Written: {index_path}  (index)")
 
 
