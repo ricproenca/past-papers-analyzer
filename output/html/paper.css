@@ -141,6 +141,13 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .term-def-table tbody tr:last-child td,
 .ref-table tbody tr:last-child td { border-bottom: none; }
 .ref-table { margin: .75rem 0 1rem; }
+/* SQL / pseudocode blocks embedded in question stems */
+.code-stem {
+    background: #fafafa; border: 1px solid #e5e7eb; border-radius: 6px;
+    padding: .65rem .85rem; margin: .6rem 0 .85rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .85rem; line-height: 1.55; overflow-x: auto; white-space: pre;
+}
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
 

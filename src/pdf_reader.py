@@ -153,6 +153,16 @@ def _classify_table(table: list) -> str:
     if header_tokens & _REGISTER_NAMES:
         return "ValueTraceMatrix"
 
+    # DataReferenceTable: a lookup/context table provided in the question where every
+    # data cell is prefilled (no blank answer slots). These are NOT answer formats —
+    # they appear before sub-questions to give students data to work with.
+    if len(table) >= 2:
+        data_rows = table[1:]
+        if data_rows and all(
+            _clean_cell(cell) for row in data_rows for cell in row
+        ):
+            return "DataReferenceTable"
+
     return "MatrixGrid"
 
 

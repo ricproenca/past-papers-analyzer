@@ -147,6 +147,13 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .term-def-table tbody tr:last-child td,
 .ref-table tbody tr:last-child td { border-bottom: none; }
 .ref-table { margin: .75rem 0 1rem; }
+/* SQL / pseudocode blocks embedded in question stems */
+.code-stem {
+    background: #fafafa; border: 1px solid #e5e7eb; border-radius: 6px;
+    padding: .65rem .85rem; margin: .6rem 0 .85rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .85rem; line-height: 1.55; overflow-x: auto; white-space: pre;
+}
 .matrix-table td:not(:first-child) { text-align: center; }
 .matrix-table input[type=radio] { transform: scale(1.2); cursor: pointer; }
 
@@ -228,6 +235,13 @@ document.querySelectorAll('.q-header').forEach(h => {
 
 def _badge(text, cls):
     return f'<span class="badge {cls}">{escape(str(text))}</span>'
+
+
+_SQL_KEYWORD_RE = re.compile(
+    r"^\s*(SELECT|FROM|WHERE|ORDER\s+BY|GROUP\s+BY|HAVING|INSERT|UPDATE|DELETE|"
+    r"CREATE|DROP|ALTER|JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|SET|VALUES|INTO)\b",
+    re.IGNORECASE,
+)
 
 
 # ============================================================================
@@ -312,7 +326,13 @@ def _maybe_pipe_table(paragraph: str) -> str | None:
         return None
 
     def _cells(ln: str) -> list[str]:
-        return [c.strip() for c in ln.split("|")]
+        parts = [c.strip() for c in ln.split("|")]
+        # Strip empty boundary cells produced by leading/trailing pipes (| a | b | → ['','a','b',''])
+        while parts and not parts[0]:
+            parts.pop(0)
+        while parts and not parts[-1]:
+            parts.pop()
+        return parts
 
     th_html = "".join(f"<th>{escape(c)}</th>" for c in _cells(lines[0]))
     body_html = "".join(
@@ -325,11 +345,22 @@ def _maybe_pipe_table(paragraph: str) -> str | None:
     )
 
 
+def _maybe_code_block(paragraph: str) -> str | None:
+    """If every non-empty line of `paragraph` starts with a SQL keyword, render
+    it as a <pre class="code-stem"> block. Returns None otherwise."""
+    lines = [ln for ln in paragraph.splitlines() if ln.strip()]
+    if not lines:
+        return None
+    if not all(_SQL_KEYWORD_RE.match(ln) for ln in lines):
+        return None
+    return f'<pre class="code-stem">{escape(paragraph)}</pre>'
+
+
 def _render_prose_paragraphs(text: str, css_class: str = "q-text") -> str:
     """Split prose on blank lines and emit one <p class="..."> per paragraph.
 
     Paragraphs that look like a pipe-separated reference table are rendered as
-    <table> instead. Returns '' for empty/whitespace text."""
+    <table>; SQL code blocks are rendered as <pre class="code-stem">."""
     if not text or not text.strip():
         return ""
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
@@ -338,8 +369,12 @@ def _render_prose_paragraphs(text: str, css_class: str = "q-text") -> str:
         table_html = _maybe_pipe_table(p)
         if table_html:
             parts.append(table_html)
-        else:
-            parts.append(f'<p class="{css_class}">{escape(p)}</p>')
+            continue
+        code_html = _maybe_code_block(p)
+        if code_html:
+            parts.append(code_html)
+            continue
+        parts.append(f'<p class="{css_class}">{escape(p)}</p>')
     return "".join(parts)
 
 

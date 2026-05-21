@@ -218,7 +218,7 @@
     },
     {
       "id": "Q3",
-      "text": "Four development life cycle stages and five descriptions are shown.\n\nDraw one line from each stage to the most appropriate description. Not all descriptions will be used.\n\nStage | Description\ntesting | identifying the problem and requirements\nreviewing | the final solution to suggest further developments\nanalysis | making sure the program code works as expected\ncoding | using structure diagrams, flowcharts and pseudocode to plan the solution\ndesign | using a programming language to create the solution",
+      "text": "Four development life cycle stages and five descriptions are shown.\n\nDraw one line from each stage to the most appropriate description.\n\nNot all descriptions will be used.\n\nStage | Description\ntesting | identifying the problem and requirements\nreviewing | the final solution to suggest further developments\nanalysis | making sure the program code works as expected\ncoding | using structure diagrams, flowcharts and pseudocode to plan the solution\ndesign | using a programming language to create the solution",
       "command": "Draw",
       "objective": "AO1",
       "marks": 4,
@@ -436,7 +436,7 @@
             "marks": 1
           },
           {
-            "text": "Normal – Type: Normal",
+            "text": "Normal – Purpose: to make sure that the program accepts data that is an appropriate length",
             "marks": 1
           }
         ]
@@ -447,7 +447,7 @@
     },
     {
       "id": "Q6a",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE T←otal : INTEGER\n05 Highest← 1500\n06 Total 0←\n07 FOR Count 1 TO 1000\n08 INPUT N←umbers[Count]\n09 Total Total + Count\n10 IF Numbers[Count] > Total\n11 THEN ←\n12 Highest Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nIdentify the line numbers of five errors in the pseudocode and suggest a correction for each error.",
+      "text": "A program is written to only accept data that contains more than 9 characters...",
       "command": "Identify",
       "objective": "AO2",
       "marks": 5,
@@ -492,7 +492,7 @@
     },
     {
       "id": "Q6b",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE T←otal : INTEGER\n05 Highest← 1500\n06 Total 0←\n07 FOR Count 1 TO 1000\n08 INPUT N←umbers[Count]\n09 Total Total + Count\n10 IF Numbers[Count] > Total\n11 THEN ←\n12 Highest Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array...\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
       "command": "Write",
       "objective": "AO2",
       "marks": 2,
@@ -525,7 +525,7 @@
     },
     {
       "id": "Q6c",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE T←otal : INTEGER\n05 Highest← 1500\n06 Total 0←\n07 FOR Count 1 TO 1000\n08 INPUT N←umbers[Count]\n09 Total Total + Count\n10 IF Numbers[Count] > Total\n11 THEN ←\n12 Highest Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array...\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 4,
@@ -570,12 +570,12 @@
     },
     {
       "id": "Q7a",
-      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No → STOP\n                                                              → Yes → INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes → INPUT Value2 → OUTPUT Value1 + Value2\n                                                                                                        → No → IS Operator = 'S'? → Yes → OUTPUT Value1 – Value2\n                                                                                                                                  → No → IS Operator = 'M'? → Yes → OUTPUT Value1 * Value2\n                                                                                                                                                              → No → OUTPUT Value1 / Value2\n\nComplete the trace table for the input data:\nY , 7, S, 9, Y, 5, M, 12, Y, 25, D, 5, N, 10, A, 6\n\nAnswer | Value1 | Operator | Value2 | OUTPUT",
+      "text": "This flowchart represents an algorithm.\n\nComplete the trace table for the input data:\nY, 7, S, 9, Y, 5, M, 12, Y, 25, D, 5, N, 10, A, 6\n\nAnswer | Value1 | Operator | Value2 | OUTPUT",
       "command": "Complete",
       "objective": "AO2",
       "marks": 5,
       "visuals": [
-        "flowchart diagram showing the algorithm described"
+        "flowchart of calculator algorithm"
       ],
       "page": 7,
       "layout_type": "ValueTraceMatrix",
@@ -608,28 +608,28 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "flowchart diagram showing the algorithm described"
+          "flowchart of calculator algorithm"
         ],
         "scoring_rule": "One mark per correct column",
         "marking_points": [
           {
-            "text": "Answer column: Continue? / Y / Continue? / Y / Continue? / Y / Continue? / N",
+            "text": "Answer column correct: Continue? / Y / Continue? / Y / Continue? / Y / Continue? / N",
             "marks": 1
           },
           {
-            "text": "Value1 column: 7 / 5 / 25",
+            "text": "Value1 column correct: 7 / 5 / 25",
             "marks": 1
           },
           {
-            "text": "Operator column: S / M / D",
+            "text": "Operator column correct: S / M / D",
             "marks": 1
           },
           {
-            "text": "Value2 column: 9 / 12 / 5",
+            "text": "Value2 column correct: 9 / 12 / 5",
             "marks": 1
           },
           {
-            "text": "OUTPUT column: Continue? / −2 / Continue? / 60 / Continue? / 5 / Continue?",
+            "text": "OUTPUT column correct: −2 / 60 / 5",
             "marks": 1
           }
         ]
@@ -640,12 +640,12 @@
     },
     {
       "id": "Q7b",
-      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No → STOP\n                                                              → Yes → INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes → INPUT Value2 → OUTPUT Value1 + Value2\n                                                                                                        → No → IS Operator = 'S'? → Yes → OUTPUT Value1 – Value2\n                                                                                                                                  → No → IS Operator = 'M'? → Yes → OUTPUT Value1 * Value2\n                                                                                                                                                              → No → OUTPUT Value1 / Value2\n\nState the purpose of the algorithm on page 6.",
+      "text": "This flowchart represents an algorithm.\n\nState the purpose of the algorithm on page 6.",
       "command": "State",
       "objective": "AO2",
       "marks": 1,
       "visuals": [
-        "flowchart diagram showing the algorithm described"
+        "flowchart of calculator algorithm"
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -657,7 +657,7 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "flowchart diagram showing the algorithm described"
+          "flowchart of calculator algorithm"
         ],
         "scoring_rule": null,
         "marking_points": [
@@ -673,12 +673,12 @@
     },
     {
       "id": "Q7c_i",
-      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No → STOP\n                                                              → Yes → INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes → INPUT Value2 → OUTPUT Value1 + Value2\n                                                                                                        → No → IS Operator = 'S'? → Yes → OUTPUT Value1 – Value2\n                                                                                                                                  → No → IS Operator = 'M'? → Yes → OUTPUT Value1 * Value2\n                                                                                                                                                              → No → OUTPUT Value1 / Value2\n\nThere are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nExplain how you would change the algorithm to prevent the problems described.",
+      "text": "There are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nExplain how you would change the algorithm to prevent the problems described.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 3,
       "visuals": [
-        "flowchart diagram showing the algorithm described"
+        "flowchart of calculator algorithm"
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -690,7 +690,7 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "flowchart diagram showing the algorithm described"
+          "flowchart of calculator algorithm"
         ],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
@@ -726,12 +726,12 @@
     },
     {
       "id": "Q7c_ii",
-      "text": "This flowchart represents an algorithm.\n\nSTART → OUTPUT \"Continue?\" → INPUT Answer → IS Answer = 'Y'? → No → STOP\n                                                              → Yes → INPUT Value1 → INPUT Operator → IS Operator = 'A'? → Yes → INPUT Value2 → OUTPUT Value1 + Value2\n                                                                                                        → No → IS Operator = 'S'? → Yes → OUTPUT Value1 – Value2\n                                                                                                                                  → No → IS Operator = 'M'? → Yes → OUTPUT Value1 * Value2\n                                                                                                                                                              → No → OUTPUT Value1 / Value2\n\nThere are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nIdentify one more error related to inputs when the algorithm is run.",
+      "text": "There are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nIdentify one more error related to inputs when the algorithm is run.",
       "command": "Identify",
       "objective": "AO2",
       "marks": 1,
       "visuals": [
-        "flowchart diagram showing the algorithm described"
+        "flowchart of calculator algorithm"
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -743,32 +743,12 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "flowchart diagram showing the algorithm described"
+          "flowchart of calculator algorithm"
         ],
         "scoring_rule": "One mark, for example:",
         "marking_points": [
           {
-            "text": "Only tests for A, S, and M; any other input is assumed to be D (for division)",
-            "marks": 1
-          },
-          {
-            "text": "Divide by 0 error (if D and 0 are entered)",
-            "marks": 1
-          },
-          {
-            "text": "Wrong data type e.g. character instead of number",
-            "marks": 1
-          },
-          {
-            "text": "No data entered (enter without a preceding value)",
-            "marks": 1
-          },
-          {
-            "text": "If Yes/yes entered the algorithm stops",
-            "marks": 1
-          },
-          {
-            "text": "No input prompts.",
+            "text": "Only tests for A, S, and M; any other input is assumed to be D (for division) // Divide by 0 error (if D and 0 are entered) // Wrong data type e.g. character instead of number // No data entered (enter without a preceding value) // If Yes/yes entered the algorithm stops // No input prompts.",
             "marks": 1
           }
         ]
@@ -779,12 +759,12 @@
     },
     {
       "id": "Q8a",
-      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\nState the number of fields and records in this database table.\n\nFields\nRecords",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n| EUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025 |\n| ASY1 | Beijing | TRUE | China | Asia | 21,766,214 |\n| SAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415 |\n| AFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200 |\n| EUN1 | Frankfurt | FALSE | Germany | Europe | 796,437 |\n| ASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839 |\n| ASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230 |\n| ASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724 |\n| AFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912 |\n| SAY2 | Lima | TRUE | Peru | South America | 11,206,000 |\n| EUY1 | London | TRUE | UK | Europe | 9,648,110 |\n| EUY4 | Madrid | TRUE | Spain | Europe | 6,751,374 |\n| ASN2 | Mumbai | FALSE | India | Asia | 21,296,516 |\n| NAN1 | New York City | FALSE | USA | North America | 7,888,121 |\n| EUY2 | Paris | TRUE | France | Europe | 11,206,000 |\n| ASN1 | Shanghai | FALSE | China | Asia | 29,210,808 |\n| ASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859 |\n| AUN1 | Sydney | FALSE | Australia | Australia | 5,120,894 |\n| ASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104 |\n| NAN2 | Toronto | FALSE | Canada | North America | 6,371,958 |\n| EUN2 | Valencia | FALSE | Spain | Europe | 838,301 |\n| SAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445 |\n\nState the number of fields and records in this database table.\n\nFields\nRecords",
       "command": "State",
       "objective": "AO2",
       "marks": 2,
       "visuals": [
-        "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+        "database table MajorCity"
       ],
       "page": 8,
       "layout_type": "MultiPartLabeledBlock",
@@ -799,7 +779,7 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+          "database table MajorCity"
         ],
         "scoring_rule": "One mark per correct answer",
         "marking_points": [
@@ -819,12 +799,12 @@
     },
     {
       "id": "Q8b",
-      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\nIdentify the field in the database table that is most suitable to be the primary key and give one reason for your choice.\n\nPrimary key field\nReason",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n| EUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025 |\n| ASY1 | Beijing | TRUE | China | Asia | 21,766,214 |\n| SAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415 |\n| AFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200 |\n| EUN1 | Frankfurt | FALSE | Germany | Europe | 796,437 |\n| ASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839 |\n| ASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230 |\n| ASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724 |\n| AFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912 |\n| SAY2 | Lima | TRUE | Peru | South America | 11,206,000 |\n| EUY1 | London | TRUE | UK | Europe | 9,648,110 |\n| EUY4 | Madrid | TRUE | Spain | Europe | 6,751,374 |\n| ASN2 | Mumbai | FALSE | India | Asia | 21,296,516 |\n| NAN1 | New York City | FALSE | USA | North America | 7,888,121 |\n| EUY2 | Paris | TRUE | France | Europe | 11,206,000 |\n| ASN1 | Shanghai | FALSE | China | Asia | 29,210,808 |\n| ASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859 |\n| AUN1 | Sydney | FALSE | Australia | Australia | 5,120,894 |\n| ASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104 |\n| NAN2 | Toronto | FALSE | Canada | North America | 6,371,958 |\n| EUN2 | Valencia | FALSE | Spain | Europe | 838,301 |\n| SAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445 |\n\nIdentify the field in the database table that is most suitable to be the primary key and give one reason for your choice.\n\nPrimary key field\nReason",
       "command": "Identify",
       "objective": "AO2",
       "marks": 2,
       "visuals": [
-        "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+        "database table MajorCity"
       ],
       "page": 9,
       "layout_type": "MultiPartLabeledBlock",
@@ -839,7 +819,7 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+          "database table MajorCity"
         ],
         "scoring_rule": "One mark per correct answer",
         "marking_points": [
@@ -859,12 +839,12 @@
     },
     {
       "id": "Q8c",
-      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\nGive the output from the structured query language (SQL) statement:\n\nSELECT City, Country, Population\nFROM MajorCity\nWHERE Continent = \"South America\"\nORDER BY Population;",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n| EUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025 |\n| ASY1 | Beijing | TRUE | China | Asia | 21,766,214 |\n| SAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415 |\n| AFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200 |\n| EUN1 | Frankfurt | FALSE | Germany | Europe | 796,437 |\n| ASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839 |\n| ASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230 |\n| ASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724 |\n| AFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912 |\n| SAY2 | Lima | TRUE | Peru | South America | 11,206,000 |\n| EUY1 | London | TRUE | UK | Europe | 9,648,110 |\n| EUY4 | Madrid | TRUE | Spain | Europe | 6,751,374 |\n| ASN2 | Mumbai | FALSE | India | Asia | 21,296,516 |\n| NAN1 | New York City | FALSE | USA | North America | 7,888,121 |\n| EUY2 | Paris | TRUE | France | Europe | 11,206,000 |\n| ASN1 | Shanghai | FALSE | China | Asia | 29,210,808 |\n| ASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859 |\n| AUN1 | Sydney | FALSE | Australia | Australia | 5,120,894 |\n| ASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104 |\n| NAN2 | Toronto | FALSE | Canada | North America | 6,371,958 |\n| EUN2 | Valencia | FALSE | Spain | Europe | 838,301 |\n| SAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445 |\n\nGive the output from the structured query language (SQL) statement:\n\nSELECT City, Country, Population\nFROM MajorCity\nWHERE Continent = \"South America\"\nORDER BY Population;",
       "command": "Give",
       "objective": "AO2",
       "marks": 3,
       "visuals": [
-        "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+        "database table MajorCity"
       ],
       "page": 9,
       "layout_type": "SimpleSingleBlock",
@@ -876,7 +856,7 @@
       "answers": {
         "type": "text",
         "visuals": [
-          "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+          "database table MajorCity"
         ],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
@@ -900,12 +880,12 @@
     },
     {
       "id": "Q8d",
-      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\nComplete the SQL statement to list only the code, city, country and continent of all the cities in the database table that are capital cities.\n\nSELECT",
+      "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n| EUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025 |\n| ASY1 | Beijing | TRUE | China | Asia | 21,766,214 |\n| SAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415 |\n| AFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200 |\n| EUN1 | Frankfurt | FALSE | Germany | Europe | 796,437 |\n| ASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839 |\n| ASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230 |\n| ASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724 |\n| AFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912 |\n| SAY2 | Lima | TRUE | Peru | South America | 11,206,000 |\n| EUY1 | London | TRUE | UK | Europe | 9,648,110 |\n| EUY4 | Madrid | TRUE | Spain | Europe | 6,751,374 |\n| ASN2 | Mumbai | FALSE | India | Asia | 21,296,516 |\n| NAN1 | New York City | FALSE | USA | North America | 7,888,121 |\n| EUY2 | Paris | TRUE | France | Europe | 11,206,000 |\n| ASN1 | Shanghai | FALSE | China | Asia | 29,210,808 |\n| ASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859 |\n| AUN1 | Sydney | FALSE | Australia | Australia | 5,120,894 |\n| ASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104 |\n| NAN2 | Toronto | FALSE | Canada | North America | 6,371,958 |\n| EUN2 | Valencia | FALSE | Spain | Europe | 838,301 |\n| SAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445 |\n\nComplete the SQL statement to list only the code, city, country and continent of all the cities in the database table that are capital cities.\n\nSELECT",
       "command": "Complete",
       "objective": "AO2",
       "marks": 4,
       "visuals": [
-        "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+        "database table MajorCity"
       ],
       "page": 9,
       "layout_type": "CodeBlockResponse",
@@ -918,7 +898,7 @@
       "answers": {
         "type": "pseudocode",
         "visuals": [
-          "database table MajorCity with columns Code, City, Capital, Country, Continent, Population"
+          "database table MajorCity"
         ],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
@@ -946,12 +926,12 @@
     },
     {
       "id": "Q9a",
-      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nDraw a logic circuit for this logic expression.\n\nEach logic gate must have a maximum of two inputs.\n\nDo not simplify the logic expression.\n\nA\nB  Z\nC",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nDraw a logic circuit for this logic expression.\n\nEach logic gate must have a maximum of two inputs.\n\nDo not simplify the logic expression.\n\nA\nB                Z\nC",
       "command": "Draw",
       "objective": "AO2",
       "marks": 5,
       "visuals": [
-        "partial logic circuit diagram with inputs A, B, C and output Z"
+        "partial logic circuit with inputs A, B, C and output Z"
       ],
       "page": 10,
       "layout_type": "AnnotatedDiagram",
@@ -969,28 +949,28 @@
       "answers": {
         "type": "diagram",
         "visuals": [
-          "partial logic circuit diagram with inputs A, B, C and output Z"
+          "partial logic circuit with inputs A, B, C and output Z"
         ],
         "scoring_rule": "One mark for each correct gate, with the correct input(s) as shown.",
         "marking_points": [
           {
-            "text": "NAND gate with inputs A and B (producing A NAND B)",
+            "text": "NAND gate with inputs A and B correctly drawn",
             "marks": 1
           },
           {
-            "text": "NAND gate with inputs NOT B and C (producing NOT B NAND C)",
+            "text": "NOT gate with input B correctly drawn",
             "marks": 1
           },
           {
-            "text": "NOT gate applied to B (producing NOT B) as input to second NAND gate",
+            "text": "NAND gate with inputs (NOT B) and C correctly drawn",
             "marks": 1
           },
           {
-            "text": "NOT gate applied to output of second NAND gate (producing NOT (NOT B NAND C))",
+            "text": "NOT gate applied to the output of the second NAND gate correctly drawn",
             "marks": 1
           },
           {
-            "text": "XOR gate combining output of first NAND gate and output of NOT gate to produce Z",
+            "text": "XOR gate combining the output of the first NAND gate and the last NOT gate to give Z correctly drawn",
             "marks": 1
           }
         ]
@@ -1001,13 +981,11 @@
     },
     {
       "id": "Q9b",
-      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nComplete the truth table from the given logic expression.\n\nWorking space\n\nA | B | C | Z\n0 | 0 | 0\n0 | 0 | 1\n0 | 1 | 0\n0 | 1 | 1\n1 | 0 | 0\n1 | 0 | 1\n1 | 1 | 0\n1 | 1 | 1",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nComplete the truth table from the given logic expression.\n\nA | B | C | Z\n0 | 0 | 0 |\n0 | 0 | 1 |\n0 | 1 | 0 |\n0 | 1 | 1 |\n1 | 0 | 0 |\n1 | 0 | 1 |\n1 | 1 | 0 |\n1 | 1 | 1 |",
       "command": "Complete",
       "objective": "AO2",
       "marks": 4,
-      "visuals": [
-        "truth table with columns A, B, C, Working space, Z"
-      ],
+      "visuals": [],
       "page": 10,
       "layout_type": "ValueTraceMatrix",
       "structure_data": {
@@ -1092,46 +1070,40 @@
       "topic_name": "Truth Tables",
       "answers": {
         "type": "text",
-        "visuals": [
-          "truth table with columns A, B, C, Working space, Z"
-        ],
+        "visuals": [],
         "scoring_rule": "Four marks for all eight correct outputs\nThree marks for six or seven correct outputs\nTwo marks for four or five correct outputs\nOne mark for two or three correct outputs",
         "marking_points": [
           {
             "text": "A=0 B=0 C=0 Z=1",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=0 B=0 C=1 Z=0",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=0 B=1 C=0 Z=1",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=0 B=1 C=1 Z=1",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=1 B=0 C=0 Z=1",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=1 B=0 C=1 Z=0",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=1 B=1 C=0 Z=0",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "A=1 B=1 C=1 Z=0",
-            "marks": 0
-          },
-          {
-            "text": "All eight outputs correct: 4 marks; six or seven correct: 3 marks; four or five correct: 2 marks; two or three correct: 1 mark",
-            "marks": 4
+            "marks": 1
           }
         ]
       },
@@ -1141,7 +1113,7 @@
     },
     {
       "id": "Q10",
-      "text": "A sports club uses a six-character alphanumeric membership code to identify each member of the club.\n\nThe one-dimensional (1D) array MemberID[] is used to store the unique membership codes for club members.\n\nThe two-dimensional (2D) array Name[] is used to store the names of the club members. The first and last name of each member will be stored in separate array elements.\n\nThe system can store details for a maximum of 1000 members.\n\nThe position of any member's data is the same in both arrays. For example, the data in index 2 of MemberID[] belongs to the member in index 2 of Name[]\n\nThe variable NewID is used to input a new membership code.\n\nWrite a program that meets the following requirements:\n\n• Provide a menu that offers the choices: inputting a new member, outputting a list of membership codes and first and last names, or stopping.\n• Input and validate a response to the menu.\n• When inputting a new member, input a new membership code and check that it contains six characters:\n  ○ If the new code is six characters, check it against all the previously stored membership codes to make sure it is unique.\n  ○ If the code is not unique, a new code must be entered and checked.\n  ○ If the code is unique, it is stored in the first available space in the appropriate array and the new member is required to enter their first name and last name, which are also stored in the corresponding location of the appropriate array.\n• When outputting a list of membership codes and names, output for each member: their membership code, first name and last name.\n• The program will continue until the stop option on the menu is selected.\n\nYou must use pseudocode or program code and add comments to explain how your code works.\n\nYou do not need to declare any arrays, variables or constants; assume this has already been done.\n\nYou do not need to initialise the data in the arrays.\n\nYou do need to initialise any variables or constants used if appropriate.\n\nAll inputs and outputs must contain suitable messages.",
+      "text": "A sports club uses a six-character alphanumeric membership code to identify each member of the club.\n\nThe one-dimensional (1D) array MemberID[] is used to store the unique membership codes for club members.\n\nThe two-dimensional (2D) array Name[] is used to store the names of the club members. The first and last name of each member will be stored in separate array elements.\n\nThe system can store details for a maximum of 1000 members.\n\nThe position of any member's data is the same in both arrays. For example, the data in index 2 of MemberID[] belongs to the member in index 2 of Name[].\n\nThe variable NewID is used to input a new membership code.\n\nWrite a program that meets the following requirements:\n• Provide a menu that offers the choices: inputting a new member, outputting a list of membership codes and first and last names, or stopping.\n• Input and validate a response to the menu.\n• When inputting a new member, input a new membership code and check that it contains six characters:\n  ○ If the new code is six characters, check it against all the previously stored membership codes to make sure it is unique.\n  ○ If the code is not unique, a new code must be entered and checked.\n  ○ If the code is unique, it is stored in the first available space in the appropriate array and the new member is required to enter their first name and last name, which are also stored in the corresponding location of the appropriate array.\n• When outputting a list of membership codes and names, output for each member: their membership code, first name and last name.\n• The program will continue until the stop option on the menu is selected.\n\nYou must use pseudocode or program code and add comments to explain how your code works.\n\nYou do not need to declare any arrays, variables or constants; assume this has already been done.\n\nYou do not need to initialise the data in the arrays.\n\nYou do need to initialise any variables or constants used if appropriate.\n\nAll inputs and outputs must contain suitable messages.",
       "command": "Write",
       "objective": "AO2",
       "marks": 15,
@@ -1157,22 +1129,38 @@
       "answers": {
         "type": "pseudocode",
         "visuals": [],
-        "scoring_rule": "Marks are available for: AO2 (maximum 9 marks) and AO3 (maximum 6 marks)",
+        "scoring_rule": "Marks are available for: AO2 (maximum 9 marks); AO3 (maximum 6 marks)",
         "marking_points": [
           {
-            "text": "R1 displays menu and allows choice, then proceeds based on valid choice, (nested iteration, input, output, selection, validation).",
+            "text": "AO2 0 marks: No creditable response.",
+            "marks": 0
+          },
+          {
+            "text": "AO2 1–3 marks: At least one programming technique has been used. Any use of selection, iteration, counting, totalling, input and output. Some data has been stored but not appropriately. Any use of variables or arrays or other language dependent data structures e.g. Python lists.",
+            "marks": 3
+          },
+          {
+            "text": "AO2 4–6 marks: Some programming techniques used are appropriate to the problem. More than one technique seen applied to the scenario, check the list of techniques needed. Some of the data structures chosen are appropriate and store some of the data required. More than one data structure used to store data required by the scenario.",
+            "marks": 6
+          },
+          {
+            "text": "AO2 7–9 marks: The range of programming techniques used is appropriate to the problem. All criteria stated for the scenario have been covered by the use of appropriate programming techniques, check the list of techniques needed. The data structures chosen are appropriate and store all the data required. The data structures used store all the data required by the scenario.",
             "marks": 9
           },
           {
-            "text": "R2 checks length of string, checks contents of array for matches, stores approved data (validation, string handling (length), selection, input, storage).",
+            "text": "AO3 0 marks: No creditable response.",
             "marks": 0
           },
           {
-            "text": "R3 outputs contents of arrays. Program continues until user chooses stop. (output, iteration).",
-            "marks": 0
+            "text": "AO3 1–2 marks: Program seen without relevant comments. Some identifier names used are appropriate. Some of the data structures used have meaningful names. The solution is illogical. The solution is inaccurate in many places. Solution contains few lines of code with errors that attempt to perform a task given in the scenario. The solution attempts at least one of the requirements. Solution contains lines of code that attempt at least one task given in the scenario.",
+            "marks": 2
           },
           {
-            "text": "AO3: Program seen with relevant comments; suitable identifiers with names meaningful to their purpose; all data structures have meaningful names; program is in a logical order; solution is accurate; solution meets all requirements given in the question. (maximum 6 marks)",
+            "text": "AO3 3–4 marks: Program seen with some relevant comment(s). The majority of identifiers used are appropriately named. Most of the data structures used have meaningful names. The solution contains parts that may be illogical. The solution contains parts that are inaccurate. Solution contains lines of code with some errors that logically perform tasks given in the scenario. Ignore minor syntax errors. The solution attempts to meet most of the requirements. Solution contains lines of code that attempt most tasks given in the scenario.",
+            "marks": 4
+          },
+          {
+            "text": "AO3 5–6 marks: The program has been fully commented. Suitable identifiers with names meaningful to their purpose have been used throughout. All of the data structures used have meaningful names. The program is in a logical order. The solution is accurate. Solution logically performs all the tasks given in the scenario. Ignore minor syntax errors. The solution meets all the requirements given in the question. Solution performs all the tasks given in the scenario.",
             "marks": 6
           }
         ]

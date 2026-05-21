@@ -211,6 +211,13 @@ AnnotatedDiagram — a partially drawn diagram canvas; student adds missing node
   diagram_type: choose the closest category for the diagram shown.
   partial_elements: list every pre-drawn or pre-labelled node/component visible in the question diagram.
 
+DataReferenceTable handling — when a page contains [TABLE_TYPE:DataReferenceTable], this is a lookup or context table provided IN the question (e.g. a database table, a data set, a reference grid) that students must READ to answer the sub-questions. It is NOT an answer format.
+  MANDATORY: Include the full table in the "text" field of the FIRST sub-question that references it, in pipe-separated format: one row per line, first line = header, subsequent lines = data rows (no separator line). Position the table right after the opening prose stem (the sentence that introduces it) and before any sub-question prompt.
+  For subsequent sub-questions on later pages that reference the same table (e.g. Q8b, Q8c, Q8d after Q8a introduced MajorCity), also include the full table in their "text" field so each question is self-contained.
+  The question's layout_type must still be the ANSWER FORMAT (e.g. MultiPartLabeledBlock, CodeBlockResponse), not DataReferenceTable.
+  Example — Q8a text with a provided database table:
+    "A database table, MajorCity, stores some details about a number of cities around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n...\n\nState the number of fields and records in this database table.\n\nFields\nRecords"
+
 CodeBlockResponse — student writes multi-line pseudocode, SQL, or an algorithm into a monospace area.
   PDF signals: Paper 2 only (variants 21/22/23); command word "Write" combined with marks ≥ 3 AND the body
                references "pseudocode", "an algorithm", "a SQL query/statement", or "code".
