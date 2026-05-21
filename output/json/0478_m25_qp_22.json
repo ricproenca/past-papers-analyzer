@@ -654,7 +654,8 @@
       },
       "difficulty": "High",
       "bloom_level": "Apply",
-      "cognitive_load": "High"
+      "cognitive_load": "High",
+      "visual_image": "0478_m25_qp_22/page-6.png"
     },
     {
       "id": "Q7b",
@@ -687,7 +688,8 @@
       },
       "difficulty": "Low",
       "bloom_level": "Remember",
-      "cognitive_load": "Low"
+      "cognitive_load": "Low",
+      "visual_image": "0478_m25_qp_22/page-6.png"
     },
     {
       "id": "Q7c_i",
@@ -740,7 +742,8 @@
       },
       "difficulty": "Medium",
       "bloom_level": "Understand",
-      "cognitive_load": "Low"
+      "cognitive_load": "Low",
+      "visual_image": "0478_m25_qp_22/page-6.png"
     },
     {
       "id": "Q7c_ii",
@@ -773,7 +776,8 @@
       },
       "difficulty": "Low",
       "bloom_level": "Remember",
-      "cognitive_load": "Low"
+      "cognitive_load": "Low",
+      "visual_image": "0478_m25_qp_22/page-6.png"
     },
     {
       "id": "Q8a",

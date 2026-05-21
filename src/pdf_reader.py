@@ -1,8 +1,9 @@
 import json
 import re
+from pathlib import Path
 
 import pdfplumber
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Iterable
 
 _REGISTER_NAMES = frozenset({'PC', 'ACC', 'IX', 'MAR', 'MDR', 'CIR', 'IR', 'SR'})
 _TERM_DEF_HEADERS = frozenset({'TERM', 'DEFINITION'})
@@ -245,3 +246,40 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
                 "has_image": bool(images),
             })
     return pages
+
+
+def render_pages_to_pngs(
+    pdf_path: str | Path,
+    page_nums: Iterable[int],
+    output_dir: str | Path,
+    dpi: int = 180,
+) -> Dict[int, Path]:
+    """Render the given 1-based page numbers of `pdf_path` as PNGs into `output_dir`.
+
+    Returns a {page_num: png_path} map. Skips pages whose PNG already exists
+    (idempotent). Page numbers outside the PDF range are silently skipped."""
+    import fitz  # PyMuPDF — imported lazily so existing flows don't require it
+
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    zoom = dpi / 72.0
+    matrix = fitz.Matrix(zoom, zoom)
+
+    result: Dict[int, Path] = {}
+    targets = sorted({int(n) for n in page_nums if n})
+    if not targets:
+        return result
+
+    with fitz.open(str(pdf_path)) as doc:
+        n_pages = doc.page_count
+        for page_num in targets:
+            if page_num < 1 or page_num > n_pages:
+                continue
+            png_path = out_dir / f"page-{page_num}.png"
+            result[page_num] = png_path
+            if png_path.exists():
+                continue
+            page = doc.load_page(page_num - 1)
+            pix = page.get_pixmap(matrix=matrix, alpha=False)
+            pix.save(str(png_path))
+    return result

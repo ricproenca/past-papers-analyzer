@@ -39,6 +39,23 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
 .q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; margin-bottom: 1rem; }
 .q-visual { font-size: .8rem; color: #6b7280; margin-top: .5rem; font-style: italic; }
+.q-figure {
+    margin: .75rem 0 1rem;
+    padding: .5rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+.q-visual-image {
+    display: block; max-width: 100%; height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+    background: #fff;
+}
+.q-figure figcaption {
+    margin-top: .5rem; text-align: center;
+    font-size: .75rem; color: #6b7280; font-style: italic;
+}
 .answers {
     display: none; padding: 1.25rem; background: #f9fafb;
 }

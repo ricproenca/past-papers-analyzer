@@ -45,6 +45,23 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
 .q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; margin-bottom: 1rem; }
 .q-visual { font-size: .8rem; color: #6b7280; margin-top: .5rem; font-style: italic; }
+.q-figure {
+    margin: .75rem 0 1rem;
+    padding: .5rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+.q-visual-image {
+    display: block; max-width: 100%; height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+    background: #fff;
+}
+.q-figure figcaption {
+    margin-top: .5rem; text-align: center;
+    font-size: .75rem; color: #6b7280; font-style: italic;
+}
 .answers {
     display: none; padding: 1.25rem; background: #f9fafb;
 }
@@ -975,7 +992,20 @@ def _render_question(q, source: dict | None = None):
         if trailing == expected:
             text = "\n".join(lines[:tail_start]).strip()
     visual_html = ""
-    if visuals:
+    visual_image = q.get("visual_image")
+    if visual_image:
+        caption = ", ".join(str(v) for v in visuals) if visuals else "visual"
+        m = re.search(r"page-(\d+)\.png$", str(visual_image))
+        visual_page = m.group(1) if m else page
+        page_label = f"Source: page {visual_page} &middot; " if visual_page else ""
+        visual_html = (
+            f'<figure class="q-figure">'
+            f'<img class="q-visual-image" src="{escape(str(visual_image))}" '
+            f'alt="{escape(caption)}" loading="lazy">'
+            f'<figcaption>{page_label}<em>{escape(caption)}</em></figcaption>'
+            f'</figure>'
+        )
+    elif visuals:
         visual_html = f'<p class="q-visual">[Contains: {escape(", ".join(str(v) for v in visuals))}]</p>'
     renderer = _LAYOUT_RENDERERS.get(layout_type)
     if renderer is None:
@@ -990,6 +1020,18 @@ def _render_question(q, source: dict | None = None):
     if layout_type == "InlineCloze":
         # Cloze renderer owns the text — replaces the standard q-text paragraph
         body_inner = input_html
+    elif visual_image:
+        # Insert the figure between the first paragraph (typically the diagram
+        # intro, e.g. "This flowchart represents an algorithm.") and the rest
+        # of the question text, so the image sits in context, not at the end.
+        paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+        if paragraphs:
+            first_html = _render_prose_paragraphs(paragraphs[0])
+            rest_html = _render_prose_paragraphs("\n\n".join(paragraphs[1:]))
+            body_inner = first_html + visual_html + rest_html + input_html
+        else:
+            body_inner = visual_html + input_html
+        visual_html = ""  # consumed; don't re-append at end-of-body
     else:
         body_inner = _render_prose_paragraphs(text) + input_html
 
