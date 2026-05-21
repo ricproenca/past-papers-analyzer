@@ -242,6 +242,9 @@ _SQL_KEYWORD_RE = re.compile(
     r"CREATE|DROP|ALTER|JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|SET|VALUES|INTO)\b",
     re.IGNORECASE,
 )
+# Cambridge pseudocode: every line starts with a 2-digit line number then a space then content
+# e.g. "01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER"
+_PSEUDOCODE_LINE_RE = re.compile(r"^\s*\d{2}\s+\S")
 
 
 # ============================================================================
@@ -346,21 +349,27 @@ def _maybe_pipe_table(paragraph: str) -> str | None:
 
 
 def _maybe_code_block(paragraph: str) -> str | None:
-    """If every non-empty line of `paragraph` starts with a SQL keyword, render
-    it as a <pre class="code-stem"> block. Returns None otherwise."""
+    """Render `paragraph` as <pre class="code-stem"> when it looks like code.
+
+    Detects two patterns:
+    - SQL: every line starts with a SQL keyword (SELECT, FROM, WHERE, …)
+    - Cambridge pseudocode: every line starts with a 2-digit line number ("01 DECLARE …")
+    Returns None when neither pattern matches."""
     lines = [ln for ln in paragraph.splitlines() if ln.strip()]
     if not lines:
         return None
-    if not all(_SQL_KEYWORD_RE.match(ln) for ln in lines):
-        return None
-    return f'<pre class="code-stem">{escape(paragraph)}</pre>'
+    if all(_SQL_KEYWORD_RE.match(ln) for ln in lines):
+        return f'<pre class="code-stem">{escape(paragraph)}</pre>'
+    if len(lines) >= 2 and all(_PSEUDOCODE_LINE_RE.match(ln) for ln in lines):
+        return f'<pre class="code-stem">{escape(paragraph)}</pre>'
+    return None
 
 
 def _render_prose_paragraphs(text: str, css_class: str = "q-text") -> str:
     """Split prose on blank lines and emit one <p class="..."> per paragraph.
 
     Paragraphs that look like a pipe-separated reference table are rendered as
-    <table>; SQL code blocks are rendered as <pre class="code-stem">."""
+    <table>; SQL or Cambridge pseudocode blocks are rendered as <pre class="code-stem">."""
     if not text or not text.strip():
         return ""
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
@@ -418,6 +427,9 @@ def _render_code_block_response(q, sd):
     )
 
 
+_SHORT_LABEL_RE = re.compile(r"\b(line number|number|code|mark)\b", re.IGNORECASE)
+
+
 def _render_multi_part_labeled(q, sd):
     qid = escape(q.get("id", ""))
     labels = sd.get("labels") or []
@@ -425,10 +437,15 @@ def _render_multi_part_labeled(q, sd):
         return _render_simple_single_block(q, sd)
     slots = []
     for i, label in enumerate(labels):
+        label_str = str(label)
+        if _SHORT_LABEL_RE.search(label_str):
+            field = f'<input type="text" class="answer-input" name="{qid}_l{i}">'
+        else:
+            field = f'<textarea class="answer-textarea" rows="2" name="{qid}_l{i}"></textarea>'
         slots.append(
             f'<div class="labeled-slot">'
-            f'<label class="slot-label">{escape(str(label))}</label>'
-            f'<textarea class="answer-textarea" rows="2" name="{qid}_l{i}"></textarea>'
+            f'<label class="slot-label">{escape(label_str)}</label>'
+            f'{field}'
             f'</div>'
         )
     return f'<div class="q-input">{"".join(slots)}</div>'
@@ -675,7 +692,8 @@ def _render_value_trace_matrix(q, sd):
     if has_step_col and headers and not str(headers[0]).strip():
         headers = headers[1:]
 
-    head_cells = (['<th>Step</th>'] if has_step_col else []) + [
+    row_header = sd.get("row_header") or "Step"
+    head_cells = ([f'<th>{escape(row_header)}</th>'] if has_step_col else []) + [
         f'<th>{escape(str(h))}</th>' for h in headers
     ]
 
@@ -684,7 +702,12 @@ def _render_value_trace_matrix(q, sd):
     for r, row_label in enumerate(row_labels):
         cells = []
         if has_step_col:
-            cells.append(f'<td>{escape(str(row_label))}</td>')
+            if row_label is None or row_label == "":
+                cells.append(
+                    f'<td><input type="text" class="trace-cell" name="{qid}_r{r}"></td>'
+                )
+            else:
+                cells.append(f'<td class="prefilled">{escape(str(row_label))}</td>')
         prefill = row_values[r] if r < len(row_values) else None
         for c in range(len(headers)):
             val = prefill[c] if (isinstance(prefill, list) and c < len(prefill)) else None

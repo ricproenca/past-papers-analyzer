@@ -390,8 +390,8 @@
         "row_count": 3,
         "rows": [
           "ABC",
-          "(blank)",
-          "(blank)"
+          null,
+          null
         ],
         "row_values": [
           [
@@ -406,7 +406,8 @@
             null,
             "to make sure that the program accepts data that is an appropriate length"
           ]
-        ]
+        ],
+        "row_header": "Test data"
       },
       "topic": "7.5",
       "topic_name": "Test Data",
@@ -447,15 +448,28 @@
     },
     {
       "id": "Q6a",
-      "text": "A program is written to only accept data that contains more than 9 characters...",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nIdentify the line numbers of five errors in the pseudocode and suggest a correction for each error.\n\nError 1 line number\nCorrection\nError 2 line number\nCorrection\nError 3 line number\nCorrection\nError 4 line number\nCorrection\nError 5 line number\nCorrection",
       "command": "Identify",
       "objective": "AO2",
       "marks": 5,
-      "visuals": [],
+      "visuals": [
+        "pseudocode algorithm"
+      ],
       "page": 4,
-      "layout_type": "NumberedMultiList",
+      "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
-        "list_count": 5
+        "labels": [
+          "Error 1 line number",
+          "Correction",
+          "Error 2 line number",
+          "Correction",
+          "Error 3 line number",
+          "Correction",
+          "Error 4 line number",
+          "Correction",
+          "Error 5 line number",
+          "Correction"
+        ]
       },
       "topic": "7.2",
       "topic_name": "Algorithms",
@@ -492,11 +506,13 @@
     },
     {
       "id": "Q6b",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array...\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
       "command": "Write",
       "objective": "AO2",
       "marks": 2,
-      "visuals": [],
+      "visuals": [
+        "pseudocode algorithm"
+      ],
       "page": 5,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
@@ -525,11 +541,13 @@
     },
     {
       "id": "Q6c",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array...\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 4,
-      "visuals": [],
+      "visuals": [
+        "pseudocode algorithm"
+      ],
       "page": 5,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
