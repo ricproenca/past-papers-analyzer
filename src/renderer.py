@@ -4,6 +4,8 @@ import re
 from html import escape
 from pathlib import Path
 
+from .circuit_assets import CIRCUIT_JS
+
 _CSS = """
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; }
@@ -241,6 +243,54 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     list-style: disc; padding-left: 1.4rem; font-size: .85rem; color: #1f2937;
 }
 .partial-elements li { margin-bottom: .15rem; }
+
+/* AnnotatedDiagram → circuit (JointJS) */
+.circuit-editor {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    grid-template-rows: auto auto;
+    gap: .5rem;
+    margin-top: .5rem;
+}
+.circuit-palette {
+    grid-column: 1; grid-row: 1 / span 2;
+    display: flex; flex-direction: column; gap: .35rem;
+    padding: .5rem;
+    background: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px;
+}
+.circuit-gate {
+    display: block; width: 100%;
+    padding: .4rem .5rem;
+    font-family: inherit; font-size: .8rem; font-weight: 600;
+    color: #1e3a5f; background: #fff;
+    border: 1px solid #c7dcf6; border-radius: 4px;
+    cursor: grab; user-select: none;
+}
+.circuit-gate:hover { background: #f0f7ff; border-color: #93b8e6; }
+.circuit-gate:active { cursor: grabbing; }
+.circuit-paper {
+    grid-column: 2; grid-row: 1;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    background: #fafafa;
+    min-height: 360px;
+    overflow: hidden;
+}
+.circuit-paper:focus { outline: 2px solid #3b82f6; outline-offset: -2px; }
+.circuit-toolbar {
+    grid-column: 2; grid-row: 2;
+    display: flex; gap: .5rem;
+}
+.circuit-reset {
+    padding: .35rem .85rem; font-family: inherit; font-size: .8rem;
+    color: #374151; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;
+}
+.circuit-reset:hover { background: #f3f4f6; }
+.circuit-hint {
+    grid-column: 2; grid-row: 2;
+    margin-left: auto; align-self: center;
+    font-size: .72rem; color: #6b7280; font-style: italic;
+}
 """
 
 _JS = """
@@ -834,7 +884,50 @@ def _render_labelled_part_response(q, sd):
     )
 
 
+_CIRCUIT_GATES = ("AND", "OR", "NOT", "NAND", "NOR", "XOR")
+
+
+def _render_circuit_editor(q, sd):
+    """Interactive JointJS canvas for AnnotatedDiagram questions whose
+    `diagram_type == "circuit"`. Inputs/output come from `partial_elements`,
+    with single-letter input labels routed left and the output (Z) routed right."""
+    qid = escape(q.get("id", ""))
+    partial = [str(p).strip() for p in (sd.get("partial_elements") or []) if str(p).strip()]
+    # Treat the last item as the output (Cambridge convention: A, B, C, …, Z);
+    # everything else is inputs. Fall back to A,B / Z when none provided.
+    if len(partial) >= 2:
+        inputs = partial[:-1]
+        output = partial[-1]
+    elif len(partial) == 1:
+        inputs, output = [], partial[0]
+    else:
+        inputs, output = ["A", "B"], "Z"
+
+    palette = "".join(
+        f'<button type="button" class="circuit-gate" data-gate="{g}">{g}</button>'
+        for g in _CIRCUIT_GATES
+    )
+    return (
+        f'<div class="q-input">'
+        f'<div class="circuit-editor" '
+        f'data-qid="{qid}" '
+        f'data-inputs="{escape(",".join(inputs))}" '
+        f'data-output="{escape(output)}">'
+        f'<div class="circuit-palette">{palette}</div>'
+        f'<div class="circuit-paper" tabindex="0"></div>'
+        f'<div class="circuit-toolbar">'
+        f'<button type="button" class="circuit-reset">Reset</button>'
+        f'<span class="circuit-hint">Drag a gate onto the canvas; drag from a green port to wire it.</span>'
+        f'</div>'
+        f'</div>'
+        f'</div>'
+    )
+
+
 def _render_annotated_diagram(q, sd):
+    if (sd.get("diagram_type") or "").strip().lower() == "circuit":
+        return _render_circuit_editor(q, sd)
+
     qid = escape(q.get("id", ""))
     diagram_type = sd.get("diagram_type") or "diagram"
     partial = sd.get("partial_elements") or []
@@ -1146,6 +1239,7 @@ def render_html(data: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <link rel="stylesheet" href="paper.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.css">
 </head>
 <body>
 <div class="page">
@@ -1156,6 +1250,8 @@ def render_html(data: dict) -> str:
   {q_cards}
 </div>
 <script src="paper.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.min.js"></script>
+<script src="circuit.js"></script>
 </body>
 </html>"""
 
@@ -1163,6 +1259,7 @@ def render_html(data: dict) -> str:
 def _write_assets(directory: Path) -> None:
     (directory / "paper.css").write_text(_CSS, encoding="utf-8")
     (directory / "paper.js").write_text(_JS, encoding="utf-8")
+    (directory / "circuit.js").write_text(CIRCUIT_JS, encoding="utf-8")
 
 
 def render(data: dict, output_path: str | Path) -> None:

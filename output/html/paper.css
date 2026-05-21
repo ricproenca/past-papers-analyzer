@@ -235,3 +235,51 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     list-style: disc; padding-left: 1.4rem; font-size: .85rem; color: #1f2937;
 }
 .partial-elements li { margin-bottom: .15rem; }
+
+/* AnnotatedDiagram → circuit (JointJS) */
+.circuit-editor {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    grid-template-rows: auto auto;
+    gap: .5rem;
+    margin-top: .5rem;
+}
+.circuit-palette {
+    grid-column: 1; grid-row: 1 / span 2;
+    display: flex; flex-direction: column; gap: .35rem;
+    padding: .5rem;
+    background: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px;
+}
+.circuit-gate {
+    display: block; width: 100%;
+    padding: .4rem .5rem;
+    font-family: inherit; font-size: .8rem; font-weight: 600;
+    color: #1e3a5f; background: #fff;
+    border: 1px solid #c7dcf6; border-radius: 4px;
+    cursor: grab; user-select: none;
+}
+.circuit-gate:hover { background: #f0f7ff; border-color: #93b8e6; }
+.circuit-gate:active { cursor: grabbing; }
+.circuit-paper {
+    grid-column: 2; grid-row: 1;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    background: #fafafa;
+    min-height: 360px;
+    overflow: hidden;
+}
+.circuit-paper:focus { outline: 2px solid #3b82f6; outline-offset: -2px; }
+.circuit-toolbar {
+    grid-column: 2; grid-row: 2;
+    display: flex; gap: .5rem;
+}
+.circuit-reset {
+    padding: .35rem .85rem; font-family: inherit; font-size: .8rem;
+    color: #374151; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;
+}
+.circuit-reset:hover { background: #f3f4f6; }
+.circuit-hint {
+    grid-column: 2; grid-row: 2;
+    margin-left: auto; align-self: center;
+    font-size: .72rem; color: #6b7280; font-style: italic;
+}
