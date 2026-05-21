@@ -277,7 +277,10 @@ TOPICS_CSS = """
 
 TOPICS_JS = """
 const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
-const state = Object.fromEntries(FILTERS.map(f => [f, 'all']));
+// Default values per filter. paperNum starts at '1' (Paper 1) — no 'all' for that filter.
+const FILTER_DEFAULTS = { paperNum: '1' };
+const filterDefault = (f) => FILTER_DEFAULTS[f] || 'all';
+const state = Object.fromEntries(FILTERS.map(f => [f, filterDefault(f)]));
 
 function matchesMarks(card) {
     if (state.marks === 'all') return true;
@@ -339,10 +342,12 @@ function bindActions() {
         document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
     });
     if (reset) reset.addEventListener('click', () => {
-        FILTERS.forEach(f => state[f] = 'all');
+        FILTERS.forEach(f => state[f] = filterDefault(f));
         document.querySelectorAll('.tab-group[data-filter]').forEach(group => {
+            const filter = group.dataset.filter;
+            const def = filterDefault(filter);
             group.querySelectorAll('.tab-btn').forEach(b =>
-                b.classList.toggle('active', b.dataset.value === 'all')
+                b.classList.toggle('active', b.dataset.value === def)
             );
         });
         applyFilters();
@@ -359,16 +364,21 @@ applyFilters();
 # HTML builders
 # ============================================================================
 
-def _tab_group(filter_key, options, present_values):
+def _tab_group(filter_key, options, present_values, default_value=None):
     """Build a single filter row. `options` is a list of (value, label) pairs.
-    Buttons whose value isn't in `present_values` are disabled."""
-    buttons = [
-        '<button class="tab-btn active" data-value="all">All</button>'
-    ]
+    Buttons whose value isn't in `present_values` are disabled.
+
+    If `default_value` is None, an "All" button is prepended and starts active.
+    If `default_value` is provided, no "All" button is rendered and the button
+    matching that value starts active."""
+    buttons = []
+    if default_value is None:
+        buttons.append('<button class="tab-btn active" data-value="all">All</button>')
     for value, label in options:
         disabled = "" if value in present_values else " disabled"
+        active = " active" if value == default_value else ""
         buttons.append(
-            f'<button class="tab-btn" data-value="{escape(value)}"{disabled}>'
+            f'<button class="tab-btn{active}" data-value="{escape(value)}"{disabled}>'
             f'{escape(label)}</button>'
         )
     return (
@@ -434,7 +444,7 @@ def build_topic_page(group_id, questions):
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Paper</span>'
-        f'    {_tab_group("paperNum", paper_opts, present_paper_nums)}'
+        f'    {_tab_group("paperNum", paper_opts, present_paper_nums, default_value="1")}'
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Variant</span>'

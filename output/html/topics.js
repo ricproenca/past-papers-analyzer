@@ -1,6 +1,9 @@
 
 const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
-const state = Object.fromEntries(FILTERS.map(f => [f, 'all']));
+// Default values per filter. paperNum starts at '1' (Paper 1) — no 'all' for that filter.
+const FILTER_DEFAULTS = { paperNum: '1' };
+const filterDefault = (f) => FILTER_DEFAULTS[f] || 'all';
+const state = Object.fromEntries(FILTERS.map(f => [f, filterDefault(f)]));
 
 function matchesMarks(card) {
     if (state.marks === 'all') return true;
@@ -62,10 +65,12 @@ function bindActions() {
         document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
     });
     if (reset) reset.addEventListener('click', () => {
-        FILTERS.forEach(f => state[f] = 'all');
+        FILTERS.forEach(f => state[f] = filterDefault(f));
         document.querySelectorAll('.tab-group[data-filter]').forEach(group => {
+            const filter = group.dataset.filter;
+            const def = filterDefault(filter);
             group.querySelectorAll('.tab-btn').forEach(b =>
-                b.classList.toggle('active', b.dataset.value === 'all')
+                b.classList.toggle('active', b.dataset.value === def)
             );
         });
         applyFilters();
