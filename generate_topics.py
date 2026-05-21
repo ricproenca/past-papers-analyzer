@@ -181,10 +181,31 @@ TOPICS_CSS = """
     position: sticky; top: 0; z-index: 10;
     background: #fff;
     border: 1px solid #e5e7eb; border-radius: 10px;
-    padding: .85rem 1rem; margin-bottom: 1rem;
+    padding: .55rem 1rem; margin-bottom: 1rem;
     box-shadow: 0 2px 6px rgba(0,0,0,.05);
-    display: flex; flex-direction: column; gap: .55rem;
+    display: flex; flex-direction: column;
 }
+.filter-toggle {
+    display: flex; align-items: center; gap: .55rem;
+    width: 100%; background: transparent; border: 0;
+    padding: .25rem 0; cursor: pointer;
+    font-size: .85rem; color: #1f2937; font-weight: 600;
+    text-align: left;
+}
+.filter-toggle:hover { color: #1e3a5f; }
+.filter-toggle .chevron {
+    font-size: .85rem; transition: transform .15s; display: inline-block;
+}
+.filter-bar.collapsed .filter-toggle .chevron { transform: rotate(-90deg); }
+.filter-summary {
+    font-weight: 500; color: #6b7280; font-size: .78rem; margin-left: .2rem;
+}
+.filter-body {
+    display: flex; flex-direction: column; gap: .55rem;
+    padding-top: .55rem; margin-top: .25rem;
+    border-top: 1px solid #f3f4f6;
+}
+.filter-bar.collapsed .filter-body { display: none; }
 .filter-row { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .filter-label {
     font-size: .7rem; font-weight: 700; color: #6b7280;
@@ -277,9 +298,16 @@ TOPICS_CSS = """
 
 TOPICS_JS = """
 const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
-// Default values per filter. paperNum starts at '1' (Paper 1) — no 'all' for that filter.
-const FILTER_DEFAULTS = { paperNum: '1' };
-const filterDefault = (f) => FILTER_DEFAULTS[f] || 'all';
+// Initial state per filter is read from the .tab-btn.active rendered by the
+// Python builder. Filters with no active button (server didn't pick a default)
+// fall back to 'all'. This lets each topic page choose its own defaults
+// without baking them into JS.
+function initialDefaultFor(f) {
+    const btn = document.querySelector('.tab-group[data-filter="' + f + '"] .tab-btn.active');
+    return btn ? btn.dataset.value : 'all';
+}
+const FILTER_DEFAULTS = Object.fromEntries(FILTERS.map(f => [f, initialDefaultFor(f)]));
+const filterDefault = (f) => FILTER_DEFAULTS[f];
 const state = Object.fromEntries(FILTERS.map(f => [f, filterDefault(f)]));
 
 function matchesMarks(card) {
@@ -310,6 +338,32 @@ function applyFilters() {
     document.getElementById('counter-total').textContent = cards.length;
     const empty = document.getElementById('empty-state');
     if (empty) empty.style.display = shown === 0 ? '' : 'none';
+    updateFilterSummary();
+}
+
+function bindFilterCollapse() {
+    document.querySelectorAll('.filter-bar').forEach(bar => {
+        const toggle = bar.querySelector('.filter-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const collapsed = bar.classList.toggle('collapsed');
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+        });
+    });
+}
+
+function updateFilterSummary() {
+    const el = document.querySelector('.filter-summary');
+    if (!el) return;
+    const activeCount = Object.entries(state)
+        .filter(([k, v]) => v !== filterDefault(k))
+        .length;
+    const shown = document.getElementById('counter-shown')?.textContent;
+    const total = document.getElementById('counter-total')?.textContent;
+    const parts = [];
+    if (activeCount > 0) parts.push(`${activeCount} active`);
+    if (shown && total) parts.push(`${shown} of ${total} questions`);
+    el.textContent = parts.length ? '· ' + parts.join(' · ') : '';
 }
 
 function bindFilterTabs() {
@@ -356,6 +410,7 @@ function bindActions() {
 
 bindFilterTabs();
 bindActions();
+bindFilterCollapse();
 applyFilters();
 """
 
@@ -433,18 +488,27 @@ def build_topic_page(group_id, questions):
     marks_opts       = [(m, m) for m in MARKS_BUCKETS]
     year_opts        = [(y, y) for y in present_years]
     layout_opts      = [(lt, LAYOUT_NAMES.get(lt, lt)) for lt in LAYOUT_ORDER]
-    paper_opts       = [("1", "Paper 1"), ("2", "Paper 2")]
+    # Only show the Paper buttons that actually have questions in this chapter.
+    # Chapters 1-6 are Paper 1 only; chapters 7-10 are Paper 2 only.
+    paper_opts       = [(p, f"Paper {p}") for p in ("1", "2") if p in present_paper_nums]
+    paper_default    = "1" if "1" in present_paper_nums else ("2" if "2" in present_paper_nums else None)
     variant_num_opts = [(v, v) for v in ("1", "2", "3")]
 
     filter_bar = (
-        '<div class="filter-bar">'
+        '<div class="filter-bar collapsed">'
+        '  <button class="filter-toggle" type="button" aria-expanded="false">'
+        '    <span class="chevron">▾</span>'
+        '    <span class="filter-toggle-label">Filters</span>'
+        '    <span class="filter-summary"></span>'
+        '  </button>'
+        '  <div class="filter-body">'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Year</span>'
         f'    {_tab_group("year", year_opts, set(present_years))}'
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Paper</span>'
-        f'    {_tab_group("paperNum", paper_opts, present_paper_nums, default_value="1")}'
+        f'    {_tab_group("paperNum", paper_opts, present_paper_nums, default_value=paper_default)}'
         f'  </div>'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Variant</span>'
@@ -483,7 +547,8 @@ def build_topic_page(group_id, questions):
         f'    <button class="action-btn" id="btn-expand-all">Expand all</button>'
         f'    <button class="action-btn" id="btn-collapse-all">Collapse all</button>'
         f'  </div>'
-        '</div>'
+        '  </div>'  # /.filter-body
+        '</div>'    # /.filter-bar
     )
 
     counter = (
@@ -576,6 +641,12 @@ def build_index(by_group, total_papers, papers_meta, group_paper_keys):
 
     filter_bar = (
         '<div class="filter-bar">'
+        '  <button class="filter-toggle" type="button" aria-expanded="true">'
+        '    <span class="chevron">▾</span>'
+        '    <span class="filter-toggle-label">Filters</span>'
+        '    <span class="filter-summary"></span>'
+        '  </button>'
+        '  <div class="filter-body">'
         f'  <div class="filter-row">'
         f'    <span class="filter-label">Year</span>'
         f'    {_tab_group("year", year_opts, set(years))}'
@@ -592,7 +663,8 @@ def build_index(by_group, total_papers, papers_meta, group_paper_keys):
         f'    <span class="filter-label">Variant</span>'
         f'    {_tab_group("variantNum", variant_opts, set(variants))}'
         f'  </div>'
-        '</div>'
+        '  </div>'  # /.filter-body
+        '</div>'    # /.filter-bar
     )
 
     index_data = (
@@ -625,6 +697,28 @@ function updateIndexCounts() {
     }
     const total = document.getElementById('index-total');
     if (total) total.textContent = totalShown;
+    updateIndexFilterSummary(totalShown);
+}
+
+function updateIndexFilterSummary(totalShown) {
+    const el = document.querySelector('.filter-summary');
+    if (!el) return;
+    const activeCount = Object.entries(indexState).filter(([, v]) => v !== 'all').length;
+    const parts = [];
+    if (activeCount > 0) parts.push(`${activeCount} active`);
+    parts.push(`${totalShown} questions`);
+    el.textContent = '· ' + parts.join(' · ');
+}
+
+function bindFilterCollapse() {
+    document.querySelectorAll('.filter-bar').forEach(bar => {
+        const toggle = bar.querySelector('.filter-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const collapsed = bar.classList.toggle('collapsed');
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+        });
+    });
 }
 
 document.querySelectorAll('.tab-group[data-filter]').forEach(group => {
@@ -640,6 +734,7 @@ document.querySelectorAll('.tab-group[data-filter]').forEach(group => {
         });
     });
 });
+bindFilterCollapse();
 updateIndexCounts();
 """
 

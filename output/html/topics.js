@@ -1,8 +1,15 @@
 
 const FILTERS = ['year','paperNum','variantNum','subtopic','difficulty','objective','marks','bloom','command','layout'];
-// Default values per filter. paperNum starts at '1' (Paper 1) — no 'all' for that filter.
-const FILTER_DEFAULTS = { paperNum: '1' };
-const filterDefault = (f) => FILTER_DEFAULTS[f] || 'all';
+// Initial state per filter is read from the .tab-btn.active rendered by the
+// Python builder. Filters with no active button (server didn't pick a default)
+// fall back to 'all'. This lets each topic page choose its own defaults
+// without baking them into JS.
+function initialDefaultFor(f) {
+    const btn = document.querySelector('.tab-group[data-filter="' + f + '"] .tab-btn.active');
+    return btn ? btn.dataset.value : 'all';
+}
+const FILTER_DEFAULTS = Object.fromEntries(FILTERS.map(f => [f, initialDefaultFor(f)]));
+const filterDefault = (f) => FILTER_DEFAULTS[f];
 const state = Object.fromEntries(FILTERS.map(f => [f, filterDefault(f)]));
 
 function matchesMarks(card) {
@@ -33,6 +40,32 @@ function applyFilters() {
     document.getElementById('counter-total').textContent = cards.length;
     const empty = document.getElementById('empty-state');
     if (empty) empty.style.display = shown === 0 ? '' : 'none';
+    updateFilterSummary();
+}
+
+function bindFilterCollapse() {
+    document.querySelectorAll('.filter-bar').forEach(bar => {
+        const toggle = bar.querySelector('.filter-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+            const collapsed = bar.classList.toggle('collapsed');
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+        });
+    });
+}
+
+function updateFilterSummary() {
+    const el = document.querySelector('.filter-summary');
+    if (!el) return;
+    const activeCount = Object.entries(state)
+        .filter(([k, v]) => v !== filterDefault(k))
+        .length;
+    const shown = document.getElementById('counter-shown')?.textContent;
+    const total = document.getElementById('counter-total')?.textContent;
+    const parts = [];
+    if (activeCount > 0) parts.push(`${activeCount} active`);
+    if (shown && total) parts.push(`${shown} of ${total} questions`);
+    el.textContent = parts.length ? '· ' + parts.join(' · ') : '';
 }
 
 function bindFilterTabs() {
@@ -79,4 +112,5 @@ function bindActions() {
 
 bindFilterTabs();
 bindActions();
+bindFilterCollapse();
 applyFilters();

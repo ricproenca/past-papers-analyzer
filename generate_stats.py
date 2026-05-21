@@ -96,13 +96,33 @@ body {
 .selector-bar {
   background: white;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.6rem 1rem;
   margin-bottom: 1.25rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
 }
+.filter-toggle {
+  display: flex; align-items: center; gap: 0.55rem;
+  width: 100%; background: transparent; border: 0;
+  padding: 0.25rem 0; cursor: pointer;
+  font-size: 0.85rem; color: #1f2937; font-weight: 600;
+  text-align: left;
+}
+.filter-toggle:hover { color: #1e3a5f; }
+.filter-toggle .chevron {
+  font-size: 0.85rem; transition: transform 0.15s; display: inline-block;
+}
+.selector-bar.collapsed .filter-toggle .chevron { transform: rotate(-90deg); }
+.filter-summary {
+  font-weight: 500; color: #718096; font-size: 0.78rem; margin-left: 0.2rem;
+}
+.filter-body {
+  display: flex; flex-direction: column; gap: 0.625rem;
+  padding-top: 0.55rem; margin-top: 0.25rem;
+  border-top: 1px solid #f1f5f9;
+}
+.selector-bar.collapsed .filter-body { display: none; }
 .selector-row { display: flex; align-items: center; gap: 0.75rem; }
 .selector-label {
   font-size: 0.7rem;
@@ -596,6 +616,29 @@ function renderAll() {
   renderLayoutChart(stats);
   renderCommandChart(stats);
   renderAnswerTypeChart(stats);
+  updateFilterSummary(summary);
+}
+
+function bindFilterCollapse() {
+  const bar = document.querySelector('.selector-bar');
+  const toggle = bar?.querySelector('.filter-toggle');
+  if (!toggle) return;
+  toggle.addEventListener('click', () => {
+    const collapsed = bar.classList.toggle('collapsed');
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+  });
+}
+
+function updateFilterSummary(summary) {
+  const el = document.querySelector('.filter-summary');
+  if (!el) return;
+  const filters = [];
+  if (currentYear !== 'all')    filters.push(currentYear);
+  filters.push(`Paper ${currentPaperNum}`);
+  if (currentVariant !== 'all') filters.push(`V${currentVariant}`);
+  if (currentSession !== 'all') filters.push(SESSION_LABELS[currentSession] || currentSession);
+  const qcount = summary?.question_count ?? 0;
+  el.textContent = `· ${filters.join(' · ')} · ${qcount} questions`;
 }
 
 function buildTopicGroupTabs() {
@@ -723,6 +766,7 @@ buildYearTabs();
 buildSessionTabs();
 buildPaperTabs();
 buildVariantPills();
+bindFilterCollapse();
 renderAll();
 buildTopicGroupTabs();
 """
@@ -760,6 +804,12 @@ def generate_html(papers: dict, sessions: dict) -> str:
     </header>
 
     <div class="selector-bar">
+      <button class="filter-toggle" type="button" aria-expanded="true">
+        <span class="chevron">▾</span>
+        <span class="filter-toggle-label">Filters</span>
+        <span class="filter-summary"></span>
+      </button>
+      <div class="filter-body">
       <div class="selector-row">
         <span class="selector-label">Year</span>
         <div class="tab-group" id="year-tabs"></div>
@@ -775,6 +825,7 @@ def generate_html(papers: dict, sessions: dict) -> str:
       <div class="selector-row">
         <span class="selector-label">Session</span>
         <div class="tab-group" id="session-tabs"></div>
+      </div>
       </div>
     </div>
 
