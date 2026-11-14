@@ -3,7 +3,7 @@
   "level": "IGCSE",
   "subject_code": "0478",
   "subject_name": "Computer Science",
-  "variant": "12",
+  "variant": 12,
   "qp": "0478_w25_qp_12.pdf",
   "ms": "0478_w25_ms_12.pdf",
   "total_marks": 75,
@@ -13,14 +13,14 @@
     "mean_marks_per_question": 2.34,
     "median_marks_per_question": 2,
     "max_marks_per_question": 5,
-    "unique_topics_count": 14
+    "unique_topics_count": 12
   },
   "statistics": {
     "marks_by_topic": {
       "1.1": 13,
-      "3.1": 12,
+      "3.1": 14,
       "3.2": 3,
-      "3.3": 4,
+      "3.3": 6,
       "4.2": 4,
       "4.1": 5,
       "2.1": 5,
@@ -28,15 +28,13 @@
       "5.3": 3,
       "6.2": 3,
       "6.3": 4,
-      "6.1": 2,
-      "3.4": 2,
       "2.2": 4
     },
     "count_by_topic": {
       "1.1": 6,
-      "3.1": 4,
+      "3.1": 5,
       "3.2": 3,
-      "3.3": 1,
+      "3.3": 2,
       "4.2": 3,
       "4.1": 2,
       "2.1": 3,
@@ -44,8 +42,6 @@
       "5.3": 1,
       "6.2": 1,
       "6.3": 1,
-      "6.1": 1,
-      "3.4": 1,
       "2.2": 2
     },
     "marks_by_difficulty": {
@@ -71,25 +67,28 @@
       "Create": 1
     },
     "marks_by_cognitive_load": {
-      "Low": 53,
-      "High": 5,
-      "Medium": 17
+      "Low": 42,
+      "Medium": 28,
+      "High": 5
     },
     "count_by_cognitive_load": {
-      "Low": 25,
-      "High": 1,
-      "Medium": 6
+      "Low": 21,
+      "Medium": 10,
+      "High": 1
     },
     "marks_by_objective": {
-      "AO1": 47,
-      "AO2": 28
+      "AO1": 38,
+      "AO2": 30,
+      "AO3": 7
     },
     "count_by_objective": {
-      "AO1": 22,
-      "AO2": 10
+      "AO1": 18,
+      "AO2": 11,
+      "AO3": 3
     },
     "marks_by_layout_type": {
-      "SimpleSingleBlock": 51,
+      "SimpleSingleBlock": 40,
+      "WorkingAnswer": 11,
       "MatrixGrid": 2,
       "AnnotatedDiagram": 5,
       "NumberedMultiList": 6,
@@ -98,7 +97,8 @@
       "InlineCloze": 3
     },
     "count_by_layout_type": {
-      "SimpleSingleBlock": 23,
+      "SimpleSingleBlock": 19,
+      "WorkingAnswer": 4,
       "MatrixGrid": 2,
       "AnnotatedDiagram": 1,
       "NumberedMultiList": 3,
@@ -112,7 +112,7 @@
       "Identify": 5,
       "Tick": 2,
       "Describe": 11,
-      "Calculate": 4,
+      "Add": 4,
       "Complete": 13,
       "Explain": 21,
       "Write": 3
@@ -123,7 +123,7 @@
       "Identify": 5,
       "Tick": 2,
       "Describe": 4,
-      "Calculate": 1,
+      "Add": 1,
       "Complete": 3,
       "Explain": 7,
       "Write": 1
@@ -142,7 +142,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nGive the largest hexadecimal number that can be stored in a 12-bit register.",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nGive the largest hexadecimal number that can be stored in a 12-bit register.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -171,7 +171,7 @@
     },
     {
       "id": "Q1b",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nGive the largest denary number that can be stored in a 12-bit register.",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nGive the largest denary number that can be stored in a 12-bit register.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -200,15 +200,20 @@
     },
     {
       "id": "Q1c",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nTwo toys have the hexadecimal codes 429 and 1A3.\n\nConvert the two hexadecimal codes to 12-bit binary numbers.\n\n429\n1A3\n\nWorking space",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nTwo toys have the hexadecimal codes 429 and 1A3.\nConvert the two hexadecimal codes to 12-bit binary numbers.\n\n429\n1A3",
       "command": "Convert",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 2,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 5
+        "working_space": true,
+        "answer_labels": [
+          "429",
+          "1A3"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -218,30 +223,35 @@
         "scoring_rule": null,
         "marking_points": [
           {
-            "text": "429: 0100 0010 1001",
+            "text": "0100 0010 1001",
             "marks": 1
           },
           {
-            "text": "1A3: 0001 1010 0011",
+            "text": "0001 1010 0011",
             "marks": 1
           }
         ]
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q1d",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nTwo binary numbers that are stored in the registers are 100010100001 and 011100001011.\n\nConvert the two binary numbers to hexadecimal numbers.\n\n100010100001\n011100001011\n\nWorking space",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nTwo binary numbers that are stored in the registers are 100010100001 and 011100001011.\nConvert the two binary numbers to hexadecimal numbers.\n\n100010100001\n011100001011",
       "command": "Convert",
       "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 2,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 5
+        "working_space": true,
+        "answer_labels": [
+          "100010100001",
+          "011100001011"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -251,22 +261,22 @@
         "scoring_rule": null,
         "marking_points": [
           {
-            "text": "100010100001: 8A1",
+            "text": "8A1",
             "marks": 1
           },
           {
-            "text": "011100001011: 70B",
+            "text": "70B",
             "marks": 1
           }
         ]
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q1e_i",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\n\nAn item of hardware is used in this system to receive the hexadecimal code from the barcode scanner and find it in the database. The item of hardware is built into a single chip.\n\nIdentify the name of the item of hardware.",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\nAn item of hardware is used in this system to receive the hexadecimal code from the barcode scanner and find it in the database. The item of hardware is built into a single chip.\n\nIdentify the name of the item of hardware.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -295,7 +305,7 @@
     },
     {
       "id": "Q1e_ii",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\n\nTick (✓) one box to show whether a barcode scanner is a type of input, output, process or storage device.\n\nA input\nB output\nC process\nD storage",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\nAn item of hardware is used in this system to receive the hexadecimal code from the barcode scanner and find it in the database. The item of hardware is built into a single chip.\n\nTick (✓) one box to show whether a barcode scanner is a type of input, output, process or storage device.",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -334,9 +344,9 @@
     },
     {
       "id": "Q1e_iii",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\n\nThe barcode scanner contains a sensor.\n\nIdentify the type of sensor that the barcode scanner could contain.",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\nAn item of hardware is used in this system to receive the hexadecimal code from the barcode scanner and find it in the database. The item of hardware is built into a single chip.\n\nThe barcode scanner contains a sensor.\nIdentify the type of sensor that the barcode scanner could contain.",
       "command": "Identify",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 3,
@@ -363,7 +373,7 @@
     },
     {
       "id": "Q1e_iv",
-      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B. A computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\n\nA backup of the database is made at the end of each day using optical storage.\n\nDescribe how the database is written to the optical storage.",
+      "text": "A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes, for example A4B.\nA computer is used to store a database of the codes. The computer has 12-bit registers.\n\nThe hexadecimal code for each toy is stored in a barcode that is displayed on each toy. Each time a customer buys a toy, the barcode is scanned and the amount of stock stored in the database for that toy is reduced by 1.\nAn item of hardware is used in this system to receive the hexadecimal code from the barcode scanner and find it in the database. The item of hardware is built into a single chip.\n\nA backup of the database is made at the end of each day using optical storage.\nDescribe how the database is written to the optical storage.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 4,
@@ -408,15 +418,17 @@
     },
     {
       "id": "Q2a",
-      "text": "Two binary numbers are stored in a computer.\n\nAdd the two binary numbers using binary addition. Give your answer in binary. Show all of your working.\n\n  11110101\n+ 00111001",
-      "command": "Calculate",
+      "text": "Two binary numbers are stored in a computer.\n\nAdd the two binary numbers using binary addition.\nGive your answer in binary. Show all of your working.\n\n11110101\n+ 00111001",
+      "command": "Add",
       "objective": "AO2",
       "marks": 4,
       "visuals": [],
       "page": 4,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 4
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -441,19 +453,23 @@
       },
       "difficulty": "High",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q2b",
-      "text": "Two binary numbers are stored in a computer.\n\nA logic right shift of three places is performed on the binary number 11110101.\n\nGive the denary number for the binary number that would be stored after the logical shift of three places has occurred. Show all of your working.\n\nWorking space\n\nDenary number",
+      "text": "Two binary numbers are stored in a computer.\n\nA logic right shift of three places is performed on the binary number 11110101.\nGive the denary number for the binary number that would be stored after the logical shift of three places has occurred. Show all of your working.\n\nDenary number",
       "command": "Give",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 4,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 4
+        "working_space": true,
+        "answer_labels": [
+          "Denary number"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -478,7 +494,7 @@
       },
       "difficulty": "Low",
       "bloom_level": "Remember",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3a",
@@ -548,7 +564,7 @@
     },
     {
       "id": "Q3c",
-      "text": "A programmer uses assembly language to create a program for a coffee machine.\n\nTick (✓) one box to show which statement is an advantage of using assembly language.\n\nA It is close to human language.\nB It is memory efficient.\nC It is easy to debug.\nD It is machine independent.",
+      "text": "A programmer uses assembly language to create a program for a coffee machine.\n\nTick (✓) one box to show which statement is an advantage of using assembly language.",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -587,17 +603,20 @@
     },
     {
       "id": "Q4a",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that performs the fetch–decode–execute (FDE) cycle.\n\nComplete and annotate the diagram to show how instructions are decoded and executed.\n\ncontrol unit (CU)          arithmetic logic unit (ALU)",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that performs the fetch–decode–execute (FDE) cycle.\n\nComplete and annotate the diagram to show how instructions are decoded and executed.\n\ncontrol unit (CU) arithmetic logic unit (ALU)",
       "command": "Complete",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 5,
       "visuals": [
-        "Partial diagram showing control unit (CU) and arithmetic logic unit (ALU) with space to complete"
+        {
+          "type": "diagram",
+          "description": "Partial diagram showing control unit (CU) and arithmetic logic unit (ALU) for the decode and execute stages of the FDE cycle; student must complete and annotate."
+        }
       ],
       "page": 5,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
-        "diagram_type": "system architecture",
+        "diagram_type": "other",
         "partial_elements": [
           "control unit (CU)",
           "arithmetic logic unit (ALU)"
@@ -654,7 +673,7 @@
     },
     {
       "id": "Q4b",
-      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that performs the fetch–decode–execute (FDE) cycle.\n\nThe CPU is dual core and has a processor speed of 2.4 GHz.\n\nDescribe what is meant by a core.",
+      "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that performs the fetch–decode–execute (FDE) cycle.\n\nThe CPU is dual core and has a processor speed of 2.4 GHz.\nDescribe what is meant by a core.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -740,7 +759,7 @@
     },
     {
       "id": "Q5a",
-      "text": "A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nIdentify the name of this type of interrupt.",
+      "text": "A computer system has a mouse.\nAn interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nIdentify the name of this type of interrupt.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -769,7 +788,7 @@
     },
     {
       "id": "Q5b",
-      "text": "A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe interrupt is placed in a queue.\n\nExplain how the interrupt is serviced after it is placed in the queue.",
+      "text": "A computer system has a mouse.\nAn interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe interrupt is placed in a queue.\nExplain how the interrupt is serviced after it is placed in the queue.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 4,
@@ -822,7 +841,7 @@
     },
     {
       "id": "Q5c_i",
-      "text": "A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nExplain how data is sent using the USB connection.",
+      "text": "A computer system has a mouse.\nAn interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nExplain how data is sent using the USB connection.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -855,9 +874,9 @@
     },
     {
       "id": "Q5c_ii",
-      "text": "A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nGive two benefits of using a USB connection for this purpose.\n\n1\n2",
+      "text": "A computer system has a mouse.\nAn interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nGive two benefits of using a USB connection for this purpose.\n\n1\n2",
       "command": "Give",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 6,
@@ -912,9 +931,9 @@
     },
     {
       "id": "Q5c_iii",
-      "text": "A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nGive one drawback of using a USB connection for this purpose.",
+      "text": "A computer system has a mouse.\nAn interrupt is sent to the CPU every time a button on the mouse is clicked.\n\nThe mouse is connected using a universal serial bus (USB) connection.\n\nGive one drawback of using a USB connection for this purpose.",
       "command": "Give",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 6,
@@ -945,7 +964,7 @@
     },
     {
       "id": "Q6a",
-      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nWrite down the three different parts of the URL shown by the labels a, b and c.\n\nhttps://www.cieclothes.com/index.html\n            a          b          c\n\na [blank]   b [blank]   c [blank]",
+      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nWrite down the three different parts of the URL shown by the labels a, b and c.\nhttps://www.cieclothes.com/index.html\na b c\n\na [blank] b [blank] c [blank]",
       "command": "Write",
       "objective": "AO2",
       "marks": 3,
@@ -1032,7 +1051,7 @@
     },
     {
       "id": "Q6c",
-      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nCustomers use the website to buy clothing from the company.\n\nComplete the table with the missing terms and descriptions about retrieving and displaying web pages.\n\nTerm | Description\nhypertext markup language (HTML) | (blank)\ndomain name server (DNS) | (blank)\n(blank) | It is a numerical address used to locate the web server.\n(blank) | It is a secure protocol that can be used to transmit data sent to and received from a web server.\n(blank) | It is a piece of software that is used to display web pages.",
+      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nCustomers use the website to buy clothing from the company.\nComplete the table with the missing terms and descriptions about retrieving and displaying web pages.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 5,
@@ -1103,7 +1122,7 @@
     },
     {
       "id": "Q6d",
-      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nThe clothing company uses cookies to store customer details.\n\nComplete the statements about cookies.\n\nUse terms from the list. Not all terms need to be used. You should only use a term once.\n\nasymmetric   DNS   dynamic   persistent   session   static   symmetric   user   utility software   web browser\n\nCookies are stored and managed by the [blank] .\n\n[blank] cookies are temporary files that are created when a user visits a web page.\n\n[blank] cookies are permanent files that are created when a user visits a web page.",
+      "text": "An online clothing company has a homepage at the uniform resource locator (URL)\nhttps://www.cieclothes.com/index.html\n\nThe clothing company uses cookies to store customer details.\nComplete the statements about cookies.\nUse terms from the list. Not all terms need to be used. You should only use a term once.\n\nasymmetric DNS dynamic persistent session\nstatic symmetric user utility software web browser\n\nCookies are stored and managed by the [blank] .\n[blank] cookies are temporary files that are created when a user visits a web page.\n[blank] cookies are permanent files that are created when a user visits a web page.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 3,
@@ -1141,9 +1160,9 @@
     },
     {
       "id": "Q7a",
-      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker cannot be described as a robot.\n\nExplain why the smart speaker is not a robot.",
+      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker cannot be described as a robot.\nExplain why the smart speaker is not a robot.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 3,
       "visuals": [],
       "page": 9,
@@ -1207,7 +1226,7 @@
     },
     {
       "id": "Q7c",
-      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker has machine learning capabilities.\n\nExplain how the smart speaker can use machine learning to improve the voice command input.",
+      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker has machine learning capabilities.\nExplain how the smart speaker can use machine learning to improve the voice command input.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 4,
@@ -1268,9 +1287,9 @@
     },
     {
       "id": "Q7d",
-      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker is an example of an embedded system.\n\nExplain why the smart speaker is an embedded system.",
+      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe smart speaker is an example of an embedded system.\nExplain why the smart speaker is an embedded system.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 2,
       "visuals": [],
       "page": 10,
@@ -1278,8 +1297,8 @@
       "structure_data": {
         "line_count": 3
       },
-      "topic": "6.1",
-      "topic_name": "Automated Systems",
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -1309,9 +1328,9 @@
     },
     {
       "id": "Q7e",
-      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe music and audio books that are played by the smart speaker are stored in cloud storage.\n\nGive two advantages of storing the music and audio books in cloud storage.\n\n1\n2",
+      "text": "A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.\n\nThe music and audio books that are played by the smart speaker are stored in cloud storage.\nGive two advantages of storing the music and audio books in cloud storage.\n\n1\n2",
       "command": "Give",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 2,
       "visuals": [],
       "page": 10,
@@ -1319,8 +1338,8 @@
       "structure_data": {
         "list_count": 2
       },
-      "topic": "3.4",
-      "topic_name": "Network Hardware",
+      "topic": "3.3",
+      "topic_name": "Data Storage",
       "answers": {
         "type": "text",
         "visuals": [],

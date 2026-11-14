@@ -222,3 +222,45 @@ def test_cover_keeps_only_identity_lines():
         "Cambridge IGCSE\u2122", "COMPUTER SCIENCE 0478/22",
         "Paper 2 Algorithms, Programming and Logic February/March 2025", "1 hour 45 minutes",
         "\u25cf The total mark for this paper is 75."]
+
+
+# --- gaps: ellipsis characters, double runs, gaps at the end of a line ------------
+
+def test_gaps_printed_with_ellipsis_characters_are_recognised():
+    page = pr.normalise_gaps("The program counter contains the ………………………………\nof the next instruction; sent to the\n"
+                             "……………………………… using the address bus.\n[2]\n")
+    out = pr._annotate_anchors(page)
+    assert "[LAYOUT:InlineCloze gap_count=2]" in out and out.startswith("[LAYOUT:InlineCloze")
+
+
+def test_one_gap_printed_as_two_dotted_runs_is_one_gap():
+    assert pr.normalise_gaps("sent to the ........ ........ where it is") == "sent to the ........ where it is"
+    assert pr.normalise_gaps("a ..... b ..... c .....") == "a ..... b ..... c ....."       # labelled slots are untouched
+
+
+def test_gaps_at_the_end_of_a_line_are_counted():
+    # w25_qp_11 Q6a: 6 marks; lines ending "........ ." were not counted
+    page = pr.normalise_gaps(
+        "The ........ . stores the address of the next instruction to be\n"
+        "fetched. This address is then sent to the ........ .\n"
+        "is retrieved from RAM and immediately stored in the ........ .\n"
+        "The instruction is then sent to the ........ ........ where it is\n"
+        "decoded by the ........ ........ . The instruction is decoded using\n"
+        "an ........ .\n[6]\n")
+    assert "[LAYOUT:InlineCloze gap_count=6]" in pr._annotate_anchors(page)
+
+
+def test_passage_starts_at_a_first_line_that_ends_in_a_gap():
+    # s25_qp_11 Q6a: the first line ends in a gap, so it did not look like a cloze line
+    page = ("Data is encrypted using an encryption key. This is a type of ........\n"
+            "that scrambles the ........ and turns it into\n........ . This makes the data ........ .\n[4]\n")
+    out = pr._annotate_anchors(page)
+    assert out.startswith("[LAYOUT:InlineCloze gap_count=4]")
+
+
+def test_cloze_gaps_are_written_as_blanks_and_a_closing_gap_line_counts():
+    # s24_qp_12 Q5a (7 marks): first line ends in a gap, last line is just a gap and a full stop
+    page = pr.normalise_gaps("The program counter contains the ........\nof the next instruction; sent to the\n"
+                             "........ using the address bus, built into the\n........ .\n[3]\n")
+    out = pr._annotate_anchors(page)
+    assert out.startswith("[LAYOUT:InlineCloze gap_count=3]") and out.count("[blank]") == 3 and "...." not in out

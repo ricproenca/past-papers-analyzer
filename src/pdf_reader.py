@@ -76,27 +76,73 @@ def _is_table_fragment(line: str, cell_texts: list[str]) -> bool:
     return len(rest) >= 4 and any(rest in cell for cell in cell_texts)
 
 
+_RE_GAP = re.compile(r'\.{4,}')
+_RE_ADJACENT_GAPS = re.compile(r'\.{4,}(?:[ \t]+\.{4,})+')
+
+
+def normalise_gaps(text: str) -> str:
+    """Make every printed answer gap a single run of dots.
+
+    Some papers print gaps with the ellipsis character (U+2026) instead of dots, and a
+    long gap is often printed as two dotted runs side by side ("........ ........"),
+    which is one answer, not two (the marks confirm it)."""
+    text = text.replace("\u2026", "...")
+    return _RE_ADJACENT_GAPS.sub("." * 8, text)
+
+
 def _annotate_cloze_blocks(text: str, cell_texts: list[str] = ()) -> str:
     """Insert `[LAYOUT:InlineCloze gap_count=N]` before each fill-in-the-gap passage.
 
-    A passage is the run of cloze lines (dots mid-sentence) up to and including
-    the line that ends with the question's mark "[n]". Wrapped lines without
-    dots in between belong to the same passage; text after a mark starts a new one."""
+    A passage starts at its first cloze line (dots mid-sentence) — or at the prose
+    lines just above it that END in a gap — and runs up to and including the line
+    that carries the question's mark "[n]". Every gap inside the passage counts,
+    including one at the end of a line ("... sent to the ........ ."). Wrapped lines
+    without dots belong to the same passage; text after a mark starts a new one."""
     lines = text.split("\n")
-    blocks = []                # [(index of first cloze line, gap_count)]
-    current = None             # [first_index, gap_count]
+
+    def gaps(line: str) -> int:
+        return len(_RE_GAP.findall(line))
+
+    def words_outside_gaps(line: str) -> int:
+        return len(re.findall(r"[A-Za-z]{2,}", _RE_GAP.sub(" ", line)))
+
+    def is_cloze(line: str) -> bool:
+        return bool(_RE_INLINE_CLOZE_LINE.fullmatch(line)) and not _is_table_fragment(line, cell_texts)
+
+    def is_prose_ending_in_gap(line: str) -> bool:
+        return gaps(line) > 0 and words_outside_gaps(line) >= 3 and not _is_table_fragment(line, cell_texts)
+
+    def has_text(line: str) -> bool:
+        return bool(_RE_GAP.sub("", line).strip())       # anything besides the dots ("........ ." counts)
+
+    blocks = []                # [(index of first line, [indexes of its gap lines])]
+    current = None             # [first_index, [gap line indexes]]
     for i, line in enumerate(lines):
-        if _RE_INLINE_CLOZE_LINE.fullmatch(line) and not _is_table_fragment(line, cell_texts):
-            gaps = len(re.findall(r'\.{4,}', line))
-            if current is None:
-                current = [i, 0]
-            current[1] += gaps
+        if current is None and is_cloze(line):
+            # Walk back over the wrapped lines of the same paragraph (at most 6) to
+            # the earliest one that ends in a gap; stop at a mark, a blank line or
+            # another annotation.
+            first = i
+            for j in range(i - 1, max(i - 7, -1), -1):
+                prev = lines[j]
+                if not prev.strip() or prev.startswith("[LAYOUT:") or _RE_MARK_AT_END.search(prev):
+                    break
+                if is_prose_ending_in_gap(prev):
+                    first = j
+            current = [first, [k for k in range(first, i) if gaps(lines[k])]]
+        if current is not None and gaps(line) and has_text(line) and not _is_table_fragment(line, cell_texts):
+            current[1].append(i)
         if current is not None and _RE_MARK_AT_END.search(line):
             blocks.append(tuple(current))
             current = None
     if current is not None:
         blocks.append(tuple(current))
-    for first, gap_count in reversed(blocks):
+    for first, gap_lines in reversed(blocks):
+        # Write the gaps as [blank] here, so the answer-label rules that run later
+        # cannot mistake a line ending in a gap for a label and strip it.
+        for k in gap_lines:
+            lines[k] = _RE_GAP.sub("[blank]", lines[k])
+        gap_count = sum(lines[k].count("[blank]") for k in gap_lines)
         lines.insert(first, f'[LAYOUT:InlineCloze gap_count={gap_count}]')
     return "\n".join(lines)
 
@@ -340,7 +386,7 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
     pages = []
     with pdfplumber.open(pdf_path) as pdf:
         for i, page in enumerate(pdf.pages, start=1):
-            raw = clean_page_text(page.extract_text() or "")
+            raw = normalise_gaps(clean_page_text(page.extract_text() or ""))
             tables = page.extract_tables()
             if i == 1 and _COVER_KEEP_RE.search(raw) and "total mark for this paper" in raw:
                 # question-paper cover: identity lines only, and its tables are the

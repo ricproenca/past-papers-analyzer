@@ -3,7 +3,7 @@
   "level": "IGCSE",
   "subject_code": "0478",
   "subject_name": "Computer Science",
-  "variant": "12",
+  "variant": 12,
   "qp": "0478_m25_qp_12.pdf",
   "ms": "0478_m25_ms_12.pdf",
   "total_marks": 75,
@@ -13,7 +13,7 @@
     "mean_marks_per_question": 2.5,
     "median_marks_per_question": 2.5,
     "max_marks_per_question": 7,
-    "unique_topics_count": 12
+    "unique_topics_count": 11
   },
   "statistics": {
     "marks_by_topic": {
@@ -21,12 +21,11 @@
       "1.2": 3,
       "1.3": 6,
       "2.1": 8,
-      "3.1": 10,
-      "6.1": 6,
-      "3.2": 2,
-      "3.4": 6,
-      "5.1": 4,
-      "2.3": 4,
+      "3.1": 12,
+      "3.2": 3,
+      "6.1": 3,
+      "3.4": 7,
+      "5.1": 7,
       "6.3": 6,
       "4.2": 9
     },
@@ -35,12 +34,11 @@
       "1.2": 2,
       "1.3": 2,
       "2.1": 2,
-      "3.1": 5,
-      "6.1": 3,
-      "3.2": 1,
-      "3.4": 3,
+      "3.1": 6,
+      "3.2": 2,
+      "6.1": 1,
+      "3.4": 4,
       "5.1": 3,
-      "2.3": 1,
       "6.3": 2,
       "4.2": 3
     },
@@ -65,37 +63,39 @@
       "Understand": 10
     },
     "marks_by_cognitive_load": {
-      "Medium": 28,
-      "Low": 44,
+      "Medium": 31,
+      "Low": 41,
       "High": 3
     },
     "count_by_cognitive_load": {
-      "Medium": 9,
-      "Low": 20,
+      "Medium": 10,
+      "Low": 19,
       "High": 1
     },
     "marks_by_objective": {
-      "AO1": 49,
-      "AO2": 22,
-      "AO3": 4
+      "AO1": 50,
+      "AO2": 17,
+      "AO3": 8
     },
     "count_by_objective": {
       "AO1": 20,
-      "AO2": 9,
-      "AO3": 1
+      "AO2": 7,
+      "AO3": 3
     },
     "marks_by_layout_type": {
       "InlineCloze": 7,
-      "SimpleSingleBlock": 39,
+      "WorkingAnswer": 3,
       "MatrixGrid": 5,
+      "SimpleSingleBlock": 36,
       "MultiPartLabeledBlock": 10,
       "AnnotatedDiagram": 3,
       "NumberedMultiList": 11
     },
     "count_by_layout_type": {
       "InlineCloze": 1,
-      "SimpleSingleBlock": 17,
+      "WorkingAnswer": 1,
       "MatrixGrid": 3,
+      "SimpleSingleBlock": 16,
       "MultiPartLabeledBlock": 4,
       "AnnotatedDiagram": 1,
       "NumberedMultiList": 4
@@ -138,7 +138,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "Complete the sentences about number systems.\n\nUse the items from the list. Some of the items in the list will not be used. You should only use an item once.\n\nA B C D E F G\nH W X Y Z 0 1\n2 4 8 10 16 127 128\n255 256\n\nThe binary number system is base [blank] . The smallest denary number that can be represented as an 8-bit binary number is [blank] . The largest denary number that can be represented as an 8-bit binary number is [blank] .\n\nThe hexadecimal number system is base [blank] . Each hexadecimal digit is equivalent to [blank] bits. The numbers 1 to 9 are used and the number 10 is represented by [blank] . The hexadecimal number system continues up to the number 15, which is represented by [blank] .",
+      "text": "Complete the sentences about number systems.\nUse the items from the list.\nSome of the items in the list will not be used. You should only use an item once.\nA B C D E F G\nH W X Y Z 0 1\n2 4 8 10 16 127 128\n255 256\n\nThe binary number system is base [blank] . The smallest denary number that can be represented as an 8-bit binary number is [blank] . The largest denary number that can be represented as an 8-bit binary number is [blank] .\nThe hexadecimal number system is base [blank] . Each hexadecimal digit is equivalent to [blank] bits. The numbers 1 to 9 are used and the number 10 is represented by [blank] . The hexadecimal number system continues up to the number 15, which is represented by [blank] .",
       "command": "Complete",
       "objective": "AO1",
       "marks": 7,
@@ -161,11 +161,11 @@
             "marks": 1
           },
           {
-            "text": "The smallest denary number that can be represented an 8-bit binary number is 0.",
+            "text": "The smallest denary number that can be represented as an 8-bit binary number is 0.",
             "marks": 1
           },
           {
-            "text": "The largest denary number that can be represented an 8-bit binary number is 255.",
+            "text": "The largest denary number that can be represented as an 8-bit binary number is 255.",
             "marks": 1
           },
           {
@@ -177,11 +177,11 @@
             "marks": 1
           },
           {
-            "text": "The numbers 1 to 9 are used and the number 10 is represented by A.",
+            "text": "The number 10 is represented by A.",
             "marks": 1
           },
           {
-            "text": "The hexadecimal number system continues up to the number 15, which is represented by F.",
+            "text": "The number 15 is represented by F.",
             "marks": 1
           }
         ]
@@ -192,15 +192,17 @@
     },
     {
       "id": "Q1b",
-      "text": "Two 8-bit binary numbers are given.\n\nAdd the two 8-bit binary numbers using binary addition. Give your answer in binary. Show all your working.\n\n1 0 0 1 1 0 1 1\n+ 0 0 0 1 0 0 1 1",
+      "text": "Two 8-bit binary numbers are given.\nAdd the two 8-bit binary numbers using binary addition.\nGive your answer in binary. Show all your working.\n1 0 0 1 1 0 1 1\n+ 0 0 0 1 0 0 1 1",
       "command": "Add",
       "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 2,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 3
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -210,22 +212,22 @@
         "scoring_rule": "1 mark for correct working, 1 mark for each correct nibble",
         "marking_points": [
           {
-            "text": "Correct working shown (carries: 1 1 1)",
+            "text": "Correct working shown (e.g. carry bits: 1 1 1)",
             "marks": 1
           },
           {
-            "text": "Correct upper nibble: 1 0 1 0",
+            "text": "Correct first nibble: 1010",
             "marks": 1
           },
           {
-            "text": "Correct lower nibble: 1 1 1 0",
+            "text": "Correct second nibble: 1110",
             "marks": 1
           }
         ]
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q1c",
@@ -338,9 +340,9 @@
     },
     {
       "id": "Q2c_i",
-      "text": "An artist creates an image on a computer. The artist compresses the image file before uploading it to their website. Users can download the image file from the website to print as a poster. The image file is compressed using lossless compression.\n\nExplain the reasons why the artist chose lossless compression instead of lossy compression to compress this image file.",
+      "text": "An artist creates an image on a computer.\n\nThe artist compresses the image file before uploading it to their website. Users can download the image file from the website to print as a poster.\nThe image file is compressed using lossless compression.\n\nExplain the reasons why the artist chose lossless compression instead of lossy compression to compress this image file.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 3,
       "visuals": [],
       "page": 4,
@@ -387,7 +389,7 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "An artist creates an image on a computer. The artist compresses the image file before uploading it to their website. The image file is compressed using lossless compression.\n\nIdentify one lossless method of compressing an image. Describe your chosen method.\n\nMethod\nDescription",
+      "text": "An artist creates an image on a computer.\n\nThe artist compresses the image file before uploading it to their website. Users can download the image file from the website to print as a poster.\nThe image file is compressed using lossless compression.\n\nIdentify one lossless method of compressing an image.\nDescribe your chosen method.\n\nMethod\nDescription",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,
@@ -408,7 +410,7 @@
         "scoring_rule": "1 mark for naming, max 2 for describing, for example:",
         "marking_points": [
           {
-            "text": "Method: Run-length encoding",
+            "text": "Run-length encoding",
             "marks": 1
           },
           {
@@ -431,7 +433,7 @@
     },
     {
       "id": "Q2d_i",
-      "text": "An artist creates an image on a computer. The artist emails the image file to their friends.\n\nExplain how a file is broken down into packets and transmitted over a network.",
+      "text": "An artist creates an image on a computer.\n\nThe artist emails the image file to their friends.\n\nExplain how a file is broken down into packets and transmitted over a network.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 5,
@@ -500,20 +502,20 @@
     },
     {
       "id": "Q2d_ii",
-      "text": "An artist creates an image on a computer. The artist emails the image file to their friends. The packets can use many different methods of data transmission to travel.\n\nComplete and annotate the diagram to show the difference between serial full-duplex transmission between two computers and parallel simplex transmission between two computers.\n\nSerial full-duplex transmission:\nComputer 1                    Computer 2\n\nParallel simplex transmission:\nComputer 1                    Computer 2",
+      "text": "An artist creates an image on a computer.\n\nThe artist emails the image file to their friends.\n\nThe packets can use many different methods of data transmission to travel.\n\nComplete and annotate the diagram to show the difference between serial full-duplex transmission between two computers and parallel simplex transmission between two computers.\n\nSerial full-duplex transmission:\nComputer 1 Computer 2\n\nParallel simplex transmission:\nComputer 1 Computer 2",
       "command": "Complete",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
-      "visuals": [],
+      "visuals": [
+        "Diagram showing two boxes labelled 'Computer 1' and 'Computer 2' for serial full-duplex transmission, and two boxes labelled 'Computer 1' and 'Computer 2' for parallel simplex transmission, with space to draw and annotate transmission lines between them."
+      ],
       "page": 5,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
         "diagram_type": "other",
         "partial_elements": [
-          "Computer 1 (serial full-duplex)",
-          "Computer 2 (serial full-duplex)",
-          "Computer 1 (parallel simplex)",
-          "Computer 2 (parallel simplex)"
+          "Computer 1",
+          "Computer 2"
         ]
       },
       "topic": "2.1",
@@ -543,7 +545,7 @@
     },
     {
       "id": "Q3a",
-      "text": "A computer has a central processing unit (CPU), memory and secondary storage. The computer has a Von Neumann architecture.\n\nCircle three registers that are found in the Von Neumann architecture.\n\naccumulator   arithmetic register   binary counter\nbinary register   control register   current data register\ncurrent instruction register   data counter   instruction counter\nlogical register   program counter   storage register",
+      "text": "A computer has a central processing unit (CPU), memory and secondary storage.\n\nThe computer has a Von Neumann architecture.\n\nCircle three registers that are found in the Von Neumann architecture.\n\naccumulator  arithmetic register  binary counter\nbinary register  control register  current data register\ncurrent instruction register  data counter  instruction counter\nlogical register  program counter  storage register",
       "command": "Circle",
       "objective": "AO1",
       "marks": 3,
@@ -576,7 +578,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": "Any one from:",
         "marking_points": [
           {
             "text": "Accumulator",
@@ -631,9 +633,9 @@
     },
     {
       "id": "Q3c_i",
-      "text": "A computer has a central processing unit (CPU), memory and secondary storage.\n\nComputer A has a 2.1GHz quad-core processor.\nComputer B has a 2.5 GHz dual-core processor.\nComputer C has a 5.2 GHz single-core processor.\n\nIdentify which computer is most likely to execute more instructions simultaneously. Justify your answer.\n\nComputer\nJustification",
+      "text": "A computer has a central processing unit (CPU), memory and secondary storage.\n\nComputer A has a 2.1GHz quad-core processor.\nComputer B has a 2.5 GHz dual-core processor.\nComputer C has a 5.2 GHz single-core processor.\n\nIdentify which computer is most likely to execute more instructions simultaneously.\nJustify your answer.\n\nComputer\nJustification",
       "command": "Identify",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 3,
       "visuals": [],
       "page": 6,
@@ -649,22 +651,22 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for Computer A",
+        "scoring_rule": "1 mark for Computer A, Any two for justification:",
         "marking_points": [
           {
-            "text": "Computer: A",
+            "text": "Computer: Computer A",
             "marks": 1
           },
           {
-            "text": "It has 4 cores/processors",
+            "text": "Justification: It has 4 cores/processors",
             "marks": 1
           },
           {
-            "text": "…each core will execute one instruction at a time",
+            "text": "Justification: …each core will execute one instruction at a time",
             "marks": 1
           },
           {
-            "text": "4 instructions can be executed simultaneously (others can only execute 1 or 2)",
+            "text": "Justification: 4 instructions can be executed simultaneously (others can only execute 1 or 2)",
             "marks": 1
           }
         ]
@@ -677,7 +679,7 @@
       "id": "Q3c_ii",
       "text": "A computer has a central processing unit (CPU), memory and secondary storage.\n\nComputer A has a 2.1GHz quad-core processor.\nComputer B has a 2.5 GHz dual-core processor.\nComputer C has a 5.2 GHz single-core processor.\n\nExplain why Computer C can execute more instructions per second than Computer B.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 2,
       "visuals": [],
       "page": 6,
@@ -716,7 +718,7 @@
     },
     {
       "id": "Q3d",
-      "text": "All three computers have the same instruction set.\n\nDefine the term instruction set.",
+      "text": "A computer has a central processing unit (CPU), memory and secondary storage.\n\nAll three computers have the same instruction set.\n\nDefine the term instruction set.",
       "command": "Define",
       "objective": "AO1",
       "marks": 1,
@@ -755,8 +757,8 @@
       "structure_data": {
         "line_count": 1
       },
-      "topic": "6.1",
-      "topic_name": "Automated Systems",
+      "topic": "3.2",
+      "topic_name": "Input and Output Devices",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -825,8 +827,8 @@
       "structure_data": {
         "line_count": 3
       },
-      "topic": "6.1",
-      "topic_name": "Automated Systems",
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -860,7 +862,7 @@
     },
     {
       "id": "Q4c",
-      "text": "An automated teller machine (ATM) is a device where a person inserts their bank card and can request to withdraw money. The ATM also allows the person to check how much money they have in their bank account.\n\nThe ATM has a touch screen and a keypad. The ATM may need to be used by people who are unable to see.\n\nIdentify one other input device and one other output device that can be built into the ATM to help people who are unable to see.\n\nInput\nOutput",
+      "text": "An automated teller machine (ATM) is a device where a person inserts their bank card and can request to withdraw money. The ATM also allows the person to check how much money they have in their bank account.\n\nThe ATM has a touch screen and a keypad.\nThe ATM may need to be used by people who are unable to see.\n\nIdentify one other input device and one other output device that can be built into the ATM to help people who are unable to see.\n\nInput\nOutput",
       "command": "Identify",
       "objective": "AO2",
       "marks": 2,
@@ -878,7 +880,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for input, for example: … 1 mark for output, for example:",
+        "scoring_rule": "1 mark for input, for example: ... 1 mark for output, for example:",
         "marking_points": [
           {
             "text": "Input: Microphone",
@@ -900,7 +902,7 @@
     },
     {
       "id": "Q5a_i",
-      "text": "A computer is connected to a network. The computer has a network interface card (NIC) that has a media access control (MAC) address.\n\nOne purpose of the NIC is to provide the computer with a MAC address. Describe the other purposes of the NIC.",
+      "text": "A computer is connected to a network.\n\nThe computer has a network interface card (NIC) that has a media access control (MAC) address.\n\nOne purpose of the NIC is to provide the computer with a MAC address.\nDescribe the other purposes of the NIC.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 2,
@@ -945,7 +947,7 @@
     },
     {
       "id": "Q5a_ii",
-      "text": "A computer is connected to a network. The computer has a network interface card (NIC) that has a media access control (MAC) address.\n\nIdentify three characteristics of a MAC address.\n\n1\n2\n3",
+      "text": "A computer is connected to a network.\n\nThe computer has a network interface card (NIC) that has a media access control (MAC) address.\n\nIdentify three characteristics of a MAC address.\n\n1\n2\n3",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,
@@ -994,7 +996,7 @@
     },
     {
       "id": "Q5b_i",
-      "text": "A computer is connected to a network. The network allocates an internet protocol (IP) address to the computer.\n\nTick (✓) one box to identify a valid IPv4 address.\n\nA 110:255:2:1\nB 1.30.2FF.A9\nC 3.162.74.3\nD 8.0.257.6.8",
+      "text": "A computer is connected to a network.\n\nThe network allocates an internet protocol (IP) address to the computer.\n\nTick (✓) one box to identify a valid IPv4 address.\n\nA 110:255:2:1\nB 1.30.2FF.A9\nC 3.162.74.3\nD 8.0.257.6.8",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -1014,8 +1016,8 @@
           "D 8.0.257.6.8"
         ]
       },
-      "topic": "5.1",
-      "topic_name": "The Internet and the World Wide Web",
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
       "answers": {
         "type": "MCQ",
         "visuals": [],
@@ -1033,7 +1035,7 @@
     },
     {
       "id": "Q5b_ii",
-      "text": "A computer is connected to a network. The network allocates an internet protocol (IP) address to the computer.\n\nIdentify the device in a network that can automatically assign an IP address to a computer, each time the computer connects to the network.",
+      "text": "A computer is connected to a network.\n\nThe network allocates an internet protocol (IP) address to the computer.\n\nIdentify the device in a network that can automatically assign an IP address to a computer, each time the computer connects to the network.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -1062,7 +1064,7 @@
     },
     {
       "id": "Q5c_i",
-      "text": "A computer is connected to a network. A user accesses the world wide web using a web browser.\n\nDefine the term world wide web.",
+      "text": "A computer is connected to a network.\n\nA user accesses the world wide web using a web browser.\n\nDefine the term world wide web.",
       "command": "Define",
       "objective": "AO1",
       "marks": 1,
@@ -1091,7 +1093,7 @@
     },
     {
       "id": "Q5c_ii",
-      "text": "A computer is connected to a network. A user accesses the world wide web using a web browser. The uniform resource locator (URL) for a website includes the protocol hypertext transfer protocol secure (HTTPS).\n\nExplain how HTTPS makes the transmission of data secure.",
+      "text": "A computer is connected to a network.\n\nA user accesses the world wide web using a web browser.\n\nThe uniform resource locator (URL) for a website includes the protocol hypertext transfer protocol secure (HTTPS).\n\nExplain how HTTPS makes the transmission of data secure.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 4,
@@ -1101,8 +1103,8 @@
       "structure_data": {
         "line_count": 7
       },
-      "topic": "2.3",
-      "topic_name": "Encryption",
+      "topic": "5.1",
+      "topic_name": "The Internet and the World Wide Web",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -1148,7 +1150,7 @@
     },
     {
       "id": "Q5c_iii",
-      "text": "A computer is connected to a network. A user accesses the world wide web using a web browser. The uniform resource locator (URL) for a website includes the protocol hypertext transfer protocol secure (HTTPS).\n\nThe protocol is one part of a URL. Give the other two parts of a URL.\n\n1\n2",
+      "text": "A computer is connected to a network.\n\nA user accesses the world wide web using a web browser.\n\nThe protocol is one part of a URL.\n\nGive the other two parts of a URL.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -1163,7 +1165,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "Domain name",
@@ -1181,7 +1183,7 @@
     },
     {
       "id": "Q6a",
-      "text": "A search engine uses artificial intelligence (AI) to identify the most relevant web pages for the user.\n\nOne characteristic of AI is the ability to learn. Identify three other characteristics of AI.\n\n1\n2\n3",
+      "text": "A search engine uses artificial intelligence (AI) to identify the most relevant web pages for the user.\n\nOne characteristic of AI is the ability to learn.\n\nIdentify three other characteristics of AI.\n\n1\n2\n3",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,
@@ -1222,7 +1224,7 @@
     },
     {
       "id": "Q6b",
-      "text": "A search engine uses artificial intelligence (AI) to identify the most relevant web pages for the user. The search engine uses machine learning.\n\nExplain how machine learning is used by the search engine.",
+      "text": "A search engine uses artificial intelligence (AI) to identify the most relevant web pages for the user.\n\nThe search engine uses machine learning.\n\nExplain how machine learning is used by the search engine.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 3,
@@ -1271,7 +1273,7 @@
     },
     {
       "id": "Q7a",
-      "text": "Programs can be written in a high-level language or a low-level language. Machine code is one type of low-level language.\n\nIdentify one other type of low-level language. Identify the translator that is needed for the type of low-level language you have identified.\n\nType of low-level language\nTranslator",
+      "text": "Programs can be written in a high-level language or a low-level language.\n\nMachine code is one type of low-level language.\n\nIdentify one other type of low-level language.\nIdentify the translator that is needed for the type of low-level language you have identified.\n\nType of low-level language\nTranslator",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -1289,7 +1291,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "1 mark for each correct answer",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "Type of low-level language: assembly",
@@ -1307,9 +1309,9 @@
     },
     {
       "id": "Q7b",
-      "text": "Programs can be written in a high-level language or a low-level language. A high-level language can be translated into a low-level language, using a compiler or an interpreter.\n\nDescribe the advantages of using an interpreter instead of a compiler during software development.",
+      "text": "Programs can be written in a high-level language or a low-level language.\n\nA high-level language can be translated into a low-level language, using a compiler or an interpreter.\n\nDescribe the advantages of using an interpreter instead of a compiler during software development.",
       "command": "Describe",
-      "objective": "AO3",
+      "objective": "AO1",
       "marks": 4,
       "visuals": [],
       "page": 11,
@@ -1356,7 +1358,7 @@
     },
     {
       "id": "Q7c",
-      "text": "Programs can be written in a high-level language or a low-level language. Integrated development environments (IDEs) provide translators.\n\nIdentify three other common functions of an IDE.\n\n1\n2\n3",
+      "text": "Programs can be written in a high-level language or a low-level language.\n\nIntegrated development environments (IDEs) provide translators.\n\nIdentify three other common functions of an IDE.\n\n1\n2\n3",
       "command": "Identify",
       "objective": "AO1",
       "marks": 3,

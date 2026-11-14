@@ -134,3 +134,14 @@ def test_objective_split_needs_two_objectives_that_add_up():
     none = _with_rule("Any three from", marks=3)
     assert pp.fill_objective_marks(make_paper([wrong_sum, single, none])) == []
     assert "objective_marks" not in wrong_sum                     # a stale split is removed
+
+
+def test_cloze_gaps_are_normalised_and_counted_from_the_text():
+    q = make_question("Q6a", layout_type="InlineCloze", structure_data={"inline_gap_count": 5, "has_word_bank": True},
+                      text="The [blank] [blank] stores it. Sent to the ……………… bus and the ........ .")
+    other = make_question("Q7", text="Not a cloze ........")
+    paper = make_paper([q, other])
+    assert pp.normalise_cloze(paper) == ["Q6a"]
+    assert q["text"] == "The [blank] stores it. Sent to the [blank] bus and the [blank] ."
+    assert q["structure_data"] == {"inline_gap_count": 3, "has_word_bank": True}
+    assert other["text"] == "Not a cloze ........" and pp.normalise_cloze(paper) == []     # idempotent

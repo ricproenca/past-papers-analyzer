@@ -77,14 +77,14 @@
       "High": 7
     },
     "marks_by_objective": {
-      "AO1": 8,
-      "AO2": 54,
-      "AO3": 13
+      "AO1": 10,
+      "AO2": 51,
+      "AO3": 14
     },
     "count_by_objective": {
-      "AO1": 5,
-      "AO2": 14,
-      "AO3": 2
+      "AO1": 6,
+      "AO2": 12,
+      "AO3": 3
     },
     "marks_by_layout_type": {
       "MatrixGrid": 2,
@@ -140,7 +140,7 @@
   "questions": [
     {
       "id": "Q1",
-      "text": "Tick (✓) one box to complete this sentence.\n\nA standard method of solution used to find a piece of data in an array is a\n\nA bubble sort.\nB counting routine.\nC linear search.\nD selection search.",
+      "text": "Tick (✓) one box to complete this sentence.\n\nA standard method of solution used to find a piece of data in an array is a",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -179,7 +179,7 @@
     },
     {
       "id": "Q2",
-      "text": "Tick (✓) one box to complete this sentence.\n\nThe pseudocode to store a hotel name held in the variable Name to a text file is\n\nA READFILE Hotels.txt, Name\nB WRITEFILE Hotels.txt, Name\nC WRITEFILE Name, Hotels.txt\nD STOREFILE Hotels.txt, Name",
+      "text": "Tick (✓) one box to complete this sentence.\n\nThe pseudocode to store a hotel name held in the variable Name to a text file is",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -263,7 +263,7 @@
             "marks": 1
           },
           {
-            "text": "coding → using a programming language to create the solution",
+            "text": "design → using structure diagrams, flowcharts and pseudocode to plan the solution",
             "marks": 1
           }
         ]
@@ -378,7 +378,7 @@
     },
     {
       "id": "Q5",
-      "text": "A program is written to only accept data that contains more than 9 characters. The program needs to be tested. The table, when completed, shows appropriate test data that matches the type of test data and the purpose of the test data.\n\nComplete the table by inserting the missing information.\n\nTest data | Type of test data | Purpose of test data\nABC | (blank) | (blank)\n(blank) | Boundary | (blank)\n(blank) | (blank) | to make sure that the program accepts data that is an appropriate length",
+      "text": "A program is written to only accept data that contains more than 9 characters. The program needs to be tested. The table, when completed, shows appropriate test data that matches the type of test data and the purpose of the test data.\n\nComplete the table by inserting the missing information.",
       "command": "Complete",
       "objective": "AO2",
       "marks": 6,
@@ -393,24 +393,24 @@
         "row_count": 3,
         "rows": [
           "ABC",
-          null,
-          null
+          "",
+          ""
         ],
+        "row_header": "Test data",
         "row_values": [
           [
-            null,
-            null
+            "",
+            ""
           ],
           [
             "Boundary",
-            null
+            ""
           ],
           [
-            null,
+            "",
             "to make sure that the program accepts data that is an appropriate length"
           ]
-        ],
-        "row_header": "Test data"
+        ]
       },
       "topic": "7.5",
       "topic_name": "Test Data",
@@ -420,27 +420,27 @@
         "scoring_rule": "One mark for each correct box",
         "marking_points": [
           {
-            "text": "ABC – Type: Abnormal",
+            "text": "ABC → Abnormal",
             "marks": 1
           },
           {
-            "text": "ABC – Purpose: to make sure that the program rejects data that is too short",
+            "text": "ABC → to make sure that the program rejects data that is too short",
             "marks": 1
           },
           {
-            "text": "Boundary – Test data: Password1 // Password22",
+            "text": "Password1 // Password22 → Boundary",
             "marks": 1
           },
           {
-            "text": "Boundary – Purpose: to make sure that the program rejects data that is only just too short // to make sure that the program accepts data that is only just at the correct length",
+            "text": "Password1 // Password22 → to make sure that the program rejects data that is only just too short // to make sure that the program accepts data that is only just at the correct length",
             "marks": 1
           },
           {
-            "text": "Normal – Test data: CambridgeInternational",
+            "text": "CambridgeInternational → Normal",
             "marks": 1
           },
           {
-            "text": "Normal – Purpose: to make sure that the program accepts data that is an appropriate length",
+            "text": "CambridgeInternational → to make sure that the program accepts data that is an appropriate length",
             "marks": 1
           }
         ]
@@ -451,13 +451,11 @@
     },
     {
       "id": "Q6a",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nIdentify the line numbers of five errors in the pseudocode and suggest a correction for each error.\n\nError 1 line number\nCorrection\nError 2 line number\nCorrection\nError 3 line number\nCorrection\nError 4 line number\nCorrection\nError 5 line number\nCorrection",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08 INPUT Numbers[Count]\n09 Total ← Total + Count\n10 IF Numbers[Count] > Total\n11 THEN\n12 Highest ← Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nIdentify the line numbers of five errors in the pseudocode and suggest a correction for each error.\n\nError 1 line number\nCorrection\n\nError 2 line number\nCorrection\n\nError 3 line number\nCorrection\n\nError 4 line number\nCorrection\n\nError 5 line number\nCorrection",
       "command": "Identify",
       "objective": "AO2",
       "marks": 5,
-      "visuals": [
-        "pseudocode algorithm"
-      ],
+      "visuals": [],
       "page": 4,
       "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
@@ -509,13 +507,11 @@
     },
     {
       "id": "Q6b",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08 INPUT Numbers[Count]\n09 Total ← Total + Count\n10 IF Numbers[Count] > Total\n11 THEN\n12 Highest ← Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nWrite the pseudocode statement to output the average of the numbers, rounded to two decimal places.",
       "command": "Write",
       "objective": "AO2",
       "marks": 2,
-      "visuals": [
-        "pseudocode algorithm"
-      ],
+      "visuals": [],
       "page": 5,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
@@ -533,7 +529,7 @@
             "marks": 1
           },
           {
-            "text": "MP2 … set to 2 decimal places with OUTPUT command.",
+            "text": "MP2 … set to 2 decimal places with OUTPUT command. Example: OUTPUT ROUND(Total / 1000, 2)",
             "marks": 1
           }
         ]
@@ -544,13 +540,11 @@
     },
     {
       "id": "Q6c",
-      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08    INPUT Numbers[Count]\n09    Total ← Total + Count\n10    IF Numbers[Count] > Total\n11    THEN\n12       Highest ← Numbers[Count]\n13    ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
+      "text": "This pseudocode algorithm is intended to allow 1000 positive integers to be input and stored in a one-dimensional (1D) array. The integers are added together as they are input and the highest value is identified. At the end of the algorithm, the highest number, the total and the average of the numbers are output.\n\n01 DECLARE Numbers : ARRAY[1:1000] OF INTEGER\n02 DECLARE Highest : STRING\n03 DECLARE Count : INTEGER\n04 DECLARE Total : INTEGER\n05 Highest ← 1500\n06 Total ← 0\n07 FOR Count ← 1 TO 1000\n08 INPUT Numbers[Count]\n09 Total ← Total + Count\n10 IF Numbers[Count] > Total\n11 THEN\n12 Highest ← Numbers[Count]\n13 ENDIF\n14 NEXT Count\n15 OUTPUT \"The highest number is \", Highest\n16 OUTPUT \"The total is \", Total\n17 OUTPUT \"The average is \", Average / 1000\n\nExplain how you could change the corrected algorithm so that it also finds the smallest number that was input and outputs its value at the end.\n\nAny code used must be fully explained.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 4,
-      "visuals": [
-        "pseudocode algorithm"
-      ],
+      "visuals": [],
       "page": 5,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
@@ -591,12 +585,12 @@
     },
     {
       "id": "Q7a",
-      "text": "This flowchart represents an algorithm.\n\nComplete the trace table for the input data:\nY, 7, S, 9, Y, 5, M, 12, Y, 25, D, 5, N, 10, A, 6\n\nAnswer | Value1 | Operator | Value2 | OUTPUT",
+      "text": "This flowchart represents an algorithm.\n\nComplete the trace table for the input data:\nY, 7, S, 9, Y, 5, M, 12, Y, 25, D, 5, N, 10, A, 6",
       "command": "Complete",
       "objective": "AO2",
       "marks": 5,
       "visuals": [
-        "flowchart of calculator algorithm"
+        "Flowchart of a calculator algorithm with a continue prompt, operator selection (A, S, M, D) and arithmetic output branches."
       ],
       "page": 7,
       "layout_type": "ValueTraceMatrix",
@@ -610,47 +604,47 @@
         ],
         "row_count": 12,
         "rows": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12"
-        ]
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "row_header": "",
+        "row_values": null
       },
       "topic": "7.2",
       "topic_name": "Algorithms",
       "answers": {
         "type": "text",
-        "visuals": [
-          "flowchart of calculator algorithm"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per correct column",
         "marking_points": [
           {
-            "text": "Answer column correct: Continue? / Y / Continue? / Y / Continue? / Y / Continue? / N",
+            "text": "Answer column: Y, Y, Y, N",
             "marks": 1
           },
           {
-            "text": "Value1 column correct: 7 / 5 / 25",
+            "text": "Value1 column: 7, 5, 25",
             "marks": 1
           },
           {
-            "text": "Operator column correct: S / M / D",
+            "text": "Operator column: S, M, D",
             "marks": 1
           },
           {
-            "text": "Value2 column correct: 9 / 12 / 5",
+            "text": "Value2 column: 9, 12, 5",
             "marks": 1
           },
           {
-            "text": "OUTPUT column correct: −2 / 60 / 5",
+            "text": "OUTPUT column: Continue?, −2, Continue?, 60, Continue?, 5, Continue?",
             "marks": 1
           }
         ]
@@ -667,7 +661,7 @@
       "objective": "AO2",
       "marks": 1,
       "visuals": [
-        "flowchart of calculator algorithm"
+        "Flowchart of a calculator algorithm with a continue prompt, operator selection (A, S, M, D) and arithmetic output branches."
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -678,9 +672,7 @@
       "topic_name": "Algorithms",
       "answers": {
         "type": "text",
-        "visuals": [
-          "flowchart of calculator algorithm"
-        ],
+        "visuals": [],
         "scoring_rule": null,
         "marking_points": [
           {
@@ -696,12 +688,12 @@
     },
     {
       "id": "Q7c_i",
-      "text": "There are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nExplain how you would change the algorithm to prevent the problems described.",
+      "text": "This flowchart represents an algorithm.\n\nThere are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nExplain how you would change the algorithm to prevent the problems described.",
       "command": "Explain",
       "objective": "AO3",
       "marks": 3,
       "visuals": [
-        "flowchart of calculator algorithm"
+        "Flowchart of a calculator algorithm with a continue prompt, operator selection (A, S, M, D) and arithmetic output branches."
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -712,9 +704,7 @@
       "topic_name": "Algorithms",
       "answers": {
         "type": "text",
-        "visuals": [
-          "flowchart of calculator algorithm"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
           {
@@ -726,11 +716,7 @@
             "marks": 1
           },
           {
-            "text": "MP3 Use of UCASE in both boxes to change the input given to upper case.",
-            "marks": 1
-          },
-          {
-            "text": "MP4 Change the condition in all the (4) decision boxes",
+            "text": "MP3 Use of UCASE in both boxes to change the input given to upper case. OR MP4 Change the condition in all the (4) decision boxes",
             "marks": 1
           },
           {
@@ -750,12 +736,12 @@
     },
     {
       "id": "Q7c_ii",
-      "text": "There are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nIdentify one more error related to inputs when the algorithm is run.",
+      "text": "This flowchart represents an algorithm.\n\nThere are problems with the given algorithm. If the lower-case letter 'y' is entered for Answer, the algorithm stops and if a lower-case letter is entered for Operator, the algorithm gives an incorrect output.\n\nIdentify one more error related to inputs when the algorithm is run.",
       "command": "Identify",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 1,
       "visuals": [
-        "flowchart of calculator algorithm"
+        "Flowchart of a calculator algorithm with a continue prompt, operator selection (A, S, M, D) and arithmetic output branches."
       ],
       "page": 7,
       "layout_type": "SimpleSingleBlock",
@@ -766,9 +752,7 @@
       "topic_name": "Algorithms",
       "answers": {
         "type": "text",
-        "visuals": [
-          "flowchart of calculator algorithm"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark, for example:",
         "marking_points": [
           {
@@ -786,11 +770,9 @@
       "id": "Q8a",
       "text": "A database table, MajorCity, stores some details about a number of cities from around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n| EUY3 | Amsterdam | TRUE | Netherlands | Europe | 1,174,025 |\n| ASY1 | Beijing | TRUE | China | Asia | 21,766,214 |\n| SAY1 | Buenos Aires | TRUE | Argentina | South America | 15,490,415 |\n| AFY1 | Cairo | TRUE | Egypt | Africa | 22,183,200 |\n| EUN1 | Frankfurt | FALSE | Germany | Europe | 796,437 |\n| ASY3 | Jakarta | TRUE | Indonesia | Asia | 11,248,839 |\n| ASN3 | Karachi | FALSE | Pakistan | Asia | 17,236,230 |\n| ASY4 | Kuala Lumpur | TRUE | Malaysia | Asia | 8,621,724 |\n| AFN2 | Lagos | FALSE | Nigeria | Africa | 15,945,912 |\n| SAY2 | Lima | TRUE | Peru | South America | 11,206,000 |\n| EUY1 | London | TRUE | UK | Europe | 9,648,110 |\n| EUY4 | Madrid | TRUE | Spain | Europe | 6,751,374 |\n| ASN2 | Mumbai | FALSE | India | Asia | 21,296,516 |\n| NAN1 | New York City | FALSE | USA | North America | 7,888,121 |\n| EUY2 | Paris | TRUE | France | Europe | 11,206,000 |\n| ASN1 | Shanghai | FALSE | China | Asia | 29,210,808 |\n| ASY5 | Singapore | TRUE | Singapore | Asia | 6,080,859 |\n| AUN1 | Sydney | FALSE | Australia | Australia | 5,120,894 |\n| ASY2 | Tokyo | TRUE | Japan | Asia | 37,194,104 |\n| NAN2 | Toronto | FALSE | Canada | North America | 6,371,958 |\n| EUN2 | Valencia | FALSE | Spain | Europe | 838,301 |\n| SAN1 | Valencia | FALSE | Venezuela | South America | 1,983,445 |\n\nState the number of fields and records in this database table.\n\nFields\nRecords",
       "command": "State",
-      "objective": "AO2",
+      "objective": "AO1",
       "marks": 2,
-      "visuals": [
-        "database table MajorCity"
-      ],
+      "visuals": [],
       "page": 8,
       "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
@@ -803,9 +785,7 @@
       "topic_name": "Database Structure",
       "answers": {
         "type": "text",
-        "visuals": [
-          "database table MajorCity"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per correct answer",
         "marking_points": [
           {
@@ -828,9 +808,7 @@
       "command": "Identify",
       "objective": "AO2",
       "marks": 2,
-      "visuals": [
-        "database table MajorCity"
-      ],
+      "visuals": [],
       "page": 9,
       "layout_type": "MultiPartLabeledBlock",
       "structure_data": {
@@ -843,9 +821,7 @@
       "topic_name": "Database Structure",
       "answers": {
         "type": "text",
-        "visuals": [
-          "database table MajorCity"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per correct answer",
         "marking_points": [
           {
@@ -868,9 +844,7 @@
       "command": "Give",
       "objective": "AO2",
       "marks": 3,
-      "visuals": [
-        "database table MajorCity"
-      ],
+      "visuals": [],
       "page": 9,
       "layout_type": "SimpleSingleBlock",
       "structure_data": {
@@ -880,9 +854,7 @@
       "topic_name": "SQL",
       "answers": {
         "type": "text",
-        "visuals": [
-          "database table MajorCity"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
           {
@@ -909,9 +881,7 @@
       "command": "Complete",
       "objective": "AO2",
       "marks": 4,
-      "visuals": [
-        "database table MajorCity"
-      ],
+      "visuals": [],
       "page": 9,
       "layout_type": "CodeBlockResponse",
       "structure_data": {
@@ -922,9 +892,7 @@
       "topic_name": "SQL",
       "answers": {
         "type": "pseudocode",
-        "visuals": [
-          "database table MajorCity"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark per mark point",
         "marking_points": [
           {
@@ -951,12 +919,12 @@
     },
     {
       "id": "Q9a",
-      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nDraw a logic circuit for this logic expression.\n\nEach logic gate must have a maximum of two inputs.\n\nDo not simplify the logic expression.\n\nA\nB                Z\nC",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nDraw a logic circuit for this logic expression.\n\nEach logic gate must have a maximum of two inputs.\n\nDo not simplify the logic expression.",
       "command": "Draw",
       "objective": "AO2",
       "marks": 5,
       "visuals": [
-        "partial logic circuit with inputs A, B, C and output Z"
+        "Partial logic circuit diagram with inputs A, B, C and output Z labelled."
       ],
       "page": 10,
       "layout_type": "AnnotatedDiagram",
@@ -973,29 +941,27 @@
       "topic_name": "Logic Circuits",
       "answers": {
         "type": "diagram",
-        "visuals": [
-          "partial logic circuit with inputs A, B, C and output Z"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each correct gate, with the correct input(s) as shown.",
         "marking_points": [
           {
-            "text": "NAND gate with inputs A and B correctly drawn",
+            "text": "NAND gate with inputs A and B",
             "marks": 1
           },
           {
-            "text": "NOT gate with input B correctly drawn",
+            "text": "NOT gate with input B",
             "marks": 1
           },
           {
-            "text": "NAND gate with inputs (NOT B) and C correctly drawn",
+            "text": "NAND gate with inputs NOT B and C",
             "marks": 1
           },
           {
-            "text": "NOT gate applied to the output of the second NAND gate correctly drawn",
+            "text": "NOT gate applied to output of second NAND gate",
             "marks": 1
           },
           {
-            "text": "XOR gate combining the output of the first NAND gate and the last NOT gate to give Z correctly drawn",
+            "text": "XOR gate with inputs from first NAND output and NOT(NOT B NAND C), producing Z",
             "marks": 1
           }
         ]
@@ -1006,7 +972,7 @@
     },
     {
       "id": "Q9b",
-      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nComplete the truth table from the given logic expression.\n\nA | B | C | Z\n0 | 0 | 0 |\n0 | 0 | 1 |\n0 | 1 | 0 |\n0 | 1 | 1 |\n1 | 0 | 0 |\n1 | 0 | 1 |\n1 | 1 | 0 |\n1 | 1 | 1 |",
+      "text": "Consider this logic expression:\n\nZ = (A NAND B) XOR (NOT (NOT B NAND C))\n\nComplete the truth table from the given logic expression.\n\nWorking space",
       "command": "Complete",
       "objective": "AO2",
       "marks": 4,
@@ -1015,81 +981,22 @@
       "layout_type": "ValueTraceMatrix",
       "structure_data": {
         "matrix_headers": [
-          "A",
-          "B",
-          "C",
           "Working space",
           "Z"
         ],
         "row_count": 8,
         "rows": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
+          "0 0 0",
+          "0 0 1",
+          "0 1 0",
+          "0 1 1",
+          "1 0 0",
+          "1 0 1",
+          "1 1 0",
+          "1 1 1"
         ],
-        "row_values": [
-          [
-            "0",
-            "0",
-            "0",
-            null,
-            null
-          ],
-          [
-            "0",
-            "0",
-            "1",
-            null,
-            null
-          ],
-          [
-            "0",
-            "1",
-            "0",
-            null,
-            null
-          ],
-          [
-            "0",
-            "1",
-            "1",
-            null,
-            null
-          ],
-          [
-            "1",
-            "0",
-            "0",
-            null,
-            null
-          ],
-          [
-            "1",
-            "0",
-            "1",
-            null,
-            null
-          ],
-          [
-            "1",
-            "1",
-            "0",
-            null,
-            null
-          ],
-          [
-            "1",
-            "1",
-            "1",
-            null,
-            null
-          ]
-        ]
+        "row_header": "A B C",
+        "row_values": null
       },
       "topic": "10.3",
       "topic_name": "Truth Tables",
@@ -1099,35 +1006,35 @@
         "scoring_rule": "Four marks for all eight correct outputs\nThree marks for six or seven correct outputs\nTwo marks for four or five correct outputs\nOne mark for two or three correct outputs",
         "marking_points": [
           {
-            "text": "A=0 B=0 C=0 Z=1",
+            "text": "A=0, B=0, C=0, Z=1",
             "marks": 1
           },
           {
-            "text": "A=0 B=0 C=1 Z=0",
+            "text": "A=0, B=0, C=1, Z=0",
             "marks": 1
           },
           {
-            "text": "A=0 B=1 C=0 Z=1",
+            "text": "A=0, B=1, C=0, Z=1",
             "marks": 1
           },
           {
-            "text": "A=0 B=1 C=1 Z=1",
+            "text": "A=0, B=1, C=1, Z=1",
             "marks": 1
           },
           {
-            "text": "A=1 B=0 C=0 Z=1",
+            "text": "A=1, B=0, C=0, Z=1",
             "marks": 1
           },
           {
-            "text": "A=1 B=0 C=1 Z=0",
+            "text": "A=1, B=0, C=1, Z=0",
             "marks": 1
           },
           {
-            "text": "A=1 B=1 C=0 Z=0",
+            "text": "A=1, B=1, C=0, Z=0",
             "marks": 1
           },
           {
-            "text": "A=1 B=1 C=1 Z=0",
+            "text": "A=1, B=1, C=1, Z=0",
             "marks": 1
           }
         ]
@@ -1147,14 +1054,14 @@
       "layout_type": "CodeBlockResponse",
       "structure_data": {
         "language": "pseudocode",
-        "line_count": 62
+        "line_count": 60
       },
       "topic": "8.2",
       "topic_name": "Arrays",
       "answers": {
         "type": "pseudocode",
         "visuals": [],
-        "scoring_rule": "Marks are available for: AO2 (maximum 9 marks); AO3 (maximum 6 marks)",
+        "scoring_rule": "Marks are available for: • AO2 (maximum 9 marks) • AO3 (maximum 6 marks)",
         "marking_points": [
           {
             "text": "AO2 0 marks: No creditable response.",
@@ -1190,13 +1097,13 @@
           }
         ]
       },
-      "difficulty": "High",
-      "bloom_level": "Create",
-      "cognitive_load": "High",
       "objective_marks": {
         "AO2": 9,
         "AO3": 6
-      }
+      },
+      "difficulty": "High",
+      "bloom_level": "Create",
+      "cognitive_load": "High"
     }
   ]
 }

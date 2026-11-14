@@ -57,7 +57,7 @@ That file is the source of truth; this page summarises it. Layouts are described
 | `SimpleSingleBlock` | `line_count` | model |
 | `MultiPartLabeledBlock` | `labels` | model |
 | `NumberedMultiList` | `list_count` | model |
-| `InlineCloze` | `inline_gap_count`, `has_word_bank` | model |
+| `InlineCloze` | `inline_gap_count` (pipeline, counted from `text`), `has_word_bank` | model / pipeline |
 | `MatrixGrid` | `matrix_headers`, `row_count`, `rows` | model |
 | `ValueTraceMatrix` | `matrix_headers`, `row_count`, `rows`, optional `row_header`, `row_values` | model |
 | `FixedRegisterArray` | `register_size` | model |
@@ -75,6 +75,7 @@ The model is never asked to write these:
 - the canonical `command`;
 - `subject_code` and `variant`;
 - `TermDefinitionGrid` contents;
+- `InlineCloze` gap counts;
 - `LineMatching` columns, including relabelling a matching question typed as MatrixGrid or AnnotatedDiagram;
 - `objective_marks`;
 - the derived fields.

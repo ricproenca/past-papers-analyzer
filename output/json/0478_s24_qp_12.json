@@ -3,7 +3,7 @@
   "level": "IGCSE",
   "subject_code": "0478",
   "subject_name": "Computer Science",
-  "variant": "12",
+  "variant": 12,
   "qp": "0478_s24_qp_12.pdf",
   "ms": "0478_s24_ms_12.pdf",
   "total_marks": 75,
@@ -13,38 +13,36 @@
     "mean_marks_per_question": 2.42,
     "median_marks_per_question": 2,
     "max_marks_per_question": 7,
-    "unique_topics_count": 13
+    "unique_topics_count": 12
   },
   "statistics": {
     "marks_by_topic": {
-      "1.3": 3,
-      "1.2": 3,
+      "1.3": 6,
       "2.1": 2,
       "2.3": 5,
       "1.1": 11,
       "4.1": 5,
       "3.1": 8,
       "2.2": 5,
-      "3.4": 1,
-      "5.1": 11,
+      "3.4": 4,
       "5.3": 6,
       "3.3": 8,
-      "6.3": 7
+      "6.3": 7,
+      "5.1": 8
     },
     "count_by_topic": {
-      "1.3": 3,
-      "1.2": 1,
+      "1.3": 4,
       "2.1": 2,
       "2.3": 2,
       "1.1": 5,
       "4.1": 3,
       "3.1": 2,
       "2.2": 1,
-      "3.4": 1,
-      "5.1": 5,
+      "3.4": 3,
       "5.3": 2,
       "3.3": 2,
-      "6.3": 2
+      "6.3": 2,
+      "5.1": 3
     },
     "marks_by_difficulty": {
       "Low": 25,
@@ -69,25 +67,28 @@
       "Create": 1
     },
     "marks_by_cognitive_load": {
-      "Low": 39,
-      "Medium": 31,
+      "Low": 31,
+      "Medium": 39,
       "High": 5
     },
     "count_by_cognitive_load": {
-      "Low": 22,
-      "Medium": 8,
+      "Low": 19,
+      "Medium": 11,
       "High": 1
     },
     "marks_by_objective": {
       "AO1": 58,
-      "AO2": 17
+      "AO2": 16,
+      "AO3": 1
     },
     "count_by_objective": {
       "AO1": 25,
-      "AO2": 6
+      "AO2": 5,
+      "AO3": 1
     },
     "marks_by_layout_type": {
-      "SimpleSingleBlock": 37,
+      "SimpleSingleBlock": 29,
+      "WorkingAnswer": 8,
       "MatrixGrid": 2,
       "NumberedMultiList": 19,
       "InlineCloze": 7,
@@ -95,7 +96,8 @@
       "AnnotatedDiagram": 5
     },
     "count_by_layout_type": {
-      "SimpleSingleBlock": 20,
+      "SimpleSingleBlock": 17,
+      "WorkingAnswer": 3,
       "MatrixGrid": 2,
       "NumberedMultiList": 6,
       "InlineCloze": 1,
@@ -233,19 +235,21 @@
       "marks": 3,
       "visuals": [],
       "page": 2,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 5
+        "working_space": true,
+        "answer_labels": [],
+        "unit": "KiB"
       },
-      "topic": "1.2",
-      "topic_name": "Text, Sound and Images",
+      "topic": "1.3",
+      "topic_name": "Data Storage and Compression",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for each correct stage of working (max 2):",
+        "scoring_rule": "One mark for each correct stage of working (max 2): One mark for the correct answer:",
         "marking_points": [
           {
-            "text": "512 × 512",
+            "text": "512  512",
             "marks": 1
           },
           {
@@ -254,7 +258,7 @@
           },
           {
             "text": "524 288/1024",
-            "marks": 0
+            "marks": 1
           },
           {
             "text": "512 (KiB)",
@@ -264,11 +268,11 @@
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q2a",
-      "text": "Data can be transmitted from one device to another.\n\nTick (✓) one box to show which of the terms is not a method for transmitting data.\n\nA serial\nB simplex\nC parallel\nD parity",
+      "text": "Data can be transmitted from one device to another.\n\nTick (✓) one box to show which of the terms is not a method for transmitting data.",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -351,7 +355,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "Any three from:",
+        "scoring_rule": "Data is encrypted and decrypted using the same key (1 mark) Any three from:",
         "marking_points": [
           {
             "text": "Data is encrypted and decrypted using the same key",
@@ -523,34 +527,36 @@
       "marks": 3,
       "visuals": [],
       "page": 4,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 4
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for evidence of working, for example 2 carries\nOne mark for each correct nibble (Max 2)",
+        "scoring_rule": "One mark for evidence of working, for example 2 carries One mark for each correct nibble (Max 2)",
         "marking_points": [
           {
             "text": "One mark for evidence of working, for example 2 carries",
             "marks": 1
           },
           {
-            "text": "Correct left nibble: 1001",
+            "text": "10010110 (correct first nibble: 1001)",
             "marks": 1
           },
           {
-            "text": "Correct right nibble: 0110",
+            "text": "10010110 (correct second nibble: 0110)",
             "marks": 1
           }
         ]
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3d",
@@ -560,19 +566,21 @@
       "marks": 2,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 4
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for evidence of working\nOne mark for correct binary",
+        "scoring_rule": "One marking for evidence of working For example, flip and add One mark for correct binary",
         "marking_points": [
           {
-            "text": "One marking for evidence of working\nFor example, flip and add",
+            "text": "One mark for evidence of working, for example, flip and add",
             "marks": 1
           },
           {
@@ -583,7 +591,7 @@
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q4a",
@@ -714,7 +722,7 @@
     },
     {
       "id": "Q5a",
-      "text": "Instructions are processed by a central processing unit (CPU) in a computer.\n\nComplete the paragraph about fetching an instruction into the CPU to be processed.\n\nUse the terms from the list. Some of the terms in the list will not be used. You should only use a term once.\n\naddress  arithmetic logic unit (ALU)  binary  control unit (CU)\ncurrent instruction register (CIR)  data  denary  driver\nfetch  interrupt  memory address register (MAR)\nmemory data register (MDR)  random access memory (RAM)\nread only memory (ROM)  secondary storage  signal\n\nThe program counter contains the ……………………………………………………… of the next instruction to be processed; this is then sent to the ……………………………………………………… using the address bus. The address is then sent to the ……………………………………………………….\n\nOnce the address is received, the instruction stored at the location is sent to the ………………………………………………………, using the ……………………………………………………… bus. The instruction is then sent to the ……………………………………………………… that is built into the ……………………………………………………….",
+      "text": "Instructions are processed by a central processing unit (CPU) in a computer.\n\nComplete the paragraph about fetching an instruction into the CPU to be processed.\n\nUse the terms from the list.\n\nSome of the terms in the list will not be used. You should only use a term once.\n\naddress arithmetic logic unit (ALU) binary control unit (CU)\ncurrent instruction register (CIR) data denary driver\nfetch interrupt memory address register (MAR)\nmemory data register (MDR) random access memory (RAM)\nread only memory (ROM) secondary storage signal\n\nThe program counter contains the [blank]\nof the next instruction to be processed; this is then sent to the\n[blank] using the address bus. The address is then\nsent to the [blank] .\nOnce the address is received, the instruction stored at the location is\nsent to the [blank], using the\n[blank] bus. The instruction is then\nsent to the [blank] that is built into the\n[blank] .",
       "command": "Complete",
       "objective": "AO1",
       "marks": 7,
@@ -797,16 +805,11 @@
     },
     {
       "id": "Q6",
-      "text": "The table contains statements about error detection methods.\n\nComplete the table by giving the correct error detection method for each statement.\n\nerror detection method | statement\n(blank) | An odd or even process can be used.\n(blank) | A value is calculated from the data, using an algorithm. This happens before and after the data is transmitted.\n(blank) | A copy of the data is sent back to the sender by the receiver.\n(blank) | Acknowledgement and timeout are used.\n(blank) | A value is appended to data that has been calculated using the data. This value is checked on data entry.",
+      "text": "The table contains statements about error detection methods.\n\nComplete the table by giving the correct error detection method for each statement.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 5,
-      "visuals": [
-        {
-          "type": "table",
-          "description": "Two-column table with 'error detection method' and 'statement' columns; error detection method column is blank for all five rows."
-        }
-      ],
+      "visuals": [],
       "page": 7,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -842,32 +845,27 @@
       "topic_name": "Methods of Error Detection",
       "answers": {
         "type": "text",
-        "visuals": [
-          {
-            "type": "table",
-            "description": "Two-column table with 'error detection method' and 'statement' columns; error detection method column is blank for all five rows."
-          }
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each correct method.",
         "marking_points": [
           {
-            "text": "parity (check/bit/byte/block)",
+            "text": "parity (check/bit/byte/block) — An odd or even process can be used.",
             "marks": 1
           },
           {
-            "text": "checksum",
+            "text": "checksum — A value is calculated from the data using an algorithm. This happens before and after the data is transmitted.",
             "marks": 1
           },
           {
-            "text": "echo check",
+            "text": "echo check — A copy of the data is sent back to the sender by the receiver.",
             "marks": 1
           },
           {
-            "text": "automatic repeat query/request // ARQ",
+            "text": "automatic repeat query/request // ARQ — Acknowledgement and timeout are used.",
             "marks": 1
           },
           {
-            "text": "check digit",
+            "text": "check digit — A value is appended to data that has been calculated using the data. This value is checked on data entry.",
             "marks": 1
           }
         ]
@@ -878,7 +876,7 @@
     },
     {
       "id": "Q7a",
-      "text": "A computer has both a media access control (MAC) address and an internet protocol (IP) address.\n\nTick (✓) one box to show which of the statements is correct about the MAC address.\n\nA It is assigned by the manufacturer.\nB It is assigned by a router.\nC It can be static or dynamic.\nD It is made up of three different parts.",
+      "text": "A computer has both a media access control (MAC) address and an internet protocol (IP) address.\n\nTick (✓) one box to show which of the statements is correct about the MAC address.",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -927,15 +925,15 @@
       "structure_data": {
         "line_count": 1
       },
-      "topic": "5.1",
-      "topic_name": "The Internet and the World Wide Web",
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
       "answers": {
         "type": "text",
         "visuals": [],
         "scoring_rule": null,
         "marking_points": [
           {
-            "text": "An IP address that has numerical values separated by dots that follows the format with a max value of 255 in any xxx\nxxx.xxx.xxx.xxx\nExample: 10.245.3.99",
+            "text": "An IP address that has numerical values separated by dots that follows the format with a max value of 255 in any xxx xxx.xxx.xxx.xxx Example: 10.245.3.99",
             "marks": 1
           }
         ]
@@ -956,8 +954,8 @@
       "structure_data": {
         "list_count": 2
       },
-      "topic": "5.1",
-      "topic_name": "The Internet and the World Wide Web",
+      "topic": "3.4",
+      "topic_name": "Network Hardware",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -1010,7 +1008,9 @@
       "topic_name": "Cyber Security",
       "answers": {
         "type": "diagram",
-        "visuals": [],
+        "visuals": [
+          "DDoS diagram showing perpetrator, bots, botnet, and web server"
+        ],
         "scoring_rule": "One mark for each part of the diagram that shows:",
         "marking_points": [
           {
@@ -1047,7 +1047,7 @@
       "id": "Q8b",
       "text": "A company has a website that is suffering a distributed denial of service (DDoS) attack.\n\nIdentify a solution that can be used to help prevent the DDoS attack being successful.",
       "command": "Identify",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 1,
       "visuals": [],
       "page": 8,

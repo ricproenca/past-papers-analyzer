@@ -7,6 +7,7 @@ transcription errors:
     - command words are reduced to their canonical form
     - TermDefinitionGrid contents are copied from the PDF tables
     - subject code and variant come from the Cambridge file name
+    - InlineCloze gaps are normalised and counted from the text
     - line-matching questions get the LineMatching layout and their two columns
     - text the model wrote that is not on the paper (e.g. a flowchart summary) is removed
     - after Phase 3: an AO split stated by the marking scheme becomes objective_marks
@@ -56,6 +57,28 @@ def fill_term_def_grids(data: dict, pages: list[dict]) -> list[str]:
                 "headers": list(table["headers"]),
             }
     return unmatched
+
+
+_CLOZE_GAP_RE = re.compile(r"(?:\[blank\]|\.{4,}|\u2026{2,})(?:[ \t]*(?:\[blank\]|\.{4,}|\u2026{2,}))*")
+
+
+def normalise_cloze(data: dict) -> list[str]:
+    """InlineCloze: every gap in "text" becomes one "[blank]" (gaps printed as dots or
+    ellipsis characters, and one long gap printed as two runs side by side), and
+    inline_gap_count is set from the text, which is what the page draws. Returns the
+    ids whose count or text changed."""
+    changed = []
+    for q in data.get("questions", []):
+        if q.get("layout_type") != "InlineCloze" or not isinstance(q.get("text"), str):
+            continue
+        text = _CLOZE_GAP_RE.sub("[blank]", q["text"])
+        sd = q["structure_data"] if isinstance(q.get("structure_data"), dict) else {}
+        count = text.count("[blank]")
+        if text != q["text"] or sd.get("inline_gap_count") != count:
+            changed.append(q.get("id"))
+        q["text"] = text
+        q["structure_data"] = dict(sd, inline_gap_count=count)
+    return changed
 
 
 _QP_NAME_RE = re.compile(r"^(\d{4})_[a-z]\d{2}_qp_(\d{2})\.pdf$", re.IGNORECASE)
@@ -150,6 +173,8 @@ def postprocess_phase12(data: dict, pages: list[dict]) -> list[str]:
     canonicalise_commands(data)
     for qid, text in drop_unsourced_text(data, pages):
         print(f"[!] {qid}: removed text that is not on the paper: {text[:100]!r}")
+    for qid in normalise_cloze(data):
+        print(f"[!] {qid}: fill-in-the-gap text normalised; gap count set from the text")
     for qid in fix_line_matching_layouts(data):
         print(f"[!] {qid}: line-matching question re-labelled LineMatching")
     return fill_term_def_grids(data, pages)

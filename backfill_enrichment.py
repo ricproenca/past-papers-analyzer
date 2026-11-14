@@ -1,5 +1,5 @@
 """Bring committed JSONs up to date with the deterministic pipeline steps, without API calls:
-canonical command words, LineMatching layouts, TermDefinitionGrid contents copied from the
+canonical command words, InlineCloze gap counts, LineMatching layouts, TermDefinitionGrid contents copied from the
 PDF (when the source PDF is under input/), objective_marks, enrichment and statistics.
 Idempotent: re-running it leaves the files unchanged."""
 
@@ -15,6 +15,8 @@ def backfill(data: dict) -> list[str]:
     """Apply every deterministic step to one paper in place; returns notes to print."""
     notes = []
     postprocess.canonicalise_commands(data)
+    for qid in postprocess.normalise_cloze(data):
+        notes.append(f"{qid}: fill-in-the-gap count set from the text")
     for qid in postprocess.fix_line_matching_layouts(data):
         notes.append(f"{qid}: relabelled LineMatching")
     if any(q.get("layout_type") == "TermDefinitionGrid" for q in data.get("questions", [])):

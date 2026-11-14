@@ -8,7 +8,7 @@ Every question has exactly one `layout_type`: the shape of its **answer space**,
 
 The model treats these as its primary signal. Fields marked *pipeline* are filled in code (`src/postprocess.py`); the model leaves them out.
 
-Counts are for the 15 committed papers (477 questions: 14 Paper 1, 1 Paper 2).
+Counts are for the 15 committed papers (477 questions: 14 Paper 1, 1 Paper 2). By layout: SimpleSingleBlock 262, NumberedMultiList 68, WorkingAnswer 42, MatrixGrid 37, MultiPartLabeledBlock 17, InlineCloze 14, TermDefinitionGrid 14, AnnotatedDiagram 13, ValueTraceMatrix 4, CodeBlockResponse 3, and 1 each of FixedRegisterArray, LineMatching and LabelledPartResponse.
 
 ---
 
@@ -16,7 +16,7 @@ Counts are for the 15 committed papers (477 questions: 14 Paper 1, 1 Paper 2).
 - **Answer space:** one open answer area of one or more lines. This is the default when nothing else fits.
 - **Signals:** `[LAYOUT:SimpleSingleBlock line_count=N]`, or a single trailing answer line.
 - **`structure_data`:** `{ "line_count": N }`.
-- **Seen:** 298 questions. Most are 1–4-mark State/Give/Explain answers.
+- **Seen:** 262 questions. Most are 1–4-mark State/Give/Explain answers.
 
 ### 2. MultiPartLabeledBlock
 - **Answer space:** separate answer slots, each with a printed label.
@@ -33,12 +33,13 @@ Counts are for the 15 committed papers (477 questions: 14 Paper 1, 1 Paper 2).
 - **Answer space:** gaps inside prose (fill in the blanks), sometimes with a word bank.
 - **Signals:** `[LAYOUT:InlineCloze gap_count=N]`, added once per passage. The gaps appear in `text` as `[blank]`.
 - **`structure_data`:** `{ "inline_gap_count": N, "has_word_bank": true | false }`.
-- **Check:** a warning if `inline_gap_count` differs from the number of `[blank]` markers in `text`.
+- **Gaps:** the pre-processor writes each gap as `[blank]`, including gaps printed with the ellipsis character and gaps at the end of a line; one long gap printed as two dotted runs is one gap. `postprocess.normalise_cloze` then sets `inline_gap_count` from the text (*pipeline*).
 
 ### 5. MatrixGrid
 - **Answer space:** a table answered with ticks. There are two patterns:
   1. **Comparison grid.** Option columns, one tick per row: `{ "matrix_headers": ["Statement", "True", "False"], "row_count": N, "rows": ["statement", …] }`.
   2. **Single-select MCQ.** "Tick (✓) one box", with options A/B/C/… listed below: `{ "matrix_headers": ["Option", "Tick"], "row_count": N, "rows": ["A <statement>", "B <statement>", …] }`.
+- **Circle questions:** "Circle three …" with a printed list of options and no letters is the MCQ pattern too, with headers `["Option", "Select"]` and one row per option.
 - **Rules for the MCQ pattern:**
   - It has exactly two headers, and the right one is Tick, Select, Choose or Mark.
   - Option letters never go in the headers.

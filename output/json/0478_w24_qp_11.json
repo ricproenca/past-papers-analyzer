@@ -3,7 +3,7 @@
   "level": "IGCSE",
   "subject_code": "0478",
   "subject_name": "Computer Science",
-  "variant": "11",
+  "variant": 11,
   "qp": "0478_w24_qp_11.pdf",
   "ms": "0478_w24_ms_11.pdf",
   "total_marks": 75,
@@ -13,7 +13,7 @@
     "mean_marks_per_question": 2.21,
     "median_marks_per_question": 2,
     "max_marks_per_question": 7,
-    "unique_topics_count": 12
+    "unique_topics_count": 11
   },
   "statistics": {
     "marks_by_topic": {
@@ -23,8 +23,7 @@
       "1.2": 1,
       "1.1": 11,
       "2.1": 11,
-      "3.1": 11,
-      "6.1": 1,
+      "3.1": 12,
       "4.2": 8,
       "4.1": 4,
       "5.2": 4,
@@ -37,8 +36,7 @@
       "1.2": 1,
       "1.1": 7,
       "2.1": 4,
-      "3.1": 5,
-      "6.1": 1,
+      "3.1": 6,
       "4.2": 3,
       "4.1": 3,
       "5.2": 1,
@@ -46,79 +44,89 @@
     },
     "marks_by_difficulty": {
       "Low": 30,
-      "Medium": 41,
-      "High": 4
+      "Medium": 30,
+      "High": 15
     },
     "count_by_difficulty": {
+      "Low": 20,
+      "Medium": 11,
+      "High": 3
+    },
+    "marks_by_bloom_level": {
+      "Remember": 34,
+      "Understand": 21,
+      "Apply": 16,
+      "Create": 4
+    },
+    "count_by_bloom_level": {
+      "Remember": 21,
+      "Understand": 6,
+      "Apply": 6,
+      "Create": 1
+    },
+    "marks_by_cognitive_load": {
+      "Low": 40,
+      "Medium": 31,
+      "High": 4
+    },
+    "count_by_cognitive_load": {
       "Low": 20,
       "Medium": 13,
       "High": 1
     },
-    "marks_by_bloom_level": {
-      "Remember": 41,
-      "Understand": 21,
-      "Apply": 9,
-      "Create": 4
-    },
-    "count_by_bloom_level": {
-      "Remember": 22,
-      "Understand": 6,
-      "Apply": 5,
-      "Create": 1
-    },
-    "marks_by_cognitive_load": {
-      "Low": 43,
-      "Medium": 28,
-      "High": 4
-    },
-    "count_by_cognitive_load": {
-      "Low": 23,
-      "Medium": 10,
-      "High": 1
-    },
     "marks_by_objective": {
-      "AO1": 62,
+      "AO1": 52,
+      "AO3": 10,
       "AO2": 13
     },
     "count_by_objective": {
-      "AO1": 29,
-      "AO2": 5
+      "AO1": 23,
+      "AO3": 3,
+      "AO2": 8
     },
     "marks_by_layout_type": {
       "MatrixGrid": 2,
-      "NumberedMultiList": 17,
-      "SimpleSingleBlock": 41,
+      "NumberedMultiList": 13,
+      "SimpleSingleBlock": 38,
       "MultiPartLabeledBlock": 4,
+      "WorkingAnswer": 7,
       "AnnotatedDiagram": 4,
       "InlineCloze": 7
     },
     "count_by_layout_type": {
       "MatrixGrid": 2,
-      "NumberedMultiList": 8,
-      "SimpleSingleBlock": 21,
+      "NumberedMultiList": 6,
+      "SimpleSingleBlock": 18,
       "MultiPartLabeledBlock": 1,
+      "WorkingAnswer": 5,
       "AnnotatedDiagram": 1,
       "InlineCloze": 1
     },
     "marks_by_command": {
-      "Identify": 16,
+      "Tick": 2,
       "Give": 16,
+      "Identify": 11,
       "Explain": 8,
       "Convert": 6,
-      "Calculate": 3,
+      "Add": 3,
       "Describe": 13,
-      "State": 9,
-      "Sketch": 4
+      "Circle": 3,
+      "State": 2,
+      "Draw": 4,
+      "Complete": 7
     },
     "count_by_command": {
-      "Identify": 8,
+      "Tick": 2,
       "Give": 11,
+      "Identify": 5,
       "Explain": 3,
       "Convert": 4,
-      "Calculate": 1,
+      "Add": 1,
       "Describe": 3,
-      "State": 3,
-      "Sketch": 1
+      "Circle": 1,
+      "State": 2,
+      "Draw": 1,
+      "Complete": 1
     },
     "marks_by_answer_type": {
       "MCQ": 2,
@@ -134,8 +142,8 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "The size of a file can be measured using different units. Tick (✓) one box to show which of these is not a unit of measurement for a file.\nA bit\nB bot\nC nibble\nD byte",
-      "command": "Identify",
+      "text": "The size of a file can be measured using different units.\n\nTick (✓) one box to show which of these is not a unit of measurement for a file.",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -173,7 +181,7 @@
     },
     {
       "id": "Q1b_i",
-      "text": "The size of a file can be reduced by compressing it. Give two types of compression that can be used to reduce the size of a file.\n1\n2",
+      "text": "The size of a file can be measured using different units.\n\nThe size of a file can be reduced by compressing it.\n\nGive two types of compression that can be used to reduce the size of a file.",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -206,7 +214,7 @@
     },
     {
       "id": "Q1b_ii",
-      "text": "The size of a file can be reduced by compressing it. Give three benefits of reducing the size of a file for storage and transmission.\n1\n2\n3",
+      "text": "The size of a file can be measured using different units.\n\nThe size of a file can be reduced by compressing it.\n\nGive three benefits of reducing the size of a file for storage and transmission.",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -251,7 +259,7 @@
     },
     {
       "id": "Q2a",
-      "text": "A student has a smartphone. Identify two input devices that can be built into the smartphone.\n1\n2",
+      "text": "A student has a smartphone.\n\nIdentify two input devices that can be built into the smartphone.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -300,7 +308,7 @@
     },
     {
       "id": "Q2b",
-      "text": "A student has a smartphone. Identify two output devices that can be built into the smartphone.\n1\n2",
+      "text": "A student has a smartphone.\n\nIdentify two output devices that can be built into the smartphone.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -341,7 +349,7 @@
     },
     {
       "id": "Q2c_i",
-      "text": "A student has a smartphone. The smartphone contains secondary storage. Explain the purpose of the secondary storage in the smartphone.",
+      "text": "A student has a smartphone.\n\nThe smartphone contains secondary storage.\n\nExplain the purpose of the secondary storage in the smartphone.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 2,
@@ -367,7 +375,11 @@
             "marks": 1
           },
           {
-            "text": "To allow software to be downloaded/installed on the smartphone // To store user files",
+            "text": "To allow software to be downloaded/installed on the smartphone //",
+            "marks": 1
+          },
+          {
+            "text": "To store user files",
             "marks": 1
           },
           {
@@ -382,9 +394,9 @@
     },
     {
       "id": "Q2c_ii",
-      "text": "A student has a smartphone. The smartphone contains secondary storage. Identify the most suitable type of secondary storage for the smartphone. Explain your choice.\nSecondary storage type\nExplanation",
+      "text": "A student has a smartphone.\n\nThe smartphone contains secondary storage.\n\nIdentify the most suitable type of secondary storage for the smartphone.\nExplain your choice.",
       "command": "Identify",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 4,
       "visuals": [],
       "page": 3,
@@ -400,10 +412,10 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for: Solid state\nAny Three from:",
+        "scoring_rule": "One mark for: Solid state Any Three from:",
         "marking_points": [
           {
-            "text": "Secondary storage type: Solid state",
+            "text": "Solid state",
             "marks": 1
           },
           {
@@ -482,7 +494,7 @@
     },
     {
       "id": "Q3a",
-      "text": "A user enters text into a computer system, using a keyboard. An American standard code for information interchange (ASCII) character set is used to convert the text to binary. Identify one other character set that could be used to convert the text to binary.",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nIdentify one other character set that could be used to convert the text to binary.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 1,
@@ -511,15 +523,20 @@
     },
     {
       "id": "Q3b_i",
-      "text": "A user enters text into a computer system, using a keyboard. An ASCII character set is used to convert the text to binary. The character 'A' is represented by the denary ASCII number 65. The character 'm' is represented by the denary ASCII number 109. Convert the two denary ASCII numbers to binary.\n65\n109",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'A' is represented by the denary ASCII number 65.\nThe character 'm' is represented by the denary ASCII number 109.\n\nConvert the two denary ASCII numbers to binary.\n\n65\n109",
       "command": "Convert",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 4,
-      "layout_type": "NumberedMultiList",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "list_count": 2
+        "working_space": true,
+        "answer_labels": [
+          "65",
+          "109"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -529,11 +546,11 @@
         "scoring_rule": null,
         "marking_points": [
           {
-            "text": "65: (0)1000001",
+            "text": "(0)1000001",
             "marks": 1
           },
           {
-            "text": "109: (0)1101101",
+            "text": "(0)1101101",
             "marks": 1
           }
         ]
@@ -544,15 +561,20 @@
     },
     {
       "id": "Q3b_ii",
-      "text": "A user enters text into a computer system, using a keyboard. An ASCII character set is used to convert the text to binary. The character 'A' is represented by the denary ASCII number 65. The character 'm' is represented by the denary ASCII number 109. Convert the two denary ASCII numbers to hexadecimal.\n65\n109",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'A' is represented by the denary ASCII number 65.\nThe character 'm' is represented by the denary ASCII number 109.\n\nConvert the two denary ASCII numbers to hexadecimal.\n\n65\n109",
       "command": "Convert",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 4,
-      "layout_type": "NumberedMultiList",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "list_count": 2
+        "working_space": true,
+        "answer_labels": [
+          "65",
+          "109"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -562,11 +584,11 @@
         "scoring_rule": null,
         "marking_points": [
           {
-            "text": "65: 41",
+            "text": "41",
             "marks": 1
           },
           {
-            "text": "109: 6D",
+            "text": "6D",
             "marks": 1
           }
         ]
@@ -577,15 +599,17 @@
     },
     {
       "id": "Q3c_i",
-      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. Convert the binary ASCII number to denary.",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'y' is represented by the binary ASCII number 01111001.\n\nConvert the binary ASCII number to denary.",
       "command": "Convert",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 1
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -602,19 +626,21 @@
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3c_ii",
-      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. Convert the binary ASCII number to hexadecimal.",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'y' is represented by the binary ASCII number 01111001.\n\nConvert the binary ASCII number to hexadecimal.",
       "command": "Convert",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 1
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -631,19 +657,21 @@
       },
       "difficulty": "Medium",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3c_iii",
-      "text": "A user enters text into a computer system, using a keyboard. The character 'y' is represented by the binary ASCII number 01111001. A logical right shift of two places is performed on the binary ASCII number 01111001. Give the binary number after the logical right shift of two places is performed.",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'y' is represented by the binary ASCII number 01111001.\n\nA logical right shift of two places is performed on the binary ASCII number 01111001.\nGive the binary number after the logical right shift of two places is performed.",
       "command": "Give",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 1,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 1
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -660,13 +688,13 @@
       },
       "difficulty": "Low",
       "bloom_level": "Remember",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q3d",
-      "text": "A user enters text into a computer system, using a keyboard. The character 'T' is represented by the binary ASCII number 01010100. The character 't' is represented by the binary ASCII number 01110100. Add the two binary numbers using binary addition. Give your answer in binary. Show all your working.",
-      "command": "Calculate",
-      "objective": "AO1",
+      "text": "A user enters text into a computer system, using a keyboard.\nAn American standard code for information interchange (ASCII) character set is used to convert the text to binary.\n\nThe character 'T' is represented by the binary ASCII number 01010100.\nThe character 't' is represented by the binary ASCII number 01110100.\n\nAdd the two binary numbers using binary addition. Give your answer in binary. Show all your working.",
+      "command": "Add",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 6,
@@ -679,18 +707,18 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for correct working, for example: carries\nOne mark for each correct nibble.",
+        "scoring_rule": "One mark for correct working, for example: carries One mark for each correct nibble.",
         "marking_points": [
           {
-            "text": "One mark for correct working, for example: carries\n111 1\n01010100\n01110100",
+            "text": "One mark for correct working, for example: carries 111 1",
             "marks": 1
           },
           {
-            "text": "Correct upper nibble: 1100 (from 11001000)",
+            "text": "1100 (upper nibble of 11001000)",
             "marks": 1
           },
           {
-            "text": "Correct lower nibble: 1000 (from 11001000)",
+            "text": "1000 (lower nibble of 11001000)",
             "marks": 1
           }
         ]
@@ -701,7 +729,7 @@
     },
     {
       "id": "Q4a",
-      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The employees will need to use their devices to send data to each other and share files. The company decides to send data across the network using packet switching. An employee sends an email to another employee. The email is broken down into packets. Describe the structure of a packet of data for the email.",
+      "text": "A company decides to create a network for its devices.\nAll the company devices are within a single room.\nThe employees will need to use their devices to send data to each other and share files.\nThe company decides to send data across the network using packet switching.\n\nAn employee sends an email to another employee. The email is broken down into packets.\nDescribe the structure of a packet of data for the email.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 4,
@@ -754,9 +782,9 @@
     },
     {
       "id": "Q4b_i",
-      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Explain the reasons why the company have chosen this method of data transmission.",
+      "text": "A company decides to create a network for its devices.\nAll the company devices are within a single room.\nThe employees will need to use their devices to send data to each other and share files.\nThe company decides to send data across the network using packet switching.\n\nThe company decides to use parallel full-duplex data transmission to send the data across the network.\n\nExplain the reasons why the company have chosen this method of data transmission.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 4,
       "visuals": [],
       "page": 7,
@@ -803,9 +831,9 @@
     },
     {
       "id": "Q4b_ii",
-      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Give two drawbacks of the company using this method of data transmission.\n1\n2",
+      "text": "A company decides to create a network for its devices.\nAll the company devices are within a single room.\nThe employees will need to use their devices to send data to each other and share files.\nThe company decides to send data across the network using packet switching.\n\nThe company decides to use parallel full-duplex data transmission to send the data across the network.\n\nGive two drawbacks of the company using this method of data transmission.",
       "command": "Give",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 2,
       "visuals": [],
       "page": 7,
@@ -844,7 +872,7 @@
     },
     {
       "id": "Q4b_iii",
-      "text": "A company decides to create a network for its devices. All the company devices are within a single room. The company decides to use parallel full-duplex data transmission to send the data across the network. Give one other method of data transmission the company could have chosen.",
+      "text": "A company decides to create a network for its devices.\nAll the company devices are within a single room.\nThe employees will need to use their devices to send data to each other and share files.\nThe company decides to send data across the network using packet switching.\n\nThe company decides to use parallel full-duplex data transmission to send the data across the network.\n\nGive one other method of data transmission the company could have chosen.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -889,7 +917,7 @@
     },
     {
       "id": "Q5a",
-      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Give the name of two registers that are used in the fetch stage of the cycle.\n1\n2",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle.\n\nGive the name of two registers that are used in the fetch stage of the cycle.",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -930,7 +958,7 @@
     },
     {
       "id": "Q5b",
-      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Describe what happens at the decode stage of the cycle.",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle.\n\nDescribe what happens at the decode stage of the cycle.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 3,
@@ -975,7 +1003,7 @@
     },
     {
       "id": "Q5c",
-      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Give one register in the CPU that is used in the execute stage of the cycle.",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle.\n\nGive one register in the CPU that is used in the execute stage of the cycle.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1012,8 +1040,8 @@
     },
     {
       "id": "Q5d",
-      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. Buses are used in the CPU to transmit data through the FDE cycle. Circle three buses that are used in the CPU.\nfetch   address   register   execute\ndata   decode   calculation\ncentral   value   binary   control",
-      "command": "Identify",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle.\n\nBuses are used in the CPU to transmit data through the FDE cycle.\n\nCircle three buses that are used in the CPU.\n\nfetch address register execute\ndata decode calculation\ncentral value binary control",
+      "command": "Circle",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
@@ -1049,7 +1077,7 @@
     },
     {
       "id": "Q5e",
-      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle. A user changes their CPU from one with a dual core and a clock speed of 2.4 GHz to one with a dual core and a clock speed of 3.5 GHz. Explain the effect this change will have on the performance of the CPU.",
+      "text": "A central processing unit (CPU) performs the fetch–decode–execute (FDE) cycle.\n\nA user changes their CPU from one with a dual core and a clock speed of 2.4 GHz to one with a dual core and a clock speed of 3.5 GHz.\n\nExplain the effect this change will have on the performance of the CPU.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 2,
@@ -1082,7 +1110,7 @@
     },
     {
       "id": "Q6a",
-      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. State what is meant by an embedded system.",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.\n\nState what is meant by an embedded system.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1092,8 +1120,8 @@
       "structure_data": {
         "line_count": 1
       },
-      "topic": "6.1",
-      "topic_name": "Automated Systems",
+      "topic": "3.1",
+      "topic_name": "Computer Architecture",
       "answers": {
         "type": "text",
         "visuals": [],
@@ -1119,7 +1147,7 @@
     },
     {
       "id": "Q6b",
-      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. Give the name of the translator that will be used for the program.",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.\n\nGive the name of the translator that will be used for the program.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1148,7 +1176,7 @@
     },
     {
       "id": "Q6c",
-      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. The washing machine needs to display error codes on a small screen if there is a problem with the washing machine. The error codes are stored as binary. The binary numbers are too long to be displayed on the washing machine. State how the error codes could be reduced in length to be displayed on the screen.",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.\n\nThe washing machine needs to display error codes on a small screen if there is a problem with the washing machine.\nThe error codes are stored as binary. The binary numbers are too long to be displayed on the washing machine.\n\nState how the error codes could be reduced in length to be displayed on the screen.",
       "command": "State",
       "objective": "AO2",
       "marks": 1,
@@ -1185,7 +1213,7 @@
     },
     {
       "id": "Q6d",
-      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. Give one benefit to the programmer of using assembly language to write the program.",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.\n\nGive one benefit to the programmer of using assembly language to write the program.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1222,7 +1250,7 @@
     },
     {
       "id": "Q6e",
-      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine. The programmer uses an integrated development environment (IDE) to write the program. A built-in translator to convert the program into machine code is one way that the IDE helps the computer programmer. Describe three other ways the IDE can help the programmer.",
+      "text": "A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.\n\nThe programmer uses an integrated development environment (IDE) to write the program.\nA built-in translator to convert the program into machine code is one way that the IDE helps the computer programmer.\n\nDescribe three other ways the IDE can help the programmer.",
       "command": "Describe",
       "objective": "AO1",
       "marks": 6,
@@ -1295,8 +1323,8 @@
     },
     {
       "id": "Q7a_i",
-      "text": "A computer has an operating system. The operating system provides several functions. Tick (✓) one box to show which of these is not a function of the operating system.\nA managing files\nB providing an interface\nC handling interrupts\nD loading the bootstrap",
-      "command": "Identify",
+      "text": "A computer has an operating system.\n\nThe operating system provides several functions.\n\nTick (✓) one box to show which of these is not a function of the operating system.",
+      "command": "Tick",
       "objective": "AO1",
       "marks": 1,
       "visuals": [],
@@ -1334,7 +1362,7 @@
     },
     {
       "id": "Q7a_ii",
-      "text": "A computer has an operating system. The operating system provides several functions. Identify one other function of an operating system. Describe the purpose of this function.",
+      "text": "A computer has an operating system.\n\nThe operating system provides several functions.\n\nIdentify one other function of an operating system.\nDescribe the purpose of this function.",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -1407,7 +1435,7 @@
     },
     {
       "id": "Q7b",
-      "text": "A computer has an operating system. Give the name of the set of instructions that are provided to the operating system to allow it to run.",
+      "text": "A computer has an operating system.\n\nGive the name of the set of instructions that are provided to the operating system to allow it to run.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -1449,7 +1477,7 @@
     {
       "id": "Q8",
       "text": "Draw and annotate a diagram to show how a payment transaction is made using digital currency and blockchain.",
-      "command": "Sketch",
+      "command": "Draw",
       "objective": "AO1",
       "marks": 4,
       "visuals": [],
@@ -1463,7 +1491,9 @@
       "topic_name": "Digital Currency",
       "answers": {
         "type": "diagram",
-        "visuals": [],
+        "visuals": [
+          "diagram showing digital currency and blockchain payment transaction"
+        ],
         "scoring_rule": "One mark for each correct part.",
         "marking_points": [
           {
@@ -1508,21 +1538,21 @@
           }
         ]
       },
-      "difficulty": "Medium",
+      "difficulty": "High",
       "bloom_level": "Create",
       "cognitive_load": "High"
     },
     {
       "id": "Q9a",
-      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients. Complete the paragraph about the operation of the expert system. Use the terms from the list. Some of the terms in the list will not be used. Some terms may be used more than once.\n[word bank: artificial, binary, central processing unit (CPU), data, inference engine, interface, knowledge base, primary storage, process, real, read only memory (ROM), rule base]\n\nAn expert system is a type of [blank] intelligence. The doctor will type data about the symptoms of the illness into the [blank]. The [blank] will decide which questions to ask the doctor. It will do this by linking the facts in the [blank] to the [blank]. The [blank] [blank] will decide on a diagnosis and this will be output on the [blank].",
-      "command": "State",
+      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients.\n\nComplete the paragraph about the operation of the expert system.\nUse the terms from the list.\nSome of the terms in the list will not be used. Some terms may be used more than once.\n\nartificial binary central processing unit (CPU) data\ninference engine interface knowledge base primary storage\nprocess real read only memory (ROM) rule base\n\nAn expert system is a type of [blank] intelligence. The doctor will type data about the symptoms of the illness into the [blank] . The [blank] will decide which questions to ask the doctor. It will do this by linking the facts in the [blank] to the [blank] . The [blank] will decide on a diagnosis and this will be output on the [blank] .",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 7,
       "visuals": [],
       "page": 12,
       "layout_type": "InlineCloze",
       "structure_data": {
-        "inline_gap_count": 8,
+        "inline_gap_count": 7,
         "has_word_bank": true
       },
       "topic": "6.3",
@@ -1562,13 +1592,13 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Remember",
+      "difficulty": "High",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {
       "id": "Q9b",
-      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients. The expert system has the ability to automatically adapt its own processes and data. Give the name of this ability.",
+      "text": "A doctor's surgery has an expert system that helps diagnose the illnesses of its patients.\n\nThe expert system has the ability to automatically adapt its own processes and data.\nGive the name of this ability.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,

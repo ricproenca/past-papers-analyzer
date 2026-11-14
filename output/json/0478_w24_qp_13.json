@@ -3,7 +3,7 @@
   "level": "IGCSE",
   "subject_code": "0478",
   "subject_name": "Computer Science",
-  "variant": "13",
+  "variant": 13,
   "qp": "0478_w24_qp_13.pdf",
   "ms": "0478_w24_ms_13.pdf",
   "total_marks": 75,
@@ -67,39 +67,41 @@
       "Understand": 6
     },
     "marks_by_cognitive_load": {
-      "Low": 39,
-      "Medium": 32,
+      "Low": 35,
+      "Medium": 36,
       "High": 4
     },
     "count_by_cognitive_load": {
-      "Low": 19,
-      "Medium": 10,
+      "Low": 18,
+      "Medium": 11,
       "High": 1
     },
     "marks_by_objective": {
-      "AO1": 55,
-      "AO2": 18,
-      "AO3": 2
+      "AO1": 44,
+      "AO2": 26,
+      "AO3": 5
     },
     "count_by_objective": {
-      "AO1": 23,
-      "AO2": 6,
-      "AO3": 1
+      "AO1": 19,
+      "AO2": 9,
+      "AO3": 2
     },
     "marks_by_layout_type": {
-      "MatrixGrid": 2,
+      "MatrixGrid": 5,
       "MultiPartLabeledBlock": 3,
-      "SimpleSingleBlock": 37,
-      "NumberedMultiList": 16,
+      "SimpleSingleBlock": 30,
+      "WorkingAnswer": 7,
+      "NumberedMultiList": 13,
       "AnnotatedDiagram": 4,
       "TermDefinitionGrid": 6,
       "InlineCloze": 7
     },
     "count_by_layout_type": {
-      "MatrixGrid": 2,
+      "MatrixGrid": 3,
       "MultiPartLabeledBlock": 1,
-      "SimpleSingleBlock": 17,
-      "NumberedMultiList": 7,
+      "SimpleSingleBlock": 15,
+      "WorkingAnswer": 2,
+      "NumberedMultiList": 6,
       "AnnotatedDiagram": 1,
       "TermDefinitionGrid": 1,
       "InlineCloze": 1
@@ -107,20 +109,24 @@
     "marks_by_command": {
       "Tick": 2,
       "Give": 21,
-      "Calculate": 8,
+      "Calculate": 4,
+      "Add": 4,
       "State": 3,
       "Explain": 16,
-      "Identify": 5,
+      "Circle": 3,
+      "Identify": 2,
       "Complete": 17,
       "Describe": 3
     },
     "count_by_command": {
       "Tick": 2,
       "Give": 11,
-      "Calculate": 3,
+      "Calculate": 2,
+      "Add": 1,
       "State": 3,
       "Explain": 5,
-      "Identify": 2,
+      "Circle": 1,
+      "Identify": 1,
       "Complete": 3,
       "Describe": 1
     },
@@ -138,7 +144,7 @@
   "questions": [
     {
       "id": "Q1a",
-      "text": "Data can be measured using different units of storage. Tick (✓) one box to show which of the following is the largest unit of data storage.\nA tebibyte (TiB)\nB pebibyte (PiB)\nC mebibyte (MiB)\nD gibibyte (GiB)",
+      "text": "Data can be measured using different units of storage.\n\nTick (✓) one box to show which of the following is the largest unit of data storage.\n\nA tebibyte (TiB)\nB pebibyte (PiB)\nC mebibyte (MiB)\nD gibibyte (GiB)",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -148,7 +154,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Select"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -177,7 +183,7 @@
     },
     {
       "id": "Q1b",
-      "text": "A computer has primary storage. Give one example of primary storage. Explain the purpose of your chosen example.\nExample\nExplanation",
+      "text": "Data can be measured using different units of storage.\n\nA computer has primary storage.\n\nGive one example of primary storage.\nExplain the purpose of your chosen example.\n\nExample\nExplanation",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -265,9 +271,9 @@
     },
     {
       "id": "Q1c_i",
-      "text": "All data is converted to binary to be processed by a computer. Calculate the binary number for the denary number 175. Show all your working.",
+      "text": "Data can be measured using different units of storage.\n\nAll data is converted to binary to be processed by a computer.\n\nCalculate the binary number for the denary number 175. Show all your working.",
       "command": "Calculate",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 2,
@@ -280,7 +286,7 @@
       "answers": {
         "type": "text",
         "visuals": [],
-        "scoring_rule": "One mark for valid working, for example: 128 + 32 + 8 + 4 + 2 + 1",
+        "scoring_rule": null,
         "marking_points": [
           {
             "text": "One mark for valid working, for example: 128 + 32 + 8 + 4 + 2 + 1",
@@ -298,15 +304,21 @@
     },
     {
       "id": "Q1c_ii",
-      "text": "All data is converted to binary to be processed by a computer. Give the binary number for the given hexadecimal numbers.\n15\n2D\n091\nWorking space",
+      "text": "Data can be measured using different units of storage.\n\nAll data is converted to binary to be processed by a computer.\n\nGive the binary number for the given hexadecimal numbers.\n\n15\n2D\n091",
       "command": "Give",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 3,
       "visuals": [],
       "page": 3,
-      "layout_type": "NumberedMultiList",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "list_count": 3
+        "working_space": true,
+        "answer_labels": [
+          "15",
+          "2D",
+          "091"
+        ],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -335,15 +347,17 @@
     },
     {
       "id": "Q1d",
-      "text": "Binary integers can be added together. Add the two binary integers using binary addition. Show all your working. Give your answer in binary.\n  1 1 1 0 0 0 1 1\n+ 1 1 0 0 1 1 0 0",
-      "command": "Calculate",
-      "objective": "AO1",
+      "text": "Data can be measured using different units of storage.\n\nBinary integers can be added together.\n\nAdd the two binary integers using binary addition. Show all your working. Give your answer in binary.\n\n  1 1 1 0 0 0 1 1\n+ 1 1 0 0 1 1 0 0",
+      "command": "Add",
+      "objective": "AO2",
       "marks": 4,
       "visuals": [],
       "page": 3,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "WorkingAnswer",
       "structure_data": {
-        "line_count": 4
+        "working_space": true,
+        "answer_labels": [],
+        "unit": null
       },
       "topic": "1.1",
       "topic_name": "Number Systems",
@@ -353,8 +367,8 @@
         "scoring_rule": "One mark for each correct nibble. One mark for method of working, for example: carries. One mark for identification of overflow.",
         "marking_points": [
           {
-            "text": "One mark for each correct nibble: 1010 1111",
-            "marks": 2
+            "text": "One mark for each correct nibble: 1010111 1",
+            "marks": 1
           },
           {
             "text": "One mark for method of working, for example: carries",
@@ -363,18 +377,22 @@
           {
             "text": "One mark for identification of overflow",
             "marks": 1
+          },
+          {
+            "text": "1 11100011 + 11001100 1 1010111 1",
+            "marks": 1
           }
         ]
       },
       "difficulty": "High",
       "bloom_level": "Apply",
-      "cognitive_load": "Low"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q1e",
-      "text": "Calculate the denary number for the two's complement binary integer 10001110. Show all your working.",
+      "text": "Data can be measured using different units of storage.\n\nCalculate the denary number for the two's complement binary integer 10001110. Show all your working.",
       "command": "Calculate",
-      "objective": "AO1",
+      "objective": "AO2",
       "marks": 2,
       "visuals": [],
       "page": 3,
@@ -405,7 +423,7 @@
     },
     {
       "id": "Q2a",
-      "text": "An employee has a report that they need to email to their employer. The employee compresses the report file before emailing it. State the effect the compression has on the report file.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nState the effect the compression has on the report file.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -434,7 +452,7 @@
     },
     {
       "id": "Q2b",
-      "text": "An employee has a report that they need to email to their employer. The employee compresses the report file before emailing it. Give two benefits of compressing the report file before emailing it.\n1\n2",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nGive two benefits of compressing the report file before emailing it.\n\n1\n2",
       "command": "Give",
       "objective": "AO2",
       "marks": 2,
@@ -479,9 +497,9 @@
     },
     {
       "id": "Q2c",
-      "text": "An employee has a report that they need to email to their employer. The employee decides to use lossless compression to compress the file. Explain why lossy compression is not suitable.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe employee decides to use lossless compression to compress the file.\n\nExplain why lossy compression is not suitable.",
       "command": "Explain",
-      "objective": "AO2",
+      "objective": "AO3",
       "marks": 3,
       "visuals": [],
       "page": 4,
@@ -524,7 +542,7 @@
     },
     {
       "id": "Q2d_i",
-      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. State what Unicode is an example of.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nWhen the employee enters the email address, the computer uses Unicode to convert the email address to binary.\n\nState what Unicode is an example of.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -553,7 +571,7 @@
     },
     {
       "id": "Q2d_ii",
-      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. Give two advantages of the computer using Unicode instead of American standard code for information interchange (ASCII).\n1\n2",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nWhen the employee enters the email address, the computer uses Unicode to convert the email address to binary.\n\nGive two advantages of the computer using Unicode instead of American standard code for information interchange (ASCII).\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -590,7 +608,7 @@
     },
     {
       "id": "Q2d_iii",
-      "text": "When the employee enters the email address, the computer uses Unicode to convert the email address to binary. Give one disadvantage of the computer using Unicode instead of ASCII.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nWhen the employee enters the email address, the computer uses Unicode to convert the email address to binary.\n\nGive one disadvantage of the computer using Unicode instead of ASCII.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -619,15 +637,30 @@
     },
     {
       "id": "Q2e_i",
-      "text": "The report is broken down into packets to be emailed. Circle three items of data that can be found in the packet header.\ntrailer   originator's address   payload\ninterrupt   input   operating system\ndestination address   antivirus   packet number",
-      "command": "Identify",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe report is broken down into packets to be emailed.\n\nCircle three items of data that can be found in the packet header.\n\ntrailer   originator's address   payload\ninterrupt   input   operating system\ndestination address   antivirus   packet number",
+      "command": "Circle",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],
       "page": 5,
-      "layout_type": "SimpleSingleBlock",
+      "layout_type": "MatrixGrid",
       "structure_data": {
-        "line_count": 1
+        "matrix_headers": [
+          "Option",
+          "Select"
+        ],
+        "row_count": 9,
+        "rows": [
+          "trailer",
+          "originator's address",
+          "payload",
+          "interrupt",
+          "input",
+          "operating system",
+          "destination address",
+          "antivirus",
+          "packet number"
+        ]
       },
       "topic": "2.1",
       "topic_name": "Types and Methods of Data Transmission",
@@ -656,7 +689,7 @@
     },
     {
       "id": "Q2e_ii",
-      "text": "The report is broken down into packets to be emailed. Each packet is sent along a different path from the employee's device to the employer's device. Tick (✓) one box to show the name of this method of sending packets.\nA packet networking\nB packet circuiting\nC packet switching\nD packet transferring",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe report is broken down into packets to be emailed.\n\nEach packet is sent along a different path from the employee's device to the employer's device.\n\nTick (✓) one box to show the name of this method of sending packets.\n\nA packet networking\nB packet circuiting\nC packet switching\nD packet transferring",
       "command": "Tick",
       "objective": "AO1",
       "marks": 1,
@@ -666,7 +699,7 @@
       "structure_data": {
         "matrix_headers": [
           "Option",
-          "Select"
+          "Tick"
         ],
         "row_count": 4,
         "rows": [
@@ -695,7 +728,7 @@
     },
     {
       "id": "Q2e_iii",
-      "text": "The report is broken down into packets to be emailed. A hardware device is used to control the path that each packet takes. Give the name of this hardware device.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe report is broken down into packets to be emailed.\n\nA hardware device is used to control the path that each packet takes.\n\nGive the name of this hardware device.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -724,7 +757,7 @@
     },
     {
       "id": "Q2f_i",
-      "text": "The email data is checked for errors after it has been transmitted, using an echo check and a checksum. Explain how the echo check is used to check for errors in the email data.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe email data is checked for errors after it has been transmitted, using an echo check and a checksum.\n\nExplain how the echo check is used to check for errors in the email data.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 3,
@@ -761,7 +794,7 @@
     },
     {
       "id": "Q2f_ii",
-      "text": "The email data is checked for errors after it has been transmitted using a checksum. In the checksum error detection method, two values are compared after transmission. If the values do not match, an error is detected. Explain why the values not matching would show an error has occurred.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe email data is checked for errors after it has been transmitted, using an echo check and a checksum.\n\nIn the checksum error detection method, two values are compared after transmission. If the values do not match, an error is detected.\n\nExplain why the values not matching would show an error has occurred.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 2,
@@ -798,7 +831,7 @@
     },
     {
       "id": "Q2g_i",
-      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give one reason why the email data is encrypted.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe email data is encrypted using asymmetric encryption before it is sent.\n\nGive one reason why the email data is encrypted.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -835,7 +868,7 @@
     },
     {
       "id": "Q2g_ii",
-      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give one similarity between symmetric encryption and asymmetric encryption.",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe email data is encrypted using asymmetric encryption before it is sent.\n\nGive one similarity between symmetric encryption and asymmetric encryption.",
       "command": "Give",
       "objective": "AO1",
       "marks": 1,
@@ -872,7 +905,7 @@
     },
     {
       "id": "Q2g_iii",
-      "text": "The email data is encrypted using asymmetric encryption before it is sent. Give two differences between symmetric encryption and asymmetric encryption.\n1\n2",
+      "text": "An employee has a report that they need to email to their employer.\nThe employee compresses the report file before emailing it.\n\nThe email data is encrypted using asymmetric encryption before it is sent.\n\nGive two differences between symmetric encryption and asymmetric encryption.\n\n1\n2",
       "command": "Give",
       "objective": "AO1",
       "marks": 2,
@@ -913,7 +946,7 @@
     },
     {
       "id": "Q3a",
-      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded. Identify two other registers that are used in the fetch stage of the cycle.\n1\n2",
+      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded.\n\nIdentify two other registers that are used in the fetch stage of the cycle.\n\n1\n2",
       "command": "Identify",
       "objective": "AO1",
       "marks": 2,
@@ -950,17 +983,17 @@
     },
     {
       "id": "Q3b",
-      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded. Complete and annotate the diagram to show how the data is decoded once it has been fetched into the MDR.\nMDR",
+      "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded.\n\nComplete and annotate the diagram to show how the data is decoded once it has been fetched into the MDR.\n\nMDR",
       "command": "Complete",
       "objective": "AO2",
       "marks": 4,
       "visuals": [
-        "Partial diagram showing MDR box as starting element"
+        "Partial diagram showing MDR as a starting node; student must complete and annotate the decode stage of the fetch-decode-execute cycle."
       ],
       "page": 7,
       "layout_type": "AnnotatedDiagram",
       "structure_data": {
-        "diagram_type": "system architecture",
+        "diagram_type": "other",
         "partial_elements": [
           "MDR"
         ]
@@ -970,7 +1003,7 @@
       "answers": {
         "type": "diagram",
         "visuals": [
-          "Partial diagram showing MDR box as starting element"
+          "diagram showing MDR to CIR/CU with data bus, operand and op code separation, control unit decoding with instruction set"
         ],
         "scoring_rule": "One mark for each correct part of the diagram.",
         "marking_points": [
@@ -1006,13 +1039,11 @@
     },
     {
       "id": "Q4",
-      "text": "Complete the table to give the missing term or description for the internet terms.\nInternet term | Description\n[blank] | the collection of web pages accessed using the internet\n[blank] | the address given to a device when it connects to the internet\nweb browser | [blank]\n[blank] | the hardware that stores a database of matching website and IP addresses\n[blank] | a type of hardware that can be used to prevent a distributed denial of service (DDoS) attack\nhacking | [blank]",
+      "text": "Complete the table to give the missing term or description for the internet terms.",
       "command": "Complete",
       "objective": "AO1",
       "marks": 6,
-      "visuals": [
-        "Table with two columns: Internet term and Description, with some cells pre-filled and others blank"
-      ],
+      "visuals": [],
       "page": 8,
       "layout_type": "TermDefinitionGrid",
       "structure_data": {
@@ -1052,33 +1083,31 @@
       "topic_name": "The Internet and the World Wide Web",
       "answers": {
         "type": "text",
-        "visuals": [
-          "Table with two columns: Internet term and Description, with some cells pre-filled and others blank"
-        ],
+        "visuals": [],
         "scoring_rule": "One mark for each correct term or description in the correct place.",
         "marking_points": [
           {
-            "text": "Term: World wide web // WWW",
+            "text": "World wide web // WWW",
             "marks": 1
           },
           {
-            "text": "Term: IP (address)",
+            "text": "IP (address)",
             "marks": 1
           },
           {
-            "text": "Description: (Web browser) Software/application that allows users to view/access web pages by rendering HTML",
+            "text": "Domain name server // DNS",
             "marks": 1
           },
           {
-            "text": "Term: Domain name server // DNS",
+            "text": "Proxy server",
             "marks": 1
           },
           {
-            "text": "Term: Proxy server",
+            "text": "(Web browser) Software/application that allows users to view/access web pages by rendering HTML",
             "marks": 1
           },
           {
-            "text": "Description: (Hacking) Gaining unauthorised access to a computer/system",
+            "text": "(Hacking) Gaining unauthorised access to a computer/system",
             "marks": 1
           }
         ]
@@ -1089,7 +1118,7 @@
     },
     {
       "id": "Q5a",
-      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds. The plough uses sensors and a microprocessor to maintain a straight line when digging the ground. State what is meant by an automated system.",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds.\nThe plough uses sensors and a microprocessor to maintain a straight line when digging the ground.\n\nState what is meant by an automated system.",
       "command": "State",
       "objective": "AO1",
       "marks": 1,
@@ -1118,7 +1147,7 @@
     },
     {
       "id": "Q5b",
-      "text": "A farmer has a plough that is an automated system. The plough uses sensors and a microprocessor to maintain a straight line when digging the ground. Describe the role of the microprocessor in this process.",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds.\nThe plough uses sensors and a microprocessor to maintain a straight line when digging the ground.\n\nDescribe the role of the microprocessor in this process.",
       "command": "Describe",
       "objective": "AO2",
       "marks": 3,
@@ -1140,7 +1169,7 @@
             "marks": 1
           },
           {
-            "text": "It analyses the data // It checks if the data is within/out of a range",
+            "text": "It analyses the data // It checks if the data is within/out of a range //",
             "marks": 1
           },
           {
@@ -1155,7 +1184,7 @@
     },
     {
       "id": "Q5c",
-      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds. Give two benefits to the farmer of using an automated system for this purpose.\n1\n2",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds.\nThe plough uses sensors and a microprocessor to maintain a straight line when digging the ground.\n\nGive two benefits to the farmer of using an automated system for this purpose.\n\n1\n2",
       "command": "Give",
       "objective": "AO3",
       "marks": 2,
@@ -1208,7 +1237,7 @@
     },
     {
       "id": "Q5d",
-      "text": "A farmer has a plough that is an automated system. The plough uses artificial intelligence (AI) to navigate its way around the field. Explain how the plough makes use of AI for this purpose.",
+      "text": "A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds.\nThe plough uses sensors and a microprocessor to maintain a straight line when digging the ground.\n\nThe plough uses artificial intelligence (AI) to navigate its way around the field.\n\nExplain how the plough makes use of AI for this purpose.",
       "command": "Explain",
       "objective": "AO2",
       "marks": 4,
@@ -1273,7 +1302,7 @@
     },
     {
       "id": "Q6a",
-      "text": "Complete the statements about cookies. Use only terms from the list. Not all terms need to be used. Some terms may be used more than once.\nbinary  close  denary  expire\nhexadecimal  image  malware  operating system\npermanent  persistent  session  sound\ntemporary  web browser\n\nCookies are small text files that are stored by a [blank].\n[blank] cookies are [blank] text files that are deleted when the [blank] [blank] is closed.\n[blank] cookies are [blank] text files that are stored on a user's secondary storage device until they are manually deleted or they [blank].",
+      "text": "Complete the statements about cookies.\nUse only terms from the list.\nNot all terms need to be used. Some terms may be used more than once.\n\nbinary   close   denary   expire\nhexadecimal   image   malware   operating system\npermanent   persistent   session   sound\ntemporary   web browser\n\nCookies are small text files that are stored by a [blank] .\n[blank] cookies are [blank] text files that are deleted when the [blank] is closed.\n[blank] cookies are [blank] text files that are stored on a user's secondary storage device until they are manually deleted or they [blank] .",
       "command": "Complete",
       "objective": "AO1",
       "marks": 7,
@@ -1281,7 +1310,7 @@
       "page": 10,
       "layout_type": "InlineCloze",
       "structure_data": {
-        "inline_gap_count": 8,
+        "inline_gap_count": 7,
         "has_word_bank": true
       },
       "topic": "5.1",
@@ -1327,7 +1356,7 @@
     },
     {
       "id": "Q6b",
-      "text": "Give three examples of the use of cookies.\n1\n2\n3",
+      "text": "Give three examples of the use of cookies.\n\n1\n2\n3",
       "command": "Give",
       "objective": "AO1",
       "marks": 3,
@@ -1376,7 +1405,7 @@
     },
     {
       "id": "Q7",
-      "text": "A computer programmer uses an integrated development environment (IDE) when creating a computer program. Explain the purpose of the IDE.",
+      "text": "A computer programmer uses an integrated development environment (IDE) when creating a computer program.\n\nExplain the purpose of the IDE.",
       "command": "Explain",
       "objective": "AO1",
       "marks": 4,

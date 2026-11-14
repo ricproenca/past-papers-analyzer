@@ -75,6 +75,8 @@ MatrixGrid — a table answered with ticks/selections. Two patterns:
       rows: the left-column text of each row, in order.
   (2) Single-select MCQ — "Tick (✓) one box…" with options A/B/C/… listed below the prompt; one row per option.
       structure_data: { "matrix_headers": ["Option","Tick"], "row_count": N, "rows": ["A <full statement>", "B <full statement>", ...] }
+      Also "Circle three …" questions with a printed list of options and no letters: one row per option,
+      headers ["Option","Select"] — never SimpleSingleBlock.
       Exactly two headers, the right one "Tick", "Select", "Choose" or "Mark". Never put the option letters in matrix_headers
       or collapse the options into one row. These two headers are not printed on the paper: never write them into "text".
 
