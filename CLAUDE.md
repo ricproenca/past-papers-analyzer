@@ -45,7 +45,7 @@ docs/
 All phases run sequentially in a single command:
 
 - **Phase 1** — Claude reads all PDF pages and returns a JSON object covering both question extraction and syllabus topic mapping. Top-level fields: `board`, `level`, `subject_code`, `subject_name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`, `layout_type`, `structure_data`, `topic` (e.g. `"1.2"`), `topic_name` (e.g. `"Text, Sound and Images"`). Prompt built in `src/prompts.py:build_phase12_messages()`. (Historically this was two separate calls — Phase 1 for extraction and Phase 2 for topic mapping — merged to reduce token costs by ~25–30%.)
-- **Phase 2** — Claude receives the Phase 1 JSON + marking scheme text and enriches each question with answers. Adds `answers` with `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
+- **Phase 2** — Claude receives the Phase 1 JSON + marking scheme text and returns only an `{id: answer}` map, which `extractor._merge_answers()` attaches to the questions (extraction fields are never re-emitted or altered). Each answer has `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
 - **Phase 3** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>` (single file) or `python render.py <folder>` (renders all `*.json` files in the folder).
 
 ## Post-extraction Enrichment
@@ -70,6 +70,7 @@ The script is idempotent — re-running it leaves files unchanged.
 - **Model**: `claude-sonnet-4-6` by default; override via `--model` flag or `CLAUDE_MODEL` env var.
 - **Prompt caching**: `cache_control: {"type": "ephemeral"}` on both system prompt blocks — the instruction text never changes between papers, so repeated runs benefit from cache hits.
 - **JSON fence stripping**: Claude occasionally wraps output in markdown fences despite instructions; `src/claude_client.py:_strip_fences()` handles this before `json.loads()` validation.
+- **Truncation & debug**: a response with `stop_reason == "max_tokens"` raises `TruncatedOutputError` (no retry — it would truncate again). Raw responses that are truncated, unparseable or fail validation are saved to `output/debug/` (override with `CLAUDE_DEBUG_DIR`); token usage is counted for failed calls too.
 - **Retry**: `RateLimitError` and `APIConnectionError` (including timeouts) retry up to 3 times with exponential backoff (2^attempt seconds).
 - **Visual detection**: `src/pdf_reader.py` flags pages with tables or images via `[Contains table(s)]` / `[Contains image(s)/diagram(s)]` in the prompt — Claude uses these hints when populating the `visuals` field. Full image extraction via vision is a future enhancement.
 

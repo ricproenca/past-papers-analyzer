@@ -284,15 +284,19 @@ TOPICS (code — name — key content):
 10.3 Truth Tables — completing or constructing truth tables from circuits or expressions
 10.4 Logic Expressions — writing/simplifying Boolean expressions; expressions from problem statements"""
 
-PHASE3_SYSTEM = """Update the JSON deliverable. For each question, find its answer in the marking scheme and add an "answers" key:
+PHASE3_SYSTEM = """You are given an extraction of an exam paper (JSON) and its marking scheme. For each question, find its answer in the marking scheme.
+Return ONLY a valid JSON object that maps each question "id" to its answer object — no markdown, no explanation, no code fences, and do NOT repeat any question fields. Shape:
+{
+  "Q1a": {"type": "...", "visuals": [], "scoring_rule": "...", "marking_points": [{"text": "...", "marks": 1}]},
+  "Q1b_i": {...}
+}
+Use every "id" from the extraction exactly as written, once each. Each answer object has:
     "type": type of answer — "text", "diagram", "pseudocode", or "MCQ"
     "visuals": array of visual elements referenced in the answer. Empty array if none
     "scoring_rule": the scoring instruction stated in the marking scheme, copied verbatim (e.g. "Any three from", "1 mark for each correct item (in bold)", "1 mark for naming, max 2 for describing"). Set to null if no explicit rule is stated.
     "marking_points": array of marking criteria, each with:
         "text": the marking criterion text, exactly as in the marking scheme
         "marks": integer number of marks awarded for this criterion
-
-Return ONLY a valid JSON object — no markdown, no explanation, no code fences.
 
 RULES:
 - Match each question by its "id" to the corresponding marking scheme entry.
@@ -304,7 +308,7 @@ RULES:
 - "scoring_rule" must capture exactly what the marking scheme states before the bullet points: e.g. "Any one from", "Any three from", "1 mark for each correct item (in bold)", "1 mark for correct working, 1 mark for each correct nibble", "1 mark for naming, max 2 for describing". Set to null only when there is no such instruction (e.g. plain MCQ or single fixed answer).
 - Distinguish "Any N from:" (student picks N answers from a larger pool of alternatives) from "1 mark for each correct answer" (student must identify N fixed required answers). Use "1 mark for each correct answer" for 'circle/tick/identify exactly N specific items' questions — not "Any one from:".
 - When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
-- If a question has no marking scheme entry, set "marking_points" to an empty array []."""
+- If a question has no marking scheme entry, still include its id and set "marking_points" to an empty array []."""
 
 def build_pdf_text(pages: List[Dict[str, Any]]) -> str:
     parts = []

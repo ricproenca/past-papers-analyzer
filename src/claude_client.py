@@ -2,6 +2,8 @@ import json
 import os
 import re
 import time
+from datetime import datetime
+from pathlib import Path
 
 import anthropic
 
@@ -10,6 +12,20 @@ MAX_TOKENS = int(os.environ.get("CLAUDE_MAX_TOKENS", "32768"))
 
 _client = None
 _totals = {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0}
+
+
+class TruncatedOutputError(RuntimeError):
+    """The response hit max_tokens. Retrying the same request would truncate again."""
+
+
+def save_debug(label: str, text: str) -> Path:
+    """Persist a raw model response so a paid-for call is never lost."""
+    debug_dir = Path(os.environ.get("CLAUDE_DEBUG_DIR", "output/debug"))
+    debug_dir.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", label or "call").strip("_")
+    path = debug_dir / f"{datetime.now():%Y%m%d_%H%M%S}_{slug}.txt"
+    path.write_text(text, encoding="utf-8")
+    return path
 
 
 def get_model() -> str:
@@ -56,6 +72,7 @@ def print_totals() -> None:
 def call(system: list, messages: list, label: str = "", max_retries: int = 3) -> str:
     client = get_client()
     last_error = None
+    last_raw = None
     for attempt in range(max_retries):
         try:
             with client.messages.stream(
@@ -66,9 +83,17 @@ def call(system: list, messages: list, label: str = "", max_retries: int = 3) ->
             ) as stream:
                 text = stream.get_final_text()
                 response = stream.get_final_message()
+            # Count tokens for every completed call, including ones that fail below.
+            _record_usage(response.usage, label)
+            last_raw = text
+            if response.stop_reason == "max_tokens":
+                path = save_debug(label, text)
+                raise TruncatedOutputError(
+                    f"{label or 'Call'}: output hit the {MAX_TOKENS}-token limit and was cut off "
+                    f"(raw response saved to {path}). Raise CLAUDE_MAX_TOKENS and re-run."
+                )
             text = _strip_fences(text)
             json.loads(text)
-            _record_usage(response.usage, label)
             return text
         except (anthropic.RateLimitError, anthropic.APIConnectionError) as e:
             last_error = e
@@ -81,4 +106,7 @@ def call(system: list, messages: list, label: str = "", max_retries: int = 3) ->
             wait = 2 ** attempt
             print(f"Invalid JSON, retrying in {wait}s... ({e})")
             time.sleep(wait)
+    if last_raw is not None and isinstance(last_error, ValueError):
+        path = save_debug(label, last_raw)
+        print(f"Last raw response saved to {path}")
     raise last_error
