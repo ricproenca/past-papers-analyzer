@@ -50,6 +50,34 @@ _RE_CALLOUT_LINE = re.compile(
 )
 
 
+_RE_MARK_AT_END = re.compile(r'\[\d+\][ \t]*$')
+
+
+def _annotate_cloze_blocks(text: str) -> str:
+    """Insert `[LAYOUT:InlineCloze gap_count=N]` before each fill-in-the-gap passage.
+
+    A passage is the run of cloze lines (dots mid-sentence) up to and including
+    the line that ends with the question's mark "[n]". Wrapped lines without
+    dots in between belong to the same passage; text after a mark starts a new one."""
+    lines = text.split("\n")
+    blocks = []                # [(index of first cloze line, gap_count)]
+    current = None             # [first_index, gap_count]
+    for i, line in enumerate(lines):
+        if _RE_INLINE_CLOZE_LINE.fullmatch(line):
+            gaps = len(re.findall(r'\.{4,}', line))
+            if current is None:
+                current = [i, 0]
+            current[1] += gaps
+        if current is not None and _RE_MARK_AT_END.search(line):
+            blocks.append(tuple(current))
+            current = None
+    if current is not None:
+        blocks.append(tuple(current))
+    for first, gap_count in reversed(blocks):
+        lines.insert(first, f'[LAYOUT:InlineCloze gap_count={gap_count}]')
+    return "\n".join(lines)
+
+
 def _annotate_anchors(raw_text: str) -> str:
     """Insert [LAYOUT:TYPE ...] tokens inline before answer-space patterns.
 
@@ -87,14 +115,10 @@ def _annotate_anchors(raw_text: str) -> str:
 
     text = _RE_NUMBERED_BLOCK.sub(_replace_numbered, text)
 
-    # Pass 4 — InlineCloze: dots mid-sentence with letters after
-    cloze_lines = _RE_INLINE_CLOZE_LINE.findall(text)
-    if cloze_lines:
-        gap_count = sum(len(re.findall(r'\.{4,}', ln)) for ln in cloze_lines)
-        first = _RE_INLINE_CLOZE_LINE.search(text)
-        if first:
-            annotation = f'[LAYOUT:InlineCloze gap_count={gap_count}]\n'
-            text = text[: first.start()] + annotation + text[first.start() :]
+    # Pass 4 — InlineCloze: dots mid-sentence with letters after.
+    # One annotation per cloze passage: a passage ends at the line carrying its
+    # mark "[n]", so two cloze questions on one page get separate gap counts.
+    text = _annotate_cloze_blocks(text)
 
     # Pass 5 — SimpleSingleBlock: 2+ consecutive dot-only lines not yet annotated
     def _replace_consec(m: re.Match) -> str:

@@ -344,8 +344,9 @@ def build_phase3_messages(phase12_json: str, ms_pages: List[Dict[str, Any]]):
     system = [
         {
             "type": "text",
+            # No cache_control: ~650 tokens is below the minimum cacheable prefix
+            # (1024), so the API would silently ignore it.
             "text": PHASE3_SYSTEM,
-            "cache_control": {"type": "ephemeral"},
         }
     ]
     ms_text = build_pdf_text(ms_pages)

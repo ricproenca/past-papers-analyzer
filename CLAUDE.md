@@ -97,7 +97,7 @@ The script is idempotent — re-running it leaves files unchanged.
 ## Key Decisions
 
 - **Model**: `claude-sonnet-4-6` by default; override via `--model` flag or `CLAUDE_MODEL` env var.
-- **Prompt caching**: `cache_control: {"type": "ephemeral"}` on both system prompt blocks — the instruction text never changes between papers, so repeated runs benefit from cache hits.
+- **Prompt caching**: `cache_control: {"type": "ephemeral"}` on the Phase 1+2 system prompt (~5k tokens) — the instruction text never changes between papers, so repeated runs benefit from cache hits. The Phase 3 prompt is ~650 tokens, below the minimum cacheable size, so it is deliberately not marked.
 - **JSON fence stripping**: Claude occasionally wraps output in markdown fences despite instructions; `src/claude_client.py:_strip_fences()` handles this before `json.loads()` validation.
 - **Truncation & debug**: a response with `stop_reason == "max_tokens"` raises `TruncatedOutputError` (no retry — it would truncate again). Raw responses that are truncated, unparseable or fail validation are saved to `output/debug/` (override with `CLAUDE_DEBUG_DIR`); token usage is counted for failed calls too.
 - **Retry**: `RateLimitError` and `APIConnectionError` (including timeouts) retry up to 3 times with exponential backoff (2^attempt seconds).

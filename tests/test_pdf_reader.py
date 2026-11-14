@@ -29,6 +29,25 @@ def test_inline_cloze_counts_gaps():
     assert "[LAYOUT:InlineCloze gap_count=2]" in out
 
 
+def test_each_cloze_passage_gets_its_own_annotation():
+    page = ("2 Complete the sentence.\nA computer uses ........ to store data.\n[1]\n"
+            "3 Complete the table.\nThe first section is called the ........ and has ........ bits.\n[2]\n")
+    out = pr._annotate_anchors(page)
+    assert out.count("[LAYOUT:InlineCloze") == 2
+    assert out.index("gap_count=1]") < out.index("3 Complete the table.") < out.index("gap_count=2]")
+
+
+def test_cloze_passage_wrapped_over_dotless_lines_is_one_block():
+    page = ("The CPU ........ instructions and\nthen it ........ the result\nbefore the ........ is read. [3]\n")
+    out = pr._annotate_anchors(page)
+    assert out.count("[LAYOUT:InlineCloze") == 1 and "gap_count=3]" in out
+
+
+def test_cloze_without_trailing_mark_is_still_annotated():
+    out = pr._annotate_anchors("Intro.\nUses ........ here.\nUses ........ there.\n")
+    assert out.count("[LAYOUT:InlineCloze gap_count=2]") == 1
+
+
 def test_consecutive_dot_lines_are_a_single_block():
     out = pr._annotate_anchors("Explain.\n.....\n.....\n.....\n")
     assert "[LAYOUT:SimpleSingleBlock line_count=3]" in out
