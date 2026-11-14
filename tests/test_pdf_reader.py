@@ -48,6 +48,20 @@ def test_cloze_without_trailing_mark_is_still_annotated():
     assert out.count("[LAYOUT:InlineCloze gap_count=2]") == 1
 
 
+def test_table_cell_next_to_answer_dots_is_not_a_cloze():
+    cells = pr._table_cell_texts([[["", "The surface of each platter is divided into tracks and sectors."]]])
+    line = "........ sectors."
+    assert pr._is_table_fragment(line, cells)
+    assert "InlineCloze" not in pr._annotate_anchors(line, cells)
+    assert "InlineCloze" in pr._annotate_anchors(line)                      # without table info it still looks like one
+    assert "InlineCloze" in pr._annotate_anchors("Uses ........ here.", cells)   # real cloze text is unaffected
+
+
+def test_table_cell_texts_skips_blank_and_dotted_cells():
+    cells = pr._table_cell_texts([[["Term", "...."], [" a\n b ", None]], None])
+    assert cells == ["Term", "a b"]
+
+
 def test_consecutive_dot_lines_are_a_single_block():
     out = pr._annotate_anchors("Explain.\n.....\n.....\n.....\n")
     assert "[LAYOUT:SimpleSingleBlock line_count=3]" in out

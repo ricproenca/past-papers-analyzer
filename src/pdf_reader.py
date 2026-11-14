@@ -53,7 +53,30 @@ _RE_CALLOUT_LINE = re.compile(
 _RE_MARK_AT_END = re.compile(r'\[\d+\][ \t]*$')
 
 
-def _annotate_cloze_blocks(text: str) -> str:
+def _norm(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _table_cell_texts(tables: list) -> list[str]:
+    """Normalised text of every fully printed (dot-free, non-blank) table cell."""
+    cells = []
+    for table in tables or []:
+        for row in table or []:
+            for cell in row or []:
+                t = _norm(str(cell or ""))
+                if t and "...." not in t and "\u2026" not in t:
+                    cells.append(t)
+    return cells
+
+
+def _is_table_fragment(line: str, cell_texts: list[str]) -> bool:
+    """True when `line` is just a printed table cell sharing a text line with an
+    answer-dot run in the next column (e.g. '........ sectors.') — not a cloze."""
+    rest = _norm(re.sub(r"\.{4,}", " ", line))
+    return len(rest) >= 4 and any(rest in cell for cell in cell_texts)
+
+
+def _annotate_cloze_blocks(text: str, cell_texts: list[str] = ()) -> str:
     """Insert `[LAYOUT:InlineCloze gap_count=N]` before each fill-in-the-gap passage.
 
     A passage is the run of cloze lines (dots mid-sentence) up to and including
@@ -63,7 +86,7 @@ def _annotate_cloze_blocks(text: str) -> str:
     blocks = []                # [(index of first cloze line, gap_count)]
     current = None             # [first_index, gap_count]
     for i, line in enumerate(lines):
-        if _RE_INLINE_CLOZE_LINE.fullmatch(line):
+        if _RE_INLINE_CLOZE_LINE.fullmatch(line) and not _is_table_fragment(line, cell_texts):
             gaps = len(re.findall(r'\.{4,}', line))
             if current is None:
                 current = [i, 0]
@@ -78,7 +101,7 @@ def _annotate_cloze_blocks(text: str) -> str:
     return "\n".join(lines)
 
 
-def _annotate_anchors(raw_text: str) -> str:
+def _annotate_anchors(raw_text: str, cell_texts: list[str] = ()) -> str:
     """Insert [LAYOUT:TYPE ...] tokens inline before answer-space patterns.
 
     Runs before the dot-stripping regex so structural signals are preserved
@@ -118,7 +141,7 @@ def _annotate_anchors(raw_text: str) -> str:
     # Pass 4 — InlineCloze: dots mid-sentence with letters after.
     # One annotation per cloze passage: a passage ends at the line carrying its
     # mark "[n]", so two cloze questions on one page get separate gap counts.
-    text = _annotate_cloze_blocks(text)
+    text = _annotate_cloze_blocks(text, cell_texts)
 
     # Pass 5 — SimpleSingleBlock: 2+ consecutive dot-only lines not yet annotated
     def _replace_consec(m: re.Match) -> str:
@@ -233,7 +256,8 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
     with pdfplumber.open(pdf_path) as pdf:
         for i, page in enumerate(pdf.pages, start=1):
             raw = page.extract_text() or ""
-            text = _annotate_anchors(raw)
+            tables = page.extract_tables()
+            text = _annotate_anchors(raw, _table_cell_texts(tables))
             text = re.sub(r'(?m)^\s*\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
             text = re.sub(r'(?m)^\s*\.{4,}\s*$\n?', '', text)
             text = re.sub(r'(?m)^([A-Za-z0-9][A-Za-z0-9 \-]*?)\.{4,}\s*(\[\d+\])\s*$',
@@ -243,7 +267,6 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
             text = re.sub(r'\.{4,}', '[blank]', text)
             text = re.sub(r'\n{3,}', '\n\n', text)
 
-            tables = page.extract_tables()
             images = page.images
 
             if tables:
