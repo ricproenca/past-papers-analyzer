@@ -3,7 +3,7 @@ import json
 import pytest
 
 from src import enricher, statistics as st
-from conftest import make_question, make_paper, make_answer, PAPER_PATHS
+from conftest import make_question, make_paper, make_answer
 
 
 def test_marks_and_counts_by_axis():

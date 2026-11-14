@@ -3,7 +3,7 @@ import json
 import pytest
 
 from src import extractor as ex
-from conftest import make_paper, make_question, make_answer
+from conftest import make_paper, make_answer
 
 
 def test_reorder_puts_known_keys_first_and_drops_unknown():

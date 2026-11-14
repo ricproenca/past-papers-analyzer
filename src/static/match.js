@@ -1,9 +1,4 @@
-"""Vanilla JS + SVG interactive line matcher for Cambridge "draw one line from
-each X to its matching Y" questions. Loaded as `match.js` next to
-`circuit.js`. Activates on any `<div class="match-grid">` the renderer emits.
-"""
 
-MATCH_JS = r"""
 (function () {
   'use strict';
 
@@ -189,4 +184,3 @@ MATCH_JS = r"""
     initAll();
   }
 })();
-"""

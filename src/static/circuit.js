@@ -1,13 +1,4 @@
-"""JointJS-based interactive logic-circuit editor — bundled as `circuit.js`,
-loaded next to `paper.css`/`paper.js`.
 
-The renderer drops a placeholder `<div class="circuit-editor" data-qid=…
-data-inputs=… data-output=…>` into question bodies whose `layout_type` is
-`AnnotatedDiagram` and whose `structure_data.diagram_type == "circuit"`.
-On page load this script scans those divs and mounts a JointJS canvas in each.
-"""
-
-CIRCUIT_JS = r"""
 (function () {
   'use strict';
 
@@ -392,4 +383,3 @@ CIRCUIT_JS = r"""
     initAll();
   }
 })();
-"""

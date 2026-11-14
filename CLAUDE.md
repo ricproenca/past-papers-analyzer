@@ -28,18 +28,35 @@ In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` 
 ```
 extract.py          # CLI entry point (argparse, loads .env)
 render.py           # CLI: render existing JSON to HTML; accepts a file or a folder of JSONs
+generate_stats.py   # CLI: builds output/html/statistics.html from all paper JSONs
+generate_topics.py  # CLI: builds output/html/topic_*.html + topics.html (questions grouped by topic)
+backfill_enrichment.py  # re-run enrichment + statistics over existing JSONs
 src/
   pdf_reader.py     # pdfplumber: text + table/image detection per page
   prompts.py        # builds Phase 1+2 (extraction + topics) and Phase 3 (answers) prompt messages
-  claude_client.py  # Anthropic SDK wrapper (prompt caching, retries)
+  claude_client.py  # Anthropic SDK wrapper (prompt caching, retries, truncation handling)
   extractor.py      # orchestrates Phase 1+2 → Phase 3 → enrichment → Phase 4 pipeline
-  renderer.py       # HTML page generator (render_html, render); writes paper.css / paper.js
+  schema.py         # validates Claude's output
+  enricher.py / statistics.py / visuals.py / syllabus.py
+  assets.py         # read_asset(): loads CSS/JS from src/static/
+  static/           # the pages' CSS/JS as real files: paper.{css,js}, circuit.js, match.js,
+                    #   stats.{css,js} (statistics page), topics.{css,js} (topic pages)
+  renderer/         # HTML generation (package)
+    __init__.py     #   public API: render, render_html, render_question_card, PAPER_CSS/JS
+    page.py         #   whole page + writing static assets next to it
+    question.py     #   one question card
+    layouts.py      #   one renderer per layout_type + dispatch table
+    matching.py     #   "draw lines to match" questions
+    text.py         #   shared helpers: badges, pipe tables, code stems, prose
+tests/              # pytest suite (see Tests)
 docs/
   question_extractor.md  # prompt spec: extraction + topic mapping + answers
   syllabus.md            # syllabus topics (1.x–10.x) used in Phase 1+2
   assesssment.md         # assessment objectives (AO1–AO3) used in Phase 1+2
-  command_words.md       # command word definitions used in Phase 1
+  command_words.md       # command word definitions used in Phase 1+2
 ```
+
+Edit CSS/JS in `src/static/`, then re-render (`python render.py output/json`, `python generate_stats.py`, `python generate_topics.py`) — the golden HTML test fails until the committed pages match.
 
 ## Pipeline
 
