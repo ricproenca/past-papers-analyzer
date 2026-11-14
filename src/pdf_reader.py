@@ -1,4 +1,3 @@
-import json
 import re
 from pathlib import Path
 
@@ -226,36 +225,93 @@ def _table_to_markdown(table: list) -> str:
     return "\n".join(rows)
 
 
-def _term_def_block(table: list) -> str:
-    """Build the authoritative [TERM_DEF_TABLE_DATA] JSON block for a TermDefinitionGrid table.
-
-    Every cell is either a verbatim string of the printed text OR "" for a blank
-    answer line. The model is instructed (in prompts.py) to copy this verbatim into
-    structure_data.rows, converting "" to null."""
-    if not table or len(table) < 2:
-        return ""
-    header_row = table[0]
-    headers = [_clean_cell(c) for c in header_row]
+def _term_def_data(table: list) -> dict:
+    """Headers and rows of a TermDefinitionGrid table. Each cell is the verbatim
+    printed text, or None for a blank answer cell."""
+    headers = [_clean_cell(c) for c in table[0]] if table else []
     rows = []
     for raw_row in table[1:]:
         if len(raw_row) < 2:
             continue
-        left  = _clean_cell(raw_row[0])
-        right = _clean_cell(raw_row[1])
-        rows.append({"term": left, "definition": right})
-    payload = {"headers": headers, "rows": rows}
-    return (
-        "[TERM_DEF_TABLE_DATA]\n"
-        + json.dumps(payload, ensure_ascii=False)
-        + "\n[/TERM_DEF_TABLE_DATA]"
-    )
+        rows.append({"term": _clean_cell(raw_row[0]) or None,
+                     "definition": _clean_cell(raw_row[1]) or None})
+    return {"headers": headers[:2], "rows": rows}
+
+
+# --- page-text cleaning ---------------------------------------------------------
+# Boilerplate that carries no exam content but costs tokens on every page.
+_CID_RE = re.compile(r"\(cid:\d+\)")
+_JUNK_LINE_RES = [re.compile(p) for p in (
+    r"^\*\s*\d{6,}\s*\*$",                                  # barcode text: "* 0000800000006 *"
+    r"^(?:NIGRAM|SIHT|NI|ETIRW|TON|OD)$",                       # mirrored "DO NOT WRITE IN THIS MARGIN"
+    r"^BLANK PAGE$",
+    r"^\[Turn over$",
+    r"^\u00a9\s*UCLES\b.*$",                                     # question-paper footer
+    r"^\u00a9\s*Cambridge University Press & Assessment\b.*$",   # mark-scheme footer
+    r"^\d{4}/\d{2}\s+Cambridge IGCSE\s*\u2013\s*Mark Scheme.*$",  # mark-scheme running header
+    r"^PUBLISHED$",
+    r"^This document (?:consists of \d+ printed pages|has \d+ pages)\b.*$",
+)]
+# Everything from these lines to the end of the page is copyright boilerplate.
+_BOILERPLATE_TAIL_RE = re.compile(
+    r"^(?:Permission to reproduce items|To avoid the issue of disclosure|"
+    r"Cambridge Assessment International Education is part of)", re.IGNORECASE)
+
+
+def clean_page_text(raw: str) -> str:
+    """Remove glyph-id noise, mirrored margin text, barcodes and footers from
+    pdfplumber's raw page text. Exam content is never touched: every rule only
+    matches whole lines of known boilerplate."""
+    out = []
+    for line in (raw or "").split("\n"):
+        stripped = line.strip()
+        if _BOILERPLATE_TAIL_RE.match(stripped):
+            break
+        if _CID_RE.search(line):
+            line = _CID_RE.sub("", line)
+            stripped = line.strip()
+            if not stripped:
+                continue
+        if any(rx.match(stripped) for rx in _JUNK_LINE_RES):
+            continue
+        out.append(line)
+    return "\n".join(out)
+
+
+# --- diagram detection -------------------------------------------------------------
+# Text cue for "a drawing is part of this question" (measured on 17 known diagram
+# pages: 15 found, 1 false positive). Vector-shape counts were tried and rejected:
+# furniture and tables produce the same counts as real diagrams.
+_DIAGRAM_CUE_RE = re.compile(
+    r"\b(diagram|flowchart|flow chart|draw|sketch|logic circuit|circuit|"
+    r"complete and annotate|shown below|image below|picture)\b", re.IGNORECASE)
+_MANY_CURVES = 20      # a page with this many curves holds an illustration (robot, network...)
+
+
+def _has_diagram(text: str, curve_count: int, page_num: int) -> bool:
+    if page_num == 1:                      # cover page: instructions only
+        return False
+    return bool(_DIAGRAM_CUE_RE.search(text)) or curve_count >= _MANY_CURVES
+
+
+_MS_TABLE_HEADER_RE = re.compile(r"^Question\s+Answer\s+Marks", re.MULTILINE)
+
+
+def drop_ms_preamble(pages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Marking schemes open with generic marking principles, annotation guides and
+    abbreviations (identical for every paper). Drop the pages before the first
+    answer table; if no table header is found, keep everything."""
+    for i, p in enumerate(pages):
+        if _MS_TABLE_HEADER_RE.search(p["text"]):
+            return pages[i:]
+    return pages
 
 
 def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
     pages = []
     with pdfplumber.open(pdf_path) as pdf:
         for i, page in enumerate(pdf.pages, start=1):
-            raw = page.extract_text() or ""
+            raw = clean_page_text(page.extract_text() or "")
             tables = page.extract_tables()
             text = _annotate_anchors(raw, _table_cell_texts(tables))
             text = re.sub(r'(?m)^\s*\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
@@ -269,6 +325,7 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
 
             images = page.images
 
+            term_def_tables = []
             if tables:
                 table_parts = []
                 for t in tables:
@@ -277,12 +334,9 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
                     ttype = _classify_table(t)
                     md = _table_to_markdown(t)
                     if md:
-                        part = f"[TABLE_TYPE:{ttype}]\n{md}"
+                        table_parts.append(f"[TABLE_TYPE:{ttype}]\n{md}")
                         if ttype == "TermDefinitionGrid":
-                            block = _term_def_block(t)
-                            if block:
-                                part = part + "\n" + block
-                        table_parts.append(part)
+                            term_def_tables.append(_term_def_data(t))
                 if table_parts:
                     text = text + "\n\n[TABLES]\n" + "\n\n".join(table_parts)
 
@@ -291,6 +345,10 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
                 "text": text,
                 "has_table": bool(tables),
                 "has_image": bool(images),
+                "has_diagram": _has_diagram(raw, len(page.curves), i),
+                # Authoritative table contents, attached to the questions in code
+                # (src/postprocess.py) instead of being re-typed by the model.
+                "term_def_tables": term_def_tables,
             })
     return pages
 
@@ -329,4 +387,17 @@ def render_pages_to_pngs(
             page = doc.load_page(page_num - 1)
             pix = page.get_pixmap(matrix=matrix, alpha=False)
             pix.save(str(png_path))
+    return result
+
+
+def render_pages_to_png_bytes(pdf_path: str | Path, page_nums: Iterable[int], dpi: int = 110) -> Dict[int, bytes]:
+    """Render 1-based pages as PNG bytes (for sending to the model as images)."""
+    import fitz
+
+    zoom = dpi / 72.0
+    result: Dict[int, bytes] = {}
+    with fitz.open(str(pdf_path)) as doc:
+        for n in sorted({int(n) for n in page_nums if n}):
+            if 1 <= n <= doc.page_count:
+                result[n] = doc.load_page(n - 1).get_pixmap(matrix=fitz.Matrix(zoom, zoom), alpha=False).tobytes("png")
     return result

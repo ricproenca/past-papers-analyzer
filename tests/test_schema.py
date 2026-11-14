@@ -75,3 +75,34 @@ def test_total_marks_mismatch_only_warns(paper, capsys):
 
 def test_real_papers_validate(real_paper):
     validate(real_paper, phase=3 if real_paper.get("ms") else 2)
+
+
+def test_unknown_topic_is_rejected(paper):
+    paper["questions"][0]["topic"] = "99.9"
+    with pytest.raises(ValueError, match="unknown topic"):
+        validate(paper, phase=2)
+
+
+def test_unmapped_command_warns_but_canonical_forms_do_not(paper, capsys):
+    paper["questions"][0]["command"] = "Complete and annotate the diagram"   # canonicalises to Complete
+    paper["questions"][1]["command"] = "Frobnicate"
+    validate(paper, phase=2)
+    out = capsys.readouterr().out
+    assert "Frobnicate" in out and "annotate" not in out
+
+
+def test_consistency_warnings(capsys):
+    qs = [make_question("Q1", layout_type="InlineCloze", structure_data={"inline_gap_count": 3}, text="a [blank] b"),
+          make_question("Q2", marks=3, layout_type="SimpleSingleBlock", structure_data={"line_count": 1}),
+          make_question("Q3", marks=2, layout_type="TermDefinitionGrid",
+                        structure_data={"rows": [{"term": None, "definition": "x"}, {"term": "y", "definition": "z"}]})]
+    validate(make_paper(qs), phase=2)
+    out = capsys.readouterr().out
+    assert "inline_gap_count=3 but text has 1" in out
+    assert "3-mark question has a one-line answer space" in out
+    assert "1 blank cell(s) but 2 mark(s)" in out
+
+
+def test_consistent_questions_print_no_warnings(capsys):
+    validate(make_paper(), phase=2)
+    assert "[!]" not in capsys.readouterr().out

@@ -48,12 +48,12 @@ Build a clean, structured JSON deliverable:
                                   matrix_headers: only the data columns (the leftmost row-label column is added by the renderer). Set row_values when the PDF table has rows already filled in (e.g. parity check tables): each entry parallel to rows, null = all cells blank in that row, ["v0","v1",...] = list of prefilled values per column (use "" or null inside the list for an individual blank cell). Omit row_values entirely for pure trace tables where all data cells are blank.
         FixedRegisterArray:     { "register_size": 8 }
         TermDefinitionGrid:     { "row_count": N, "rows": [{ "term": "pixel" | null, "definition": "..." | null }, ...] }
-                                  The preprocessor emits an authoritative `[TERM_DEF_TABLE_DATA]…[/TERM_DEF_TABLE_DATA]` JSON block for every such table — Claude must copy its rows positionally into structure_data.rows (with "" → null). LEFT cell → "term"; RIGHT cell → "definition". Headers vary per question.
+                                  The pipeline copies headers and rows from the PDF table into structure_data (`headers`, `rows`, `row_count`); the model sets structure_data to {} for this layout.
         LabelledPartResponse:   { "labels": ["a", "b", "c"], "reference": "https://www.cieclothes.com/index.html" }
         AnnotatedDiagram:       { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other", "partial_elements": ["element", ...] }
         (use {} if no structural data is detectable)
     "topic": topic from "syllabus.md" (e.g. "1.2")
-    "topic_name": the name of the topic from "syllabus.md" (e.g. "Text, Sound and Images")
+    "topic_name": the name of the topic (e.g. "Text, Sound and Images") — filled in by the pipeline from src/syllabus.py; the model does not write it
 
 Derived fields (added by `src/enricher.py` after Claude returns; not produced by the prompt):
     "difficulty": "Low" | "Medium" | "High"  (from command tier × marks)

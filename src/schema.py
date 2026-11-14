@@ -1,3 +1,6 @@
+from .enricher import COMMAND_TIER, canonical_command
+from .syllabus import TOPIC_NAMES
+
 _QUESTION_KEYS_P1 = {"id", "text", "command", "objective", "marks", "visuals", "page", "layout_type", "structure_data"}
 _QUESTION_KEYS_P2 = _QUESTION_KEYS_P1 | {"topic", "topic_name"}
 _QUESTION_KEYS_P3 = _QUESTION_KEYS_P2 | {"answers"}
@@ -45,10 +48,23 @@ def validate_phase_output(data: dict, phase: int) -> None:
                 f"(phase {phase}, question {qid!r}). Known types: {sorted(_VALID_LAYOUT_TYPES)}"
             )
 
+        if phase >= 2 and q.get("topic") not in TOPIC_NAMES:
+            raise ValueError(
+                f"Phase {phase} question {qid!r} has unknown topic: {q.get('topic')!r} "
+                f"(must be one of {sorted(TOPIC_NAMES)})"
+            )
+
+        if canonical_command(q.get("command")) not in COMMAND_TIER:
+            print(f"[!] Unmapped command word {q.get('command')!r} (question {qid!r}); "
+                  f"add it to src/enricher.py and the prompt's command list")
+
         if phase >= 1 and not isinstance(q.get("structure_data"), dict):
             raise ValueError(
                 f"Phase {phase} question {qid!r} 'structure_data' must be a dict"
             )
+
+        for warning in _consistency_warnings(q):
+            print(f"[!] Question {qid!r}: {warning}")
 
         if phase == 3 and isinstance(q.get("answers"), dict):
             answers = q["answers"]
@@ -72,3 +88,20 @@ def validate_phase_output(data: dict, phase: int) -> None:
                 f"Warning: Phase {phase}: sum of question marks ({actual}) "
                 f"does not match total_marks ({total_marks})"
             )
+
+
+def _consistency_warnings(q: dict) -> list[str]:
+    """Cheap cross-field checks that catch likely extraction slips without failing the run."""
+    out = []
+    sd = q.get("structure_data") if isinstance(q.get("structure_data"), dict) else {}
+    layout, marks = q.get("layout_type"), q.get("marks")
+    if layout == "InlineCloze" and sd.get("inline_gap_count") != (q.get("text") or "").count("[blank]"):
+        out.append(f"inline_gap_count={sd.get('inline_gap_count')} but text has "
+                   f"{(q.get('text') or '').count('[blank]')} [blank] marker(s)")
+    if layout == "SimpleSingleBlock" and isinstance(marks, int) and marks >= 3 and sd.get("line_count", 1) <= 1:
+        out.append(f"a {marks}-mark question has a one-line answer space")
+    if layout == "TermDefinitionGrid" and isinstance(marks, int) and sd.get("rows"):
+        blanks = sum(1 for r in sd["rows"] for k in ("term", "definition") if isinstance(r, dict) and r.get(k) is None)
+        if blanks != marks:
+            out.append(f"{blanks} blank cell(s) but {marks} mark(s)")
+    return out

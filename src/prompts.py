@@ -1,4 +1,7 @@
+import base64
 from typing import List, Dict, Any
+
+from .enricher import COMMAND_TIER
 
 PHASE12_SYSTEM = """You are an expert at reading Cambridge exam papers.
 Your job is to identify every question (and sub-question) on the exam provided AND map each one to a syllabus topic.
@@ -6,12 +9,13 @@ Return ONLY a valid JSON object — no markdown, no explanation, no code fences.
 
 RULES:
 - Treat each numbered question and each lettered/roman-numeral sub-question as a separate item.
-- Read all questions, let categories emerge, reconcile to syllabus in the end.
+- Map each question to the single best-fitting syllabus topic: the one whose key content matches what the question actually tests.
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
 - Paper routing — Paper 1 (variants 1x) covers chapters 1–6 (theory). Paper 2 (variants 2x) covers chapters 7–10. Pseudocode/algorithm-writing questions map to 7.2 (when the focus is algorithm design / trace / flowchart) or 8.1 (when the focus is a specific programming construct like an array operation). SQL questions map to 9.2. Logic gates / logic circuits / truth tables / Boolean expressions map to 10.x. The variant field in `qp` filename (e.g. `0478_m25_qp_22.pdf` → variant 22) determines the paper number from the first digit.
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
 - Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
+- Tables that a structured layout renders from structure_data (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) must NOT be copied into "text"; "text" holds the prose only.
 - Preserve paragraph breaks from the PDF in the "text" field. When the source PDF visually shows two prose paragraphs separated by a blank line / vertical gap (e.g. a setup paragraph "X happens in context Y." followed by a new instruction paragraph "Describe the process for Z."), put a literal blank line (`\n\n`) between them in the "text" field. Do NOT insert `\n\n` for line wraps within one paragraph, between a prose paragraph and a table, or between a paragraph and answer-space labels — those already have their own structure markers and don't need extra blank lines.
 
 
@@ -31,16 +35,21 @@ Build a clean, structured JSON deliverable:
 "total_marks": total marks for the entire paper (printed on the paper cover or final page)
 "questions": for each question must have these exact keys:
     "id"   : question identifier, e.g. "Q1", "Q1a", "Q1b_i", "Q2"
-    "text" : the full question text (include all parts of the question)
-    "command": Command word used (e. g. State, Explain)
-    "objective": primary assessment objective — exactly one of: "AO1", "AO2", "AO3"
+    "text" : the full question text, starting with the parent question's context/stem (do not copy tables that structure_data renders)
+    "command": exactly one word from the COMMAND WORDS list below
+    "objective": primary assessment objective — exactly one of: "AO1", "AO2", "AO3" (see OBJECTIVES below)
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
     "layout_type": the question's visual answer format — exactly one of the 11 types listed in LAYOUT TYPES below
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
-    "topic": topic from the syllabus (e.g. "1.2") — see TOPICS below
-    "topic_name": the name of the topic (e.g. "Text, Sound and Images") — see TOPICS below
+    "topic": topic code from the syllabus (e.g. "1.2") — see TOPICS below. Do NOT output the topic name; it is added automatically.
+
+OBJECTIVES (choose by what the question demands, not by command word alone):
+AO1 — recall or recognise knowledge: state, name, identify, define, give, list, tick or circle a fact, describe what something is or does.
+AO2 — apply knowledge: carry out a procedure or calculation (convert, add, trace, complete a table from given data); answer about a stated scenario, system, device or program; explain or describe how/why in that context.
+AO3 — make a judgement or devise a solution: evaluate, discuss, justify, weigh advantages against disadvantages to reach a conclusion, assess or improve a given solution, or devise your own solution to a stated problem.
+When a question fits two, choose the higher demand it genuinely requires; do not default to AO1.
 
 LAYOUT TYPES:
 The page text contains [LAYOUT:TYPE key=value] and [TABLE_TYPE:TYPE key=value] annotations inserted by the
@@ -136,63 +145,10 @@ FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
   structure_data: { "register_size": N }  // N is 8 or 16
 
 TermDefinitionGrid — two-column "label / explanation" table where SOME cells are pre-filled and OTHERS blank.
-
-  ===========================================================================
-  MANDATORY EXTRACTION RULE (overrides all instinct/heuristics):
-  ===========================================================================
-  When the page text contains a `[TERM_DEF_TABLE_DATA]…[/TERM_DEF_TABLE_DATA]` JSON block
-  (the preprocessor emits one for every TermDefinitionGrid table), it is THE AUTHORITATIVE
-  source for cell contents. You MUST:
-    1. Parse the JSON inside the block.
-    2. Copy its "rows" array INTO structure_data.rows POSITIONALLY, with this transformation
-       and NO OTHER changes:
-         • For each cell value, if it is "" (empty string) → write null in structure_data.
-         • If it is a non-empty string → copy that exact string verbatim.
-       Do NOT swap fields. Do NOT move text from "term" to "definition" or vice-versa even if
-       the wording "looks like" a description or a name. The LEFT cell in the PDF goes to
-       "term"; the RIGHT cell goes to "definition". Always.
-    3. Set "row_count" to the number of rows you wrote.
-  Do NOT re-read the markdown table to "verify" or "correct" cell positions. The model has
-  no better view of the PDF than the preprocessor does; trust the JSON block.
-
-  In the "text" field, also keep the table as "(left) | (right)" lines with the header row
-  first; write "(blank)" for empty cells — this is a human-readable mirror only, not a
-  source of truth.
-
-  Header names VARY across questions: real Cambridge examples include
-    "Function name | Description", "Component name | Description", "Internet term | Description",
-    "Type of secondary storage | Description", "Term | Description", "Term | Definition".
-  Headers come from the JSON block's "headers" array — copy verbatim into "text".
-
-  Example. If the page text contains:
-    [TERM_DEF_TABLE_DATA]
-    {"headers": ["Function name", "Description"],
-     "rows": [
-       {"term": "managing memory",    "definition": ""},
-       {"term": "",                   "definition": "allows application software to run on the computer"},
-       {"term": "managing peripherals","definition": ""}
-     ]}
-    [/TERM_DEF_TABLE_DATA]
-  Then structure_data MUST be:
-    {
-      "row_count": 3,
-      "rows": [
-        { "term": "managing memory",    "definition": null },
-        { "term": null,                 "definition": "allows application software to run on the computer" },
-        { "term": "managing peripherals","definition": null }
-      ]
-    }
-  And "text" includes the lines:
-    Function name | Description
-    managing memory | (blank)
-    (blank) | allows application software to run on the computer
-    managing peripherals | (blank)
-
-  Fallback (no JSON block emitted — rare): read each row's LEFT and RIGHT cell independently
-  from the markdown table. Blanks may appear in EITHER column and the pattern can vary row by
-  row. Set the cell's field to null if it is an empty dotted/underscore answer line, else copy
-  the printed text verbatim. Self-check: total nulls across rows should match the question's
-  "marks" value (one blank = one mark, typical case).
+  PDF signals: [TABLE_TYPE:TermDefinitionGrid]
+  structure_data: {}   // the pipeline copies the headers and every cell verbatim from the PDF table — do not type them
+  text: the prose stem/instruction only. Do NOT write the table, its header row or "(blank)" cells into "text".
+  marks: one blank cell is typically one mark.
 
 LabelledPartResponse — a reference item (URL, code, expression) with parts marked a/b/c; short inline answer slots
   PDF signals: [LAYOUT:LabelledPartResponse labels=a,b,c]; a line of the form "a ..... b ..... c ....."
@@ -234,6 +190,8 @@ CodeBlockResponse — student writes multi-line pseudocode, SQL, or an algorithm
 Fallback rule: if no annotation is present and no table exists, assign SimpleSingleBlock with line_count: 1.
 
 COMMAND WORDS:
+The "command" value must be exactly ONE word from this closed list: <<COMMAND_LIST>>. If the instruction has several words (e.g. "Complete and annotate the diagram") use its first word ("Complete"); if the printed word is not in the list choose the closest one.
+Guidance for the main ones:
 Command word	What to do in Computer Science	        Common mistake
 State	        Short answer; one point per mark	    Overwriting
 Identify	    Choose from code/diagram/data	        Adding explanation
@@ -310,22 +268,33 @@ RULES:
 - When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
 - If a question has no marking scheme entry, still include its id and set "marking_points" to an empty array []."""
 
+# The closed command list is generated from the enricher so prompt, schema and
+# enrichment can never disagree about which command words exist.
+PHASE12_SYSTEM = PHASE12_SYSTEM.replace("<<COMMAND_LIST>>", ", ".join(COMMAND_TIER))
+
+
 def build_pdf_text(pages: List[Dict[str, Any]]) -> str:
     parts = []
     for p in pages:
-        header = f"[Page {p['page']}]"
         flags = []
         if p["has_table"]:
             flags.append("[Contains table(s)]")
         if p["has_image"]:
-            flags.append("[Contains image(s)/diagram(s)]")
+            flags.append("[Contains image(s)]")
+        if p.get("has_diagram"):
+            flags.append("[Likely contains a diagram/drawing]")
+        if not p["text"].strip() and not flags:
+            continue                      # blank page: nothing to send
+        header = f"[Page {p['page']}]"
         if flags:
             header += " " + " ".join(flags)
         parts.append(header + "\n" + p["text"])
     return "\n\n".join(parts)
 
 
-def build_phase12_messages(pages: List[Dict[str, Any]]):
+def build_phase12_messages(pages: List[Dict[str, Any]], page_images: Dict[int, bytes] | None = None):
+    """Build the Phase 1+2 request. `page_images` ({page: PNG bytes}) optionally
+    attaches the pages that hold diagrams, so the model sees them instead of guessing."""
     system = [
         {
             "type": "text",
@@ -334,10 +303,14 @@ def build_phase12_messages(pages: List[Dict[str, Any]]):
         }
     ]
     pdf_text = build_pdf_text(pages)
-    messages = [
-        {"role": "user", "content": pdf_text}
-    ]
-    return system, messages
+    if not page_images:
+        return system, [{"role": "user", "content": pdf_text}]
+    content = [{"type": "text", "text": pdf_text}]
+    for n in sorted(page_images):
+        content.append({"type": "text", "text": f"Image of page {n} (use it to read the diagram; the text above is still authoritative for wording):"})
+        content.append({"type": "image", "source": {"type": "base64", "media_type": "image/png",
+                                                    "data": base64.b64encode(page_images[n]).decode("ascii")}})
+    return system, [{"role": "user", "content": content}]
 
 
 def build_phase3_messages(phase12_json: str, ms_pages: List[Dict[str, Any]]):

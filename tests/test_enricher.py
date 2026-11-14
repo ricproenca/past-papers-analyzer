@@ -26,8 +26,8 @@ def test_difficulty(command, marks, expected):
     ("State", "State"), ("give", "Give"), ("  Draw ", "Draw"),
     ("Complete and annotate the diagram", "Complete"), ("Zzz qqq", "Zzz qqq"), ("", ""), (None, ""),
 ])
-def test_normalise_command(raw, expected):
-    assert e._normalise_command(raw) == expected
+def test_canonical_command(raw, expected):
+    assert e.canonical_command(raw) == expected
 
 
 def test_former_gaps_are_mapped():
@@ -47,7 +47,7 @@ def test_every_extracted_command_is_known():
     unknown = {}
     for path in PAPER_PATHS:
         for q in json.loads(path.read_text(encoding="utf-8"))["questions"]:
-            cmd = e._normalise_command(q.get("command"))
+            cmd = e.canonical_command(q.get("command"))
             if cmd not in e.COMMAND_TIER:
                 unknown.setdefault(q.get("command"), path.name)
     assert not unknown, f"add these command words to src/enricher.py: {unknown}"

@@ -154,3 +154,16 @@ def test_real_paper_renders_every_question(real_paper):
     html = r.render_html(real_paper)
     for q in real_paper["questions"]:
         assert escape(q["id"]) in html
+
+
+def test_term_def_headers_prefer_structure_data_then_text():
+    q = {"text": "Function | Description\nstem"}
+    assert layouts._extract_term_def_headers(q, {"headers": ["Name", "Use"]}) == ("Name", "Use")
+    assert layouts._extract_term_def_headers(q, {}) == ("Function", "Description")
+    assert layouts._extract_term_def_headers({"text": "no table"}, {"headers": [""]}) == ("Term", "Description")
+
+
+def test_term_def_grid_renders_headers_from_structure_data():
+    sd = {"headers": ["Component", "Purpose"], "rows": [{"term": None, "definition": "stores data"}]}
+    html = r.render_html(make_paper([make_question(layout_type="TermDefinitionGrid", structure_data=sd, text="Complete the table.")]))
+    assert "<th>Component</th><th>Purpose</th>" in html and "stores data" in html

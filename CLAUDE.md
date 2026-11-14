@@ -19,6 +19,9 @@ python extract.py <pdf_path> -m claude-sonnet-4-6                 # override mod
 
 python extract.py <folder>                                        # process all *_qp_*.pdf in folder
 python extract.py <folder> --skip-existing                        # ...skipping papers already extracted
+python extract.py <folder> --workers 4                            # papers in parallel (first one alone to warm the prompt cache)
+python extract.py <folder> --batch                                # Batch API: half price, results arrive asynchronously
+python extract.py <pdf_path> --vision                             # also send page images where a diagram is likely (+~1.5k tokens/page)
 ```
 
 In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` in the filename (e.g. `0478_m24_qp_12.pdf` → `0478_m24_ms_12.pdf`). If no match is found, Phase 3 is skipped for that paper. Existing JSON files are overwritten unless `--skip-existing` is passed (resumes an interrupted batch). A paper that fails is reported and the batch continues; the command exits non-zero at the end if any failed.
@@ -32,7 +35,8 @@ generate_stats.py   # CLI: builds output/html/statistics.html from all paper JSO
 generate_topics.py  # CLI: builds output/html/topic_*.html + topics.html (questions grouped by topic)
 backfill_enrichment.py  # re-run enrichment + statistics over existing JSONs
 src/
-  pdf_reader.py     # pdfplumber: text + table/image detection per page
+  pdf_reader.py     # pdfplumber: boilerplate-free text, table classification, diagram cue, MS preamble trimming
+  postprocess.py    # fills what the model need not write: topic names, canonical commands, TermDefinitionGrid rows
   prompts.py        # builds Phase 1+2 (extraction + topics) and Phase 3 (answers) prompt messages
   claude_client.py  # Anthropic SDK wrapper (prompt caching, retries, truncation handling)
   extractor.py      # orchestrates Phase 1+2 → Phase 3 → enrichment → Phase 4 pipeline
@@ -62,7 +66,7 @@ Edit CSS/JS in `src/static/`, then re-render (`python render.py output/json`, `p
 
 All phases run sequentially in a single command:
 
-- **Phase 1+2** — Claude reads all PDF pages and returns a JSON object covering both question extraction (Phase 1) and syllabus topic mapping (Phase 2). Top-level fields: `board`, `level`, `subject_code`, `subject_name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`, `layout_type`, `structure_data`, `topic` (e.g. `"1.2"`), `topic_name` (e.g. `"Text, Sound and Images"`). Prompt built in `src/prompts.py:build_phase12_messages()`. (These were originally two separate calls, merged to cut token costs by ~25–30%; the log label and docs still call them Phase 1 and Phase 2.)
+- **Phase 1+2** — Claude reads all PDF pages and returns a JSON object covering both question extraction (Phase 1) and syllabus topic mapping (Phase 2). Top-level fields: `board`, `level`, `subject_code`, `subject_name`, `variant`, `qp`, `ms` (last two injected by the pipeline, not by Claude). Each question has: `id`, `text`, `command`, `objective` (one of AO1/AO2/AO3), `marks`, `visuals`, `page`, `layout_type`, `structure_data`, `topic` (e.g. `"1.2"`), `topic_name` (e.g. `"Text, Sound and Images"`). Claude writes only `topic`; `src/postprocess.py` adds `topic_name` from `src/syllabus.py`, reduces `command` to one canonical word (the prompt's closed list is generated from `src/enricher.py`), and copies `TermDefinitionGrid` headers/rows straight from the PDF table (`structure_data.headers/rows`) instead of asking the model to retype them. Prompt built in `src/prompts.py:build_phase12_messages()`. (These were originally two separate calls, merged to cut token costs by ~25–30%; the log label and docs still call them Phase 1 and Phase 2.)
 - **Phase 3** — Claude receives the Phase 1+2 JSON + marking scheme text and returns only an `{id: answer}` map, which `extractor._merge_answers()` attaches to the questions (extraction fields are never re-emitted or altered). Each answer has `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
 - **Phase 4** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>` (single file) or `python render.py <folder>` (renders all `*.json` files in the folder).
 
@@ -101,7 +105,11 @@ The script is idempotent — re-running it leaves files unchanged.
 - **JSON fence stripping**: Claude occasionally wraps output in markdown fences despite instructions; `src/claude_client.py:_strip_fences()` handles this before `json.loads()` validation.
 - **Truncation & debug**: a response with `stop_reason == "max_tokens"` raises `TruncatedOutputError` (no retry — it would truncate again). Raw responses that are truncated, unparseable or fail validation are saved to `output/debug/` (override with `CLAUDE_DEBUG_DIR`); token usage is counted for failed calls too.
 - **Retry**: `RateLimitError` and `APIConnectionError` (including timeouts) retry up to 3 times with exponential backoff (2^attempt seconds).
-- **Visual detection**: `src/pdf_reader.py` flags pages with tables or images via `[Contains table(s)]` / `[Contains image(s)/diagram(s)]` in the prompt — Claude uses these hints when populating the `visuals` field. Full image extraction via vision is a future enhancement.
+- **Input cleaning**: `pdf_reader.clean_page_text()` drops `(cid:N)` glyph noise, the mirrored margin text, barcodes, footers and copyright tails before anything is sent (~70% fewer paper-text tokens on 2024–25 papers). Marking schemes are trimmed to the pages from the first `Question Answer Marks` table onward (`drop_ms_preamble`). Blank pages are not sent.
+- **Diagram detection**: `[Likely contains a diagram/drawing]` is set from a text cue (words like diagram, flowchart, draw, circuit) or ≥20 curves on the page — it found 15 of 17 known diagram pages with 1 false positive. Vector-shape counts and `page.images` were tried and do not work on Cambridge papers. `--vision` attaches PNGs of the flagged pages (opt-in: it adds ~1.5k input tokens per page and enriched the diagram description in a test).
+- **Temperature**: not sent by default. `CLAUDE_TEMPERATURE=<n>` opts in; a model that rejects the parameter is retried without it. (On one paper, temperature 0 made the model trim context sentences in 3 of 3 runs; the API default kept them in 2 of 2.)
+- **Parent context stays repeated**: the model writes each sub-question's full text including its parent stem. A "write each stem once" design saved ~16% of output but the model then silently dropped shared context from some sub-questions (Q2, Q7(f) on the test paper), so it was not adopted.
+- **Batch & parallel**: `--batch` submits all Phase 1+2 requests as one Message Batch, then all Phase 3 requests as a second (`extractor.extract_batch`); `--workers N` runs papers in threads (token totals are per thread).
 
 ## Docs Reference
 

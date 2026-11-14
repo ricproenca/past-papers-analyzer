@@ -1,6 +1,9 @@
-# Vision for diagram pages - is documented but not implemented — it needs a larger architectural lift
+# Vision for diagram pages
 
-Pages flagged has_image: True only get a text hint. 
-Claude never sees the actual visual. For diagram-based questions the visuals array is populated by inference, not observation.
-Requires multimodal calls with image blocks from page.to_image(), restructuring pdf_reader.py to return image bytes, and a separate prompt strategy for visual pages. 
-Worth a dedicated phase.
+Implemented as an opt-in flag: `python extract.py <pdf> --vision`.
+
+- `pdf_reader` marks pages likely to hold a diagram (text cue or many curves; `page.images` is always empty on Cambridge PDFs).
+- `render_pages_to_png_bytes()` renders those pages at 110 dpi; `prompts.build_phase12_messages(pages, page_images)` attaches them as image blocks.
+- Measured on `0478_w25_qp_12` (1 diagram page): +~1,550 input tokens, the `visuals` description gained spatial detail, `layout_type` and `structure_data` were unchanged.
+
+Not done: a dedicated diagram-reading pass that returns node/edge structure for flowcharts and circuits (the renderer's circuit editor and flowchart images still rely on the page-reference heuristic in `src/visuals.py`).

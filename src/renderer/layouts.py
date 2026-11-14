@@ -368,11 +368,15 @@ def _render_fixed_register_array(q, sd):
     return f'<div class="q-input"><div class="bit-row">{boxes}</div></div>'
 
 
-def _extract_term_def_headers(q):
-    """Pull (col1, col2) from the first `X | Y` row in the question text.
+def _extract_term_def_headers(q, sd=None):
+    """Column headers: stored in structure_data["headers"] by the pipeline, else
+    pulled from the first `X | Y` row in the question text (older JSONs).
     Cambridge papers use varied headers (Function name / Component / Internet term / ...);
     only the data row's column *positions* are conventionally term-on-left, definition-on-right.
     Falls back to ('Term', 'Description') when no header row exists in the text."""
+    headers = (sd or {}).get("headers")
+    if isinstance(headers, list) and len(headers) == 2 and all(isinstance(h, str) and h for h in headers):
+        return headers[0], headers[1]
     for line in q.get("text", "").splitlines():
         if " | " in line:
             parts = [p.strip() for p in line.split(" | ", 1)]
@@ -387,7 +391,7 @@ def _render_term_definition_grid(q, sd):
     if not rows:
         return _render_simple_single_block(q, sd)
 
-    col1, col2 = _extract_term_def_headers(q)
+    col1, col2 = _extract_term_def_headers(q, sd)
 
     body_rows = []
     for i, row in enumerate(rows):

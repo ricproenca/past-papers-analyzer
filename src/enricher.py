@@ -35,7 +35,7 @@ LOAD_MAP = {
 }
 
 
-def _normalise_command(command: str) -> str:
+def canonical_command(command: str) -> str:
     """Map a raw command phrase onto a key of the maps above.
 
     Handles case differences and multi-word phrases such as
@@ -68,7 +68,7 @@ def _cognitive_load(layout_type: str) -> str:
 
 
 def enrich_question(q: dict) -> dict:
-    command = _normalise_command(q.get("command", ""))
+    command = canonical_command(q.get("command", ""))
     q["difficulty"] = _difficulty(command, q.get("marks", 0))
     q["bloom_level"] = _bloom(command)
     q["cognitive_load"] = _cognitive_load(q.get("layout_type", ""))

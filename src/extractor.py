@@ -1,11 +1,13 @@
 import copy
 import json
+import re
 from pathlib import Path
 
-from . import pdf_reader, prompts, claude_client, renderer, enricher, statistics, visuals
+from . import pdf_reader, postprocess, prompts, claude_client, renderer, enricher, statistics, visuals
 from .schema import validate_phase_output
 
 _KEY_ORDER = ["board", "level", "subject_code", "subject_name", "variant", "qp", "ms", "total_marks", "summary", "statistics", "questions"]
+_EMPTY_ANSWER = {"type": "text", "visuals": [], "scoring_rule": None, "marking_points": []}
 
 
 def _reorder(data: dict) -> dict:
@@ -13,10 +15,7 @@ def _reorder(data: dict) -> dict:
 
 
 def _write_json(path: str | Path, data: dict) -> None:
-    Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False))
-
-
-_EMPTY_ANSWER = {"type": "text", "visuals": [], "scoring_rule": None, "marking_points": []}
+    Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def _validated(data: dict, phase: int, raw: str, label: str) -> None:
@@ -44,37 +43,54 @@ def _merge_answers(data: dict, answers_by_id: dict) -> None:
         q["answers"] = answers_by_id.get(q.get("id")) or copy.deepcopy(_EMPTY_ANSWER)
 
 
-def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
-    claude_client.reset_totals()  # so the [total] line is per paper, not per batch
+# --- Phase 1+2: extraction + topic mapping -----------------------------------------
+
+def prepare_phase12(pdf_path: str, vision: bool = False) -> dict:
+    """Read the PDF and build the request. Returns a job dict used by finish_phase12."""
     print(f"Reading PDF: {pdf_path}")
     pages = pdf_reader.extract_pages(pdf_path)
-    print(f"Extracted {len(pages)} pages. Running Phase 1+2 (extraction + topic mapping)...")
+    images = None
+    if vision:
+        diagram_pages = [p["page"] for p in pages if p.get("has_diagram")]
+        images = pdf_reader.render_pages_to_png_bytes(pdf_path, diagram_pages)
+        print(f"Attaching {len(images)} diagram page image(s): {sorted(images)}")
+    system, messages = prompts.build_phase12_messages(pages, images)
+    return {"pdf_path": pdf_path, "pages": pages, "system": system, "messages": messages}
 
-    system12, messages12 = prompts.build_phase12_messages(pages)
-    phase12_json = claude_client.call(system12, messages12, label="Phase 1+2")
-    phase12_data = json.loads(phase12_json)
-    phase12_data["qp"] = Path(pdf_path).name
-    phase12_data["ms"] = Path(ms_path).name if ms_path else None
-    phase12_data = _reorder(phase12_data)
-    _validated(phase12_data, 2, phase12_json, "Phase 1+2")
-    phase12_json_enriched = json.dumps(phase12_data, ensure_ascii=False)
 
-    final_data = phase12_data
-    if ms_path:
-        print("Phase 1+2 complete. Running Phase 3 (answer extraction)...")
-        ms_pages = pdf_reader.extract_pages(ms_path)
-        print(f"Marking scheme: {len(ms_pages)} pages read.")
-        system3, messages3 = prompts.build_phase3_messages(phase12_json_enriched, ms_pages)
-        phase3_json = claude_client.call(system3, messages3, label="Phase 3")
-        _merge_answers(phase12_data, json.loads(phase3_json))
-        _validated(phase12_data, 3, phase3_json, "Phase 3")
-        final_data = phase12_data
-        print("Phase 3 complete.")
-    else:
-        print("Phase 1+2 complete.")
+def finish_phase12(job: dict, raw_json: str, ms_path: str | None) -> dict:
+    """Parse the model's response, fill in everything deterministic, validate."""
+    data = json.loads(raw_json)
+    data["qp"] = Path(job["pdf_path"]).name
+    data["ms"] = Path(ms_path).name if ms_path else None
+    unmatched = postprocess.postprocess_phase12(data, job["pages"])
+    if unmatched:
+        print(f"Warning: could not pair TermDefinitionGrid question(s) {unmatched} with a PDF table; "
+              f"their rows were left as the model wrote them")
+    data = _reorder(data)
+    _validated(data, 2, raw_json, "Phase 1+2")
+    return data
 
-    enricher.enrich_paper(final_data)
-    statistics.attach_statistics(final_data)
+
+# --- Phase 3: marking-scheme answers -------------------------------------------------
+
+def prepare_phase3(data: dict, ms_path: str):
+    ms_pages = pdf_reader.drop_ms_preamble(pdf_reader.extract_pages(ms_path))
+    print(f"Marking scheme: {len(ms_pages)} answer page(s) read.")
+    return prompts.build_phase3_messages(json.dumps(data, ensure_ascii=False), ms_pages)
+
+
+def finish_phase3(data: dict, raw_json: str) -> dict:
+    _merge_answers(data, json.loads(raw_json))
+    _validated(data, 3, raw_json, "Phase 3")
+    return data
+
+
+# --- enrichment, visuals, output -----------------------------------------------------
+
+def finalize(data: dict, pdf_path: str, output_path: str, show_totals: bool = True) -> None:
+    enricher.enrich_paper(data)
+    statistics.attach_statistics(data)
 
     json_path = Path(output_path)
     if json_path.parent.name == "json":
@@ -82,15 +98,102 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
     else:
         html_path = json_path.with_suffix(".html")
 
-    n_visuals = visuals.attach_visual_images(final_data, pdf_path, html_path.parent)
+    n_visuals = visuals.attach_visual_images(data, pdf_path, html_path.parent)
     if n_visuals:
         print(f"Rendered visuals for {n_visuals} question(s).")
 
-    final_data = _reorder(final_data)
-    _write_json(output_path, final_data)
-    claude_client.print_totals()
+    data = _reorder(data)
+    _write_json(output_path, data)
+    if show_totals:
+        claude_client.print_totals()
     print(f"Output written to: {output_path}")
 
     print("Running Phase 4 (HTML rendering)...")
-    renderer.render(final_data, html_path)
+    renderer.render(data, html_path)
     print(f"HTML written to: {html_path}")
+
+
+# --- drivers -----------------------------------------------------------------------
+
+def extract(pdf_path: str, output_path: str, ms_path: str = None, vision: bool = False) -> None:
+    """Extract one paper, one request at a time."""
+    claude_client.reset_totals()  # so the [total] line is per paper, not per batch
+    job = prepare_phase12(pdf_path, vision)
+    print(f"Running Phase 1+2 (extraction + topic mapping) for {Path(pdf_path).name}...")
+    raw = claude_client.call(job["system"], job["messages"], label="Phase 1+2")
+    data = finish_phase12(job, raw, ms_path)
+
+    if ms_path:
+        print("Phase 1+2 complete. Running Phase 3 (answer extraction)...")
+        system3, messages3 = prepare_phase3(data, ms_path)
+        data = finish_phase3(data, claude_client.call(system3, messages3, label="Phase 3"))
+        print("Phase 3 complete.")
+    else:
+        print("Phase 1+2 complete.")
+    finalize(data, pdf_path, output_path)
+
+
+def _batch_id(pdf_path: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_-]", "_", Path(pdf_path).stem)[:64]
+
+
+def extract_batch(papers: list[tuple[str, str, str | None]], vision: bool = False, poll_seconds: float = 30.0) -> list[tuple[str, Exception]]:
+    """Extract many papers through the Batch API: all Phase 1+2 requests in one
+    batch, then all Phase 3 requests in a second. Half price, but results arrive
+    asynchronously (minutes to hours). `papers` is [(pdf_path, output_path, ms_path)].
+    Returns [(pdf name, error)] for the papers that failed."""
+    failures: dict[str, Exception] = {}
+    jobs, ms_of, out_of = {}, {}, {}
+
+    for pdf, out, ms in papers:
+        cid = _batch_id(pdf)
+        try:
+            jobs[cid] = prepare_phase12(pdf, vision)
+            ms_of[cid], out_of[cid] = ms, out
+        except Exception as e:
+            failures[Path(pdf).name] = e
+
+    data = {}
+    if jobs:
+        raw = claude_client.call_batch({c: (j["system"], j["messages"]) for c, j in jobs.items()},
+                                       label="Phase 1+2 batch", poll_seconds=poll_seconds)
+        for cid, result in raw.items():
+            name = Path(jobs[cid]["pdf_path"]).name
+            if isinstance(result, Exception):
+                failures[name] = result
+                continue
+            try:
+                data[cid] = finish_phase12(jobs[cid], result, ms_of[cid])
+            except Exception as e:
+                failures[name] = e
+
+    stage3 = {}
+    for cid, d in data.items():
+        if ms_of[cid]:
+            try:
+                stage3[cid] = prepare_phase3(d, ms_of[cid])
+            except Exception as e:
+                failures[Path(jobs[cid]["pdf_path"]).name] = e
+    if stage3:
+        raw = claude_client.call_batch(stage3, label="Phase 3 batch", poll_seconds=poll_seconds)
+        for cid, result in raw.items():
+            name = Path(jobs[cid]["pdf_path"]).name
+            if isinstance(result, Exception):
+                failures[name] = result
+                data.pop(cid, None)
+                continue
+            try:
+                data[cid] = finish_phase3(data[cid], result)
+            except Exception as e:
+                failures[name] = e
+                data.pop(cid, None)
+
+    for cid, d in data.items():
+        if Path(jobs[cid]["pdf_path"]).name in failures:
+            continue
+        try:
+            Path(out_of[cid]).parent.mkdir(parents=True, exist_ok=True)
+            finalize(d, jobs[cid]["pdf_path"], out_of[cid], show_totals=False)   # call_batch already printed the totals
+        except Exception as e:
+            failures[Path(jobs[cid]["pdf_path"]).name] = e
+    return list(failures.items())

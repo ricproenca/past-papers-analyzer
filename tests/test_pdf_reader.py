@@ -1,5 +1,3 @@
-import json
-
 import fitz
 import pytest
 
@@ -102,11 +100,55 @@ def test_table_to_markdown_blanks_answer_cells():
     assert md.splitlines() == ["| A | B |", "|---|---|", "| x |  |"]
 
 
-def test_term_def_block_is_authoritative_json():
-    block = pr._term_def_block([["Term", "Description"], ["cpu", "...."], ["", "stores data"]])
-    payload = json.loads(block.removeprefix("[TERM_DEF_TABLE_DATA]\n").removesuffix("\n[/TERM_DEF_TABLE_DATA]"))
-    assert payload == {"headers": ["Term", "Description"],
-                       "rows": [{"term": "cpu", "definition": ""}, {"term": "", "definition": "stores data"}]}
+def test_term_def_data_is_authoritative():
+    data = pr._term_def_data([["Term", "Description"], ["cpu", "...."], ["", "stores data"]])
+    assert data == {"headers": ["Term", "Description"],
+                    "rows": [{"term": "cpu", "definition": None}, {"term": None, "definition": "stores data"}]}
+
+
+# --- boilerplate cleaning ------------------------------------------------------
+
+def test_clean_page_text_drops_boilerplate_only():
+    raw = "\n".join([
+        "(cid:44)(cid:1)(cid:1)(cid:9)",                 # glyph-id noise only -> dropped
+        "* 0000800000006 *",
+        "NIGRAM", "SIHT", "NI", "ETIRW", "TON", "OD",
+        "1 (a) State what ROM(cid:12) stands for.",       # content with a stray glyph id -> kept, cleaned
+        "BLANK PAGE",
+        "\u00a9 UCLES 2025 0478/13/O/N/25 [Turn over",
+        "\u00a9 Cambridge University Press & Assessment 2025 Page 3 of 9",
+        "PUBLISHED",
+        "Explain why OD and NI are not abbreviations here.",   # contains the tokens inside a sentence -> kept
+        "Permission to reproduce items where third-party owned material...",
+        "This text after the copyright notice is dropped.",
+    ])
+    assert pr.clean_page_text(raw).split("\n") == [
+        "1 (a) State what ROM stands for.",
+        "Explain why OD and NI are not abbreviations here.",
+    ]
+
+
+def test_clean_page_text_handles_empty():
+    assert pr.clean_page_text("") == "" and pr.clean_page_text(None) == ""
+
+
+@pytest.mark.parametrize("text,curves,page,expected", [
+    ("Draw a logic circuit.", 0, 5, True),
+    ("Complete the flowchart shown below.", 0, 3, True),
+    ("State one use of RAM.", 0, 4, False),
+    ("State one use of RAM.", 40, 4, True),            # an illustration made of many curves
+    ("Draw on the cover page", 0, 1, False),            # cover page never counts
+])
+def test_has_diagram(text, curves, page, expected):
+    assert pr._has_diagram(text, curves, page) is expected
+
+
+def test_drop_ms_preamble_keeps_pages_from_the_answer_table():
+    pages = [{"page": 1, "text": "MARK SCHEME"}, {"page": 2, "text": "Generic Marking Principles"},
+             {"page": 3, "text": "Question Answer Marks\n1(a) ..."}, {"page": 4, "text": "2(a) ..."}]
+    assert [p["page"] for p in pr.drop_ms_preamble(pages)] == [3, 4]
+    no_table = [{"page": 1, "text": "x"}]
+    assert pr.drop_ms_preamble(no_table) == no_table
 
 
 # --- extract_pages / render_pages_to_pngs on a generated PDF -----------------
@@ -144,3 +186,14 @@ def test_render_pages_to_pngs(sample_pdf, tmp_path):
     mtime = result[1].stat().st_mtime_ns
     pr.render_pages_to_pngs(sample_pdf, [1], out)
     assert result[1].stat().st_mtime_ns == mtime           # idempotent: existing PNG kept
+
+
+def test_extract_pages_exposes_flags_and_term_def_tables(sample_pdf):
+    pages = pr.extract_pages(str(sample_pdf))
+    assert all({"has_table", "has_image", "has_diagram", "term_def_tables"} <= p.keys() for p in pages)
+    assert pages[0]["term_def_tables"] == []
+
+
+def test_render_pages_to_png_bytes(sample_pdf):
+    out = pr.render_pages_to_png_bytes(sample_pdf, [2, 1, 99, 0])
+    assert sorted(out) == [1, 2] and all(b.startswith(b"\x89PNG") for b in out.values())

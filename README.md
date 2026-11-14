@@ -37,6 +37,13 @@ python extract.py input/0478_m25_qp_12.pdf -ms input/0478_m25_ms_12.pdf -o resul
 
 # Override Claude model
 python extract.py input/0478_m25_qp_12.pdf -m claude-opus-4-7
+
+# A whole folder: in parallel, or half price through the Batch API
+python extract.py input/0478 --workers 4
+python extract.py input/0478 --batch
+
+# Send images of pages with diagrams too (better `visuals`, ~1.5k extra tokens per page)
+python extract.py input/0478_m25_qp_12.pdf --vision
 ```
 
 ## Output format

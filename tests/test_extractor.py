@@ -3,7 +3,7 @@ import json
 import pytest
 
 from src import extractor as ex
-from conftest import make_paper, make_answer
+from conftest import make_paper, make_question, make_answer
 
 
 def test_reorder_puts_known_keys_first_and_drops_unknown():
@@ -91,3 +91,80 @@ def test_validation_failure_saves_raw_response(pipeline, debug_dir):
         run(ms=False)
     (saved,) = debug_dir.glob("*Phase_1_2.txt")
     assert "AO9" in saved.read_text()
+
+
+# --- post-processing through the whole pipeline ---------------------------------------
+
+def test_pipeline_fills_topic_names_and_canonicalises_commands(pipeline):
+    responses, run = pipeline
+    claude = json.loads(_claude_extraction())
+    claude["questions"] = [make_question("Q3a", text="Part a.", command="Complete and annotate the diagram"),
+                           make_question("Q3b", text="Part b.", topic="3.1")]
+    claude["total_marks"] = 2
+    for q in claude["questions"]:
+        del q["topic_name"]                       # the model no longer writes it
+    responses.append(json.dumps(claude))
+    data, _ = run(ms=False)
+    qa, qb = data["questions"]
+    assert (qa["topic_name"], qb["topic_name"]) == ("Data Storage", "Computer Architecture")
+    assert qa["command"] == "Complete" and qa["text"] == "Part a."
+
+
+def test_pipeline_rejects_an_unknown_topic_and_saves_the_response(pipeline, debug_dir):
+    responses, run = pipeline
+    bad = json.loads(_claude_extraction())
+    bad["questions"][0]["topic"] = "42.1"
+    responses.append(json.dumps(bad))
+    with pytest.raises(ValueError, match="unknown topic"):
+        run(ms=False)
+    assert list(debug_dir.glob("*Phase_1_2.txt"))
+
+
+# --- batch driver -------------------------------------------------------------------------
+
+@pytest.fixture
+def batch_env(monkeypatch, tmp_path):
+    monkeypatch.setattr(ex.pdf_reader, "extract_pages", lambda p: [{"page": 1, "text": "t", "has_table": False, "has_image": False}])
+    monkeypatch.setattr(ex.visuals, "attach_visual_images", lambda *a, **k: 0)
+    batches = []
+
+    def fake_call_batch(requests, label="", poll_seconds=0):
+        batches.append((label, list(requests)))
+        return fake_call_batch.reply(label, requests)
+    monkeypatch.setattr(ex.claude_client, "call_batch", fake_call_batch)
+    return fake_call_batch, batches, tmp_path
+
+
+def test_extract_batch_two_stages_and_failure_isolation(batch_env):
+    fake, batches, tmp = batch_env
+
+    def reply(label, requests):
+        if label.startswith("Phase 1+2"):
+            good = _claude_extraction()
+            return {"good_qp_1": good, "nomarks_qp_2": good, "boom_qp_3": RuntimeError("batch request expired: x")}
+        return {"good_qp_1": json.dumps({"Q1": make_answer(), "Q2": make_answer()})}
+    fake.reply = reply
+
+    papers = [(f"{n}.pdf", str(tmp / "json" / f"{n}.json"), ms) for n, ms in
+              (("good_qp_1", "good_ms_1.pdf"), ("nomarks_qp_2", None), ("boom_qp_3", None))]
+    failures = ex.extract_batch(papers)
+
+    assert [(label.split(" batch")[0], ids) for label, ids in batches] == [
+        ("Phase 1+2", ["good_qp_1", "nomarks_qp_2", "boom_qp_3"]), ("Phase 3", ["good_qp_1"])]
+    assert [(n, type(e).__name__) for n, e in failures] == [("boom_qp_3.pdf", "RuntimeError")]
+    good = json.loads((tmp / "json" / "good_qp_1.json").read_text())
+    assert good["questions"][0]["answers"]["type"] == "text" and good["ms"] == "good_ms_1.pdf"
+    assert "answers" not in json.loads((tmp / "json" / "nomarks_qp_2.json").read_text())["questions"][0]
+    assert not (tmp / "json" / "boom_qp_3.json").exists()
+
+
+def test_extract_batch_phase3_failure_does_not_write_a_half_paper(batch_env):
+    fake, _, tmp = batch_env
+    fake.reply = lambda label, reqs: ({"p_qp_1": _claude_extraction()} if label.startswith("Phase 1+2")
+                                      else {"p_qp_1": ValueError("Claude returned invalid JSON")})
+    failures = ex.extract_batch([("p_qp_1.pdf", str(tmp / "json" / "p_qp_1.json"), "p_ms_1.pdf")])
+    assert [n for n, _ in failures] == ["p_qp_1.pdf"] and not (tmp / "json" / "p_qp_1.json").exists()
+
+
+def test_batch_ids_are_sanitised():
+    assert ex._batch_id("/x/0478 m25 (qp)_12.pdf") == "0478_m25__qp__12"
