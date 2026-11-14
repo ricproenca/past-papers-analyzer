@@ -5,7 +5,7 @@ CLI tool that extracts structured question data from Cambridge exam PDFs using C
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+uv sync            # or: pip install -e .   (dependencies live in pyproject.toml; uv.lock is committed)
 cp .env.example .env   # add ANTHROPIC_API_KEY
 ```
 
@@ -69,7 +69,7 @@ All phases run sequentially in a single command:
 ## Tests
 
 ```bash
-pip install -e ".[dev]"   # or: uv pip install pytest
+uv sync --extra dev   # or: pip install -e ".[dev]"
 pytest
 ```
 

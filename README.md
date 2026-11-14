@@ -14,7 +14,7 @@ Runs a four-phase pipeline against a Cambridge exam paper (and optionally its ma
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+uv sync            # or: pip install -e .
 cp .env.example .env   # add your ANTHROPIC_API_KEY
 ```
 
