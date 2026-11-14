@@ -1,3 +1,6 @@
+import re
+from collections import Counter
+
 from .enricher import COMMAND_TIER, canonical_command
 from .syllabus import TOPIC_NAMES, topic_in_paper
 
@@ -12,8 +15,10 @@ _VALID_LAYOUT_TYPES = {
     "SimpleSingleBlock", "MultiPartLabeledBlock", "NumberedMultiList",
     "InlineCloze", "MatrixGrid", "ValueTraceMatrix", "FixedRegisterArray",
     "TermDefinitionGrid", "LabelledPartResponse", "AnnotatedDiagram",
-    "CodeBlockResponse",
+    "CodeBlockResponse", "LineMatching", "WorkingAnswer",
 }
+# "1(a)(i)" on the paper is "Q1a_i"; "10" is "Q10".
+_ID_RE = re.compile(r"^Q\d{1,2}[a-z]?(_[ivx]+)?$")
 
 
 def validate_phase_output(data: dict, phase: int) -> None:
@@ -26,12 +31,18 @@ def validate_phase_output(data: dict, phase: int) -> None:
         raise ValueError(f"Phase {phase} output 'questions' must be a list")
 
     required_q = {1: _QUESTION_KEYS_P1, 2: _QUESTION_KEYS_P2, 3: _QUESTION_KEYS_P3}[phase]
+    duplicates = sorted(i for i, n in Counter(q.get("id") for q in questions if isinstance(q, dict)).items() if n > 1)
+    if duplicates:
+        raise ValueError(f"Phase {phase} output has duplicate question ids: {duplicates}")
     for i, q in enumerate(questions):
         qid = q.get("id", f"index {i}")
 
         missing_q = required_q - q.keys()
         if missing_q:
             raise ValueError(f"Phase {phase} question {qid!r} missing keys: {sorted(missing_q)}")
+
+        if not isinstance(q.get("id"), str) or not _ID_RE.match(q["id"]):
+            raise ValueError(f"Phase {phase} question {qid!r}: id must look like Q1, Q1a or Q1a_i")
 
         marks = q.get("marks")
         if not isinstance(marks, int) or isinstance(marks, bool):
@@ -61,6 +72,9 @@ def validate_phase_output(data: dict, phase: int) -> None:
         if canonical_command(q.get("command")) not in COMMAND_TIER:
             print(f"[!] Unmapped command word {q.get('command')!r} (question {qid!r}); "
                   f"add it to src/enricher.py and the prompt's command list")
+        elif q.get("command") != canonical_command(q.get("command")):
+            print(f"[!] Command {q.get('command')!r} (question {qid!r}) is not canonical; "
+                  f"expected {canonical_command(q.get('command'))!r} (run postprocess.canonicalise_commands)")
 
         if phase >= 1 and not isinstance(q.get("structure_data"), dict):
             raise ValueError(

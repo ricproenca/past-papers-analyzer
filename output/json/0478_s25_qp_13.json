@@ -102,22 +102,20 @@
       "Give": 22,
       "Tick": 3,
       "Convert": 6,
-      "Complete": 16,
+      "Complete": 21,
       "Identify": 6,
       "Circle": 2,
       "Describe": 6,
-      "Complete and annotate": 5,
       "Explain": 9
     },
     "count_by_command": {
       "Give": 14,
       "Tick": 3,
       "Convert": 3,
-      "Complete": 3,
+      "Complete": 4,
       "Identify": 3,
       "Circle": 1,
       "Describe": 3,
-      "Complete and annotate": 1,
       "Explain": 3
     },
     "marks_by_answer_type": {
@@ -352,6 +350,10 @@
             "term": "sample resolution",
             "definition": null
           }
+        ],
+        "headers": [
+          "Term",
+          "Description"
         ]
       },
       "topic": "1.2",
@@ -518,6 +520,10 @@
             "term": null,
             "definition": "This is a processing unit within the CPU that can fetch, decode and execute instructions."
           }
+        ],
+        "headers": [
+          "Term",
+          "Description"
         ]
       },
       "topic": "3.1",
@@ -887,7 +893,7 @@
     {
       "id": "Q5c_i",
       "text": "An online company has a website that allows a user to buy products. The company uses a proxy server to keep the web server safe from distributed denial of service (DDoS) attacks.\n\nComplete and annotate a diagram to show how a DDoS attack is carried out on the web server.\n\nweb server",
-      "command": "Complete and annotate",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 5,
       "visuals": [

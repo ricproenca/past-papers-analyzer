@@ -736,6 +736,10 @@
             "term": null,
             "definition": "It controls the flow of electrons using transistors."
           }
+        ],
+        "headers": [
+          "Type of secondary storage",
+          "Description"
         ]
       },
       "topic": "3.3",
@@ -1169,6 +1173,10 @@
             "term": null,
             "definition": "This is the number of bits used to represent a colour in an image."
           }
+        ],
+        "headers": [
+          "Term",
+          "Description"
         ]
       },
       "topic": "1.2",

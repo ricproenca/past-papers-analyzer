@@ -101,27 +101,25 @@
       "NumberedMultiList": 4
     },
     "marks_by_command": {
-      "Complete": 7,
+      "Complete": 10,
       "Add": 3,
       "Tick": 2,
       "State": 2,
       "Describe": 13,
       "Explain": 17,
       "Identify": 21,
-      "Complete and annotate": 3,
       "Circle": 3,
       "Define": 2,
       "Give": 2
     },
     "count_by_command": {
-      "Complete": 1,
+      "Complete": 2,
       "Add": 1,
       "Tick": 2,
       "State": 2,
       "Describe": 5,
       "Explain": 5,
       "Identify": 9,
-      "Complete and annotate": 1,
       "Circle": 1,
       "Define": 2,
       "Give": 1
@@ -503,7 +501,7 @@
     {
       "id": "Q2d_ii",
       "text": "An artist creates an image on a computer. The artist emails the image file to their friends. The packets can use many different methods of data transmission to travel.\n\nComplete and annotate the diagram to show the difference between serial full-duplex transmission between two computers and parallel simplex transmission between two computers.\n\nSerial full-duplex transmission:\nComputer 1                    Computer 2\n\nParallel simplex transmission:\nComputer 1                    Computer 2",
-      "command": "Complete and annotate",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 3,
       "visuals": [],

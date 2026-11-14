@@ -111,8 +111,41 @@ def test_slug_key():
 
 
 def test_line_match_question_renders_matcher():
-    html = question._render_question(make_question(command="Draw", text=MATCH_TEXT, layout_type="AnnotatedDiagram"))
+    html = question._render_question(make_question(command="Draw", text=MATCH_TEXT, layout_type="LineMatching",
+                                                   structure_data={}))
     assert 'class="match-grid"' in html and html.count('class="match-box"') + html.count('match-box ') >= 6
+    assert 'class="ref-table"' not in html                                   # the pipe table is not shown twice
+
+
+def test_line_matching_uses_columns_from_structure_data():
+    sd = {"left_header": "Stage", "right_header": "Task", "left_items": ["a", "b"], "right_items": ["x", "y", "z"]}
+    html = question._render_question(make_question(command="Draw", text="Draw one line from each stage.",
+                                                   layout_type="LineMatching", structure_data=sd))
+    assert html.count('data-side="L"') == 2 and html.count('data-side="R"') == 3
+
+
+def test_annotated_diagram_no_longer_turns_into_a_matcher():
+    html = question._render_question(make_question(command="Draw", text=MATCH_TEXT, layout_type="AnnotatedDiagram",
+                                                   structure_data={"diagram_type": "other"}))
+    assert 'class="match-grid"' not in html
+
+
+def test_working_answer_renders_working_area_labels_and_unit():
+    text = ("Convert the two hexadecimal codes to 12-bit binary numbers.\n\n429\n1A3\n\nWorking space")
+    sd = {"working_space": True, "answer_labels": ["429", "1A3"], "unit": None}
+    html = question._render_question(make_question(text=text, marks=2, command="Convert",
+                                                   layout_type="WorkingAnswer", structure_data=sd))
+    assert 'name="Q1_work"' in html and 'name="Q1_ans0"' in html and 'name="Q1_ans1"' in html
+    assert "Convert the two hexadecimal codes" in html
+    body = html.split('<div class="q-input')[0]
+    assert ">429<" not in body and "Working space" not in body                # label lines are drawn by the input, not repeated as prose
+
+
+def test_working_answer_strips_answer_line_with_unit():
+    text = "Calculate the file size in kibibytes (KiB). Show all your working.\n\nAnswer [blank] . KiB"
+    html = question._render_question(make_question(text=text, marks=3, command="Calculate", layout_type="WorkingAnswer",
+                                                   structure_data={"working_space": True, "answer_labels": [], "unit": "KiB"}))
+    assert "[blank]" not in html and html.count('class="answer-unit">KiB<') == 1 and 'name="Q1_ans0"' in html
 
 
 # --- session label -----------------------------------------------------------

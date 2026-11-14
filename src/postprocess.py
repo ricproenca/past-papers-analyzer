@@ -7,7 +7,7 @@ transcription errors:
     - command words are reduced to their canonical form
     - TermDefinitionGrid contents are copied from the PDF tables
     - subject code and variant come from the Cambridge file name
-    - line-matching questions get the layout the renderer draws them with
+    - line-matching questions get the LineMatching layout and their two columns
     - text the model wrote that is not on the paper (e.g. a flowchart summary) is removed
     - after Phase 3: an AO split stated by the marking scheme becomes objective_marks
 """
@@ -16,7 +16,7 @@ import re
 from collections import defaultdict
 
 from .enricher import canonical_command
-from .renderer.matching import _is_line_match
+from .renderer.matching import _extract_line_match_columns, _is_line_match
 from .syllabus import TOPIC_NAMES
 
 def fill_topic_names(data: dict) -> None:
@@ -77,15 +77,22 @@ def fill_paper_identity(data: dict) -> list[str]:
 
 
 def fix_line_matching_layouts(data: dict) -> list[str]:
-    """"Draw one line from each X to Y" questions are drawn with the interactive
-    matcher, which belongs to AnnotatedDiagram; the model sometimes picks MatrixGrid
-    because the two columns look like a table. Returns the ids it corrected."""
+    """"Draw one line from each X to Y" questions get the LineMatching layout, with
+    the two printed columns (written by the model as a pipe table in "text") copied
+    into structure_data. The model sometimes picks MatrixGrid or AnnotatedDiagram
+    because the columns look like a table or a drawing. Returns the ids it relabelled."""
     fixed = []
     for q in data.get("questions", []):
-        if q.get("layout_type") != "AnnotatedDiagram" and _is_line_match(q, q.get("text") or ""):
-            q["layout_type"] = "AnnotatedDiagram"
-            q["structure_data"] = {"diagram_type": "other", "partial_elements": []}
+        text = q.get("text") or ""
+        columns = _is_line_match(q, text) or (q.get("layout_type") == "LineMatching" and _extract_line_match_columns(text))
+        if not columns:
+            continue
+        if q.get("layout_type") != "LineMatching":
             fixed.append(q.get("id"))
+        left_header, right_header, left_items, right_items = columns
+        q["layout_type"] = "LineMatching"
+        q["structure_data"] = {"left_header": left_header, "right_header": right_header,
+                               "left_items": left_items, "right_items": right_items}
     return fixed
 
 
@@ -144,7 +151,7 @@ def postprocess_phase12(data: dict, pages: list[dict]) -> list[str]:
     for qid, text in drop_unsourced_text(data, pages):
         print(f"[!] {qid}: removed text that is not on the paper: {text[:100]!r}")
     for qid in fix_line_matching_layouts(data):
-        print(f"[!] {qid}: line-matching question re-labelled AnnotatedDiagram")
+        print(f"[!] {qid}: line-matching question re-labelled LineMatching")
     return fill_term_def_grids(data, pages)
 
 

@@ -35,7 +35,8 @@ render.py           # CLI: render existing JSON to HTML; accepts a file or a fol
 answers.py          # CLI: re-extract only the answers (Phase 3) of extracted papers, keeping Phase 1+2 data
 generate_stats.py   # CLI: builds output/html/statistics.html from all paper JSONs
 generate_topics.py  # CLI: builds output/html/topic_*.html + topics.html (questions grouped by topic)
-backfill_enrichment.py  # re-run enrichment + statistics over existing JSONs
+backfill_enrichment.py  # re-apply the deterministic steps (canonical commands, LineMatching, TermDefinitionGrid from the PDF,
+                        #   objective_marks) + enrichment + statistics to existing JSONs; no API calls
 src/
   pdf_reader.py     # pdfplumber: boilerplate-free text, table classification, diagram cue, MS preamble trimming
   postprocess.py    # fills what the model need not write: topic names, canonical commands, TermDefinitionGrid rows,
@@ -63,7 +64,8 @@ scripts/
   check_site.py           # static checks of output/html: duplicate ids, missing files, SRI, widget scripts, JS syntax
 .claude/skills/     # project skills (see Skills)
 docs/
-  question_extractor.md  # prompt spec: extraction + topic mapping + answers
+  question_extractor.md  # output spec: every JSON field and who writes it, layouts, answer conventions
+  questions_types.md     # the 13 layout types: signals, structure_data, rendering
   syllabus.md            # syllabus topics (1.x–10.x) used in Phase 1+2
   assesssment.md         # assessment objectives (AO1–AO3) used in Phase 1+2
   command_words.md       # command word definitions used in Phase 1+2
@@ -120,6 +122,8 @@ The script is idempotent — re-running it leaves files unchanged.
 - **Syllabus mapping (Phase 2)**: `src/syllabus.py` holds topic names, `TOPIC_CONTENT` (condensed from the official syllabus PDF — e.g. embedded systems are 3.1, cloud storage 3.3, SQL is limited to SELECT/FROM/WHERE/ORDER BY/SUM/COUNT), the verbatim AO definitions and per-paper weightings (Paper 1 60/20/20, Paper 2 20/60/20). The prompt's TOPICS and OBJECTIVES blocks are generated from it, with an AO3 calibration (≈15 marks per paper) because extractions had AO3 near 0%. Algorithm questions are routed by purpose (validation → 7.4, standard methods → 7.3, test data → 7.5). Topics outside the paper's chapters produce a warning.
 - **Answers (Phase 3)**: the call receives only `id`, `marks`, `layout_type` and `text` per question (−15% input on Paper 1), plus the marking scheme from its first answer table. The prompt fixes the representation: id mapping `1(a)(i)` ↔ `Q1a_i`, one point per criterion with alternatives never merged, banded marks as 1-mark items with the band in `scoring_rule`, level descriptors carrying the top of their band. A scoring rule that states an AO split ("AO2 (maximum 9 marks); AO3 (maximum 6 marks)") becomes `objective_marks` (`postprocess.fill_objective_marks`), and `marks_by_objective` counts it. Schema warnings flag empty or insufficient marking points, MCQs with several points, non-integer marks and bad splits.
 - **Rendering (Phase 4)**: no API calls (all 15 papers render in ~0.01 s). `renderer.interactive_script_tags()` adds JointJS (~465 KB, with a sha384 integrity hash) and `circuit.js` only to pages with a circuit editor and `match.js` only with a line matcher — 14 of 15 paper pages load neither now, and topic pages get them when their cards need them (they were missing before, so those widgets were inert there). All CDN scripts are version-pinned with `integrity`/`crossorigin`; the `joint.css` link was a 404 and is gone. Cards rendered with `source=` (topic pages) get paper-qualified DOM ids and input names, fixing duplicate ids and radio groups that interfered across papers.
+- **Layouts** (13, `docs/questions_types.md`): `LineMatching` ("draw one line from each … to …") was split out of AnnotatedDiagram — its columns are copied from the pipe table in `text` by `postprocess.fix_line_matching_layouts`. `WorkingAnswer` covers calculations and conversions with a "Working space" and labelled answer lines (`answer_labels`, `unit`); the pre-processor annotates dot lines after a printed "Working space". The MatrixGrid / ValueTraceMatrix prompt sections were condensed (Phase 1+2 prompt −7% while adding both layouts).
+- **Validation**: ids must match `^Q\d{1,2}[a-z]?(_[ivx]+)?$` and be unique (errors: Phase 3 pairs answers by id); a non-canonical command is a warning.
 - **Unsourced-text guard**: `postprocess.drop_unsourced_text` removes sentences of `text` whose word trigrams are mostly absent from the paper's PDF text — the model occasionally writes its own flowchart summary. 0 hits on the 15 committed papers; caught every invented summary in testing.
 - **Diagram detection**: `[Likely contains a diagram/drawing]` is set from a text cue (words like diagram, flowchart, draw, circuit) or ≥20 curves on the page — it found 15 of 17 known diagram pages with 1 false positive. Vector-shape counts and `page.images` were tried and do not work on Cambridge papers. `--vision` attaches PNGs of the flagged pages (opt-in: it adds ~1.5k input tokens per page and enriched the diagram description in a test).
 - **Temperature**: not sent by default. `CLAUDE_TEMPERATURE=<n>` opts in; a model that rejects the parameter is retried without it. (On one paper, temperature 0 made the model trim context sentences in 3 of 3 runs; the API default kept them in 2 of 2.)
@@ -128,7 +132,8 @@ The script is idempotent — re-running it leaves files unchanged.
 
 ## Docs Reference
 
-- **`docs/question_extractor.md`** — Full prompt spec for the Claude phases (Phase 4 has no prompt; it's pure rendering).
+- **`docs/question_extractor.md`** — Output spec: each JSON field and who produces it (model, pipeline, enricher), layouts, Phase 3 conventions. The prompt text itself is `src/prompts.py`.
+- **`docs/questions_types.md`** — The 13 layout types. `tests/test_prompts.py` fails if either doc or the prompt lists a different set of layouts than `schema._VALID_LAYOUT_TYPES`.
 - **`docs/syllabus.md`** — Syllabus topics 1.x–10.x used by Phase 1+2 for `topic` / `topic_name` mapping.
 - **`docs/assesssment.md`** — Assessment objectives (AO1: knowledge 40%, AO2: application 40%, AO3: evaluation 20%) used by Phase 1+2 for `objective` mapping.
 - **`docs/command_words.md`** — Command word definitions (State, Explain, Evaluate, etc.) used by Phase 1+2 for `command` field guidance.

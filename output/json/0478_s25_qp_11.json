@@ -457,6 +457,10 @@
             "term": null,
             "definition": "This is additional data that is stored with an image that can provide information such as the time and date the image was taken."
           }
+        ],
+        "headers": [
+          "Term",
+          "Definition"
         ]
       },
       "topic": "1.2",
@@ -756,6 +760,10 @@
             "term": "accumulator",
             "definition": null
           }
+        ],
+        "headers": [
+          "Term",
+          "Definition"
         ]
       },
       "topic": "3.1",

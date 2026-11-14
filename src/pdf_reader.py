@@ -144,9 +144,13 @@ def _annotate_anchors(raw_text: str, cell_texts: list[str] = ()) -> str:
     text = _annotate_cloze_blocks(text, cell_texts)
 
     # Pass 5 — SimpleSingleBlock: 2+ consecutive dot-only lines not yet annotated
+    # (WorkingAnswer when the lines follow a printed "Working space" label)
     def _replace_consec(m: re.Match) -> str:
         block = m.group(0)
         line_count = block.count('\n') or 1
+        before = m.string[:m.start()].rstrip().rsplit("\n", 1)[-1].strip()
+        if before.lower() == "working space":
+            return '[LAYOUT:WorkingAnswer working_space=true]\n' + block
         return f'[LAYOUT:SimpleSingleBlock line_count={line_count}]\n' + block
 
     text = _RE_CONSEC_DOTS.sub(_replace_consec, text)

@@ -577,6 +577,10 @@
             "term": null,
             "definition": "A red or blue laser is used to read and write data."
           }
+        ],
+        "headers": [
+          "type of secondary storage",
+          "statement"
         ]
       },
       "topic": "3.3",
@@ -823,6 +827,10 @@
             "term": "magnetic field",
             "definition": null
           }
+        ],
+        "headers": [
+          "type of sensor",
+          "use"
         ]
       },
       "topic": "6.1",

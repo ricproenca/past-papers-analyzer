@@ -591,27 +591,25 @@ const PAPERS = {
         "NumberedMultiList": 4
       },
       "marks_by_command": {
-        "Complete": 7,
+        "Complete": 10,
         "Add": 3,
         "Tick": 2,
         "State": 2,
         "Describe": 13,
         "Explain": 17,
         "Identify": 21,
-        "Complete and annotate": 3,
         "Circle": 3,
         "Define": 2,
         "Give": 2
       },
       "count_by_command": {
-        "Complete": 1,
+        "Complete": 2,
         "Add": 1,
         "Tick": 2,
         "State": 2,
         "Describe": 5,
         "Explain": 5,
         "Identify": 9,
-        "Complete and annotate": 1,
         "Circle": 1,
         "Define": 2,
         "Give": 1
@@ -694,13 +692,13 @@ const PAPERS = {
       },
       "marks_by_cognitive_load": {
         "Low": 18,
-        "High": 48,
-        "Medium": 9
+        "Medium": 13,
+        "High": 44
       },
       "count_by_cognitive_load": {
         "Low": 10,
-        "High": 8,
-        "Medium": 3
+        "Medium": 4,
+        "High": 7
       },
       "marks_by_objective": {
         "AO1": 8,
@@ -714,19 +712,21 @@ const PAPERS = {
       },
       "marks_by_layout_type": {
         "MatrixGrid": 2,
-        "AnnotatedDiagram": 9,
+        "LineMatching": 4,
         "SimpleSingleBlock": 16,
         "CodeBlockResponse": 24,
         "ValueTraceMatrix": 15,
-        "MultiPartLabeledBlock": 9
+        "MultiPartLabeledBlock": 9,
+        "AnnotatedDiagram": 5
       },
       "count_by_layout_type": {
         "MatrixGrid": 2,
-        "AnnotatedDiagram": 2,
+        "LineMatching": 1,
         "SimpleSingleBlock": 8,
         "CodeBlockResponse": 3,
         "ValueTraceMatrix": 3,
-        "MultiPartLabeledBlock": 3
+        "MultiPartLabeledBlock": 3,
+        "AnnotatedDiagram": 1
       },
       "marks_by_command": {
         "Tick": 2,
@@ -1530,22 +1530,20 @@ const PAPERS = {
         "Give": 22,
         "Tick": 3,
         "Convert": 6,
-        "Complete": 16,
+        "Complete": 21,
         "Identify": 6,
         "Circle": 2,
         "Describe": 6,
-        "Complete and annotate": 5,
         "Explain": 9
       },
       "count_by_command": {
         "Give": 14,
         "Tick": 3,
         "Convert": 3,
-        "Complete": 3,
+        "Complete": 4,
         "Identify": 3,
         "Circle": 1,
         "Describe": 3,
-        "Complete and annotate": 1,
         "Explain": 3
       },
       "marks_by_answer_type": {
@@ -1927,8 +1925,7 @@ const PAPERS = {
         "State": 3,
         "Explain": 16,
         "Identify": 5,
-        "Complete and annotate the diagram": 4,
-        "Complete": 13,
+        "Complete": 17,
         "Describe": 3
       },
       "count_by_command": {
@@ -1938,8 +1935,7 @@ const PAPERS = {
         "State": 3,
         "Explain": 5,
         "Identify": 2,
-        "Complete and annotate the diagram": 1,
-        "Complete": 2,
+        "Complete": 3,
         "Describe": 1
       },
       "marks_by_answer_type": {
@@ -2211,10 +2207,9 @@ const PAPERS = {
         "Tick": 2,
         "Describe": 11,
         "Calculate": 4,
-        "Complete and annotate": 5,
+        "Complete": 13,
         "Explain": 21,
-        "Write": 3,
-        "Complete": 8
+        "Write": 3
       },
       "count_by_command": {
         "Give": 7,
@@ -2223,10 +2218,9 @@ const PAPERS = {
         "Tick": 2,
         "Describe": 4,
         "Calculate": 1,
-        "Complete and annotate": 1,
+        "Complete": 3,
         "Explain": 7,
-        "Write": 1,
-        "Complete": 2
+        "Write": 1
       },
       "marks_by_answer_type": {
         "text": 68,
@@ -2481,6 +2475,8 @@ const LAYOUT_NAMES = {
   'LabelledPartResponse':  'Labelled Part Response',
   'FixedRegisterArray':    'Register Array',
   'CodeBlockResponse':     'Code Block',
+    'LineMatching':          'Line Matching',
+    'WorkingAnswer':         'Calculation',
 };
 
 function sessionYear(s) {

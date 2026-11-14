@@ -38,6 +38,8 @@ const LAYOUT_NAMES = {
   'LabelledPartResponse':  'Labelled Part Response',
   'FixedRegisterArray':    'Register Array',
   'CodeBlockResponse':     'Code Block',
+    'LineMatching':          'Line Matching',
+    'WorkingAnswer':         'Calculation',
 };
 
 function sessionYear(s) {

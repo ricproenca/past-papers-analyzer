@@ -31,6 +31,31 @@ def test_missing_question_key(paper):
         validate(paper, phase=2)
 
 
+@pytest.mark.parametrize("qid", ["Q1", "Q10", "Q2c", "Q2c_ii", "Q4b_iv"])
+def test_well_formed_ids_pass(paper, qid):
+    paper["questions"][0]["id"] = qid
+    validate(paper, phase=2)
+
+
+@pytest.mark.parametrize("qid", ["Q1bi", "1a", "Q1(a)", "Q2C", "", None])
+def test_malformed_ids_are_rejected(paper, qid):
+    paper["questions"][0]["id"] = qid
+    with pytest.raises(ValueError, match="id must look like"):
+        validate(paper, phase=2)
+
+
+def test_duplicate_ids_are_rejected(paper):
+    paper["questions"][1]["id"] = "Q1"
+    with pytest.raises(ValueError, match="duplicate question ids: \\['Q1'\\]"):
+        validate(paper, phase=2)
+
+
+def test_non_canonical_command_warns(paper, capsys):
+    paper["questions"][0]["command"] = "Complete and annotate"
+    validate(paper, phase=2)
+    assert "is not canonical; expected 'Complete'" in capsys.readouterr().out
+
+
 @pytest.mark.parametrize("bad", [None, "2", 2.0, True])
 def test_marks_must_be_an_integer(paper, bad):
     paper["questions"][0]["marks"] = bad
@@ -88,7 +113,9 @@ def test_unmapped_command_warns_but_canonical_forms_do_not(paper, capsys):
     paper["questions"][1]["command"] = "Frobnicate"
     validate(paper, phase=2)
     out = capsys.readouterr().out
-    assert "Frobnicate" in out and "annotate" not in out
+    assert "Unmapped command word 'Frobnicate'" in out
+    assert "Unmapped command word 'Complete and" not in out            # mapped, only flagged as not canonical
+    assert "'Complete and annotate the diagram' (question 'Q1') is not canonical" in out
 
 
 def test_consistency_warnings(capsys):

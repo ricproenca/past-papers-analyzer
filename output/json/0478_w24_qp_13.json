@@ -111,8 +111,7 @@
       "State": 3,
       "Explain": 16,
       "Identify": 5,
-      "Complete and annotate the diagram": 4,
-      "Complete": 13,
+      "Complete": 17,
       "Describe": 3
     },
     "count_by_command": {
@@ -122,8 +121,7 @@
       "State": 3,
       "Explain": 5,
       "Identify": 2,
-      "Complete and annotate the diagram": 1,
-      "Complete": 2,
+      "Complete": 3,
       "Describe": 1
     },
     "marks_by_answer_type": {
@@ -953,7 +951,7 @@
     {
       "id": "Q3b",
       "text": "An instruction is fetched from random access memory (RAM) into the memory data register (MDR) to be decoded. Complete and annotate the diagram to show how the data is decoded once it has been fetched into the MDR.\nMDR",
-      "command": "Complete and annotate the diagram",
+      "command": "Complete",
       "objective": "AO2",
       "marks": 4,
       "visuals": [
@@ -1044,6 +1042,10 @@
             "term": "hacking",
             "definition": null
           }
+        ],
+        "headers": [
+          "Internet term",
+          "Description"
         ]
       },
       "topic": "5.1",

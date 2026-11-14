@@ -32,6 +32,8 @@ LOAD_MAP = {
     "ValueTraceMatrix":      "High",
     "AnnotatedDiagram":      "High",
     "CodeBlockResponse":     "High",
+    "LineMatching":          "Medium",
+    "WorkingAnswer":         "Medium",
 }
 
 

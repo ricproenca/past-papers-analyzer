@@ -113,10 +113,9 @@
       "Tick": 2,
       "Describe": 11,
       "Calculate": 4,
-      "Complete and annotate": 5,
+      "Complete": 13,
       "Explain": 21,
-      "Write": 3,
-      "Complete": 8
+      "Write": 3
     },
     "count_by_command": {
       "Give": 7,
@@ -125,10 +124,9 @@
       "Tick": 2,
       "Describe": 4,
       "Calculate": 1,
-      "Complete and annotate": 1,
+      "Complete": 3,
       "Explain": 7,
-      "Write": 1,
-      "Complete": 2
+      "Write": 1
     },
     "marks_by_answer_type": {
       "text": 68,
@@ -590,7 +588,7 @@
     {
       "id": "Q4a",
       "text": "A computer with a Von Neumann architecture has a central processing unit (CPU) that performs the fetch–decode–execute (FDE) cycle.\n\nComplete and annotate the diagram to show how instructions are decoded and executed.\n\ncontrol unit (CU)          arithmetic logic unit (ALU)",
-      "command": "Complete and annotate",
+      "command": "Complete",
       "objective": "AO1",
       "marks": 5,
       "visuals": [
@@ -1064,6 +1062,10 @@
             "term": null,
             "definition": "It is a piece of software that is used to display web pages."
           }
+        ],
+        "headers": [
+          "Term",
+          "Description"
         ]
       },
       "topic": "5.1",

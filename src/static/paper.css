@@ -284,7 +284,15 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     font-size: .72rem; color: #6b7280; font-style: italic;
 }
 
-/* AnnotatedDiagram → "draw a line to match" interactive matcher */
+/* WorkingAnswer */
+.working-answer .working-label { display: block; padding-top: 0; margin-bottom: .3rem; }
+.working-answer .working-area { margin-bottom: .6rem; }
+.working-answer-row { align-items: center; }
+.working-answer-row .slot-label { padding-top: 0; }
+.working-answer-row .answer-input { flex: 1; }
+.answer-unit { margin-left: .4rem; font-size: .9rem; color: #374151; }
+
+/* LineMatching → "draw a line to match" interactive matcher */
 .match-grid {
     position: relative;
     display: grid;

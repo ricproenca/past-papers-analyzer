@@ -17,7 +17,7 @@ RULES:
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation. The parent context is exactly the text printed BEFORE the parent's first part label — before "(a)" for Q2, before "(i)" for Q2c; text printed after a part label belongs to that part only. Copy that parent context IN FULL — every sentence, even ones that seem unrelated to this part — plus any pseudocode/program listing (numbered code lines) or reference table the parent introduces. Do NOT copy the words extracted from inside a diagram, flowchart or logic circuit (scattered box labels such as "START", "INPUT Answer", "Yes", "No"): that is the drawing itself, shown to the reader as an image; just keep the sentence that introduces it.
 - Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
 - "text" is verbatim: only words printed on the paper — but repair obvious PDF-extraction artefacts: symbols displaced into words ("t←otal" → "Total ←" in its proper place), split words ("av erage" → "average"), and lost line breaks in numbered code listings (one numbered line per line). Never describe, summarise or interpret a diagram, flowchart or image in "text" — put any description in "visuals".
-- Line-matching questions ("Draw one line from each ... to ..."): write the two printed columns in "text" as a pipe table — first line "<left header> | <right header>", then one line per row "<left item> | <right item>" in printed order (the rows are NOT matched pairs; leave a side empty if a column is shorter). Their layout_type is AnnotatedDiagram with diagram_type "other".
+- Line-matching questions ("Draw one line from each ... to ..."): write the two printed columns in "text" as a pipe table — first line "<left header> | <right header>", then one line per row "<left item> | <right item>" in printed order (the rows are NOT matched pairs; leave a side empty if a column is shorter). Their layout_type is LineMatching.
 - Tables that a structured layout renders from structure_data (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) must NOT be copied into "text"; "text" holds the prose only.
 - Preserve paragraph breaks from the PDF in the "text" field. When the source PDF visually shows two prose paragraphs separated by a blank line / vertical gap (e.g. a setup paragraph "X happens in context Y." followed by a new instruction paragraph "Describe the process for Z."), put a literal blank line (`\n\n`) between them in the "text" field. Do NOT insert `\n\n` for line wraps within one paragraph, between a prose paragraph and a table, or between a paragraph and answer-space labels — those already have their own structure markers and don't need extra blank lines.
 
@@ -39,7 +39,7 @@ Build a clean, structured JSON deliverable:
     "marks": amount of marks in each question
     "visuals": array with visuals elements like diagrams, tables, graphs, images. Empty array if nothing
     "page": the paper page number of the question
-    "layout_type": the question's visual answer format — exactly one of the 11 types listed in LAYOUT TYPES below
+    "layout_type": the question's visual answer format — exactly one of the 13 types listed in LAYOUT TYPES below
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
     "topic": topic code from the syllabus (e.g. "1.2") — see TOPICS below. Do NOT output the topic name; it is added automatically.
 
@@ -69,71 +69,24 @@ InlineCloze — fill-in-the-gap prose; blanks appear as [blank] mid-sentence; ma
   structure_data: { "inline_gap_count": N, "has_word_bank": true/false }
   Set has_word_bank to true if a word bank list or table is visible near the question.
 
-MatrixGrid — table that requires ticks/selections. Covers TWO sub-patterns:
+MatrixGrid — a table answered with ticks/selections. Two patterns:
+  (1) Comparison grid — option columns, one tick per row.
+      structure_data: { "matrix_headers": ["Statement","True","False"], "row_count": N, "rows": ["statement text", ...] }
+      rows: the left-column text of each row, in order.
+  (2) Single-select MCQ — "Tick (✓) one box…" with options A/B/C/… listed below the prompt; one row per option.
+      structure_data: { "matrix_headers": ["Option","Tick"], "row_count": N, "rows": ["A <full statement>", "B <full statement>", ...] }
+      Exactly two headers, the right one "Tick", "Select", "Choose" or "Mark". Never put the option letters in matrix_headers
+      or collapse the options into one row. These two headers are not printed on the paper: never write them into "text".
 
-  (1) MATRIX COMPARISON — multiple option columns; each row gets ONE tick.
-      Example headers: ["Statement", "True", "False"], ["Feature", "RAM", "ROM", "Flash"].
-      structure_data: { "matrix_headers": ["Statement","True","False"], "row_count": N,
-                        "rows": ["statement text", ...] }
-      rows: the text of each statement/feature row (left-most column), in order.
-
-  (2) SINGLE-SELECT MCQ — one tick column with N alternative options labelled A/B/C/…
-      Triggered by "Tick (✓) one box…", "Tick (✓) two boxes…", etc. each option is one row.
-      structure_data: { "matrix_headers": ["Option", "Tick"], "row_count": N,
-                        "rows": ["A <full statement>", "B <full statement>", ...] }
-      • Headers MUST be exactly two columns: the LEFT header is the row-label (e.g. "Option",
-        "Statement"); the RIGHT header signals selection — use one of: "Tick", "Select",
-        "Choose", "Mark".
-      • rows MUST be one row PER OPTION. Each row string starts with the option letter/number
-        (A, B, C, …) followed by a space and the full statement text. Do NOT put the option
-        letters in matrix_headers (that produces an unusable layout). Do NOT collapse the
-        question to a single row like ["Tick one box"] with letters as headers.
-      • The renderer derives tick-count (one/two/three/…) from the question text directly,
-        so no extra field is needed.
-      • CRITICAL — text field: the headers ["Option","Tick"] (or similar) are CANONICAL
-        placeholders that live in structure_data ONLY. The PDF does NOT print a literal
-        "Option | Tick" row above the options. NEVER write a synthetic header line like
-        "Option | Tick" (or any "<left> | <right>" canonical-header line) into the "text"
-        field. The text field must contain only the prose stem and what is actually printed
-        on the PDF — never the pipe-separated canonical headers.
-      Common command words for this pattern: "Tick", "Circle", "Select".
-
-  Distinguishing the two: if the question reads "Tick one box to show…" with options labelled
-  A/B/C/D listed BELOW the prompt, it is pattern (2). If each row already has its own True/False
-  or category choice, it is pattern (1).
-
-ValueTraceMatrix — multi-column data table where students fill in cell values; covers BOTH:
-    (a) algorithm/register trace tables (all data cells blank — students compute values)
-    (b) data-grid tables with rows prefilled and only some rows blank (e.g. parity block check tables)
-  PDF signals: [TABLE_TYPE:ValueTraceMatrix]; headers include PC, ACC, IX, MAR, MDR, CIR, SR, variable names,
-    or bit/byte positions like "parity bit, bit 7, bit 6, …, bit 1".
-  structure_data: {
-    "matrix_headers": ["parity bit","bit 7","bit 6","bit 5","bit 4","bit 3","bit 2","bit 1"],
-    "row_count": N,
-    "rows": ["byte 1","byte 2","byte 3","byte 4","byte 5","byte 6","byte 7","parity byte"],
-    "row_values": [
-      ["1","1","0","0","1","1","1","0"],   // byte 1 — fully prefilled
-      ["1","0","0","0","0","1","1","0"],   // byte 2 — fully prefilled
-      ["0","1","0","0","0","0","0","0"],   // byte 3 — fully prefilled
-      ["0","1","0","0","1","1","1","1"],   // byte 4 — fully prefilled
-      ["1","0","0","0","0","0","0","0"],   // byte 5 — fully prefilled
-      ["0","1","1","1","1","1","1","1"],   // byte 6 — fully prefilled
-      ["1","1","0","0","1","1","0","1"],   // byte 7 — fully prefilled
-      null                                  // parity byte — all 8 cells blank
-    ]
-  }
-  matrix_headers: only the DATA column headers; do NOT include the leftmost row-label column.
-  rows: the step / instruction / byte label for each row (left-most column), in order.
-  row_values (NEW, optional): parallel array to rows giving prefilled cell values per row:
-    • null (or omit the field entirely) → that row's data cells are ALL blank for the student to fill
-    • [v0, v1, …] → list of strings, one per matrix_headers column, in the same order;
-                    use null or "" inside the array for an individual blank cell
-  When most cells in the table are prefilled and only a subset of rows / cells are blank (typical of
-  parity check tables or "complete the table" data-fill questions), POPULATE row_values. When the table
-  is a pure trace (algorithm walk-through, register trace), OMIT row_values — the renderer treats every
-  data cell as blank.
-  Self-check: the number of blank cells in your row_values (counting all nulls — including each entry of
-  any null/missing row entry) should align with the question's "marks" value (one blank = one mark, typical).
+ValueTraceMatrix — a table where students write cell values: trace tables (every data cell blank) and data tables with
+  some cells printed (parity blocks, truth tables, conversion and test-data tables).
+  PDF signals: [TABLE_TYPE:ValueTraceMatrix]; headers are registers (PC, ACC, MAR …), variable names or bit positions.
+  structure_data: { "matrix_headers": ["parity bit","bit 7","bit 6"], "row_count": N, "rows": ["byte 1","byte 2","parity byte"],
+                    "row_header": "Byte", "row_values": [["1","1","0"], ["0","1","1"], null] }
+  matrix_headers: the data columns only — not the left-most row-label column (put its printed heading in optional "row_header").
+  rows: the left-most label of each row, in order.
+  row_values (optional): parallel to rows; null = every cell of that row is blank, otherwise one string per data column
+    with "" for a blank cell. Omit it for a pure trace table. Self-check: blank cells usually equal marks.
 
 FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
   PDF signals: [TABLE_TYPE:FixedRegisterArray register_size=N]
@@ -152,16 +105,23 @@ LabelledPartResponse — a reference item (URL, code, expression) with parts mar
   labels: the callout letters or numbers in order.
   reference: the URL, code line, expression, or brief description of the item being labelled.
 
-AnnotatedDiagram — a partially drawn diagram canvas; student adds missing nodes, connections, and labels
-  PDF signals: command words "Complete and annotate the diagram", "Complete the diagram", "Draw", or "Sketch";
-               page contains vector shapes (lines, boxes, arrows) with pre-labelled anchor elements;
-               no dot answer lines — the diagram itself is the answer space
-  structure_data: {
-    "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other",
-    "partial_elements": ["Patient's computer", "www.cihospital.com"]
-  }
-  diagram_type: choose the closest category for the diagram shown.
-  partial_elements: list every pre-drawn or pre-labelled node/component visible in the question diagram.
+AnnotatedDiagram — the student draws or completes a diagram (network, data flow, system architecture, logic circuit …).
+  PDF signals: "Draw and annotate a diagram", "Complete (and annotate) the diagram", "Draw a logic circuit", "Sketch";
+               the page flag [Likely contains a diagram/drawing]; no answer lines — the drawing area is the answer space.
+  structure_data: { "diagram_type": "network" | "flowchart" | "circuit" | "data flow" | "system architecture" | "other",
+                    "partial_elements": ["Patient's computer", "www.cihospital.com"] }
+  partial_elements: every pre-drawn or pre-labelled node/component; for a logic circuit the inputs then the output (A, B, C, Z).
+
+LineMatching — "Draw one line from each … to …": two printed columns of items to connect.
+  text: the two columns as a pipe table (see RULES). structure_data: {}   // the pipeline copies the columns from the pipe table
+
+WorkingAnswer — a numeric calculation or conversion (Convert, Calculate, Add …) with a working area and/or labelled answer lines.
+  PDF signals: [LAYOUT:WorkingAnswer working_space=true]; a "Working space" line; one label line per value to convert
+               ("429", "1A3"); an answer line such as "Answer ..... KiB" or "Denary value". A conversion with one plain
+               answer line and no working area stays SimpleSingleBlock.
+  structure_data: { "working_space": true, "answer_labels": ["429", "1A3"], "unit": "KiB" }
+  working_space: true when the paper prints "Working space" or asks to show working. answer_labels: the printed label of
+    each answer line, in order ([] for a single unlabelled answer). unit: the unit printed after the answer line, else null.
 
 DataReferenceTable handling — when a page contains [TABLE_TYPE:DataReferenceTable], this is a lookup or context table provided IN the question (e.g. a database table, a data set, a reference grid) that students must READ to answer the sub-questions. It is NOT an answer format.
   MANDATORY: Include the full table in the "text" field of the FIRST sub-question that references it, in pipe-separated format: one row per line, first line = header, subsequent lines = data rows (no separator line). Position the table right after the opening prose stem (the sentence that introduces it) and before any sub-question prompt.

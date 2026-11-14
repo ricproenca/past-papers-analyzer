@@ -7,7 +7,7 @@ from .text import (
     _render_prose_paragraphs,
 )
 from .matching import (
-    _is_line_match,
+    _extract_line_match_columns,
     _render_line_matching,
 )
 
@@ -491,10 +491,6 @@ def _render_annotated_diagram(q, sd):
     if (sd.get("diagram_type") or "").strip().lower() == "circuit":
         return _render_circuit_editor(q, sd)
 
-    columns = _is_line_match(q, q.get("text") or "")
-    if columns is not None:
-        return _render_line_matching(q, columns)
-
     qid = escape(q.get("id", ""))
     diagram_type = sd.get("diagram_type") or "diagram"
     partial = sd.get("partial_elements") or []
@@ -519,6 +515,47 @@ def _render_annotated_diagram(q, sd):
     )
 
 
+def _render_line_matching_layout(q, sd):
+    """LineMatching: columns from structure_data (filled by postprocess), else from the
+    pipe table in the text; without either it falls back to an open answer."""
+    keys = ("left_header", "right_header", "left_items", "right_items")
+    if all(sd.get(k) for k in keys):
+        columns = tuple(sd[k] for k in keys)
+    else:
+        columns = _extract_line_match_columns(q.get("text") or "")
+    if not columns:
+        return _render_simple_single_block(q, sd)
+    return _render_line_matching(q, columns)
+
+
+def _render_working_answer(q, sd):
+    """WorkingAnswer: an optional working area, then one labelled answer line per
+    value asked for ("429", "1A3", "Denary value"), with the printed unit after it."""
+    qid = escape(q.get("id", ""))
+    try:
+        marks = int(q.get("marks") or 1)
+    except (TypeError, ValueError):
+        marks = 1
+    working = ""
+    if sd.get("working_space", True):
+        working = (
+            f'<label class="slot-label working-label">Working space</label>'
+            f'<textarea class="answer-textarea working-area" rows="{max(marks * 2, 3)}" '
+            f'name="{qid}_work"></textarea>'
+        )
+    labels = [str(l) for l in (sd.get("answer_labels") or []) if str(l).strip()] or ["Answer"]
+    unit = sd.get("unit")
+    unit_html = f'<span class="answer-unit">{escape(str(unit))}</span>' if unit else ""
+    rows = "".join(
+        f'<div class="labeled-slot working-answer-row">'
+        f'<label class="slot-label">{escape(label)}</label>'
+        f'<input type="text" class="answer-input" name="{qid}_ans{i}">{unit_html}'
+        f'</div>'
+        for i, label in enumerate(labels)
+    )
+    return f'<div class="q-input working-answer">{working}{rows}</div>'
+
+
 _LAYOUT_RENDERERS = {
     "SimpleSingleBlock":      _render_simple_single_block,
     "MultiPartLabeledBlock":  _render_multi_part_labeled,
@@ -531,4 +568,6 @@ _LAYOUT_RENDERERS = {
     "LabelledPartResponse":   _render_labelled_part_response,
     "AnnotatedDiagram":       _render_annotated_diagram,
     "CodeBlockResponse":      _render_code_block_response,
+    "LineMatching":           _render_line_matching_layout,
+    "WorkingAnswer":          _render_working_answer,
 }

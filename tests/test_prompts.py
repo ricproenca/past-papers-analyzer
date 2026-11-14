@@ -59,3 +59,28 @@ def test_phase3_prompt_states_marking_point_conventions():
     sp = prompts.PHASE3_SYSTEM
     assert '"1(a)(i)"' in sp and "Never merge alternatives" in sp and "TOP of that band" in sp
     assert len(sp) // 4 < 1024          # still below the minimum cacheable prefix, so no cache_control
+
+
+# --- docs stay in step with the code ------------------------------------------
+
+import re
+
+from src.schema import _VALID_LAYOUT_TYPES
+from conftest import ROOT
+
+
+def test_prompt_describes_every_layout():
+    for layout in _VALID_LAYOUT_TYPES:
+        assert re.search(rf"^{layout} —", prompts.PHASE12_SYSTEM, re.M), layout
+    assert f"exactly one of the {len(_VALID_LAYOUT_TYPES)} types" in prompts.PHASE12_SYSTEM
+
+
+def test_question_types_doc_lists_exactly_the_valid_layouts():
+    doc = (ROOT / "docs" / "questions_types.md").read_text(encoding="utf-8")
+    assert set(re.findall(r"^### \d+\. (\w+)", doc, re.M)) == _VALID_LAYOUT_TYPES
+
+
+def test_extractor_doc_lists_exactly_the_valid_layouts():
+    doc = (ROOT / "docs" / "question_extractor.md").read_text(encoding="utf-8")
+    section = doc.split("\n## Layouts\n", 1)[1].split("\n## ", 1)[0]
+    assert set(re.findall(r"^\| `(\w+)` \|", section, re.M)) == _VALID_LAYOUT_TYPES

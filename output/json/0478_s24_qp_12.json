@@ -832,6 +832,10 @@
             "term": null,
             "definition": "A value is appended to data that has been calculated using the data. This value is checked on data entry."
           }
+        ],
+        "headers": [
+          "error detection method",
+          "statement"
         ]
       },
       "topic": "2.2",

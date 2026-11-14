@@ -9,14 +9,29 @@ from .text import (
     _strip_trailing_partial_mockup,
     _render_prose_paragraphs,
 )
-from .matching import (
-    _is_line_match,
-)
 from .layouts import (
     _render_simple_single_block,
     _LAYOUT_RENDERERS,
 )
 
+
+
+_ANSWER_SPACE_RE = re.compile(r"\[blank\]|\.{2,}|…")
+
+
+def _strip_working_answer_lines(text: str, sd: dict) -> str:
+    """Drop the printed answer-space lines of a WorkingAnswer question: "Working space",
+    each answer label line ("429", "Denary value", "Answer ..... KiB")."""
+    unit = str(sd.get("unit") or "").strip()
+    drop = {"working space", "answer"} | {str(l).strip().lower() for l in (sd.get("answer_labels") or [])}
+
+    def _answer_space(line: str) -> bool:
+        s = _ANSWER_SPACE_RE.sub(" ", line).strip(" .:").strip()
+        if unit and s.endswith(unit):
+            s = s[: -len(unit)].strip(" .:")
+        return s.lower() in drop
+
+    return "\n".join(l for l in text.splitlines() if not _answer_space(l)).strip()
 
 
 def _render_question(q, source: dict | None = None):
@@ -141,10 +156,13 @@ def _render_question(q, source: dict | None = None):
         # The JointJS canvas labels A/B/C/Z as actual pads — drop the trailing
         # textual mockup of the partial circuit that Claude leaves in the JSON.
         text = _strip_trailing_partial_mockup(text, structure_data.get("partial_elements") or [])
-    elif layout_type == "AnnotatedDiagram" and _is_line_match(q, text):
+    elif layout_type == "LineMatching":
         # The matcher owns the pipe-table; strip it from the prose so it doesn't
         # render as a duplicate ref-table above the interactive matcher.
         text = _strip_pipe_tables(text)
+    elif layout_type == "WorkingAnswer":
+        # The renderer draws "Working space" and each labelled answer line.
+        text = _strip_working_answer_lines(text, structure_data)
     visual_html = ""
     visual_image = q.get("visual_image")
     if visual_image:

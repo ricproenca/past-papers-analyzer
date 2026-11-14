@@ -1141,6 +1141,10 @@
             "term": null,
             "definition": "stores an instruction when it is being decoded"
           }
+        ],
+        "headers": [
+          "Component name",
+          "Description"
         ]
       },
       "topic": "3.1",

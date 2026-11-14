@@ -628,6 +628,10 @@
             "term": "managing peripherals",
             "definition": null
           }
+        ],
+        "headers": [
+          "Function name",
+          "Description"
         ]
       },
       "topic": "4.1",

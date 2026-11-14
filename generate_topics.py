@@ -81,6 +81,8 @@ LAYOUT_NAMES = {
     "LabelledPartResponse":  "Labelled Part Response",
     "FixedRegisterArray":    "Register Array",
     "CodeBlockResponse":     "Code Block",
+    "LineMatching":          "Line Matching",
+    "WorkingAnswer":         "Calculation",
 }
 # Stable display order for the filter buttons.
 LAYOUT_ORDER = list(LAYOUT_NAMES.keys())

@@ -68,13 +68,13 @@
     },
     "marks_by_cognitive_load": {
       "Low": 18,
-      "High": 48,
-      "Medium": 9
+      "Medium": 13,
+      "High": 44
     },
     "count_by_cognitive_load": {
       "Low": 10,
-      "High": 8,
-      "Medium": 3
+      "Medium": 4,
+      "High": 7
     },
     "marks_by_objective": {
       "AO1": 8,
@@ -88,19 +88,21 @@
     },
     "marks_by_layout_type": {
       "MatrixGrid": 2,
-      "AnnotatedDiagram": 9,
+      "LineMatching": 4,
       "SimpleSingleBlock": 16,
       "CodeBlockResponse": 24,
       "ValueTraceMatrix": 15,
-      "MultiPartLabeledBlock": 9
+      "MultiPartLabeledBlock": 9,
+      "AnnotatedDiagram": 5
     },
     "count_by_layout_type": {
       "MatrixGrid": 2,
-      "AnnotatedDiagram": 2,
+      "LineMatching": 1,
       "SimpleSingleBlock": 8,
       "CodeBlockResponse": 3,
       "ValueTraceMatrix": 3,
-      "MultiPartLabeledBlock": 3
+      "MultiPartLabeledBlock": 3,
+      "AnnotatedDiagram": 1
     },
     "marks_by_command": {
       "Tick": 2,
@@ -222,15 +224,18 @@
       "marks": 4,
       "visuals": [],
       "page": 2,
-      "layout_type": "AnnotatedDiagram",
+      "layout_type": "LineMatching",
       "structure_data": {
-        "diagram_type": "other",
-        "partial_elements": [
+        "left_header": "Stage",
+        "right_header": "Description",
+        "left_items": [
           "testing",
           "reviewing",
           "analysis",
           "coding",
-          "design",
+          "design"
+        ],
+        "right_items": [
           "identifying the problem and requirements",
           "the final solution to suggest further developments",
           "making sure the program code works as expected",
@@ -265,7 +270,7 @@
       },
       "difficulty": "High",
       "bloom_level": "Create",
-      "cognitive_load": "High"
+      "cognitive_load": "Medium"
     },
     {
       "id": "Q4a",

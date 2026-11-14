@@ -940,6 +940,10 @@
             "term": null,
             "definition": "It stores data immediately before it is transmitted to RAM and immediately after it is received from RAM."
           }
+        ],
+        "headers": [
+          "Component",
+          "Description"
         ]
       },
       "topic": "3.1",

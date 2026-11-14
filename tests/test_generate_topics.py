@@ -13,7 +13,7 @@ def test_topic_page_has_unique_ids_and_loads_widget_scripts():
     qs = [(make_question("Q1", topic="3.2", topic_name="Input and Output Devices", difficulty="Low"), src1),
           (make_question("Q1", topic="3.2", topic_name="Input and Output Devices", difficulty="Low"), src2),
           (make_question("Q2", topic="3.2", topic_name="Input and Output Devices", command="Draw", text=match_text,
-                         layout_type="AnnotatedDiagram", structure_data={"diagram_type": "other"}, difficulty="Low"), src1)]
+                         layout_type="LineMatching", structure_data={}, difficulty="Low"), src1)]
     html = gt.build_topic_page("3", qs)
     ids = re.findall(r'\sid="([^"]+)"', html)
     assert not [i for i, c in Counter(ids).items() if c > 1]

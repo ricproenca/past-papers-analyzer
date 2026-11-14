@@ -65,15 +65,31 @@ def test_paper_identity_comes_from_the_file_name():
     assert pp.fill_paper_identity(d3) == [] and d3["variant"] == "99"         # unknown naming: leave alone
 
 
-def test_line_matching_questions_get_the_matcher_layout():
-    text = ("Draw one line from each stage to the most appropriate description.\n"
-            "Stage | Description\ntesting | finding errors\ncoding | writing code\ndesign | planning")
-    qs = [make_question("Q3", command="Draw", text=text, layout_type="MatrixGrid", structure_data={"rows": []}),
+_MATCH = ("Draw one line from each stage to the most appropriate description.\n"
+          "Stage | Description\ntesting | finding errors\ncoding | writing code\ndesign | planning")
+
+
+def test_line_matching_questions_get_their_own_layout_and_columns():
+    qs = [make_question("Q3", command="Draw", text=_MATCH, layout_type="MatrixGrid", structure_data={"rows": []}),
           make_question("Q4", command="Draw", text="Draw a logic circuit.", layout_type="AnnotatedDiagram",
-                        structure_data={"diagram_type": "circuit"})]
-    assert pp.fix_line_matching_layouts(make_paper(qs)) == ["Q3"]
-    assert qs[0]["layout_type"] == "AnnotatedDiagram" and qs[0]["structure_data"]["diagram_type"] == "other"
+                        structure_data={"diagram_type": "circuit"}),
+          make_question("Q5", command="Draw", text=_MATCH, layout_type="AnnotatedDiagram",
+                        structure_data={"diagram_type": "other"})]
+    assert pp.fix_line_matching_layouts(make_paper(qs)) == ["Q3", "Q5"]
+    assert qs[0]["layout_type"] == qs[2]["layout_type"] == "LineMatching"
+    assert qs[0]["structure_data"] == {"left_header": "Stage", "right_header": "Description",
+                                       "left_items": ["testing", "coding", "design"],
+                                       "right_items": ["finding errors", "writing code", "planning"]}
     assert qs[1]["structure_data"] == {"diagram_type": "circuit"}
+
+
+def test_line_matching_columns_are_refreshed_and_idempotent():
+    q = make_question("Q3", command="Draw", text=_MATCH, layout_type="LineMatching", structure_data={})
+    paper = make_paper([q])
+    assert pp.fix_line_matching_layouts(paper) == []                 # already LineMatching: not reported
+    first = dict(q["structure_data"])
+    pp.fix_line_matching_layouts(paper)
+    assert first["left_items"] == ["testing", "coding", "design"] and q["structure_data"] == first
 
 
 _PAGES = [{"page": 6, "text": "7 This flowchart represents an algorithm.\nSTART\nOUTPUT\n\"Continue?\"\nINPUT Answer\n"

@@ -6,6 +6,12 @@ from src import pdf_reader as pr
 
 # --- _annotate_anchors -------------------------------------------------------
 
+def test_dot_lines_after_working_space_are_a_working_answer():
+    out = pr._annotate_anchors("Convert 429 to binary.\nWorking space\n......\n......\n")
+    assert "[LAYOUT:WorkingAnswer working_space=true]" in out and "SimpleSingleBlock" not in out
+    assert "SimpleSingleBlock" in pr._annotate_anchors("Explain why.\n......\n......\n")
+
+
 def test_callout_line_becomes_labelled_part_response():
     out = pr._annotate_anchors("a ..... b ..... c .....")
     assert out.startswith("[LAYOUT:LabelledPartResponse labels=a,b,c]\n")
