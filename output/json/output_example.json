@@ -47,15 +47,15 @@
       "Low": 2
     },
     "marks_by_bloom_level": {
-      "Understand": 8,
+      "Understand": 7,
       "Remember": 3,
-      "Apply": 20,
+      "Apply": 21,
       "Create": 3
     },
     "count_by_bloom_level": {
-      "Understand": 3,
+      "Understand": 2,
       "Remember": 1,
-      "Apply": 5,
+      "Apply": 6,
       "Create": 1
     },
     "marks_by_cognitive_load": {
@@ -419,7 +419,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Understand",
+      "bloom_level": "Apply",
       "cognitive_load": "Medium"
     },
     {

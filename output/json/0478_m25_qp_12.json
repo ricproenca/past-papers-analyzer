@@ -46,23 +46,23 @@
     },
     "marks_by_difficulty": {
       "High": 16,
-      "Medium": 32,
-      "Low": 27
+      "Medium": 27,
+      "Low": 32
     },
     "count_by_difficulty": {
       "High": 3,
-      "Medium": 12,
-      "Low": 15
+      "Medium": 10,
+      "Low": 17
     },
     "marks_by_bloom_level": {
-      "Apply": 7,
-      "Understand": 43,
-      "Remember": 25
+      "Apply": 13,
+      "Remember": 32,
+      "Understand": 30
     },
     "count_by_bloom_level": {
-      "Apply": 1,
-      "Understand": 16,
-      "Remember": 13
+      "Apply": 3,
+      "Remember": 17,
+      "Understand": 10
     },
     "marks_by_cognitive_load": {
       "Medium": 28,
@@ -226,7 +226,7 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "bloom_level": "Apply",
       "cognitive_load": "Low"
     },
     {
@@ -265,7 +265,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Understand",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -540,7 +540,7 @@
         ]
       },
       "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "bloom_level": "Apply",
       "cognitive_load": "High"
     },
     {
@@ -594,8 +594,8 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "Low",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -1030,7 +1030,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Understand",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -1177,8 +1177,8 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "Low",
+      "bloom_level": "Remember",
       "cognitive_load": "Medium"
     },
     {

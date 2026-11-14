@@ -45,26 +45,26 @@
       "8.2": 1
     },
     "marks_by_difficulty": {
-      "Low": 10,
-      "Medium": 22,
-      "High": 43
+      "Low": 13,
+      "High": 52,
+      "Medium": 10
     },
     "count_by_difficulty": {
-      "Low": 8,
-      "Medium": 6,
-      "High": 7
+      "Low": 9,
+      "High": 9,
+      "Medium": 3
     },
     "marks_by_bloom_level": {
-      "Understand": 21,
-      "Remember": 13,
-      "Create": 22,
-      "Apply": 19
+      "Remember": 18,
+      "Create": 31,
+      "Apply": 19,
+      "Understand": 7
     },
     "count_by_bloom_level": {
-      "Understand": 7,
-      "Remember": 7,
-      "Create": 3,
-      "Apply": 4
+      "Remember": 10,
+      "Create": 5,
+      "Apply": 4,
+      "Understand": 2
     },
     "marks_by_cognitive_load": {
       "Low": 18,
@@ -92,8 +92,7 @@
       "SimpleSingleBlock": 16,
       "CodeBlockResponse": 24,
       "ValueTraceMatrix": 15,
-      "NumberedMultiList": 5,
-      "MultiPartLabeledBlock": 4
+      "MultiPartLabeledBlock": 9
     },
     "count_by_layout_type": {
       "MatrixGrid": 2,
@@ -101,8 +100,7 @@
       "SimpleSingleBlock": 8,
       "CodeBlockResponse": 3,
       "ValueTraceMatrix": 3,
-      "NumberedMultiList": 1,
-      "MultiPartLabeledBlock": 2
+      "MultiPartLabeledBlock": 3
     },
     "marks_by_command": {
       "Tick": 2,
@@ -174,7 +172,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Understand",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -213,7 +211,7 @@
         ]
       },
       "difficulty": "Low",
-      "bloom_level": "Understand",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -265,8 +263,8 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "High",
+      "bloom_level": "Create",
       "cognitive_load": "High"
     },
     {
@@ -896,8 +894,8 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "Low",
+      "bloom_level": "Remember",
       "cognitive_load": "Low"
     },
     {
@@ -997,8 +995,8 @@
           }
         ]
       },
-      "difficulty": "Medium",
-      "bloom_level": "Understand",
+      "difficulty": "High",
+      "bloom_level": "Create",
       "cognitive_load": "High"
     },
     {

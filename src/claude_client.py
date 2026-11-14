@@ -5,11 +5,17 @@ import time
 
 import anthropic
 
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+DEFAULT_MODEL = "claude-sonnet-4-6"
 MAX_TOKENS = int(os.environ.get("CLAUDE_MAX_TOKENS", "32768"))
 
 _client = None
 _totals = {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0}
+
+
+def get_model() -> str:
+    # Read at call time, not import time: extract.py sets CLAUDE_MODEL from the
+    # --model flag after this module has already been imported.
+    return os.environ.get("CLAUDE_MODEL") or DEFAULT_MODEL
 
 
 def get_client() -> anthropic.Anthropic:
@@ -53,7 +59,7 @@ def call(system: list, messages: list, label: str = "", max_retries: int = 3) ->
     for attempt in range(max_retries):
         try:
             with client.messages.stream(
-                model=MODEL,
+                model=get_model(),
                 max_tokens=MAX_TOKENS,
                 system=system,
                 messages=messages,

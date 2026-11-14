@@ -1,19 +1,23 @@
 COMMAND_TIER = {
     "State": 1, "Identify": 1, "Define": 1, "Name": 1, "List": 1,
-    "Describe": 2, "Outline": 2, "Sketch": 2,
+    "Give": 1, "Tick": 1, "Circle": 1,
+    "Describe": 2, "Outline": 2, "Sketch": 2, "Show": 2,
     "Explain": 3, "Suggest": 3, "Compare": 3, "Calculate": 3,
     "Trace": 3, "Write": 3, "Complete": 3,
+    "Convert": 3, "Add": 3, "Draw": 3, "Design": 3,
     "Analyse": 4, "Evaluate": 4, "Justify": 4, "Discuss": 4,
 }
 
 BLOOM_MAP = {
     "State": "Remember", "Identify": "Remember", "Define": "Remember",
     "Name": "Remember", "List": "Remember",
+    "Give": "Remember", "Tick": "Remember", "Circle": "Remember",
     "Describe": "Understand", "Outline": "Understand", "Explain": "Understand",
     "Suggest": "Apply", "Calculate": "Apply", "Trace": "Apply", "Complete": "Apply",
+    "Convert": "Apply", "Add": "Apply", "Show": "Apply",
     "Compare": "Analyse", "Analyse": "Analyse",
     "Evaluate": "Evaluate", "Justify": "Evaluate", "Discuss": "Evaluate",
-    "Write": "Create", "Sketch": "Create", "Design": "Create",
+    "Write": "Create", "Sketch": "Create", "Design": "Create", "Draw": "Create",
 }
 
 LOAD_MAP = {
@@ -29,6 +33,19 @@ LOAD_MAP = {
     "AnnotatedDiagram":      "High",
     "CodeBlockResponse":     "High",
 }
+
+
+def _normalise_command(command: str) -> str:
+    """Map a raw command phrase onto a key of the maps above.
+
+    Handles case differences and multi-word phrases such as
+    "Complete and annotate the diagram" (-> "Complete"). Unknown commands are
+    returned unchanged so the callers' defaults apply."""
+    command = (command or "").strip()
+    if command in COMMAND_TIER:
+        return command
+    first = command.split(" ", 1)[0].capitalize()
+    return first if first in COMMAND_TIER else command
 
 
 def _difficulty(command: str, marks: int) -> str:
@@ -51,8 +68,9 @@ def _cognitive_load(layout_type: str) -> str:
 
 
 def enrich_question(q: dict) -> dict:
-    q["difficulty"] = _difficulty(q.get("command", ""), q.get("marks", 0))
-    q["bloom_level"] = _bloom(q.get("command", ""))
+    command = _normalise_command(q.get("command", ""))
+    q["difficulty"] = _difficulty(command, q.get("marks", 0))
+    q["bloom_level"] = _bloom(command)
     q["cognitive_load"] = _cognitive_load(q.get("layout_type", ""))
     return q
 
