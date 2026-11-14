@@ -10,7 +10,7 @@ Layout of the package:
 The CSS/JS the pages load live in src/static/ (see src/assets.py).
 """
 
-from .page import PAPER_CSS, PAPER_JS, render, render_html
+from .page import PAPER_CSS, PAPER_JS, interactive_script_tags, render, render_html
 from .question import render_question_card
 
-__all__ = ["PAPER_CSS", "PAPER_JS", "render", "render_html", "render_question_card"]
+__all__ = ["PAPER_CSS", "PAPER_JS", "interactive_script_tags", "render", "render_html", "render_question_card"]

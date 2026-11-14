@@ -169,7 +169,10 @@ def _render_question(q, source: dict | None = None):
             f"Falling back to SimpleSingleBlock."
         )
         renderer = _render_simple_single_block
-    input_html = renderer(q, structure_data)
+    # Pages that mix papers (topic pages) hold several "Q1a"s: give inputs and the card
+    # a paper-qualified id so radio groups and anchors do not collide across papers.
+    dom_qid = f"{source['paper']}-{qid}" if source and source.get("paper") else qid
+    input_html = renderer(dict(q, id=dom_qid) if dom_qid != qid else q, structure_data)
 
     if layout_type == "InlineCloze":
         # Cloze renderer owns the text — replaces the standard q-text paragraph
@@ -219,7 +222,7 @@ def _render_question(q, source: dict | None = None):
         )
 
     data_attrs = (
-        f'id="{escape(qid)}" '
+        f'id="{escape(dom_qid)}" '
         f'data-topic="{escape(topic or "")}" '
         f'data-subtopic="{escape(topic or "")}" '
         f'data-difficulty="{escape(q.get("difficulty", "") or "")}" '

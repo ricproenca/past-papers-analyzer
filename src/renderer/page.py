@@ -12,6 +12,24 @@ from .question import (
 )
 
 ASSET_FILES = ("paper.css", "paper.js", "circuit.js", "match.js")
+
+# Pinned CDN files with subresource-integrity hashes (sha384 of the exact bytes),
+# so a compromised or changed CDN file is refused by the browser.
+JOINTJS_TAG = ('<script src="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.min.js" '
+               'integrity="sha384-AVRXE+MdZV3xvymv1pcKH7SRPo5zjRtEuf62uMG7ke6hEI/770lSwG3EVzL/6mgj" '
+               'crossorigin="anonymous"></script>')
+
+
+def interactive_script_tags(body_html: str) -> str:
+    """Script tags for the interactive widgets actually present in `body_html`:
+    JointJS + circuit.js only with a circuit editor (JointJS is ~465 KB), match.js
+    only with a line matcher. Used by paper pages and topic pages alike."""
+    tags = []
+    if 'class="circuit-editor"' in body_html:
+        tags += [JOINTJS_TAG, '<script src="circuit.js"></script>']
+    if 'class="match-grid"' in body_html:
+        tags.append('<script src="match.js"></script>')
+    return "\n".join(tags)
 PAPER_CSS = read_asset("paper.css")
 PAPER_JS = read_asset("paper.js")
 
@@ -58,7 +76,6 @@ def render_html(data: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <link rel="stylesheet" href="paper.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.css">
 </head>
 <body>
 <div class="page">
@@ -69,9 +86,7 @@ def render_html(data: dict) -> str:
   {q_cards}
 </div>
 <script src="paper.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.min.js"></script>
-<script src="circuit.js"></script>
-<script src="match.js"></script>
+{interactive_script_tags(q_cards)}
 </body>
 </html>"""
 

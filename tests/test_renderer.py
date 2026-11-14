@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from src import renderer as r
@@ -167,3 +169,30 @@ def test_term_def_grid_renders_headers_from_structure_data():
     sd = {"headers": ["Component", "Purpose"], "rows": [{"term": None, "definition": "stores data"}]}
     html = r.render_html(make_paper([make_question(layout_type="TermDefinitionGrid", structure_data=sd, text="Complete the table.")]))
     assert "<th>Component</th><th>Purpose</th>" in html and "stores data" in html
+
+
+# --- page weight, CDN integrity, ids on mixed-paper pages ---------------------------------
+
+def test_widget_scripts_load_only_when_needed():
+    plain = r.render_html(make_paper())
+    assert "joint.min.js" not in plain and "circuit.js" not in plain and "match.js" not in plain
+    assert "joint.css" not in plain                       # that URL is a 404; never link it
+    circuit = make_question(layout_type="AnnotatedDiagram", command="Draw", text="Draw a logic circuit for X = A AND B.",
+                            structure_data={"diagram_type": "circuit", "partial_elements": ["A", "B", "X"]})
+    html = r.render_html(make_paper([circuit]))
+    assert 'class="circuit-editor"' in html and 'integrity="sha384-' in html and 'crossorigin="anonymous"' in html
+    assert "circuit.js" in html and "match.js" not in html
+    assert r.interactive_script_tags('<div class="match-grid">') == '<script src="match.js"></script>'
+    assert r.interactive_script_tags("") == ""
+
+
+def test_cards_from_different_papers_get_distinct_ids_and_input_names():
+    q = make_question("Q1", layout_type="MatrixGrid", text="Tick one box.",
+                      structure_data={"matrix_headers": ["Option", "Tick"], "row_count": 2, "rows": ["A one", "B two"]})
+    a = r.render_question_card(q, source={"paper": "0478_m24_qp_12", "session": "m24", "variant": "12", "year": "2024"})
+    b = r.render_question_card(q, source={"paper": "0478_s25_qp_11", "session": "s25", "variant": "11", "year": "2025"})
+    assert 'id="0478_m24_qp_12-Q1"' in a and 'id="0478_s25_qp_11-Q1"' in b
+    radios_a = set(re.findall(r'type="radio" name="([^"]+)"', a)); radios_b = set(re.findall(r'type="radio" name="([^"]+)"', b))
+    assert radios_a and radios_b and not radios_a & radios_b
+    assert '<span class="q-id">Q1</span>' in a and "0478_m24_qp_12.html#Q1" in a      # label and link keep the paper's id
+    assert 'id="Q1"' in r.render_question_card(q)                                          # paper pages unchanged

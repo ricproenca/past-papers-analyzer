@@ -16,7 +16,7 @@ from pathlib import Path
 
 from src.syllabus import SESSION_LETTER_NAMES, TOPIC_NAMES
 from src.assets import read_asset
-from src.renderer import PAPER_CSS, PAPER_JS, render_question_card
+from src.renderer import PAPER_CSS, PAPER_JS, interactive_script_tags, render_question_card
 
 
 TOPIC_GROUPS = {
@@ -311,6 +311,7 @@ def build_topic_page(group_id, questions):
   {empty}
 </div>
 <script src="paper.js"></script>
+{interactive_script_tags(cards)}
 <script src="topics.js"></script>
 </body>
 </html>"""

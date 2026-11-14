@@ -50,3 +50,19 @@ def test_syllabus_report_runs(tmp_path):
     assert one.returncode == 0 and "Q1" in one.stdout and "syllabus {'AO1': 60" in one.stdout
     many = _run("syllabus_report.py", a, a)
     assert many.returncode == 0 and "Paper 1: marks per topic" in many.stdout
+
+
+def test_check_site_flags_problems(tmp_path):
+    (tmp_path / "paper.css").write_text("")
+    (tmp_path / "good.html").write_text('<link href="paper.css"><div id="a"></div><div id="b"></div>')
+    (tmp_path / "bad.html").write_text('<div id="a"></div><div id="a"></div><img src="missing.png">'
+                                       '<script src="https://cdn.example.com/x.js"></script><div class="match-grid"></div>')
+    r = _run("check_site.py", tmp_path)
+    assert r.returncode == 1 and "[FAIL] bad.html" in r.stdout and "good.html" not in r.stdout
+    for msg in ("duplicate ids: ['a']", "missing local file: missing.png", "without integrity hash", "['match.js'] not loaded"):
+        assert msg in r.stdout
+
+
+def test_committed_site_is_clean():
+    r = _run("check_site.py", ROOT / "output" / "html")
+    assert r.returncode == 0, r.stdout
