@@ -53,3 +53,9 @@ def test_vision_messages_attach_images():
     blocks = withimg[0]["content"]
     assert blocks[0]["type"] == "text" and [b["type"] for b in blocks[1:]] == ["text", "image", "text", "image"]
     assert "page 2" in blocks[1]["text"] and blocks[2]["source"]["media_type"] == "image/png"
+
+
+def test_phase3_prompt_states_marking_point_conventions():
+    sp = prompts.PHASE3_SYSTEM
+    assert '"1(a)(i)"' in sp and "Never merge alternatives" in sp and "TOP of that band" in sp
+    assert len(sp) // 4 < 1024          # still below the minimum cacheable prefix, so no cache_control

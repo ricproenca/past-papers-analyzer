@@ -2,7 +2,7 @@ import glob
 import json
 from pathlib import Path
 
-from src import enricher, statistics
+from src import enricher, postprocess, statistics
 from src.extractor import _reorder
 
 
@@ -13,6 +13,7 @@ def main() -> None:
         return
     for path in paths:
         data = json.loads(Path(path).read_text())
+        postprocess.fill_objective_marks(data)
         enricher.enrich_paper(data)
         statistics.attach_statistics(data)
         data = _reorder(data)

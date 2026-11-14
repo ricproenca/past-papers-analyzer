@@ -230,6 +230,10 @@ RULES:
 - "scoring_rule" must capture exactly what the marking scheme states before the bullet points: e.g. "Any one from", "Any three from", "1 mark for each correct item (in bold)", "1 mark for correct working, 1 mark for each correct nibble", "1 mark for naming, max 2 for describing". Set to null only when there is no such instruction (e.g. plain MCQ or single fixed answer).
 - Distinguish "Any N from:" (student picks N answers from a larger pool of alternatives) from "1 mark for each correct answer" (student must identify N fixed required answers). Use "1 mark for each correct answer" for 'circle/tick/identify exactly N specific items' questions — not "Any one from:".
 - When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
+- Question numbers: the marking scheme writes "1(a)(i)", "2(b)", "10"; the extraction ids are "Q1a_i", "Q2b", "Q10".
+- One marking point per criterion the marking scheme lists, in its order. Never merge alternatives: "MP3 ... OR MP4 ..." are two points. Keep every listed item of a "column"/"row" answer (e.g. include the prompts in a trace-table column).
+- Banded marks ("4 marks for all eight correct outputs, 3 marks for six or seven ..."): put the band wording in "scoring_rule" verbatim and list each expected item (each output row, each cell) as its own point with "marks": 1.
+- Levels of response (mark bands such as "AO2 1–3 marks: ..."): one point per band descriptor, verbatim including its label, with "marks" = the TOP of that band (0 for a "0 marks" band).
 - If a question has no marking scheme entry, still include its id and set "marking_points" to an empty array []."""
 
 # The closed command list, the topics and the objectives are generated from src/enricher.py and

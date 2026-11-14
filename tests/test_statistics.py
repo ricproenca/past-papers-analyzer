@@ -53,3 +53,11 @@ def test_committed_enrichment_is_up_to_date(real_paper):
     enricher.enrich_paper(fresh)
     st.attach_statistics(fresh)
     assert fresh == real_paper
+
+
+def test_marks_by_objective_honours_the_marking_scheme_split():
+    qs = [make_question("Q1", marks=2, objective="AO1"),
+          make_question("Q10", marks=15, objective="AO2", objective_marks={"AO2": 9, "AO3": 6})]
+    s = st.compute_statistics(make_paper(qs))
+    assert s["marks_by_objective"] == {"AO1": 2, "AO2": 9, "AO3": 6}
+    assert s["count_by_objective"] == {"AO1": 1, "AO2": 1}           # counted once, under its primary objective

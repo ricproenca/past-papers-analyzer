@@ -7,6 +7,7 @@ _QUESTION_KEYS_P3 = _QUESTION_KEYS_P2 | {"answers"}
 _ANSWER_KEYS = {"type", "visuals", "scoring_rule", "marking_points"}
 _TOP_LEVEL_KEYS = {"board", "level", "subject_code", "subject_name", "variant", "questions", "qp", "ms"}
 _VALID_OBJECTIVES = {"AO1", "AO2", "AO3"}
+_ANSWER_TYPES = {"text", "diagram", "pseudocode", "MCQ"}
 _VALID_LAYOUT_TYPES = {
     "SimpleSingleBlock", "MultiPartLabeledBlock", "NumberedMultiList",
     "InlineCloze", "MatrixGrid", "ValueTraceMatrix", "FixedRegisterArray",
@@ -103,6 +104,25 @@ def _consistency_warnings(q: dict) -> list[str]:
                    f"{(q.get('text') or '').count('[blank]')} [blank] marker(s)")
     if layout == "SimpleSingleBlock" and isinstance(marks, int) and marks >= 3 and sd.get("line_count", 1) <= 1:
         out.append(f"a {marks}-mark question has a one-line answer space")
+    answers = q.get("answers") if isinstance(q.get("answers"), dict) else None
+    if answers:
+        mps = answers.get("marking_points") or []
+        if answers.get("type") not in _ANSWER_TYPES:
+            out.append(f"answer type {answers.get('type')!r} is not one of {sorted(_ANSWER_TYPES)}")
+        if any(not isinstance(m.get("marks"), int) or isinstance(m.get("marks"), bool) for m in mps if isinstance(m, dict)):
+            out.append("a marking point has non-integer marks")
+        if isinstance(marks, int) and marks > 0 and not mps:
+            out.append(f"{marks}-mark question has no marking points")
+        else:
+            available = sum(m["marks"] for m in mps if isinstance(m, dict) and isinstance(m.get("marks"), int))
+            if isinstance(marks, int) and mps and available < marks:
+                out.append(f"marking points offer {available} mark(s) for a {marks}-mark question")
+        if answers.get("type") == "MCQ" and len(mps) != 1:
+            out.append(f"MCQ answer has {len(mps)} marking points (expected 1)")
+    split = q.get("objective_marks")
+    if split is not None and (not isinstance(split, dict) or set(split) - {"AO1", "AO2", "AO3"}
+                              or sum(split.values()) != marks):
+        out.append(f"objective_marks {split!r} does not split the question's {marks} mark(s) across AO1-AO3")
     if layout == "TermDefinitionGrid" and isinstance(marks, int) and sd.get("rows"):
         blanks = sum(1 for r in sd["rows"] for k in ("term", "definition") if isinstance(r, dict) and r.get(k) is None)
         if blanks != marks:

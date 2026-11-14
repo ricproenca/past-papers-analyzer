@@ -21,6 +21,7 @@ python extract.py <folder>                                        # process all 
 python extract.py <folder> --skip-existing                        # ...skipping papers already extracted
 python extract.py <folder> --workers 4                            # papers in parallel (first one alone to warm the prompt cache)
 python extract.py <folder> --batch                                # Batch API: half price, results arrive asynchronously
+python answers.py output/json/<stem>.json                         # re-run only Phase 3 (answers) for an extracted paper
 python extract.py <pdf_path> --vision                             # also send page images where a diagram is likely (+~1.5k tokens/page)
 ```
 
@@ -31,6 +32,7 @@ In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` 
 ```
 extract.py          # CLI entry point (argparse, loads .env)
 render.py           # CLI: render existing JSON to HTML; accepts a file or a folder of JSONs
+answers.py          # CLI: re-extract only the answers (Phase 3) of extracted papers, keeping Phase 1+2 data
 generate_stats.py   # CLI: builds output/html/statistics.html from all paper JSONs
 generate_topics.py  # CLI: builds output/html/topic_*.html + topics.html (questions grouped by topic)
 backfill_enrichment.py  # re-run enrichment + statistics over existing JSONs
@@ -115,6 +117,7 @@ The script is idempotent — re-running it leaves files unchanged.
 - **Table classification** (`pdf_reader._classify_table`): besides header rules, a two-column table with blanks and printed text beside a blank or in the right column is a `TermDefinitionGrid` ("type | statement" tables), and a table with values printed beside blanks is a `ValueTraceMatrix` (parity, truth, conversion, test-data tables); only tick grids stay `MatrixGrid`.
 - **Prompt text rules** (each fixed a regression measured against the committed extractions): `text` is verbatim but repairs extraction artefacts (displaced `←`, split words); the parent context is exactly the text before the parent's first part label, copied in full, including numbered code listings and reference tables but not words extracted from inside a flowchart/circuit; diagrams are described only in `visuals`; line-matching columns are written as a pipe table.
 - **Syllabus mapping (Phase 2)**: `src/syllabus.py` holds topic names, `TOPIC_CONTENT` (condensed from the official syllabus PDF — e.g. embedded systems are 3.1, cloud storage 3.3, SQL is limited to SELECT/FROM/WHERE/ORDER BY/SUM/COUNT), the verbatim AO definitions and per-paper weightings (Paper 1 60/20/20, Paper 2 20/60/20). The prompt's TOPICS and OBJECTIVES blocks are generated from it, with an AO3 calibration (≈15 marks per paper) because extractions had AO3 near 0%. Algorithm questions are routed by purpose (validation → 7.4, standard methods → 7.3, test data → 7.5). Topics outside the paper's chapters produce a warning.
+- **Answers (Phase 3)**: the call receives only `id`, `marks`, `layout_type` and `text` per question (−15% input on Paper 1), plus the marking scheme from its first answer table. The prompt fixes the representation: id mapping `1(a)(i)` ↔ `Q1a_i`, one point per criterion with alternatives never merged, banded marks as 1-mark items with the band in `scoring_rule`, level descriptors carrying the top of their band. A scoring rule that states an AO split ("AO2 (maximum 9 marks); AO3 (maximum 6 marks)") becomes `objective_marks` (`postprocess.fill_objective_marks`), and `marks_by_objective` counts it. Schema warnings flag empty or insufficient marking points, MCQs with several points, non-integer marks and bad splits.
 - **Unsourced-text guard**: `postprocess.drop_unsourced_text` removes sentences of `text` whose word trigrams are mostly absent from the paper's PDF text — the model occasionally writes its own flowchart summary. 0 hits on the 15 committed papers; caught every invented summary in testing.
 - **Diagram detection**: `[Likely contains a diagram/drawing]` is set from a text cue (words like diagram, flowchart, draw, circuit) or ≥20 curves on the page — it found 15 of 17 known diagram pages with 1 false positive. Vector-shape counts and `page.images` were tried and do not work on Cambridge papers. `--vision` attaches PNGs of the flagged pages (opt-in: it adds ~1.5k input tokens per page and enriched the diagram description in a test).
 - **Temperature**: not sent by default. `CLAUDE_TEMPERATURE=<n>` opts in; a model that rejects the parameter is retried without it. (On one paper, temperature 0 made the model trim context sentences in 3 of 3 runs; the API default kept them in 2 of 2.)
@@ -150,4 +153,5 @@ Project skills live in `.claude/skills/` (committed; the rest of `.claude/` is i
 |---|---|---|
 | `extract-paper` | 1–3 | extract a paper into `output/staging/`, compare with the committed JSON, then promote and rebuild |
 | `audit-extractions` | 1–3 | validate every paper, read the consistency warnings, fix confirmed problems |
+| `refresh-answers` | 3 | re-run only the answers for an extracted paper, compare, promote |
 | `review-syllabus-mapping` | 2 | check topics/AOs against the official syllabus, coverage across papers, fix systematic mapping errors |

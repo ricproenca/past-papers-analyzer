@@ -9,6 +9,7 @@ transcription errors:
     - subject code and variant come from the Cambridge file name
     - line-matching questions get the layout the renderer draws them with
     - text the model wrote that is not on the paper (e.g. a flowchart summary) is removed
+    - after Phase 3: an AO split stated by the marking scheme becomes objective_marks
 """
 
 import re
@@ -145,3 +146,24 @@ def postprocess_phase12(data: dict, pages: list[dict]) -> list[str]:
     for qid in fix_line_matching_layouts(data):
         print(f"[!] {qid}: line-matching question re-labelled AnnotatedDiagram")
     return fill_term_def_grids(data, pages)
+
+
+_AO_SPLIT_RE = re.compile(r"\bAO([123])\s*\(\s*max(?:imum)?\.?\s*(\d+)\s*marks?\s*\)", re.IGNORECASE)
+
+
+def fill_objective_marks(data: dict) -> list[str]:
+    """Questions marked against several objectives state it in the marking scheme,
+    e.g. "Marks are available for: AO2 (maximum 9 marks); AO3 (maximum 6 marks)"
+    (Paper 2's scenario question). Store that as objective_marks when it accounts
+    for exactly the question's marks; statistics then count marks per objective
+    correctly. Returns the ids that got a split."""
+    done = []
+    for q in data.get("questions", []):
+        rule = (q.get("answers") or {}).get("scoring_rule") or ""
+        found = {f"AO{n}": int(m) for n, m in _AO_SPLIT_RE.findall(rule)}
+        if len(found) >= 2 and sum(found.values()) == q.get("marks"):
+            q["objective_marks"] = dict(sorted(found.items()))
+            done.append(q.get("id"))
+        else:
+            q.pop("objective_marks", None)
+    return done

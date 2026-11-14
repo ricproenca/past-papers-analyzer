@@ -101,3 +101,20 @@ def test_whole_invented_paragraph_is_removed():
                                    "It is a calculator that keeps asking the user for numbers and operators until they stop."))
     pp.drop_unsourced_text(make_paper([q]), _PAGES)
     assert q["text"] == "Complete the trace table for the input data:"
+
+
+def _with_rule(rule, marks=15, **kw):
+    return make_question("Q10", marks=marks, answers={"type": "pseudocode", "visuals": [], "scoring_rule": rule, "marking_points": []}, **kw)
+
+
+def test_objective_split_is_read_from_the_marking_scheme():
+    q = _with_rule("Marks are available for: AO2 (maximum 9 marks); AO3 (maximum 6 marks)")
+    assert pp.fill_objective_marks(make_paper([q])) == ["Q10"] and q["objective_marks"] == {"AO2": 9, "AO3": 6}
+
+
+def test_objective_split_needs_two_objectives_that_add_up():
+    wrong_sum = _with_rule("AO2 (maximum 9 marks); AO3 (maximum 5 marks)", objective_marks={"AO1": 15})
+    single = _with_rule("AO2 (maximum 15 marks)")
+    none = _with_rule("Any three from", marks=3)
+    assert pp.fill_objective_marks(make_paper([wrong_sum, single, none])) == []
+    assert "objective_marks" not in wrong_sum                     # a stale split is removed

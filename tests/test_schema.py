@@ -111,3 +111,15 @@ def test_consistent_questions_print_no_warnings(capsys):
 def test_topic_outside_the_papers_chapters_warns(capsys):
     validate(make_paper([make_question(topic="7.2")], variant="12"), phase=2)
     assert "topic 7.2 is outside Paper 1's chapters" in capsys.readouterr().out
+
+
+def test_phase3_consistency_warnings(capsys):
+    qs = [make_question("Q1", marks=2, answers=make_answer(type="essay", marking_points=[{"text": "x", "marks": 1}])),
+          make_question("Q2", marks=1, answers=make_answer(type="MCQ", marking_points=[{"text": "A", "marks": 1}, {"text": "B", "marks": 1}])),
+          make_question("Q3", marks=3, answers=make_answer(marking_points=[{"text": "x", "marks": "1"}])),
+          make_question("Q4", marks=15, objective_marks={"AO2": 9, "AO3": 5}, answers=make_answer(marking_points=[{"text": "x", "marks": 15}]))]
+    validate(make_paper(qs), phase=3)
+    out = capsys.readouterr().out
+    assert "answer type 'essay'" in out and "marking points offer 1 mark(s) for a 2-mark question" in out
+    assert "MCQ answer has 2 marking points" in out and "non-integer marks" in out
+    assert "does not split the question's 15 mark(s)" in out

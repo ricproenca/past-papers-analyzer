@@ -38,7 +38,11 @@ def audit(path: Path) -> bool:
     warnings = [l for l in buf.getvalue().splitlines() if l.strip()]
     ao = collections.Counter()
     for q in qs:
-        ao[q.get("objective")] += q.get("marks") or 0
+        split = q.get("objective_marks")
+        if isinstance(split, dict) and split:
+            ao.update(split)
+        else:
+            ao[q.get("objective")] += q.get("marks") or 0
     layouts = collections.Counter(q.get("layout_type") for q in qs)
     print(f"{path.name}: {len(qs)} questions, {sum(q.get('marks') or 0 for q in qs)}/{data.get('total_marks')} marks, "
           f"AO {dict(sorted(ao.items(), key=str))}, layouts {dict(layouts.most_common(4))}")

@@ -78,8 +78,8 @@
     },
     "marks_by_objective": {
       "AO1": 8,
-      "AO2": 60,
-      "AO3": 7
+      "AO2": 54,
+      "AO3": 13
     },
     "count_by_objective": {
       "AO1": 5,
@@ -1187,7 +1187,11 @@
       },
       "difficulty": "High",
       "bloom_level": "Create",
-      "cognitive_load": "High"
+      "cognitive_load": "High",
+      "objective_marks": {
+        "AO2": 9,
+        "AO3": 6
+      }
     }
   ]
 }

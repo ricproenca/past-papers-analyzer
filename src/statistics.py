@@ -41,7 +41,22 @@ def compute_statistics(data: dict) -> dict:
     for name, getter in AXES:
         stats[f"marks_by_{name}"] = _group(qs, getter, marks)
         stats[f"count_by_{name}"] = _group(qs, getter, one)
+    stats["marks_by_objective"] = _marks_by_objective(qs)
     return stats
+
+
+def _marks_by_objective(qs) -> dict:
+    """Marks per AO; a question with an objective_marks split (from the marking
+    scheme) contributes to each objective it is marked against."""
+    out = {}
+    for q in qs:
+        split = q.get("objective_marks")
+        if isinstance(split, dict) and split:
+            for ao, m in split.items():
+                out[ao] = out.get(ao, 0) + int(m)
+        elif q.get("objective"):
+            out[q["objective"]] = out.get(q["objective"], 0) + int(q.get("marks", 0) or 0)
+    return out
 
 
 def compute_summary(data: dict) -> dict:

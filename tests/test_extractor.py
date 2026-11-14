@@ -168,3 +168,40 @@ def test_extract_batch_phase3_failure_does_not_write_a_half_paper(batch_env):
 
 def test_batch_ids_are_sanitised():
     assert ex._batch_id("/x/0478 m25 (qp)_12.pdf") == "0478_m25__qp__12"
+
+
+# --- Phase 3 payload and answers-only refresh -------------------------------------------
+
+def test_phase3_payload_sends_only_what_matching_needs(paper):
+    payload = json.loads(ex.phase3_payload(paper))
+    assert list(payload) == ["questions"]
+    assert all(set(q) == {"id", "marks", "layout_type", "text"} for q in payload["questions"])
+
+
+def test_refresh_answers_replaces_answers_only(monkeypatch, tmp_path):
+    src = make_paper([make_question("Q1"), make_question("Q10", marks=15)], ms=None)
+    src["questions"][0]["answers"] = make_answer(type="MCQ")
+    path = tmp_path / "json" / "0478_m25_qp_12.json"
+    path.parent.mkdir()
+    path.write_text(json.dumps(src))
+    ms = tmp_path / "0478_m25_ms_12.pdf"
+    monkeypatch.setattr(ex.pdf_reader, "extract_pages", lambda p: [{"page": 1, "text": "Question Answer Marks", "has_table": False, "has_image": False}])
+    monkeypatch.setattr(ex.visuals, "find_source_pdf", lambda name, root="input": None)
+    replies = [json.dumps({"Q1": make_answer(type="text"),
+                           "Q10": make_answer(scoring_rule="AO2 (maximum 9 marks); AO3 (maximum 6 marks)",
+                                              marking_points=[{"text": "band", "marks": 15}])})]
+    monkeypatch.setattr(ex.claude_client, "call", lambda *a, **k: replies.pop(0))
+    data = ex.refresh_answers(str(path), str(ms))
+    saved = json.loads(path.read_text())
+    assert saved["ms"] == "0478_m25_ms_12.pdf" and saved["questions"][0]["answers"]["type"] == "text"
+    assert saved["questions"][1]["objective_marks"] == {"AO2": 9, "AO3": 6}
+    assert saved["statistics"]["marks_by_objective"]["AO3"] == 6 and data["questions"][0]["topic"] == "3.3"
+    assert (tmp_path / "html" / "0478_m25_qp_12.html").exists()
+
+
+def test_refresh_answers_needs_a_marking_scheme(monkeypatch, tmp_path):
+    path = tmp_path / "x.json"
+    path.write_text(json.dumps(make_paper()))
+    monkeypatch.setattr(ex.visuals, "find_source_pdf", lambda name, root="input": None)
+    with pytest.raises(FileNotFoundError, match="no marking scheme"):
+        ex.refresh_answers(str(path))

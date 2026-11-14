@@ -27,7 +27,11 @@ def _norm(text: str) -> str:
 def _ao_marks(questions) -> dict:
     c = collections.Counter()
     for q in questions:
-        c[q.get("objective")] += q.get("marks") or 0
+        split = q.get("objective_marks")
+        if isinstance(split, dict) and split:
+            c.update(split)                      # marking-scheme split (e.g. AO2 9 + AO3 6)
+        else:
+            c[q.get("objective")] += q.get("marks") or 0
     return dict(sorted(c.items(), key=lambda kv: str(kv[0])))
 
 
