@@ -61,6 +61,11 @@ def _record_usage(usage, label: str) -> None:
     print(f"{tag} tokens — in={inp} out={out} cache_read={cr} cache_write={cw}")
 
 
+def reset_totals() -> None:
+    for k in _totals:
+        _totals[k] = 0
+
+
 def print_totals() -> None:
     t = _totals
     print(

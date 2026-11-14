@@ -18,9 +18,10 @@ python extract.py <pdf_path> -o results/out.json                  # custom outpu
 python extract.py <pdf_path> -m claude-sonnet-4-6                 # override model
 
 python extract.py <folder>                                        # process all *_qp_*.pdf in folder
+python extract.py <folder> --skip-existing                        # ...skipping papers already extracted
 ```
 
-In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` in the filename (e.g. `0478_m24_qp_12.pdf` → `0478_m24_ms_12.pdf`). If no match is found, Phase 2 is skipped for that paper. Existing JSON files are always overwritten.
+In folder mode, marking schemes are auto-paired by replacing `_qp_` with `_ms_` in the filename (e.g. `0478_m24_qp_12.pdf` → `0478_m24_ms_12.pdf`). If no match is found, Phase 2 is skipped for that paper. Existing JSON files are overwritten unless `--skip-existing` is passed (resumes an interrupted batch). A paper that fails is reported and the batch continues; the command exits non-zero at the end if any failed.
 
 ## Architecture
 

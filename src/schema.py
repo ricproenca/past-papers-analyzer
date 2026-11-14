@@ -29,6 +29,10 @@ def validate_phase_output(data: dict, phase: int) -> None:
         if missing_q:
             raise ValueError(f"Phase {phase} question {qid!r} missing keys: {sorted(missing_q)}")
 
+        marks = q.get("marks")
+        if not isinstance(marks, int) or isinstance(marks, bool):
+            raise ValueError(f"Phase {phase} question {qid!r} 'marks' must be an integer, got {marks!r}")
+
         if q.get("objective") not in _VALID_OBJECTIVES:
             raise ValueError(
                 f"Phase {phase} question {qid!r} has invalid objective: {q.get('objective')!r} "

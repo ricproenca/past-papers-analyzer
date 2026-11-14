@@ -44,6 +44,7 @@ def _merge_answers(data: dict, answers_by_id: dict) -> None:
 
 
 def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:
+    claude_client.reset_totals()  # so the [total] line is per paper, not per batch
     print(f"Reading PDF: {pdf_path}")
     pages = pdf_reader.extract_pages(pdf_path)
     print(f"Extracted {len(pages)} pages. Running Phase 1+2 (extraction + topic mapping)...")
