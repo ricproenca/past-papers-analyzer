@@ -74,3 +74,30 @@ def test_line_matching_questions_get_the_matcher_layout():
     assert pp.fix_line_matching_layouts(make_paper(qs)) == ["Q3"]
     assert qs[0]["layout_type"] == "AnnotatedDiagram" and qs[0]["structure_data"]["diagram_type"] == "other"
     assert qs[1]["structure_data"] == {"diagram_type": "circuit"}
+
+
+_PAGES = [{"page": 6, "text": "7 This flowchart represents an algorithm.\nSTART\nOUTPUT\n\"Continue?\"\nINPUT Answer\n"
+                               "Complete the trace table for the input data:\nY, 7, S, 9, Y, 5"}]
+
+
+def test_invented_diagram_summary_is_removed_but_printed_sentences_stay():
+    invented = ("The flowchart shows a start node, then it outputs a prompt and reads the answer, "
+                "then it decides whether the answer is yes and loops back to the start.")
+    q = make_question("Q7a", text="This flowchart represents an algorithm. " + invented +
+                      "\n\nComplete the trace table for the input data:\nY, 7, S, 9, Y, 5")
+    removed = pp.drop_unsourced_text(make_paper([q]), _PAGES)
+    assert [i for i, _ in removed] == ["Q7a"] and "start node" in removed[0][1]
+    assert q["text"] == "This flowchart represents an algorithm.\n\nComplete the trace table for the input data:\nY, 7, S, 9, Y, 5"
+
+
+def test_verbatim_and_short_text_is_untouched():
+    q = make_question("Q7b", text="This flowchart represents an algorithm.\n\nState the purpose.")
+    assert pp.drop_unsourced_text(make_paper([q]), _PAGES) == []
+    assert q["text"] == "This flowchart represents an algorithm.\n\nState the purpose."
+
+
+def test_whole_invented_paragraph_is_removed():
+    q = make_question("Q7c", text=("Complete the trace table for the input data:\n\n"
+                                   "It is a calculator that keeps asking the user for numbers and operators until they stop."))
+    pp.drop_unsourced_text(make_paper([q]), _PAGES)
+    assert q["text"] == "Complete the trace table for the input data:"

@@ -4,8 +4,8 @@ Usage:
     python scripts/audit_extractions.py [output/json/*.json ...]
 
 For every paper: schema validation, the consistency warnings from src/schema.py,
-topics outside the paper's range, questions with no marking points, and a
-one-line profile (questions, marks, AO split, layouts). Exit code 1 if any paper
+topics outside the paper's range, the AO split against the syllabus weighting,
+questions with no marking points, and a one-line profile (questions, marks, AO split, layouts). Exit code 1 if any paper
 fails validation.
 """
 
@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.schema import validate_phase_output  # noqa: E402
+from src.syllabus import AO_WEIGHTING  # noqa: E402
 
 
 def audit(path: Path) -> bool:
@@ -43,6 +44,13 @@ def audit(path: Path) -> bool:
           f"AO {dict(sorted(ao.items(), key=str))}, layouts {dict(layouts.most_common(4))}")
     for w in warnings:
         print(f"    {w}")
+    target = AO_WEIGHTING.get(str(data.get("variant") or "")[:1])
+    total = sum(ao.values())
+    if target and total:
+        actual = {k: round(100 * ao.get(k, 0) / total) for k in target}
+        off = {k: actual[k] - v for k, v in target.items() if abs(actual[k] - v) >= 10}
+        if off:
+            print(f"    [!] AO split {actual} vs syllabus weighting {target} (off by {off} points)")
     if phase == 3:
         empty = [q["id"] for q in qs if (q.get("marks") or 0) > 0 and not (q.get("answers") or {}).get("marking_points")]
         if empty:

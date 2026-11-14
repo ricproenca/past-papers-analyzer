@@ -8,6 +8,7 @@ transcription errors:
     - TermDefinitionGrid contents are copied from the PDF tables
     - subject code and variant come from the Cambridge file name
     - line-matching questions get the layout the renderer draws them with
+    - text the model wrote that is not on the paper (e.g. a flowchart summary) is removed
 """
 
 import re
@@ -87,12 +88,60 @@ def fix_line_matching_layouts(data: dict) -> list[str]:
     return fixed
 
 
+_WORD_RE = re.compile(r"[a-z0-9]+")
+_MARKER_RE = re.compile(r"\[blank\]|\[LAYOUT:[^\]]*\]|\[TABLE_TYPE:[^\]]*\]")
+_SENTENCE_RE = re.compile(r"(?<=[.?!])\s+")
+
+
+def _words(text: str) -> list[str]:
+    return _WORD_RE.findall(_MARKER_RE.sub(" ", (text or "").lower()))
+
+
+def _trigrams(words: list[str]) -> set:
+    return {tuple(words[i:i + 3]) for i in range(len(words) - 2)}
+
+
+def _sourced(text: str, source: set, threshold: float) -> bool:
+    grams = _trigrams(_words(text))
+    return not grams or sum(1 for g in grams if g in source) / len(grams) >= threshold
+
+
+def drop_unsourced_text(data: dict, pages: list[dict], min_words: int = 8, threshold: float = 0.5) -> list[tuple[str, str]]:
+    """Remove prose the model wrote that is not printed on the paper.
+
+    "text" must be verbatim, yet the model occasionally adds its own summary of a
+    flowchart or diagram. A paragraph whose word trigrams mostly do not occur anywhere
+    in the paper's extracted text is checked sentence by sentence and its unsourced
+    sentences are dropped. Measured: 0 hits on 15 committed papers, every invented
+    flowchart summary caught (coverage 0.02-0.08). Returns [(id, removed text)]."""
+    source = _trigrams(_words(" ".join(p.get("text", "") for p in pages)))
+    removed = []
+    for q in data.get("questions", []):
+        paragraphs = re.split(r"(\n\s*\n)", q.get("text") or "")
+        changed = False
+        for k in range(0, len(paragraphs), 2):
+            para = paragraphs[k]
+            if len(_words(para)) < min_words or _sourced(para, source, threshold):
+                continue
+            kept = [s for s in _SENTENCE_RE.split(para) if _sourced(s, source, threshold)]
+            dropped = para if not kept else " ".join(s for s in _SENTENCE_RE.split(para) if s not in kept)
+            removed.append((q.get("id"), dropped))
+            paragraphs[k] = " ".join(kept)
+            changed = True
+        if changed:
+            text = "".join(paragraphs)
+            q["text"] = re.sub(r"(\n\s*\n){2,}", "\n\n", text).strip()
+    return removed
+
+
 def postprocess_phase12(data: dict, pages: list[dict]) -> list[str]:
     """Run every step; returns ids of TermDefinitionGrid questions that could not be paired."""
     for note in fill_paper_identity(data):
         print(f"[!] Paper identity corrected — {note}")
     fill_topic_names(data)
     canonicalise_commands(data)
+    for qid, text in drop_unsourced_text(data, pages):
+        print(f"[!] {qid}: removed text that is not on the paper: {text[:100]!r}")
     for qid in fix_line_matching_layouts(data):
         print(f"[!] {qid}: line-matching question re-labelled AnnotatedDiagram")
     return fill_term_def_grids(data, pages)

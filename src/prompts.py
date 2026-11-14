@@ -2,6 +2,7 @@ import base64
 from typing import List, Dict, Any
 
 from .enricher import COMMAND_TIER
+from .syllabus import objectives_prompt_block, topics_prompt_block
 
 PHASE12_SYSTEM = """You are an expert at reading Cambridge exam papers.
 Your job is to identify every question (and sub-question) on the exam provided AND map each one to a syllabus topic.
@@ -12,7 +13,7 @@ RULES:
 - Map each question to the single best-fitting syllabus topic: the one whose key content matches what the question actually tests.
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
-- Paper routing — Paper 1 (variants 1x) covers chapters 1–6 (theory). Paper 2 (variants 2x) covers chapters 7–10. Pseudocode/algorithm-writing questions map to 7.2 (when the focus is algorithm design / trace / flowchart) or 8.1 (when the focus is a specific programming construct like an array operation). SQL questions map to 9.2. Logic gates / logic circuits / truth tables / Boolean expressions map to 10.x. The variant field in `qp` filename (e.g. `0478_m25_qp_22.pdf` → variant 22) determines the paper number from the first digit.
+- Paper routing — Paper 1 (variants 1x) covers chapters 1–6 (theory). Paper 2 (variants 2x) covers chapters 7–10. Algorithm questions map by what the algorithm is FOR: implementing a validation or verification check → 7.4; a standard method (linear search, bubble sort, totalling, counting, maximum/minimum/average) → 7.3; choosing test data → 7.5; otherwise algorithm design, flowcharts, trace tables and correcting errors → 7.2, and questions about one programming construct (data types, loops, string handling, procedures, operators) → 8.1; arrays → 8.2; files → 8.3. SQL questions map to 9.2. Logic gates / logic circuits / truth tables / Boolean expressions map to 10.x. The variant field in `qp` filename (e.g. `0478_m25_qp_22.pdf` → variant 22) determines the paper number from the first digit.
 - For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation. The parent context is exactly the text printed BEFORE the parent's first part label — before "(a)" for Q2, before "(i)" for Q2c; text printed after a part label belongs to that part only. Copy that parent context IN FULL — every sentence, even ones that seem unrelated to this part — plus any pseudocode/program listing (numbered code lines) or reference table the parent introduces. Do NOT copy the words extracted from inside a diagram, flowchart or logic circuit (scattered box labels such as "START", "INPUT Answer", "Yes", "No"): that is the drawing itself, shown to the reader as an image; just keep the sentence that introduces it.
 - Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
 - "text" is verbatim: only words printed on the paper — but repair obvious PDF-extraction artefacts: symbols displaced into words ("t←otal" → "Total ←" in its proper place), split words ("av erage" → "average"), and lost line breaks in numbered code listings (one numbered line per line). Never describe, summarise or interpret a diagram, flowchart or image in "text" — put any description in "visuals".
@@ -21,11 +22,6 @@ RULES:
 - Preserve paragraph breaks from the PDF in the "text" field. When the source PDF visually shows two prose paragraphs separated by a blank line / vertical gap (e.g. a setup paragraph "X happens in context Y." followed by a new instruction paragraph "Describe the process for Z."), put a literal blank line (`\n\n`) between them in the "text" field. Do NOT insert `\n\n` for line wraps within one paragraph, between a prose paragraph and a table, or between a paragraph and answer-space labels — those already have their own structure markers and don't need extra blank lines.
 
 
-Assessment Objectives
-Code	Description	                                                            Weighting
-AO1	    Demonstrate knowledge and understanding of the principles and concepts	40%
-AO2	    Apply knowledge and understanding to given contexts	                    40%
-AO3	    Evaluate, make reasoned judgements, present conclusions	                20%
 
 OUTCOME FROM PAPER:
 Build a clean, structured JSON deliverable:
@@ -47,11 +43,7 @@ Build a clean, structured JSON deliverable:
     "structure_data": object with type-specific metadata fields (see LAYOUT TYPES); use {} if no data is detectable
     "topic": topic code from the syllabus (e.g. "1.2") — see TOPICS below. Do NOT output the topic name; it is added automatically.
 
-OBJECTIVES (choose by what the question demands, not by command word alone):
-AO1 — recall or recognise knowledge: state, name, identify, define, give, list, tick or circle a fact, describe what something is or does.
-AO2 — apply knowledge: carry out a procedure or calculation (convert, add, trace, complete a table from given data); answer about a stated scenario, system, device or program; explain or describe how/why in that context.
-AO3 — make a judgement or devise a solution: evaluate, discuss, justify, weigh advantages against disadvantages to reach a conclusion, assess or improve a given solution, or devise your own solution to a stated problem.
-When a question fits two, choose the higher demand it genuinely requires; do not default to AO1.
+<<OBJECTIVES>>
 
 LAYOUT TYPES:
 The page text contains [LAYOUT:TYPE key=value] and [TABLE_TYPE:TYPE key=value] annotations inserted by the
@@ -212,39 +204,7 @@ Write	        Produce pseudocode/algorithm	        Wrong syntax
 Trace	        Follow through step by step	            Missing steps
 Calculate	    Work out; show working	                Wrong formula
 
-TOPICS (code — name — key content):
-1.1 Number Systems — binary, denary, hexadecimal, BCD; base conversion; binary arithmetic; two's complement; overflow
-1.2 Text, Sound and Images — ASCII, Unicode; sampling rate and bit depth for audio; pixel, resolution, colour depth for images
-1.3 Data Storage and Compression — units (bit to TB); lossy vs lossless compression; run-length encoding; Huffman coding
-2.1 Types and Methods of Data Transmission — serial vs parallel; simplex/half-duplex/full-duplex; USB, Bluetooth, Wi-Fi; packet switching
-2.2 Methods of Error Detection — parity bits, checksums, check digits, ARQ
-2.3 Encryption — symmetric vs asymmetric; public/private keys; Caesar/Vernam cipher; SSL/TLS
-3.1 Computer Architecture — CPU, ALU, CU, registers, fetch-decode-execute cycle; Von Neumann model; cache
-3.2 Input and Output Devices — keyboards, mice, scanners, cameras, sensors; monitors, printers, actuators
-3.3 Data Storage — primary (RAM, ROM), secondary (HDD, SSD, optical, flash); virtual memory
-3.4 Network Hardware — NIC, hub, switch, router, WAP, modem; LAN vs WAN; cloud storage
-4.1 Types of Software and Interrupts — OS functions; utility software; interrupts; scheduling algorithms
-4.2 Types of Programming Language, Translators and IDEs — high/low-level languages; compilers, interpreters, assemblers; IDE features
-5.1 The Internet and the World Wide Web — DNS, HTTP/S, IP, TCP/IP; HTML; search engines; URLs
-5.2 Digital Currency — cryptocurrency; blockchain; mining; wallets
-5.3 Cyber Security — malware, phishing, brute-force, DDoS; firewalls, anti-malware, authentication, encryption
-6.1 Automated Systems — feedback loops; sensors and actuators; control systems; autonomous vehicles
-6.2 Robotics — actuators, effectors; robot applications; advantages and limitations
-6.3 Artificial Intelligence — machine learning; neural networks; expert systems; natural language processing
-7.1 Computational Thinking Skills — decomposition, abstraction, pattern recognition
-7.2 Algorithms — pseudocode; flowcharts (start/stop, process, decision, input/output); trace tables / dry-runs
-7.3 Standard Methods of Solution — linear search; bubble sort; totalling; counting; maximum / minimum / average; record-counting
-7.4 Validation and Verification — presence, range, length, type, format, check digit; double-entry; visual check
-7.5 Test Data — normal, abnormal, boundary, extreme; test plans
-8.1 Programming Concepts — variables, constants, data types; sequence, selection, iteration; procedures and functions; library routines; string and arithmetic operators
-8.2 Arrays — 1D and 2D arrays; declare, populate, traverse, search, sort
-8.3 File Handling — open, read, write, append, close; line-by-line processing
-9.1 Database Structure — single-table databases; record, field, primary key; field data types; validation rules
-9.2 SQL — SELECT, FROM, WHERE, ORDER BY (ASC/DESC); aggregate functions SUM, COUNT, AVG, MIN, MAX; LIKE wildcards
-10.1 Logic Gates — AND, OR, NOT, NAND, NOR, XOR (symbols, functions)
-10.2 Logic Circuits — drawing logic circuits from expressions; combining gates
-10.3 Truth Tables — completing or constructing truth tables from circuits or expressions
-10.4 Logic Expressions — writing/simplifying Boolean expressions; expressions from problem statements"""
+<<TOPICS>>"""
 
 PHASE3_SYSTEM = """You are given an extraction of an exam paper (JSON) and its marking scheme. For each question, find its answer in the marking scheme.
 Return ONLY a valid JSON object that maps each question "id" to its answer object — no markdown, no explanation, no code fences, and do NOT repeat any question fields. Shape:
@@ -272,9 +232,12 @@ RULES:
 - When a question has multiple independent named parts with separate answer lines (e.g. "Input ....." and "Output ....."), prefix each marking_point "text" with its part label: e.g. "Input: Microphone", "Output: Speaker".
 - If a question has no marking scheme entry, still include its id and set "marking_points" to an empty array []."""
 
-# The closed command list is generated from the enricher so prompt, schema and
-# enrichment can never disagree about which command words exist.
-PHASE12_SYSTEM = PHASE12_SYSTEM.replace("<<COMMAND_LIST>>", ", ".join(COMMAND_TIER))
+# The closed command list, the topics and the objectives are generated from src/enricher.py and
+# src/syllabus.py so prompt, schema and enrichment can never disagree.
+PHASE12_SYSTEM = (PHASE12_SYSTEM
+                  .replace("<<COMMAND_LIST>>", ", ".join(COMMAND_TIER))
+                  .replace("<<TOPICS>>", topics_prompt_block())
+                  .replace("<<OBJECTIVES>>", objectives_prompt_block()))
 
 
 def build_pdf_text(pages: List[Dict[str, Any]]) -> str:

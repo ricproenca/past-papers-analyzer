@@ -106,3 +106,8 @@ def test_consistency_warnings(capsys):
 def test_consistent_questions_print_no_warnings(capsys):
     validate(make_paper(), phase=2)
     assert "[!]" not in capsys.readouterr().out
+
+
+def test_topic_outside_the_papers_chapters_warns(capsys):
+    validate(make_paper([make_question(topic="7.2")], variant="12"), phase=2)
+    assert "topic 7.2 is outside Paper 1's chapters" in capsys.readouterr().out

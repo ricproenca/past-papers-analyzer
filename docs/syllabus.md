@@ -47,3 +47,11 @@ Cambridge IGCSE 0478 splits into two papers:
     - 10.2 Logic Circuits
     - 10.3 Truth Tables
     - 10.4 Logic Expressions
+
+---
+
+The machine-readable version — topic names, what each topic covers, the assessment
+objectives and their weightings — is `src/syllabus.py`, condensed from the official
+syllabus (`input/0478/0478 Syllabus.pdf`, 2023–2025). The prompt is generated from it.
+The official syllabus has no sub-topics in chapters 7, 9 and 10; the codes 7.1–7.5,
+9.1–9.2 and 10.1–10.4 above are this project's subdivision.

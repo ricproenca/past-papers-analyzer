@@ -1,5 +1,5 @@
 from .enricher import COMMAND_TIER, canonical_command
-from .syllabus import TOPIC_NAMES
+from .syllabus import TOPIC_NAMES, topic_in_paper
 
 _QUESTION_KEYS_P1 = {"id", "text", "command", "objective", "marks", "visuals", "page", "layout_type", "structure_data"}
 _QUESTION_KEYS_P2 = _QUESTION_KEYS_P1 | {"topic", "topic_name"}
@@ -53,6 +53,9 @@ def validate_phase_output(data: dict, phase: int) -> None:
                 f"Phase {phase} question {qid!r} has unknown topic: {q.get('topic')!r} "
                 f"(must be one of {sorted(TOPIC_NAMES)})"
             )
+
+        if phase >= 2 and topic_in_paper(q.get("topic"), data.get("variant")) is False:
+            print(f"[!] Question {qid!r}: topic {q.get('topic')} is outside Paper {str(data.get('variant'))[:1]}'s chapters")
 
         if canonical_command(q.get("command")) not in COMMAND_TIER:
             print(f"[!] Unmapped command word {q.get('command')!r} (question {qid!r}); "

@@ -42,3 +42,11 @@ def test_audit_reports_and_fails_on_invalid(tmp_path):
     bad = _write(tmp_path, "bad.json", make_paper([make_question("Q1", topic="99.9")]))
     r = _run("audit_extractions.py", good, bad)
     assert r.returncode == 1 and "[FAIL] bad.json" in r.stdout and "1/2 paper(s) valid" in r.stdout
+
+
+def test_syllabus_report_runs(tmp_path):
+    a = _write(tmp_path, "a.json", make_paper(variant="12"))
+    one = _run("syllabus_report.py", a)
+    assert one.returncode == 0 and "Q1" in one.stdout and "syllabus {'AO1': 60" in one.stdout
+    many = _run("syllabus_report.py", a, a)
+    assert many.returncode == 0 and "Paper 1: marks per topic" in many.stdout

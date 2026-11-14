@@ -56,7 +56,8 @@ src/
 tests/              # pytest suite (see Tests)
 scripts/
   compare_extractions.py  # diff two extractions of a paper (fields, text, AO, answers); exit 1 on structural change
-  audit_extractions.py    # validate + consistency warnings + profile for every paper, no API calls
+  audit_extractions.py    # validate + consistency warnings + AO split vs syllabus, no API calls
+  syllabus_report.py      # marks per topic across papers, never-examined topics, per-question topic/AO
 .claude/skills/     # project skills (see Skills)
 docs/
   question_extractor.md  # prompt spec: extraction + topic mapping + answers
@@ -113,6 +114,8 @@ The script is idempotent — re-running it leaves files unchanged.
 - **Input cleaning**: the question-paper cover is cut to its identity lines (title, code, session, duration, total marks) and its candidate-number tables are dropped. `pdf_reader.clean_page_text()` drops `(cid:N)` glyph noise, the mirrored margin text, barcodes, footers and copyright tails before anything is sent (~70% fewer paper-text tokens on 2024–25 papers). Marking schemes are trimmed to the pages from the first `Question Answer Marks` table onward (`drop_ms_preamble`). Blank pages are not sent.
 - **Table classification** (`pdf_reader._classify_table`): besides header rules, a two-column table with blanks and printed text beside a blank or in the right column is a `TermDefinitionGrid` ("type | statement" tables), and a table with values printed beside blanks is a `ValueTraceMatrix` (parity, truth, conversion, test-data tables); only tick grids stay `MatrixGrid`.
 - **Prompt text rules** (each fixed a regression measured against the committed extractions): `text` is verbatim but repairs extraction artefacts (displaced `←`, split words); the parent context is exactly the text before the parent's first part label, copied in full, including numbered code listings and reference tables but not words extracted from inside a flowchart/circuit; diagrams are described only in `visuals`; line-matching columns are written as a pipe table.
+- **Syllabus mapping (Phase 2)**: `src/syllabus.py` holds topic names, `TOPIC_CONTENT` (condensed from the official syllabus PDF — e.g. embedded systems are 3.1, cloud storage 3.3, SQL is limited to SELECT/FROM/WHERE/ORDER BY/SUM/COUNT), the verbatim AO definitions and per-paper weightings (Paper 1 60/20/20, Paper 2 20/60/20). The prompt's TOPICS and OBJECTIVES blocks are generated from it, with an AO3 calibration (≈15 marks per paper) because extractions had AO3 near 0%. Algorithm questions are routed by purpose (validation → 7.4, standard methods → 7.3, test data → 7.5). Topics outside the paper's chapters produce a warning.
+- **Unsourced-text guard**: `postprocess.drop_unsourced_text` removes sentences of `text` whose word trigrams are mostly absent from the paper's PDF text — the model occasionally writes its own flowchart summary. 0 hits on the 15 committed papers; caught every invented summary in testing.
 - **Diagram detection**: `[Likely contains a diagram/drawing]` is set from a text cue (words like diagram, flowchart, draw, circuit) or ≥20 curves on the page — it found 15 of 17 known diagram pages with 1 false positive. Vector-shape counts and `page.images` were tried and do not work on Cambridge papers. `--vision` attaches PNGs of the flagged pages (opt-in: it adds ~1.5k input tokens per page and enriched the diagram description in a test).
 - **Temperature**: not sent by default. `CLAUDE_TEMPERATURE=<n>` opts in; a model that rejects the parameter is retried without it. (On one paper, temperature 0 made the model trim context sentences in 3 of 3 runs; the API default kept them in 2 of 2.)
 - **Parent context stays repeated**: the model writes each sub-question's full text including its parent stem. A "write each stem once" design saved ~16% of output but the model then silently dropped shared context from some sub-questions (Q2, Q7(f) on the test paper), so it was not adopted.
@@ -147,3 +150,4 @@ Project skills live in `.claude/skills/` (committed; the rest of `.claude/` is i
 |---|---|---|
 | `extract-paper` | 1–3 | extract a paper into `output/staging/`, compare with the committed JSON, then promote and rebuild |
 | `audit-extractions` | 1–3 | validate every paper, read the consistency warnings, fix confirmed problems |
+| `review-syllabus-mapping` | 2 | check topics/AOs against the official syllabus, coverage across papers, fix systematic mapping errors |
