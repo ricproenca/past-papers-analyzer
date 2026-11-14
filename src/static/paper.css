@@ -36,7 +36,9 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
 .badge-paper-num { background: #be185d; }
 .chevron { margin-left: auto; font-size: .9rem; transition: transform .2s; }
 .card.open .chevron { transform: rotate(180deg); }
-.q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; }
+/* overflow-x: wide tables (trace tables, database tables) scroll sideways on a narrow
+   screen instead of being cut off by the card's rounded-corner clipping. */
+.q-body { padding: 1.25rem; border-bottom: 1px solid #e5e7eb; overflow-x: auto; }
 .q-text { white-space: pre-wrap; line-height: 1.65; font-size: .9375rem; margin-bottom: 1rem; }
 .q-visual { font-size: .8rem; color: #6b7280; margin-top: .5rem; font-style: italic; }
 .q-figure {
