@@ -86,3 +86,18 @@ def test_batch_failures_exit_non_zero(folder, monkeypatch):
 def test_invalid_workers_rejected(folder, monkeypatch):
     with pytest.raises(SystemExit):
         run(monkeypatch, str(folder), "--workers", "0")
+
+
+def test_single_file_flags_are_rejected_for_a_folder(folder, monkeypatch):
+    for flags in (["-o", "x.json"], ["-ms", "a_ms_1.pdf"]):
+        with pytest.raises(SystemExit):
+            run(monkeypatch, str(folder), *flags)
+
+
+def test_resume_flags_reach_the_batch_driver(folder, monkeypatch):
+    seen = {}
+    monkeypatch.setattr(cli, "extract_batch", lambda papers, vision=False, resume=None: seen.update(resume=resume) or [])
+    run(monkeypatch, str(folder), "--batch", "--resume-phase12", "A", "--resume-phase3", "B")
+    assert seen["resume"] == {"phase12": "A", "phase3": "B"}
+    with pytest.raises(SystemExit):
+        run(monkeypatch, str(folder), "--batch", "--resume-phase3", "B")

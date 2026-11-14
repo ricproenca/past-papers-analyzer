@@ -10,6 +10,7 @@ from .text import (
     _render_prose_paragraphs,
 )
 from .layouts import (
+    _as_int,
     _render_simple_single_block,
     _LAYOUT_RENDERERS,
 )
@@ -45,7 +46,7 @@ def _render_question(q, source: dict | None = None):
     command = q.get("command")
     page = q.get("page")
     visuals = q.get("visuals") or []
-    answers = q.get("answers")
+    answers = q.get("answers") if isinstance(q.get("answers"), dict) else None
 
     header_badges = [
         f'<span class="q-id">{escape(qid)}</span>',
@@ -75,7 +76,10 @@ def _render_question(q, source: dict | None = None):
     layout_type = q.get("layout_type") or "SimpleSingleBlock"
     structure_data = q.get("structure_data") or {}
 
-    text = q.get("text", "")
+    text = q.get("text") if isinstance(q.get("text"), str) else ""
+    if not isinstance(structure_data, dict):
+        structure_data = {}
+    q = dict(q, text=text, structure_data=structure_data)
     if layout_type != "InlineCloze":
         text = text.replace("[blank]", "").strip()
     if layout_type in ("MatrixGrid", "ValueTraceMatrix", "TermDefinitionGrid"):
@@ -139,7 +143,7 @@ def _render_question(q, source: dict | None = None):
                 line for line in text.splitlines() if line.strip() not in strip_set
             ).strip()
     elif layout_type == "NumberedMultiList":
-        count = max(int(structure_data.get("list_count") or 1), 1)
+        count = max(_as_int(structure_data.get("list_count"), 1), 1)
         expected = [str(i) for i in range(1, count + 1)]
         lines = text.splitlines()
         trailing, tail_start = [], len(lines)
@@ -190,7 +194,13 @@ def _render_question(q, source: dict | None = None):
     # Pages that mix papers (topic pages) hold several "Q1a"s: give inputs and the card
     # a paper-qualified id so radio groups and anchors do not collide across papers.
     dom_qid = f"{source['paper']}-{qid}" if source and source.get("paper") else qid
-    input_html = renderer(dict(q, id=dom_qid) if dom_qid != qid else q, structure_data)
+    render_q = dict(q, id=dom_qid) if dom_qid != qid else q
+    try:
+        input_html = renderer(render_q, structure_data)
+    except Exception as e:   # malformed structure_data from the model: show an open answer, not a traceback
+        print(f"[!] Question {qid!r}: {layout_type} could not be drawn from structure_data "
+              f"({type(e).__name__}: {e}); falling back to an open answer")
+        input_html = _render_simple_single_block(render_q, {})
 
     if layout_type == "InlineCloze":
         # Cloze renderer owns the text — replaces the standard q-text paragraph
@@ -213,12 +223,14 @@ def _render_question(q, source: dict | None = None):
     answers_html = ""
     if answers:
         rule = answers.get("scoring_rule")
-        rule_html = f'<p class="scoring-rule">{escape(rule)}</p>' if rule else ""
+        rule_html = f'<p class="scoring-rule">{escape(str(rule))}</p>' if rule else ""
         mps = answers.get("marking_points") or []
         mp_items = []
         for mp in mps:
+            if not isinstance(mp, dict):
+                mp = {"text": mp}
             mp_marks = mp.get("marks", "")
-            mp_text = escape(mp.get("text", ""))
+            mp_text = escape(str(mp.get("text") if mp.get("text") is not None else ""))
             mark_label = f"[{mp_marks}]" if mp_marks != "" else ""
             mp_items.append(
                 f'<li class="mp-item">'

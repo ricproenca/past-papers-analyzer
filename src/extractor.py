@@ -1,5 +1,6 @@
 import copy
 import json
+import os
 import re
 from pathlib import Path
 
@@ -93,11 +94,31 @@ def prepare_phase3(data: dict, ms_path: str):
 
 def finish_phase3(data: dict, raw_json: str) -> dict:
     _merge_answers(data, json.loads(raw_json))
-    split = {q["id"]: q["objective_marks"] for q in data["questions"] if q.get("id") in postprocess.fill_objective_marks(data)}
-    for qid, marks in split.items():
-        print(f"{qid}: marking scheme splits its marks across objectives {marks}")
+    split_ids = set(postprocess.fill_objective_marks(data))
+    for q in data["questions"]:
+        if q.get("id") in split_ids:
+            print(f"{q['id']}: marking scheme splits its marks across objectives {q['objective_marks']}")
     _validated(data, 3, raw_json, "Phase 3")
     return data
+
+
+def save_partial(data: dict) -> Path:
+    """Keep a paid-for Phase 1+2 extraction when the answers step fails. The file is a
+    valid paper JSON without answers: `python answers.py <file> -o output/json/<stem>.json`
+    finishes it with one answers call instead of a full re-extraction."""
+    debug_dir = Path(os.environ.get("CLAUDE_DEBUG_DIR", "output/debug"))
+    debug_dir.mkdir(parents=True, exist_ok=True)
+    path = debug_dir / f"{Path(data.get('qp') or 'paper').stem}.phase12.json"
+    _write_json(path, _reorder({k: v for k, v in data.items()}))
+    return path
+
+
+def _report_partial(data: dict, output_path: str) -> None:
+    for q in data.get("questions", []):
+        q.pop("answers", None)
+    path = save_partial(data)
+    print(f"Phase 3 failed; the Phase 1+2 extraction was kept at {path}.\n"
+          f"  Finish it with: python answers.py {path} -o {output_path}")
 
 
 # --- enrichment, visuals, output -----------------------------------------------------
@@ -140,8 +161,12 @@ def extract(pdf_path: str, output_path: str, ms_path: str = None, vision: bool =
 
     if ms_path:
         print("Phase 1+2 complete. Running Phase 3 (answer extraction)...")
-        system3, messages3 = prepare_phase3(data, ms_path)
-        data = finish_phase3(data, claude_client.call(system3, messages3, label="Phase 3"))
+        try:
+            system3, messages3 = prepare_phase3(data, ms_path)
+            data = finish_phase3(data, claude_client.call(system3, messages3, label="Phase 3"))
+        except Exception:
+            _report_partial(data, output_path)
+            raise
         print("Phase 3 complete.")
     else:
         print("Phase 1+2 complete.")
@@ -152,11 +177,20 @@ def _batch_id(pdf_path: str) -> str:
     return re.sub(r"[^A-Za-z0-9_-]", "_", Path(pdf_path).stem)[:64]
 
 
-def extract_batch(papers: list[tuple[str, str, str | None]], vision: bool = False, poll_seconds: float = 30.0) -> list[tuple[str, Exception]]:
+def extract_batch(papers: list[tuple[str, str, str | None]], vision: bool = False, poll_seconds: float = 30.0,
+                  resume: dict | None = None) -> list[tuple[str, Exception]]:
     """Extract many papers through the Batch API: all Phase 1+2 requests in one
     batch, then all Phase 3 requests in a second. Half price, but results arrive
     asynchronously (minutes to hours). `papers` is [(pdf_path, output_path, ms_path)].
+    `resume` = {"phase12": batch id, "phase3": batch id} (either or both) collects the
+    results of batches already submitted instead of submitting them again.
     Returns [(pdf name, error)] for the papers that failed."""
+    resume = resume or {}
+
+    def run_batch(requests, label, key):
+        extra = {"batch_id": resume[key]} if resume.get(key) else {}
+        return claude_client.call_batch(requests, label=label, poll_seconds=poll_seconds, **extra)
+
     failures: dict[str, Exception] = {}
     jobs, ms_of, out_of = {}, {}, {}
 
@@ -170,10 +204,10 @@ def extract_batch(papers: list[tuple[str, str, str | None]], vision: bool = Fals
 
     data = {}
     if jobs:
-        raw = claude_client.call_batch({c: (j["system"], j["messages"]) for c, j in jobs.items()},
-                                       label="Phase 1+2 batch", poll_seconds=poll_seconds)
-        for cid, result in raw.items():
+        raw = run_batch({c: (j["system"], j["messages"]) for c, j in jobs.items()}, "Phase 1+2 batch", "phase12")
+        for cid in jobs:
             name = Path(jobs[cid]["pdf_path"]).name
+            result = raw.get(cid, RuntimeError("no result for this paper in the Phase 1+2 batch"))
             if isinstance(result, Exception):
                 failures[name] = result
                 continue
@@ -190,18 +224,17 @@ def extract_batch(papers: list[tuple[str, str, str | None]], vision: bool = Fals
             except Exception as e:
                 failures[Path(jobs[cid]["pdf_path"]).name] = e
     if stage3:
-        raw = claude_client.call_batch(stage3, label="Phase 3 batch", poll_seconds=poll_seconds)
-        for cid, result in raw.items():
+        raw = run_batch(stage3, "Phase 3 batch", "phase3")
+        for cid in stage3:
             name = Path(jobs[cid]["pdf_path"]).name
-            if isinstance(result, Exception):
-                failures[name] = result
-                data.pop(cid, None)
-                continue
+            result = raw.get(cid, RuntimeError("no result for this paper in the Phase 3 batch"))
             try:
+                if isinstance(result, Exception):
+                    raise result
                 data[cid] = finish_phase3(data[cid], result)
             except Exception as e:
                 failures[name] = e
-                data.pop(cid, None)
+                _report_partial(data.pop(cid), out_of[cid])
 
     for cid, d in data.items():
         if Path(jobs[cid]["pdf_path"]).name in failures:

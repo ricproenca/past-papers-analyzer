@@ -57,9 +57,16 @@ def main():
         if not files:
             print(f"No JSON files found in {target}")
             return
+        failed = []
         for json_path in files:
-            out_path = render_one(json_path)
-            print(f"Rendered: {out_path}")
+            try:
+                out_path = render_one(json_path)
+                print(f"Rendered: {out_path}")
+            except Exception as e:   # one bad file must not stop the others
+                print(f"[FAILED] {json_path.name}: {type(e).__name__}: {e}")
+                failed.append(json_path.name)
+        if failed:
+            raise SystemExit(f"{len(failed)} file(s) failed to render: {', '.join(failed)}")
     else:
         out_path = render_one(target, args.output)
         print(f"Rendered: {out_path}")

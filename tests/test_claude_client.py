@@ -222,3 +222,39 @@ def test_call_batch_collects_results_per_request(monkeypatch, debug_dir, temp_st
     assert created[0]["params"]["model"] == c.get_model() and "temperature" not in created[0]["params"]
     assert c._totals()["input"] == 300                                  # three completed responses were counted
     assert len(list(debug_dir.iterdir())) == 2                            # truncated + invalid JSON were saved
+
+
+def _status_error(status, message):
+    request = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
+    return anthropic.APIStatusError(message, response=httpx.Response(status, request=request), body=None)
+
+
+def test_server_errors_are_retried(fake_client):
+    calls = fake_client(_status_error(529, "Overloaded"), _status_error(500, "boom"), FakeStream('{"ok": 1}'))
+    assert c.call([], []) == '{"ok": 1}' and len(calls) == 3
+
+
+def test_client_errors_are_not_retried(fake_client):
+    calls = fake_client(_status_error(403, "forbidden"), FakeStream("{}"))
+    with pytest.raises(anthropic.APIStatusError):
+        c.call([], [])
+    assert len(calls) == 1
+
+
+def test_call_batch_can_resume_an_existing_batch(monkeypatch, temp_state):
+    batches = _install_batches(monkeypatch, [_entry("a", '{"x": 1}'), _entry("other_paper", '{"y": 2}')])
+    out = c.call_batch({"a": ([], [])}, label="B", poll_seconds=0, batch_id="batch_1")
+    assert out == {"a": '{"x": 1}'} and batches.created is None        # nothing submitted, unrelated ids ignored
+
+
+def test_call_batch_survives_a_connection_error_while_polling(monkeypatch, temp_state):
+    batches = _install_batches(monkeypatch, [_entry("a", '{"x": 1}')])
+    real, state = batches.retrieve, {"failed": False}
+
+    def flaky(batch_id):
+        if not state["failed"]:
+            state["failed"] = True
+            raise anthropic.APIConnectionError(request=httpx.Request("GET", "https://api.anthropic.com"))
+        return real(batch_id)
+    batches.retrieve = flaky
+    assert c.call_batch({"a": ([], [])}, label="B", poll_seconds=0) == {"a": '{"x": 1}'}

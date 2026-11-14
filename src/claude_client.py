@@ -106,6 +106,12 @@ def _params(system: list, messages: list) -> dict:
     return params
 
 
+def _is_server_error(e: Exception) -> bool:
+    """5xx / overloaded errors (also raised mid-stream): transient, worth a retry."""
+    return isinstance(e, anthropic.APIStatusError) and (
+        (getattr(e, "status_code", 0) or 0) >= 500 or "overloaded" in str(e).lower())
+
+
 def _is_temperature_error(e: Exception) -> bool:
     return isinstance(e, anthropic.BadRequestError) and "temperature" in str(e).lower()
 
@@ -155,27 +161,45 @@ def call(system: list, messages: list, label: str = "", max_retries: int = 3) ->
                 last_error = e
                 continue
             raise
+        except anthropic.APIStatusError as e:
+            if not _is_server_error(e):
+                raise
+            last_error = e
+            wait = 2 ** attempt
+            print(f"Server error, retrying in {wait}s... ({e})")
+            time.sleep(wait)
     if last_raw is not None and isinstance(last_error, ValueError):
         path = save_debug(label, last_raw)
         print(f"Last raw response saved to {path}")
     raise last_error
 
 
-def call_batch(requests: dict, label: str = "Batch", poll_seconds: float = 30.0) -> dict:
+def call_batch(requests: dict, label: str = "Batch", poll_seconds: float = 30.0, batch_id: str | None = None) -> dict:
     """Run many (system, messages) requests through the Message Batches API
     (half price, completes asynchronously).
 
     `requests` maps a custom id (letters, digits, '_' and '-') to (system, messages).
-    Returns {id: json_text | Exception}; one failed item never fails the others."""
+    Returns {id: json_text | Exception}; one failed item never fails the others.
+    With `batch_id`, nothing is submitted: that existing batch is polled and its
+    results collected (results stay available for 29 days), so an interrupted run
+    can be resumed without paying again. A connection error while polling is retried."""
     client = get_client()
-    batch = client.messages.batches.create(requests=[
-        {"custom_id": cid, "params": _params(system, messages)}
-        for cid, (system, messages) in requests.items()
-    ])
-    print(f"[{label}] batch {batch.id} submitted with {len(requests)} request(s); polling every {poll_seconds:g}s...")
+    if batch_id:
+        batch = client.messages.batches.retrieve(batch_id)
+        print(f"[{label}] resuming batch {batch.id} ({batch.processing_status})")
+    else:
+        batch = client.messages.batches.create(requests=[
+            {"custom_id": cid, "params": _params(system, messages)}
+            for cid, (system, messages) in requests.items()
+        ])
+        print(f"[{label}] batch {batch.id} submitted with {len(requests)} request(s); polling every {poll_seconds:g}s...")
     while batch.processing_status != "ended":
         time.sleep(poll_seconds)
-        batch = client.messages.batches.retrieve(batch.id)
+        try:
+            batch = client.messages.batches.retrieve(batch.id)
+        except anthropic.APIConnectionError as e:
+            print(f"[{label}] connection error while polling batch {batch.id}, still waiting... ({e})")
+            continue
         c = batch.request_counts
         print(f"[{label}] {batch.processing_status}: {c.succeeded} succeeded, {c.processing} processing, "
               f"{c.errored} errored, {c.expired} expired")
@@ -183,6 +207,8 @@ def call_batch(requests: dict, label: str = "Batch", poll_seconds: float = 30.0)
     results: dict = {}
     for entry in client.messages.batches.results(batch.id):
         cid, result = entry.custom_id, entry.result
+        if cid not in requests:
+            continue                          # a resumed batch may hold papers not asked for now
         if result.type != "succeeded":
             detail = getattr(getattr(result, "error", None), "error", None) or getattr(result, "error", None) or result.type
             results[cid] = RuntimeError(f"batch request {result.type}: {detail}")

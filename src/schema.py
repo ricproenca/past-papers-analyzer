@@ -44,6 +44,9 @@ def validate_phase_output(data: dict, phase: int) -> None:
         if not isinstance(q.get("id"), str) or not _ID_RE.match(q["id"]):
             raise ValueError(f"Phase {phase} question {qid!r}: id must look like Q1, Q1a or Q1a_i")
 
+        if not isinstance(q.get("text"), str):
+            raise ValueError(f"Phase {phase} question {qid!r} 'text' must be a string, got {type(q.get('text')).__name__}")
+
         marks = q.get("marks")
         if not isinstance(marks, int) or isinstance(marks, bool):
             raise ValueError(f"Phase {phase} question {qid!r} 'marks' must be an integer, got {marks!r}")
@@ -93,9 +96,9 @@ def validate_phase_output(data: dict, phase: int) -> None:
             if not isinstance(mps, list):
                 raise ValueError(f"Phase 3 question {qid!r} 'marking_points' must be a list")
             for j, mp in enumerate(mps):
-                if "text" not in mp or "marks" not in mp:
+                if not isinstance(mp, dict) or not isinstance(mp.get("text"), str) or "marks" not in mp:
                     raise ValueError(
-                        f"Phase 3 question {qid!r} marking_point[{j}] missing 'text' or 'marks'"
+                        f"Phase 3 question {qid!r} marking_point[{j}] must be an object with a 'text' string and 'marks'"
                     )
 
     total_marks = data.get("total_marks")
@@ -108,10 +111,23 @@ def validate_phase_output(data: dict, phase: int) -> None:
             )
 
 
+# Expected type of the structure_data fields the renderer reads.
+_SD_TYPES = {
+    "line_count": int, "list_count": int, "inline_gap_count": int, "row_count": int, "register_size": int,
+    "labels": list, "rows": list, "matrix_headers": list, "row_values": list, "partial_elements": list,
+    "answer_labels": list, "left_items": list, "right_items": list, "headers": list,
+    "has_word_bank": bool, "working_space": bool,
+}
+
+
 def _consistency_warnings(q: dict) -> list[str]:
     """Cheap cross-field checks that catch likely extraction slips without failing the run."""
     out = []
     sd = q.get("structure_data") if isinstance(q.get("structure_data"), dict) else {}
+    for key, expected in _SD_TYPES.items():
+        value = sd.get(key)
+        if value is not None and (not isinstance(value, expected) or (expected is int and isinstance(value, bool))):
+            out.append(f"structure_data.{key} should be {expected.__name__}, got {value!r}")
     layout, marks = q.get("layout_type"), q.get("marks")
     if layout == "InlineCloze" and sd.get("inline_gap_count") != (q.get("text") or "").count("[blank]"):
         out.append(f"inline_gap_count={sd.get('inline_gap_count')} but text has "

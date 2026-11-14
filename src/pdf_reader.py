@@ -394,8 +394,8 @@ def render_pages_to_pngs(
 ) -> Dict[int, Path]:
     """Render the given 1-based page numbers of `pdf_path` as PNGs into `output_dir`.
 
-    Returns a {page_num: png_path} map. Skips pages whose PNG already exists
-    (idempotent). Page numbers outside the PDF range are silently skipped."""
+    Returns a {page_num: png_path} map. Skips pages whose PNG is at least as new as
+    the PDF (idempotent). Page numbers outside the PDF range are silently skipped."""
     import fitz  # PyMuPDF — imported lazily so existing flows don't require it
 
     out_dir = Path(output_dir)
@@ -415,8 +415,8 @@ def render_pages_to_pngs(
                 continue
             png_path = out_dir / f"page-{page_num}.png"
             result[page_num] = png_path
-            if png_path.exists():
-                continue
+            if png_path.exists() and png_path.stat().st_mtime >= Path(pdf_path).stat().st_mtime:
+                continue                      # up to date; a newer PDF is rendered again
             page = doc.load_page(page_num - 1)
             pix = page.get_pixmap(matrix=matrix, alpha=False)
             pix.save(str(png_path))

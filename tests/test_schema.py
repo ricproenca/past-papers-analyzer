@@ -150,3 +150,24 @@ def test_phase3_consistency_warnings(capsys):
     assert "answer type 'essay'" in out and "marking points offer 1 mark(s) for a 2-mark question" in out
     assert "MCQ answer has 2 marking points" in out and "non-integer marks" in out
     assert "does not split the question's 15 mark(s)" in out
+
+
+def test_text_must_be_a_string(paper):
+    paper["questions"][0]["text"] = None
+    with pytest.raises(ValueError, match="'text' must be a string"):
+        validate(paper, phase=2)
+
+
+def test_structure_data_types_are_checked(capsys):
+    qs = [make_question("Q1", structure_data={"line_count": "five"}),
+          make_question("Q2", layout_type="MultiPartLabeledBlock", structure_data={"labels": "Benefit"})]
+    validate(make_paper(qs), phase=2)
+    out = capsys.readouterr().out
+    assert "structure_data.line_count should be int" in out and "structure_data.labels should be list" in out
+
+
+def test_marking_point_must_be_an_object_with_text(paper):
+    paper["questions"] = [make_question(answers=make_answer(marking_points=["x"]))]
+    paper["total_marks"] = 1
+    with pytest.raises(ValueError, match="marking_point\\[0\\]"):
+        validate(paper, phase=3)

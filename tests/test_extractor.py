@@ -166,6 +166,30 @@ def test_extract_batch_phase3_failure_does_not_write_a_half_paper(batch_env):
     assert [n for n, _ in failures] == ["p_qp_1.pdf"] and not (tmp / "json" / "p_qp_1.json").exists()
 
 
+def test_phase3_failure_keeps_the_paid_extraction(batch_env, debug_dir, capsys):
+    fake, _, tmp = batch_env
+    fake.reply = lambda label, reqs: ({"p_qp_1": _claude_extraction()} if label.startswith("Phase 1+2")
+                                      else {"p_qp_1": ValueError("Claude returned invalid JSON")})
+    ex.extract_batch([("p_qp_1.pdf", str(tmp / "json" / "p_qp_1.json"), "p_ms_1.pdf")])
+    kept = json.loads((debug_dir / "p_qp_1.phase12.json").read_text())
+    assert kept["qp"] == "p_qp_1.pdf" and kept["questions"] and "answers" not in kept["questions"][0]
+    assert "python answers.py" in capsys.readouterr().out
+
+
+def test_extract_batch_passes_resume_ids(batch_env, monkeypatch):
+    fake, _, tmp = batch_env
+    seen = []
+
+    def call_batch(requests, label="", poll_seconds=0, batch_id=None):
+        seen.append((label, batch_id))
+        return {"p_qp_1": _claude_extraction()} if label.startswith("Phase 1+2") else {
+            "p_qp_1": json.dumps({"Q1": make_answer(), "Q2": make_answer()})}
+    monkeypatch.setattr(ex.claude_client, "call_batch", call_batch)
+    failures = ex.extract_batch([("p_qp_1.pdf", str(tmp / "json" / "p_qp_1.json"), "p_ms_1.pdf")],
+                                resume={"phase12": "batch_A", "phase3": "batch_B"})
+    assert failures == [] and seen == [("Phase 1+2 batch", "batch_A"), ("Phase 3 batch", "batch_B")]
+
+
 def test_batch_ids_are_sanitised():
     assert ex._batch_id("/x/0478 m25 (qp)_12.pdf") == "0478_m25__qp__12"
 

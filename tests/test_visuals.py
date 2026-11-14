@@ -50,3 +50,20 @@ def test_find_source_pdf(tmp_path):
     assert v.find_source_pdf("a_qp_1.pdf", tmp_path) == pdf
     assert v.find_source_pdf("missing.pdf", tmp_path) is None
     assert v.find_source_pdf("a_qp_1.pdf", tmp_path / "nope") is None
+
+
+def test_parts_of_the_same_question_share_the_page_ref_whatever_their_visual_labels():
+    # m25_qp_22 Q7: only Q7b says "on page 6" and the model labelled the visual on Q7a only.
+    qs = [
+        make_question("Q7a", text="This flowchart represents an algorithm.", visuals=["Flowchart: START -> ..."]),
+        make_question("Q7b", text="State the purpose of the algorithm on page 6.", visuals=[]),
+        make_question("Q7c_i", text="There are problems with the given algorithm.", visuals=[]),
+        make_question("Q8", text="Write the program.", visuals=[]),
+    ]
+    pairs = v._questions_needing_visuals(make_paper(qs))
+    assert [(q["id"], page) for q, page in pairs] == [("Q7a", 6), ("Q7b", 6), ("Q7c_i", 6)]
+
+
+def test_page_ref_needs_a_reference_phrase():
+    assert v._explicit_page_ref("A web page 3 times larger is loaded.") is None
+    assert v._explicit_page_ref("the algorithm on page 6") == 6 and v._explicit_page_ref("See page 12.") == 12

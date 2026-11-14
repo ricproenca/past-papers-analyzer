@@ -15,8 +15,9 @@ from typing import Optional
 from . import pdf_reader
 
 
-# Detects an explicit cross-reference like "on page 6" or "diagram on page 12".
-_PAGE_REF_RE = re.compile(r"\bpage\s+(\d{1,3})\b", re.IGNORECASE)
+# Detects an explicit cross-reference like "on page 6" or "See page 4" — not any
+# "page N" ("a web page 3 times larger" is not a reference).
+_PAGE_REF_RE = re.compile(r"\b(?:on|see|from|at|to)\s+page\s+(\d{1,3})\b", re.IGNORECASE)
 
 
 def _explicit_page_ref(text: str) -> Optional[int]:
@@ -37,35 +38,50 @@ def _visual_key(visuals: list) -> Optional[str]:
     return "|".join(parts) if parts else None
 
 
+_GROUP_RE = re.compile(r"^Q\d+")
+
+
+def _group(q: dict) -> str:
+    """Top-level question number: "Q7c_ii" -> "Q7"."""
+    m = _GROUP_RE.match(str(q.get("id") or ""))
+    return m.group(0) if m else str(q.get("id") or "")
+
+
 def _questions_needing_visuals(data: dict) -> list[tuple[dict, int]]:
     """Pair each question with the page number whose PNG snapshot should be embedded.
 
-    Only fires when there's an explicit "page N" cross-reference in the question
-    text (or in a sibling question that shares the same visual label). This
-    targets the Cambridge "see page N" pattern — typically used for diagrams
-    that can't be rendered as structured HTML (flowcharts, complex schematics).
-    Visuals that just label the question's own page (tables, simple sketches
-    already covered by the existing layout renderers) are skipped.
+    Only fires for an explicit cross-reference ("the algorithm on page 6") — the
+    Cambridge pattern for diagrams that cannot be rendered as structured HTML
+    (flowcharts, complex schematics). The reference is shared with (a) siblings that
+    carry the same visual label and (b) every part of the same numbered question
+    (Q7a, Q7b, Q7c_i ...) when any of its parts has a visual: the model's visual
+    labels vary between runs, the question number does not.
+    Visuals without a page reference (tables, sketches already covered by the layout
+    renderers) are skipped, and so is a reference in a question with no visual at all.
     """
     questions = data.get("questions") or []
-    # Pass 1 — collect explicit page-refs, keyed by shared visual label.
     shared_refs: dict[str, int] = {}
+    group_refs: dict[str, int] = {}
+    group_has_visual: set[str] = set()
     for q in questions:
-        key = _visual_key(q.get("visuals"))
-        if not key:
-            continue
+        if q.get("visuals"):
+            group_has_visual.add(_group(q))
         ref = _explicit_page_ref(q.get("text") or "")
-        if ref and key not in shared_refs:
-            shared_refs[key] = ref
+        if not ref:
+            continue
+        group_refs.setdefault(_group(q), ref)
+        key = _visual_key(q.get("visuals"))
+        if key:
+            shared_refs.setdefault(key, ref)
 
     out: list[tuple[dict, int]] = []
     for q in questions:
-        if not (q.get("visuals") or []):
-            continue
-        page = (
-            _explicit_page_ref(q.get("text") or "")
-            or shared_refs.get(_visual_key(q.get("visuals")) or "")
-        )
+        own_visual = bool(q.get("visuals"))
+        page = None
+        if own_visual or _group(q) in group_has_visual:
+            page = _explicit_page_ref(q.get("text") or "") or group_refs.get(_group(q))
+        if not page and own_visual:
+            page = shared_refs.get(_visual_key(q.get("visuals")) or "")
         if page:
             out.append((q, int(page)))
     return out

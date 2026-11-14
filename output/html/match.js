@@ -110,13 +110,9 @@
     }
 
     function setConnection(leftKey, rightKey) {
-      var prev = connections.get(leftKey);
-      if (prev) {
-        if (prev.lineEl && prev.lineEl.parentNode) prev.lineEl.parentNode.removeChild(prev.lineEl);
-        if (!rightStillTargeted(prev.rightKey) || prev.rightKey === rightKey) {
-          markConnected(findBoxByKey(host, 'R', prev.rightKey), false);
-        }
-      }
+      // Drop this left item's previous line first, so the old right-hand box is
+      // un-highlighted when nothing else points at it.
+      removeConnection(leftKey);
       var line = drawConnection(leftKey, rightKey);
       connections.set(leftKey, { rightKey: rightKey, lineEl: line });
       markConnected(findBoxByKey(host, 'L', leftKey), true);
@@ -158,7 +154,7 @@
     if (clearBtn) {
       clearBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        Array.prototype.slice.call(connections.keys()).forEach(removeConnection);
+        Array.from(connections.keys()).forEach(removeConnection);
         setActive(null);
       });
     }

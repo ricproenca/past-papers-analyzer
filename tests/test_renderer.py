@@ -229,3 +229,22 @@ def test_cards_from_different_papers_get_distinct_ids_and_input_names():
     assert radios_a and radios_b and not radios_a & radios_b
     assert '<span class="q-id">Q1</span>' in a and "0478_m24_qp_12.html#Q1" in a      # label and link keep the paper's id
     assert 'id="Q1"' in r.render_question_card(q)                                          # paper pages unchanged
+
+
+# --- malformed model output never breaks a page -------------------------------
+
+@pytest.mark.parametrize("layout,sd", [
+    ("SimpleSingleBlock", {"line_count": "five"}), ("NumberedMultiList", {"list_count": "N"}),
+    ("FixedRegisterArray", {"register_size": "8 bits"}), ("LabelledPartResponse", {"labels": 5}),
+    ("CodeBlockResponse", {"language": 3}), ("ValueTraceMatrix", {"matrix_headers": ["A"], "row_count": "n"}),
+    ("MatrixGrid", None),
+])
+def test_bad_structure_data_falls_back_instead_of_crashing(layout, sd):
+    html = question._render_question(make_question(layout_type=layout, structure_data=sd))
+    assert 'class="card"' in html and "<textarea" in html or "<input" in html
+
+
+def test_bad_text_and_marking_points_do_not_crash():
+    answers = {"type": "text", "visuals": [], "scoring_rule": 3, "marking_points": [{"text": None, "marks": 1}, "loose string"]}
+    html = question._render_question(make_question(text=None, answers=answers))
+    assert "loose string" in html and 'class="mp-item"' in html

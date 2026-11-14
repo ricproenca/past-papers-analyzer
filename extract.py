@@ -40,6 +40,10 @@ def main():
                         help="Folder mode: process this many papers in parallel (default 1; mind your rate limits)")
     parser.add_argument("--batch", action="store_true",
                         help="Folder mode: use the Batch API (half price, results arrive asynchronously)")
+    parser.add_argument("--resume-phase12", metavar="BATCH_ID",
+                        help="With --batch: collect this already-submitted Phase 1+2 batch instead of submitting a new one")
+    parser.add_argument("--resume-phase3", metavar="BATCH_ID",
+                        help="With --batch: collect this already-submitted Phase 3 batch (needs --resume-phase12 too)")
     parser.add_argument("--vision", action="store_true",
                         help="Also send images of pages that contain diagrams (more input tokens, better diagram data)")
     parser.add_argument("--model", "-m", help="Claude model to use (default: claude-sonnet-4-6)")
@@ -47,12 +51,20 @@ def main():
     if args.workers < 1:
         parser.error("--workers must be at least 1")
 
+    if (args.resume_phase12 or args.resume_phase3) and not args.batch:
+        parser.error("--resume-phase12/--resume-phase3 need --batch")
+    if args.resume_phase3 and not args.resume_phase12:
+        parser.error("--resume-phase3 needs --resume-phase12 (the answers are attached to that extraction)")
+
     if args.model:
         os.environ["CLAUDE_MODEL"] = args.model
 
     target = Path(args.pdf_path)
 
     if target.is_dir():
+        if args.output or args.marking_scheme:
+            parser.error("--output and --marking-scheme are for a single PDF; a folder writes to output/json/ "
+                         "and pairs marking schemes by file name")
         qp_files = sorted(target.glob("*_qp_*.pdf"))
         if not qp_files:
             parser.error(f"No question-paper PDFs (*_qp_*.pdf) found in {target}")
@@ -68,7 +80,9 @@ def main():
         failed = []
         if args.batch:
             papers = [(str(pdf), str(output_path(pdf)), str(ms) if ms else None) for pdf, ms in todo]
-            failed = [(name, e) for name, e in extract_batch(papers, vision=args.vision)]
+            resume = {k: v for k, v in (("phase12", args.resume_phase12), ("phase3", args.resume_phase3)) if v}
+            extra = {"resume": resume} if resume else {}
+            failed = [(name, e) for name, e in extract_batch(papers, vision=args.vision, **extra)]
         else:
             def run(item):
                 pdf, ms = item
@@ -96,6 +110,8 @@ def main():
     else:
         if not target.is_file():
             parser.error(f"Exam paper PDF not found: {target}")
+        if args.batch or args.skip_existing or args.workers != 1:
+            parser.error("--batch, --workers and --skip-existing are for a folder of PDFs")
         if args.marking_scheme and not Path(args.marking_scheme).is_file():
             parser.error(f"Marking scheme PDF not found: {args.marking_scheme}")
         extract_one(target, output=args.output, ms_path=args.marking_scheme, vision=args.vision)

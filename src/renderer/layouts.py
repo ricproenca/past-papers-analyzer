@@ -13,9 +13,17 @@ from .matching import (
 
 
 
+def _as_int(value, default: int) -> int:
+    """structure_data comes from the model: a count may be missing or not a number."""
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
 def _render_simple_single_block(q, sd):
     qid = escape(q.get("id", ""))
-    rows = max(int(sd.get("line_count") or 3), 2)
+    rows = max(_as_int(sd.get("line_count"), 3) or 3, 2)
     return (
         f'<div class="q-input">'
         f'<textarea class="answer-textarea" rows="{rows}" '
@@ -79,7 +87,7 @@ def _render_multi_part_labeled(q, sd):
 
 def _render_numbered_multi_list(q, sd):
     qid = escape(q.get("id", ""))
-    count = max(int(sd.get("list_count") or 1), 1)
+    count = max(_as_int(sd.get("list_count"), 1), 1)
     slots = []
     for i in range(count):
         slots.append(
@@ -211,7 +219,7 @@ _NUM_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 def _detect_tick_count(text: str, fallback: int) -> int:
     m = _TICK_COUNT_RE.search(text or "")
     if not m:
-        return max(int(fallback or 1), 1)
+        return max(_as_int(fallback, 1), 1)
     w = m.group(1).lower()
     if w.isdigit():
         return int(w)
@@ -323,7 +331,7 @@ def _render_value_trace_matrix(q, sd):
         f'<th>{escape(str(h))}</th>' for h in headers
     ]
 
-    row_labels = rows if rows else [""] * max(int(sd.get("row_count") or 3), 1)
+    row_labels = rows if rows else [""] * max(_as_int(sd.get("row_count"), 3), 1)
     body_rows = []
     for r, row_label in enumerate(row_labels):
         cells = []
@@ -357,7 +365,7 @@ def _render_value_trace_matrix(q, sd):
 
 def _render_fixed_register_array(q, sd):
     qid = escape(q.get("id", ""))
-    n = int(sd.get("register_size") or 8)
+    n = _as_int(sd.get("register_size"), 8)
     if n not in (8, 16):
         n = 8
     boxes = "".join(
