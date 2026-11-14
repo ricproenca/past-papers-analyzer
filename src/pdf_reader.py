@@ -11,6 +11,7 @@ _TERM_DEF_HEADERS = frozenset({'TERM', 'DEFINITION'})
 _TERM_DEF_RIGHT_RE = re.compile(r"descrip|defin", re.IGNORECASE)
 # Characters that make up a Cambridge "blank-line" cell when nothing else is printed:
 # unicode horizontal ellipsis, ASCII dot/period, whitespace.
+_TICK_MARKS = frozenset({"\u2713", "\u2714", "x", "X"})
 _BLANK_CELL_RE = re.compile(r"^[\s.…]*$")
 
 # Generic labeled answer slots: 2+ consecutive lines like "Label ....." or "Label: ....."
@@ -200,15 +201,28 @@ def _classify_table(table: list) -> str:
     if header_tokens & _REGISTER_NAMES:
         return "ValueTraceMatrix"
 
+    body = [[_clean_cell(c) for c in row] for row in table[1:]]
+    has_blank = any(not c for row in body for c in row)
+
+    # TermDefinitionGrid by shape: two columns, some answer cells blank, and printed
+    # text either in the right column or beside a blank left cell ("type | statement").
+    # A tick-box MCQ (options left, empty tick column right) does not match.
+    if ncols == 2 and body and has_blank and any(
+        (len(row) > 1 and row[1] and row[1] not in _TICK_MARKS) or (row and not row[0])
+        for row in body
+    ):
+        return "TermDefinitionGrid"
+
     # DataReferenceTable: a lookup/context table provided in the question where every
     # data cell is prefilled (no blank answer slots). These are NOT answer formats —
     # they appear before sub-questions to give students data to work with.
-    if len(table) >= 2:
-        data_rows = table[1:]
-        if data_rows and all(
-            _clean_cell(cell) for row in data_rows for cell in row
-        ):
-            return "DataReferenceTable"
+    if body and not has_blank:
+        return "DataReferenceTable"
+
+    # Fill-in grid: values already printed beside the blanks (parity bytes, truth
+    # tables, conversion tables, test-data tables) — the student writes values, not ticks.
+    if body and any(c and c not in _TICK_MARKS for row in body for c in row[1:]):
+        return "ValueTraceMatrix"
 
     return "MatrixGrid"
 
@@ -294,6 +308,17 @@ def _has_diagram(text: str, curve_count: int, page_num: int) -> bool:
     return bool(_DIAGRAM_CUE_RE.search(text)) or curve_count >= _MANY_CURVES
 
 
+# Cover page: keep only what identifies the paper (title, code, session, duration,
+# total marks). The candidate instructions and the empty name/number boxes are the
+# same on every paper.
+_COVER_KEEP_RE = re.compile(
+    r"(Cambridge|COMPUTER SCIENCE|^Paper \d|hours?\b.*minutes|total mark for this paper)", re.IGNORECASE)
+
+
+def clean_cover_text(text: str) -> str:
+    return "\n".join(l for l in text.split("\n") if _COVER_KEEP_RE.search(l.strip()) and l.strip() != "\u2122")
+
+
 _MS_TABLE_HEADER_RE = re.compile(r"^Question\s+Answer\s+Marks", re.MULTILINE)
 
 
@@ -313,6 +338,10 @@ def extract_pages(pdf_path: str) -> List[Dict[str, Any]]:
         for i, page in enumerate(pdf.pages, start=1):
             raw = clean_page_text(page.extract_text() or "")
             tables = page.extract_tables()
+            if i == 1 and _COVER_KEEP_RE.search(raw) and "total mark for this paper" in raw:
+                # question-paper cover: identity lines only, and its tables are the
+                # candidate name/number boxes, not exam content
+                raw, tables = clean_cover_text(raw), []
             text = _annotate_anchors(raw, _table_cell_texts(tables))
             text = re.sub(r'(?m)^\s*\.{4,}\s*(\[\d+\])\s*$', r'\1', text)
             text = re.sub(r'(?m)^\s*\.{4,}\s*$\n?', '', text)

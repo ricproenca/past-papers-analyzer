@@ -36,7 +36,8 @@ generate_topics.py  # CLI: builds output/html/topic_*.html + topics.html (questi
 backfill_enrichment.py  # re-run enrichment + statistics over existing JSONs
 src/
   pdf_reader.py     # pdfplumber: boilerplate-free text, table classification, diagram cue, MS preamble trimming
-  postprocess.py    # fills what the model need not write: topic names, canonical commands, TermDefinitionGrid rows
+  postprocess.py    # fills what the model need not write: topic names, canonical commands, TermDefinitionGrid rows,
+                    #   subject code/variant from the file name; fixes line-matching layouts
   prompts.py        # builds Phase 1+2 (extraction + topics) and Phase 3 (answers) prompt messages
   claude_client.py  # Anthropic SDK wrapper (prompt caching, retries, truncation handling)
   extractor.py      # orchestrates Phase 1+2 → Phase 3 → enrichment → Phase 4 pipeline
@@ -53,6 +54,10 @@ src/
     matching.py     #   "draw lines to match" questions
     text.py         #   shared helpers: badges, pipe tables, code stems, prose
 tests/              # pytest suite (see Tests)
+scripts/
+  compare_extractions.py  # diff two extractions of a paper (fields, text, AO, answers); exit 1 on structural change
+  audit_extractions.py    # validate + consistency warnings + profile for every paper, no API calls
+.claude/skills/     # project skills (see Skills)
 docs/
   question_extractor.md  # prompt spec: extraction + topic mapping + answers
   syllabus.md            # syllabus topics (1.x–10.x) used in Phase 1+2
@@ -105,7 +110,9 @@ The script is idempotent — re-running it leaves files unchanged.
 - **JSON fence stripping**: Claude occasionally wraps output in markdown fences despite instructions; `src/claude_client.py:_strip_fences()` handles this before `json.loads()` validation.
 - **Truncation & debug**: a response with `stop_reason == "max_tokens"` raises `TruncatedOutputError` (no retry — it would truncate again). Raw responses that are truncated, unparseable or fail validation are saved to `output/debug/` (override with `CLAUDE_DEBUG_DIR`); token usage is counted for failed calls too.
 - **Retry**: `RateLimitError` and `APIConnectionError` (including timeouts) retry up to 3 times with exponential backoff (2^attempt seconds).
-- **Input cleaning**: `pdf_reader.clean_page_text()` drops `(cid:N)` glyph noise, the mirrored margin text, barcodes, footers and copyright tails before anything is sent (~70% fewer paper-text tokens on 2024–25 papers). Marking schemes are trimmed to the pages from the first `Question Answer Marks` table onward (`drop_ms_preamble`). Blank pages are not sent.
+- **Input cleaning**: the question-paper cover is cut to its identity lines (title, code, session, duration, total marks) and its candidate-number tables are dropped. `pdf_reader.clean_page_text()` drops `(cid:N)` glyph noise, the mirrored margin text, barcodes, footers and copyright tails before anything is sent (~70% fewer paper-text tokens on 2024–25 papers). Marking schemes are trimmed to the pages from the first `Question Answer Marks` table onward (`drop_ms_preamble`). Blank pages are not sent.
+- **Table classification** (`pdf_reader._classify_table`): besides header rules, a two-column table with blanks and printed text beside a blank or in the right column is a `TermDefinitionGrid` ("type | statement" tables), and a table with values printed beside blanks is a `ValueTraceMatrix` (parity, truth, conversion, test-data tables); only tick grids stay `MatrixGrid`.
+- **Prompt text rules** (each fixed a regression measured against the committed extractions): `text` is verbatim but repairs extraction artefacts (displaced `←`, split words); the parent context is exactly the text before the parent's first part label, copied in full, including numbered code listings and reference tables but not words extracted from inside a flowchart/circuit; diagrams are described only in `visuals`; line-matching columns are written as a pipe table.
 - **Diagram detection**: `[Likely contains a diagram/drawing]` is set from a text cue (words like diagram, flowchart, draw, circuit) or ≥20 curves on the page — it found 15 of 17 known diagram pages with 1 false positive. Vector-shape counts and `page.images` were tried and do not work on Cambridge papers. `--vision` attaches PNGs of the flagged pages (opt-in: it adds ~1.5k input tokens per page and enriched the diagram description in a test).
 - **Temperature**: not sent by default. `CLAUDE_TEMPERATURE=<n>` opts in; a model that rejects the parameter is retried without it. (On one paper, temperature 0 made the model trim context sentences in 3 of 3 runs; the API default kept them in 2 of 2.)
 - **Parent context stays repeated**: the model writes each sub-question's full text including its parent stem. A "write each stem once" design saved ~16% of output but the model then silently dropped shared context from some sub-questions (Q2, Q7(f) on the test paper), so it was not adopted.
@@ -131,3 +138,12 @@ Topics 1.x–10.x as defined in `docs/syllabus.md` (names live in `src/syllabus.
 8. Programming — 8.1 Programming Concepts, 8.2 Arrays, 8.3 File Handling
 9. Databases — 9.1 Database Structure, 9.2 SQL
 10. Boolean Logic — 10.1 Logic Gates, 10.2 Logic Circuits, 10.3 Truth Tables, 10.4 Logic Expressions
+
+## Skills
+
+Project skills live in `.claude/skills/` (committed; the rest of `.claude/` is ignored):
+
+| Skill | Phase | Use it to |
+|---|---|---|
+| `extract-paper` | 1–3 | extract a paper into `output/staging/`, compare with the committed JSON, then promote and rebuild |
+| `audit-extractions` | 1–3 | validate every paper, read the consistency warnings, fix confirmed problems |

@@ -13,8 +13,10 @@ RULES:
 - Never invent question numbers — use exactly what is printed on the paper.
 - When a question genuinely spans two topics, pick the first one.
 - Paper routing — Paper 1 (variants 1x) covers chapters 1–6 (theory). Paper 2 (variants 2x) covers chapters 7–10. Pseudocode/algorithm-writing questions map to 7.2 (when the focus is algorithm design / trace / flowchart) or 8.1 (when the focus is a specific programming construct like an array operation). SQL questions map to 9.2. Logic gates / logic circuits / truth tables / Boolean expressions map to 10.x. The variant field in `qp` filename (e.g. `0478_m25_qp_22.pdf` → variant 22) determines the paper number from the first digit.
-- For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation.
+- For every sub-question (e.g. Q2c_ii), always include the parent question's context/stem at the beginning of the "text" field so each question is fully self-contained when read in isolation. The parent context is exactly the text printed BEFORE the parent's first part label — before "(a)" for Q2, before "(i)" for Q2c; text printed after a part label belongs to that part only. Copy that parent context IN FULL — every sentence, even ones that seem unrelated to this part — plus any pseudocode/program listing (numbered code lines) or reference table the parent introduces. Do NOT copy the words extracted from inside a diagram, flowchart or logic circuit (scattered box labels such as "START", "INPUT Answer", "Yes", "No"): that is the drawing itself, shown to the reader as an image; just keep the sentence that introduces it.
 - Answer-space dotted lines have been removed. Answer label lines (e.g. 'Method', 'Input', '1', '14B') are preserved with their dots stripped — include them as-is in the 'text' field as structural cues for what the question asks for. Inline blanks appear as '[blank]'. Do not reconstruct or add dots, dashes, or extra answer-space lines.
+- "text" is verbatim: only words printed on the paper — but repair obvious PDF-extraction artefacts: symbols displaced into words ("t←otal" → "Total ←" in its proper place), split words ("av erage" → "average"), and lost line breaks in numbered code listings (one numbered line per line). Never describe, summarise or interpret a diagram, flowchart or image in "text" — put any description in "visuals".
+- Line-matching questions ("Draw one line from each ... to ..."): write the two printed columns in "text" as a pipe table — first line "<left header> | <right header>", then one line per row "<left item> | <right item>" in printed order (the rows are NOT matched pairs; leave a side empty if a column is shorter). Their layout_type is AnnotatedDiagram with diagram_type "other".
 - Tables that a structured layout renders from structure_data (MatrixGrid, ValueTraceMatrix, TermDefinitionGrid) must NOT be copied into "text"; "text" holds the prose only.
 - Preserve paragraph breaks from the PDF in the "text" field. When the source PDF visually shows two prose paragraphs separated by a blank line / vertical gap (e.g. a setup paragraph "X happens in context Y." followed by a new instruction paragraph "Describe the process for Z."), put a literal blank line (`\n\n`) between them in the "text" field. Do NOT insert `\n\n` for line wraps within one paragraph, between a prose paragraph and a table, or between a paragraph and answer-space labels — those already have their own structure markers and don't need extra blank lines.
 
@@ -61,7 +63,8 @@ SimpleSingleBlock — single open answer space (one or more blank answer lines, 
   structure_data: { "line_count": N }  // number of answer lines detected; use 1 if unknown
 
 MultiPartLabeledBlock — labeled sub-answer slots with category prefixes before each answer space
-  PDF signals: [LAYOUT:MultiPartLabeledBlock labels=Justification,Explanation]
+  PDF signals: [LAYOUT:MultiPartLabeledBlock labels=Justification,Explanation]; or repeated label lines with no annotation
+    (e.g. "Error 1 line number" / "Correction" / "Error 2 line number" / "Correction" ...) — still MultiPartLabeledBlock, labels in printed order
   Pairs: Justification/Explanation, Benefit/Drawback, Advantage/Disadvantage
   structure_data: { "labels": ["Justification", "Explanation"] }
 
@@ -145,7 +148,8 @@ FixedRegisterArray — 8 or 16 isolated single-bit boxes for binary/hex writing
   structure_data: { "register_size": N }  // N is 8 or 16
 
 TermDefinitionGrid — two-column "label / explanation" table where SOME cells are pre-filled and OTHERS blank.
-  PDF signals: [TABLE_TYPE:TermDefinitionGrid]
+  PDF signals: [TABLE_TYPE:TermDefinitionGrid] — REQUIRED. Use this layout ONLY for a two-column table the page marks with that
+    annotation. A table with three or more columns, or one without the annotation, is ValueTraceMatrix or MatrixGrid.
   structure_data: {}   // the pipeline copies the headers and every cell verbatim from the PDF table — do not type them
   text: the prose stem/instruction only. Do NOT write the table, its header row or "(blank)" cells into "text".
   marks: one blank cell is typically one mark.
@@ -175,8 +179,8 @@ DataReferenceTable handling — when a page contains [TABLE_TYPE:DataReferenceTa
     "A database table, MajorCity, stores some details about a number of cities around the world.\n\n| Code | City | Capital | Country | Continent | Population |\n| ASY6 | Abu Dhabi | TRUE | United Arab Emirates | Asia | 1,566,999 |\n...\n\nState the number of fields and records in this database table.\n\nFields\nRecords"
 
 CodeBlockResponse — student writes multi-line pseudocode, SQL, or an algorithm into a monospace area.
-  PDF signals: Paper 2 only (variants 21/22/23); command word "Write" combined with marks ≥ 3 AND the body
-               references "pseudocode", "an algorithm", "a SQL query/statement", or "code".
+  PDF signals: Paper 2 only (variants 21/22/23); marks ≥ 3 AND the answer itself is pseudocode, an algorithm, SQL or
+               program code — whatever the command word ("Write", "Complete", "Amend", "Rewrite" ...).
                A 1- or 2-mark "write the SELECT statement" should stay SimpleSingleBlock — Code block is for
                substantive write-ups, not single-line answers.
   structure_data: {

@@ -53,3 +53,24 @@ def test_postprocess_phase12_runs_everything():
     assert pp.postprocess_phase12(d, pages) == []
     q = d["questions"][0]
     assert q["text"] == "own" and q["topic_name"] == "Data Storage" and q["structure_data"]["headers"] == ["Term", "Description"]
+
+
+def test_paper_identity_comes_from_the_file_name():
+    d = make_paper(qp="0478_w25_qp_12.pdf", subject_code="0478", variant="21")
+    assert pp.fill_paper_identity(d) == ["variant: model wrote '21', file name says '12'"]
+    assert (d["subject_code"], d["variant"]) == ("0478", "12")
+    d2 = make_paper(qp="0478_w25_qp_12.pdf", variant=None)
+    assert pp.fill_paper_identity(d2) == [] and d2["variant"] == "12"         # filled silently when missing
+    d3 = make_paper(qp="some_other_name.pdf", variant="99")
+    assert pp.fill_paper_identity(d3) == [] and d3["variant"] == "99"         # unknown naming: leave alone
+
+
+def test_line_matching_questions_get_the_matcher_layout():
+    text = ("Draw one line from each stage to the most appropriate description.\n"
+            "Stage | Description\ntesting | finding errors\ncoding | writing code\ndesign | planning")
+    qs = [make_question("Q3", command="Draw", text=text, layout_type="MatrixGrid", structure_data={"rows": []}),
+          make_question("Q4", command="Draw", text="Draw a logic circuit.", layout_type="AnnotatedDiagram",
+                        structure_data={"diagram_type": "circuit"})]
+    assert pp.fix_line_matching_layouts(make_paper(qs)) == ["Q3"]
+    assert qs[0]["layout_type"] == "AnnotatedDiagram" and qs[0]["structure_data"]["diagram_type"] == "other"
+    assert qs[1]["structure_data"] == {"diagram_type": "circuit"}

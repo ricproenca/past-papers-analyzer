@@ -1,9 +1,11 @@
 .env
 .DS_Store
-.claude
+.claude/*
+!.claude/skills/
 .venv/**
 src/__pycache__/**
 /input/**
 /output/debug/**
 __pycache__/
 .pytest_cache/
+/output/staging/

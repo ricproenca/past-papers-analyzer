@@ -90,6 +90,14 @@ def test_clean_cell(cell, expected):
     ([["Code", "City"], ["A1", "Paris"], ["B2", "Rome"]], "DataReferenceTable"),
     ([[""] * 8], "FixedRegisterArray register_size=8"),
     ([["b%d" % i for i in range(16)], [""] * 16], "FixedRegisterArray register_size=16"),
+    # term/definition grids recognised by shape, whatever the header says
+    ([["type of sensor", "use"], ["acoustic", "monitor leaks"], ["temperature", ""]], "TermDefinitionGrid"),
+    ([["error detection method", "statement"], ["", "An odd or even process."]], "TermDefinitionGrid"),
+    # tick-box MCQ: options left, empty tick column right -> still a MatrixGrid
+    ([["Option", "Tick"], ["A bubble sort", ""], ["B linear search", ""]], "MatrixGrid"),
+    # values printed beside blanks: the student writes values -> ValueTraceMatrix
+    ([["A", "B", "Z"], ["0", "0", ""], ["0", "1", ""]], "ValueTraceMatrix"),
+    ([["Test data", "Type", "Purpose"], ["ABC", "", ""], ["", "Boundary", ""]], "ValueTraceMatrix"),
 ])
 def test_classify_table(table, expected):
     assert pr._classify_table(table) == expected
@@ -197,3 +205,14 @@ def test_extract_pages_exposes_flags_and_term_def_tables(sample_pdf):
 def test_render_pages_to_png_bytes(sample_pdf):
     out = pr.render_pages_to_png_bytes(sample_pdf, [2, 1, 99, 0])
     assert sorted(out) == [1, 2] and all(b.startswith(b"\x89PNG") for b in out.values())
+
+
+def test_cover_keeps_only_identity_lines():
+    cover = "\n".join(["Cambridge IGCSE\u2122", "COMPUTER SCIENCE 0478/22",
+                       "Paper 2 Algorithms, Programming and Logic February/March 2025", "1 hour 45 minutes",
+                       "You must answer on the question paper.", "INSTRUCTIONS", "\u25cf Answer all questions.",
+                       "INFORMATION", "\u25cf The total mark for this paper is 75.", "DC (DE/SG) 341750/3", "\u2122"])
+    assert pr.clean_cover_text(cover).split("\n") == [
+        "Cambridge IGCSE\u2122", "COMPUTER SCIENCE 0478/22",
+        "Paper 2 Algorithms, Programming and Logic February/March 2025", "1 hour 45 minutes",
+        "\u25cf The total mark for this paper is 75."]
