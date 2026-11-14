@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .circuit_assets import CIRCUIT_JS
 from .match_assets import MATCH_JS
+from .syllabus import SESSION_LETTER_NAMES
 
 _CSS = """
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1388,16 +1389,13 @@ def _render_question(q, source: dict | None = None):
 render_question_card = _render_question
 
 
-_SESSION_LETTER_NAMES = {"m": "March", "s": "Summer", "w": "Winter"}
-
-
 def _parse_session_label(qp: str) -> str:
     """Parse 'm25' / 's24' from a qp filename into 'March 2025' / 'Summer 2024'."""
     m = re.search(r"_([msw])(\d{2})_qp_", qp or "")
     if not m:
         return ""
     letter, yy = m.groups()
-    name = _SESSION_LETTER_NAMES.get(letter, letter)
+    name = SESSION_LETTER_NAMES.get(letter, letter)
     return f"{name} 20{yy}"
 
 
