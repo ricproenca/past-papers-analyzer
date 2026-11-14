@@ -37,6 +37,28 @@ Read the run's output: `[!]` lines are consistency warnings, `Warning:` lines ar
 pairing/answer problems. A validation failure saves the raw response under
 `output/debug/` — report its path; never re-run blindly.
 
+### A whole folder (a new session, or re-extracting everything)
+
+Folder mode has no staging: `-o` is single-file only, so it writes straight to
+`output/json/` and overwrites. Git is the safety net — start from a clean tree
+(`git status --short output/json` prints nothing) so every change is a reviewable diff.
+
+```bash
+python extract.py input/0478/<folder> --batch            # half price, asynchronous
+python extract.py input/0478/<folder> --workers 4        # faster, full price
+python extract.py input/0478/<folder> --skip-existing    # only papers with no JSON yet (new session, or resume)
+```
+
+Marking schemes are paired by file name. The command exits non-zero and lists the
+papers that failed; the others are still written. Compare each overwritten paper with
+its committed version, then audit and rebuild (steps 5–6, without the `mv`):
+
+```bash
+git show HEAD:output/json/<stem>.json > output/staging/<stem>.old.json
+python scripts/compare_extractions.py output/json/<stem>.json output/staging/<stem>.old.json
+git checkout -- output/json/<stem>.json      # to reject one paper's new extraction
+```
+
 ## 4. Compare with the committed extraction (if one exists)
 
 ```bash

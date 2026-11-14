@@ -158,3 +158,9 @@ Project skills live in `.claude/skills/` (committed; the rest of `.claude/` is i
 | `rebuild-site` | 4 | re-render all pages after renderer/CSS/JS/JSON changes and run the site checks |
 | `refresh-answers` | 3 | re-run only the answers for an extracted paper, compare, promote |
 | `review-syllabus-mapping` | 2 | check topics/AOs against the official syllabus, coverage across papers, fix systematic mapping errors |
+| `tune-prompt` | 1–3 | change a prompt rule and measure it on the two reference papers before keeping it |
+| `add-layout-type` | 1, 4 | add or rework a `layout_type` in every place it is defined (schema, enricher, PDF annotations, prompt, renderer, CSS, docs) |
+| `fix-question` | any | diagnose one wrong question, find the stage that caused it (PDF text, model, post-processing, renderer) and fix it there |
+| `ship` | — | regenerate what the change requires, run tests and lint, commit and push |
+
+Commands in the skills are written as `python ...`; run them inside the project environment (`uv run python ...`, or activate `.venv`).
