@@ -283,3 +283,66 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     margin-left: auto; align-self: center;
     font-size: .72rem; color: #6b7280; font-style: italic;
 }
+
+/* AnnotatedDiagram → "draw a line to match" interactive matcher */
+.match-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: .5rem 4rem;
+    align-items: start;
+    margin-top: .5rem;
+    padding: .75rem;
+    background: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px;
+}
+.match-col { display: flex; flex-direction: column; gap: .5rem; }
+.match-col-left { grid-column: 1; grid-row: 1; }
+.match-col-right { grid-column: 2; grid-row: 1; }
+.match-col-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: #6b7280;
+    margin-bottom: .15rem;
+}
+.match-box {
+    display: block; width: 100%;
+    padding: .55rem .75rem;
+    font-family: inherit; font-size: .85rem; font-weight: 500; text-align: left;
+    color: #1f2937; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    cursor: pointer; user-select: none;
+    transition: background-color .12s, border-color .12s, box-shadow .12s;
+}
+.match-box:hover { background: #f0f7ff; border-color: #93b8e6; }
+.match-box.is-active {
+    background: #dbeafe; border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.18);
+}
+.match-box.is-connected {
+    background: #ecfdf5; border-color: #34d399; color: #064e3b;
+}
+.match-lines {
+    grid-column: 1 / span 2; grid-row: 1;
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+.match-lines .match-line {
+    pointer-events: stroke;
+    cursor: pointer;
+}
+.match-lines .match-line:hover { stroke: #ef4444; }
+.match-toolbar {
+    grid-column: 1 / span 2; grid-row: 2;
+    display: flex; align-items: center; gap: .75rem;
+    margin-top: .25rem;
+}
+.match-count {
+    font-size: .8rem; color: #4b5563;
+}
+.match-clear {
+    padding: .35rem .85rem; font-family: inherit; font-size: .8rem;
+    color: #374151; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;
+}
+.match-clear:hover { background: #f3f4f6; }

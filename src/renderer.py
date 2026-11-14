@@ -5,6 +5,7 @@ from html import escape
 from pathlib import Path
 
 from .circuit_assets import CIRCUIT_JS
+from .match_assets import MATCH_JS
 
 _CSS = """
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -291,6 +292,69 @@ body { font-family: system-ui, sans-serif; background: #f3f4f6; color: #1f2937; 
     margin-left: auto; align-self: center;
     font-size: .72rem; color: #6b7280; font-style: italic;
 }
+
+/* AnnotatedDiagram → "draw a line to match" interactive matcher */
+.match-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: .5rem 4rem;
+    align-items: start;
+    margin-top: .5rem;
+    padding: .75rem;
+    background: #f9fafb; border: 1px solid #d1d5db; border-radius: 6px;
+}
+.match-col { display: flex; flex-direction: column; gap: .5rem; }
+.match-col-left { grid-column: 1; grid-row: 1; }
+.match-col-right { grid-column: 2; grid-row: 1; }
+.match-col-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: #6b7280;
+    margin-bottom: .15rem;
+}
+.match-box {
+    display: block; width: 100%;
+    padding: .55rem .75rem;
+    font-family: inherit; font-size: .85rem; font-weight: 500; text-align: left;
+    color: #1f2937; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 6px;
+    cursor: pointer; user-select: none;
+    transition: background-color .12s, border-color .12s, box-shadow .12s;
+}
+.match-box:hover { background: #f0f7ff; border-color: #93b8e6; }
+.match-box.is-active {
+    background: #dbeafe; border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.18);
+}
+.match-box.is-connected {
+    background: #ecfdf5; border-color: #34d399; color: #064e3b;
+}
+.match-lines {
+    grid-column: 1 / span 2; grid-row: 1;
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+.match-lines .match-line {
+    pointer-events: stroke;
+    cursor: pointer;
+}
+.match-lines .match-line:hover { stroke: #ef4444; }
+.match-toolbar {
+    grid-column: 1 / span 2; grid-row: 2;
+    display: flex; align-items: center; gap: .75rem;
+    margin-top: .25rem;
+}
+.match-count {
+    font-size: .8rem; color: #4b5563;
+}
+.match-clear {
+    padding: .35rem .85rem; font-family: inherit; font-size: .8rem;
+    color: #374151; background: #fff;
+    border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;
+}
+.match-clear:hover { background: #f3f4f6; }
 """
 
 _JS = """
@@ -382,6 +446,31 @@ def _strip_pipe_tables(text: str) -> str:
         for k in range(start, end):
             drop[k] = True
     return "\n".join(ln for ln, d in zip(raw_lines, drop) if not d).strip()
+
+
+def _strip_trailing_partial_mockup(text: str, partial_elements: list) -> str:
+    """Drop trailing non-blank lines whose whitespace-tokens are all members of
+    `partial_elements`. Used by circuit AnnotatedDiagrams where the JSON text
+    ends with a textual mockup of the partial diagram (e.g. `A` / `B   Z` / `C`)
+    that's now redundant because the JointJS canvas renders the labels as pads."""
+    if not text or not partial_elements:
+        return text
+    tokens = {str(p).strip() for p in partial_elements if str(p).strip()}
+    if not tokens:
+        return text
+    lines = text.splitlines()
+    i = len(lines)
+    while i > 0:
+        line = lines[i - 1]
+        stripped = line.strip()
+        if not stripped:
+            i -= 1
+            continue
+        parts = stripped.split()
+        if not parts or not all(p in tokens for p in parts):
+            break
+        i -= 1
+    return "\n".join(lines[:i]).rstrip()
 
 
 def _maybe_pipe_table(paragraph: str) -> str | None:
@@ -924,9 +1013,105 @@ def _render_circuit_editor(q, sd):
     )
 
 
+_LINE_MATCH_PROMPT_RE = re.compile(
+    r"draw\s+(?:\w+\s+)?lines?\s+from\s+each", re.IGNORECASE
+)
+
+
+def _slug_key(text: str) -> str:
+    """Stable, attribute-safe key for a matcher item — keeps alphanumerics and
+    collapses everything else to single underscores. Used for data-key so the
+    JS can find boxes by their original text reliably."""
+    return re.sub(r"_+", "_", re.sub(r"[^A-Za-z0-9]+", "_", text)).strip("_") or "x"
+
+
+def _extract_line_match_columns(text: str) -> tuple[str, str, list[str], list[str]] | None:
+    """If `text` contains a 2-column pipe-table with a header + ≥3 data rows,
+    return (left_header, right_header, left_items, right_items). Else None.
+    The data rows are NOT pre-matched pairs — each cell is an independent
+    item in its column (matching what Cambridge prints on the page)."""
+    blocks = _find_pipe_table_blocks(text)
+    if not blocks:
+        return None
+    raw = text.splitlines()
+    for start, end in blocks:
+        rows = [raw[i] for i in range(start, end)]
+        if len(rows) < 4:  # header + ≥3 data rows
+            continue
+        parsed = []
+        for ln in rows:
+            cells = [c.strip() for c in ln.split("|")]
+            while cells and not cells[0]:
+                cells.pop(0)
+            while cells and not cells[-1]:
+                cells.pop()
+            if len(cells) != 2:
+                break
+            parsed.append(cells)
+        else:
+            header, *data = parsed
+            left_items = [r[0] for r in data if r[0]]
+            right_items = [r[1] for r in data if r[1]]
+            if len(left_items) >= 2 and len(right_items) >= 2:
+                return header[0], header[1], left_items, right_items
+    return None
+
+
+def _is_line_match(q, text: str) -> tuple[str, str, list[str], list[str]] | None:
+    """Heuristic: a Cambridge "draw lines to match" question is `command=Draw`,
+    its text has a "draw … line(s) from each" phrase, and the text contains a
+    2-column pipe-table."""
+    if (q.get("command") or "").strip().lower() != "draw":
+        return None
+    if not _LINE_MATCH_PROMPT_RE.search(text or ""):
+        return None
+    return _extract_line_match_columns(text or "")
+
+
+def _render_line_matching(q, columns):
+    """Two columns of clickable boxes + an SVG overlay where the student draws
+    lines between matching items. Wired up by `match.js`."""
+    left_header, right_header, left_items, right_items = columns
+    qid = escape(q.get("id", ""))
+
+    def _col(side, header, items):
+        box_html = "".join(
+            f'<button type="button" class="match-box" '
+            f'data-side="{side}" data-key="{escape(_slug_key(item))}">'
+            f'{escape(item)}</button>'
+            for item in items
+        )
+        col_cls = "match-col-left" if side == "L" else "match-col-right"
+        return (
+            f'<div class="match-col {col_cls}">'
+            f'<div class="match-col-label">{escape(header)}</div>'
+            f'{box_html}'
+            f'</div>'
+        )
+
+    left_total = len(left_items)
+    return (
+        f'<div class="q-input">'
+        f'<div class="match-grid" data-qid="{qid}">'
+        f'{_col("L", left_header, left_items)}'
+        f'<svg class="match-lines" aria-hidden="true"></svg>'
+        f'{_col("R", right_header, right_items)}'
+        f'<div class="match-toolbar">'
+        f'<span class="match-count">0 / {left_total} lines drawn</span>'
+        f'<button type="button" class="match-clear">Clear all lines</button>'
+        f'</div>'
+        f'</div>'
+        f'</div>'
+    )
+
+
 def _render_annotated_diagram(q, sd):
     if (sd.get("diagram_type") or "").strip().lower() == "circuit":
         return _render_circuit_editor(q, sd)
+
+    columns = _is_line_match(q, q.get("text") or "")
+    if columns is not None:
+        return _render_line_matching(q, columns)
 
     qid = escape(q.get("id", ""))
     diagram_type = sd.get("diagram_type") or "diagram"
@@ -1084,6 +1269,15 @@ def _render_question(q, source: dict | None = None):
                     break
         if trailing == expected:
             text = "\n".join(lines[:tail_start]).strip()
+    elif layout_type == "AnnotatedDiagram" and \
+            (structure_data.get("diagram_type") or "").strip().lower() == "circuit":
+        # The JointJS canvas labels A/B/C/Z as actual pads — drop the trailing
+        # textual mockup of the partial circuit that Claude leaves in the JSON.
+        text = _strip_trailing_partial_mockup(text, structure_data.get("partial_elements") or [])
+    elif layout_type == "AnnotatedDiagram" and _is_line_match(q, text):
+        # The matcher owns the pipe-table; strip it from the prose so it doesn't
+        # render as a duplicate ref-table above the interactive matcher.
+        text = _strip_pipe_tables(text)
     visual_html = ""
     visual_image = q.get("visual_image")
     if visual_image:
@@ -1252,6 +1446,7 @@ def render_html(data: dict) -> str:
 <script src="paper.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.2.4/dist/joint.min.js"></script>
 <script src="circuit.js"></script>
+<script src="match.js"></script>
 </body>
 </html>"""
 
@@ -1260,6 +1455,7 @@ def _write_assets(directory: Path) -> None:
     (directory / "paper.css").write_text(_CSS, encoding="utf-8")
     (directory / "paper.js").write_text(_JS, encoding="utf-8")
     (directory / "circuit.js").write_text(CIRCUIT_JS, encoding="utf-8")
+    (directory / "match.js").write_text(MATCH_JS, encoding="utf-8")
 
 
 def render(data: dict, output_path: str | Path) -> None:
