@@ -1,3 +1,4 @@
+import copy
 import json
 from pathlib import Path
 
@@ -40,7 +41,7 @@ def _merge_answers(data: dict, answers_by_id: dict) -> None:
     if extra:
         print(f"Warning: Phase 3 returned answers for unknown ids (ignored): {extra}")
     for q in data["questions"]:
-        q["answers"] = answers_by_id.get(q.get("id")) or dict(_EMPTY_ANSWER)
+        q["answers"] = answers_by_id.get(q.get("id")) or copy.deepcopy(_EMPTY_ANSWER)
 
 
 def extract(pdf_path: str, output_path: str, ms_path: str = None) -> None:

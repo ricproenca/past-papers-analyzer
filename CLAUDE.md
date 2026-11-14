@@ -49,6 +49,17 @@ All phases run sequentially in a single command:
 - **Phase 3** — Claude receives the Phase 1+2 JSON + marking scheme text and returns only an `{id: answer}` map, which `extractor._merge_answers()` attaches to the questions (extraction fields are never re-emitted or altered). Each answer has `type`, `visuals`, `scoring_rule`, and `marking_points` (array of `{text, marks}` objects). Prompt built in `src/prompts.py:build_phase3_messages()`. (Skipped when no `-ms` flag is provided.)
 - **Phase 4** — `src/renderer.py` generates an HTML review page from the final JSON. Output goes to `output/html/<stem>.html` (or next to the JSON for custom `-o` paths). Shared CSS/JS assets (`paper.css`, `paper.js`) are written to the same directory. Can also be run standalone: `python render.py <json_path>` (single file) or `python render.py <folder>` (renders all `*.json` files in the folder).
 
+## Tests
+
+```bash
+pip install -e ".[dev]"   # or: uv pip install pytest
+pytest
+```
+
+Unit tests cover the PDF pre-processing regexes, table classification, enricher, statistics, schema validation, the Claude client (retries, truncation, debug dumps — against a fake client, no API calls), the extractor pipeline (stubbed Claude and PDF reader) and the renderer's parsers. Two data-driven suites run against the committed `output/json/` papers and **fail on drift**:
+- `test_committed_html_matches_renderer` — `render_html(json)` must equal the committed `output/html/<stem>.html`. After changing the renderer or its CSS/JS, run `python render.py output/json` and commit the result.
+- `test_committed_enrichment_is_up_to_date` / `test_every_extracted_command_is_known` — re-run `python backfill_enrichment.py` after changing the enricher or statistics, and map any new command word.
+
 ## Post-extraction Enrichment
 
 After the Claude phases complete, `src/enricher.py` adds three deterministic per-question fields with zero API cost:

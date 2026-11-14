@@ -6,3 +6,5 @@ src/__pycache__/**
 /input/**
 uv.lock
 /output/debug/**
+__pycache__/
+.pytest_cache/
